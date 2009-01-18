@@ -21,7 +21,6 @@ setMethod(
     charac.x <- apply(format(x, trim = T), 2, as.character)
 #    if (is.vector(charac.x)) charac.x <- t(charac.x) # si une seule dimension
 
-    charac.x[charac.x == "NA"] <- "" # necessaire avant le formatage des nombres avec formatC(as.numeric(...))
     charac.x <- as.data.frame(charac.x, , stringsAsFactors = F)
 
     # rownames and colnames
@@ -45,6 +44,7 @@ setMethod(
     replacement <- paste("\\1", na.print, "\\3", sep = "")
     for (i in 1:ncol(charac.x)) {
       if (numerics[i]) {
+        charac.x[, i][charac.x[, i] == "NA"] <- "" # necessaire avant le formatage des nombres avec formatC(as.numeric(...))
         if (include.colnames)  charac.x[2:nrow(charac.x),i] <- formatC(as.numeric(charac.x[2:nrow(charac.x),i]), format = format[i], digits = digits[i], decimal.mark = decimal.mark)
         if (!include.colnames) charac.x[,i] <- formatC(as.numeric(charac.x[,i]), format = format[i], digits = digits[i], decimal.mark = decimal.mark)
       }
