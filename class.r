@@ -11,6 +11,19 @@ setClass(
   )
 )
 
+setClass(
+  "R2asciidocVector",
+  representation = representation(
+    x = "vector",
+    include.colnames = "logical",
+    include.rownames = "logical",
+    format           = "character", 
+    digits           = "numeric", 
+    decimal.mark     = "character", 
+    na.print         = "character"
+  )
+)
+
 #~ setClass(
 #~   "R2asciidoc.list",
 #~   representation = representation(

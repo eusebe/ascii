@@ -17,7 +17,7 @@ setMethod(
     digits <- rep(digits, length.out = ncol(x))
 
     
-    # transformation de toute la dataframe en en caracteres
+    # transformation de toute la dataframe en caracteres
     charac.x <- apply(format(x, trim = T), 2, as.character)
 #    if (is.vector(charac.x)) charac.x <- t(charac.x) # si une seule dimension
 
@@ -40,15 +40,15 @@ setMethod(
     charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = F), charac.x)
     }
 
-    # Beautify cols
-    replacement <- paste("\\1", na.print, "\\3", sep = "")
+    # Beautify cols (digits, format, spacing, na.print)
+    replacement <- paste(na.print, "\\2", sep = "")
     for (i in 1:ncol(charac.x)) {
       if (numerics[i]) {
         charac.x[, i][charac.x[, i] == "NA"] <- "" # necessaire avant le formatage des nombres avec formatC(as.numeric(...))
         if (include.colnames)  charac.x[2:nrow(charac.x),i] <- formatC(as.numeric(charac.x[2:nrow(charac.x),i]), format = format[i], digits = digits[i], decimal.mark = decimal.mark)
         if (!include.colnames) charac.x[,i] <- formatC(as.numeric(charac.x[,i]), format = format[i], digits = digits[i], decimal.mark = decimal.mark)
       }
-      charac.x[,i] <- sub("( *)(NA)( *)", replacement, charac.x[,i])
+      charac.x[,i] <- sub("(NA)( *)", replacement, charac.x[,i])
       charac.x[,i] <- format(charac.x[,i], justify = "left")
     }
 
@@ -58,4 +58,28 @@ setMethod(
       cat("\n")
     }
   }
+)
+
+setMethod(
+  "show",
+  "R2asciidocVector",
+  function (object){
+    x                 <- object@x
+    include.rownames  <- object@include.rownames
+    include.colnames  <- object@include.colnames
+    format            <- object@format
+    digits            <- object@digits
+    decimal.mark      <- object@decimal.mark
+    na.print          <- object@na.print
+
+    # transformation du vecteur en caracteres
+    charac.x <- as.character(x)
+
+    if (is.numeric(x)) charac.x <- formatC(as.numeric(charac.x), format = format, digits = digits, decimal.mark = decimal.mark)
+    replacement <- paste(na.print, "\\2", sep = "")
+    charac.x <- sub("(NA)( *)", replacement, charac.x)
+    charac.x <- format(charac.x, justify = "left")
+
+    cat("|", paste(charac.x, collapse = "|"), sep = "")
+    cat("\n")  }
 )
