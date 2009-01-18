@@ -1,0 +1,6 @@
+* add support for table attributes
+* R2asciidocMatrix
+* R2asciidocVector
+* R2asciidocList
+* add methods for common R objects
+* zero.print
