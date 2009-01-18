@@ -19,7 +19,7 @@ setMethod(
     
     # transformation de toute la dataframe en caracteres
     charac.x <- apply(format(x, trim = T), 2, as.character)
-#    if (is.vector(charac.x)) charac.x <- t(charac.x) # si une seule dimension
+    if (is.vector(charac.x)) charac.x <- t(charac.x) # si une seule dimension
 
     charac.x <- as.data.frame(charac.x, , stringsAsFactors = F)
 
