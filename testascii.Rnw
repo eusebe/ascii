@@ -106,3 +106,25 @@ Test de asciidoc
 |9 |9.00 |-1.75 |I|S
 |10|10.00|0.66  |J|T
 |=================== 
+
+<<>>=
+ascii(1:4)
+@
+
+<<echo=F>>=
+ascii(1:4)
+@
+
+<<results=hide>>=
+ascii(1:4)
+@
+
+<<echo=FALSE,results=hide>>=
+ascii(1:4)
+2+2
+@
+
+<<fig=T>>=
+plot(1)
+2+2
+@
