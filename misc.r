@@ -23,7 +23,6 @@ cols <- function(ncol, align = "", col.width = 1, style = "") {
 }
 #~ cols()
 #~ cols(ncol = 3, align = "llrclr")
-#~ cols(ncol = 3, align = "llrclr", multiplier = 3)
 
 # generate headers
 header <- function(caption = "", frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, cols = "", width = 0) {

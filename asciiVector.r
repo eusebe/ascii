@@ -7,6 +7,6 @@ setMethod(
          digits = digits, decimal.mark = decimal.mark, na.print = na.print,
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
-         col.width = col.width, style = style, multiplier = multiplier)
+         col.width = col.width, style = style)
   }
 )

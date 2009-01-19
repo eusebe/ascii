@@ -94,7 +94,6 @@ setMethod(
     align             <- object@align
     col.width         <- object@col.width
     style             <- object@style
-    multiplier        <- object@multiplier
 
     # transformation du vecteur en caracteres
     charac.x <- as.character(x)
