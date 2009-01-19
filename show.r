@@ -53,10 +53,12 @@ setMethod(
     }
 
     # cat result
-    for (i in 1:nrow(charac.x)) {
-      cat("|", paste(charac.x[i,], collapse = "|"), sep = "")
-      cat("\n")
-    }
+    rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
+    maxchars <- max(nchar(rows)) - 1
+    topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
+    cat(topbot, "\n")
+    cat(rows, sep = "\n")
+    cat(topbot, "\n")
   }
 )
 
@@ -80,6 +82,11 @@ setMethod(
     charac.x <- sub("(NA)( *)", replacement, charac.x)
     charac.x <- format(charac.x, justify = "left")
 
-    cat("|", paste(charac.x, collapse = "|"), sep = "")
-    cat("\n")  }
+    rows <- paste("|", paste(charac.x, collapse = "|"), sep = "")
+    maxchars <- nchar(rows) - 1
+    topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
+    cat(topbot, "\n")
+    cat(rows, sep = "\n")
+    cat(topbot, "\n")
+  }
 )
