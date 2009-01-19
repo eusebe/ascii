@@ -27,7 +27,7 @@ cols <- function(ncol, align = "l", width = 1, style = "d", multiplier = 1) {
 #~ cols(ncol = 3, align = "llrclr", multiplier = 3)
 
 # generate headers
-header <- function(frame = "", grid = "", valign = "", options = "header", cols = "", width = "") {
+header <- function(caption = "", frame = "", grid = "", valign = "", options = "header", cols = "", width = "") {
 
   if (frame != "") frame <- paste('frame="', frame, '"', sep = "")
   if (grid != "") grid <- paste('grid="', grid, '"', sep = "")
@@ -38,9 +38,11 @@ header <- function(frame = "", grid = "", valign = "", options = "header", cols 
 
   listarg <- c(frame, grid, valign, options, cols, width)
   listarg <- listarg[listarg != ""]
-  
-  res <- paste("[", paste(listarg, collapse = ","), "]", sep = "")
+
+  if (caption == "") res <- paste("[", paste(listarg, collapse = ","), "]", sep = "")
+  else               res <- paste(".", caption, "\n", "[", paste(listarg, collapse = ","), "]", sep = "")
   return(res)
 }
-#~ header(frame = "none")
-#~ header(frame = "none", cols = cols(ncol = 3, align = "llrclr"))
+header(frame = "none")
+header(frame = "none", cols = cols(ncol = 3, align = "llrclr"))
+header(caption = "A title", frame = "none", cols = cols(ncol = 3, align = "llrclr"))
