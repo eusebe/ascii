@@ -9,7 +9,17 @@ setMethod(
     digits            <- object@digits
     decimal.mark      <- object@decimal.mark
     na.print          <- object@na.print
-
+    caption           <- object@caption
+    width             <- object@width
+    frame             <- object@frame
+    grid              <- object@grid
+    valign            <- object@valign
+    header            <- object@header
+    footer            <- object@footer
+    align             <- object@align
+    col.width         <- object@col.width
+    style             <- object@style
+    
     # detection des colonnes numeriques
     numerics <- sapply(x, is.numeric)
     # adaption de certains parametres
@@ -56,6 +66,7 @@ setMethod(
     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
     maxchars <- max(nchar(rows)) - 1
     topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
+    cat(header(caption = caption, frame = frame, grid = grid, valign = valign, header = header, footer = footer, cols = cols(ncol(charac.x), align = align, col.width = col.width, style = style), width = width))
     cat(topbot, "\n")
     cat(rows, sep = "\n")
     cat(topbot, "\n")
@@ -73,6 +84,17 @@ setMethod(
     digits            <- object@digits
     decimal.mark      <- object@decimal.mark
     na.print          <- object@na.print
+    caption           <- object@caption
+    width             <- object@width
+    frame             <- object@frame
+    grid              <- object@grid
+    valign            <- object@valign
+    header            <- object@header
+    footer            <- object@footer
+    align             <- object@align
+    col.width         <- object@col.width
+    style             <- object@style
+    multiplier        <- object@multiplier
 
     # transformation du vecteur en caracteres
     charac.x <- as.character(x)
@@ -85,6 +107,8 @@ setMethod(
     rows <- paste("|", paste(charac.x, collapse = "|"), sep = "")
     maxchars <- nchar(rows) - 1
     topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
+
+    cat(header(caption = caption, frame = frame, grid = grid, valign = valign, header = header, footer = footer, cols = cols(length(charac.x), align = align, col.width = col.width, style = style), width = width))
     cat(topbot, "\n")
     cat(rows, sep = "\n")
     cat(topbot, "\n")

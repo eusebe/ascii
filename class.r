@@ -7,7 +7,17 @@ setClass(
     format           = "character", 
     digits           = "numeric", 
     decimal.mark     = "character", 
-    na.print         = "character"
+    na.print         = "character",
+    caption          = "character",
+    width            = "numeric",
+    frame            = "character",
+    grid             = "character",
+    valign           = "character",
+    header           = "logical",
+    footer           = "logical",
+    align            = "character",
+    col.width        = "numeric",
+    style            = "character"
   )
 )
 
@@ -20,7 +30,17 @@ setClass(
     format           = "character", 
     digits           = "numeric", 
     decimal.mark     = "character", 
-    na.print         = "character"
+    na.print         = "character",
+    caption          = "character",
+    width            = "numeric",
+    frame            = "character",
+    grid             = "character",
+    valign           = "character",
+    header           = "logical",
+    footer           = "logical",
+    align            = "character",
+    col.width        = "numeric",
+    style            = "character"
   )
 )
 

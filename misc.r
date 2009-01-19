@@ -1,41 +1,50 @@
 # generate column specifiers
-cols <- function(ncol, align = "l", col.width = 1, style = "d", multiplier = 1) {
+cols <- function(ncol, align = "", col.width = 1, style = "") {
 
-  if (multiplier > 1) {
-    ncol <- 1
-    multiplier <- paste(multiplier, "*", sep = "")
-  }
-  else {
-    multiplier <- ""
+  if (align != "") {  
+    align <- unlist(strsplit(align, ""))
+    align <- rep(align, length.out = ncol)
+    align[align == "l"] <- "<"
+    align[align == "c"] <- "^"
+    align[align == "r"] <- ">"
   }
   
-  align <- unlist(strsplit(align, ""))
-  style <- unlist(strsplit(style, ""))
+  if (style != "") {
+    style <- unlist(strsplit(style, ""))
+    style <- rep(style, length.out = ncol)
+  }
+  if (col.width > 1) {
+    col.width <- rep(col.width, length.out = ncol)
+  }
+  else col.width <- ""
 
-  align <- rep(align, length.out = ncol)
-  col.width <- rep(col.width, length.out = ncol)
-  style <- rep(style, length.out = ncol)
-  
-  align[align == "l"] <- "<"
-  align[align == "c"] <- "^"
-  align[align == "r"] <- ">"
-
-  res <- paste(multiplier, align, col.width, style, collapse = ",", sep = "")
+  res <- paste(align, col.width, style, collapse = ",", sep = "")
   return(res)
 }
+#~ cols()
 #~ cols(ncol = 3, align = "llrclr")
 #~ cols(ncol = 3, align = "llrclr", multiplier = 3)
 
 # generate headers
-header <- function(caption = "", frame = "", grid = "", valign = "", options = "", cols = "", width = "") {
+header <- function(caption = "", frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, cols = "", width = 0) {
 
   if (frame != "") frame <- paste('frame="', frame, '"', sep = "")
   if (grid != "") grid <- paste('grid="', grid, '"', sep = "")
   if (valign != "") valign <- paste('valign="', valign, '"', sep = "")
-  if (options != "") options <- paste('options="', options, '"', sep = "")
   if (cols != "") cols <- paste('cols="', cols, '"', sep = "")
-  if (width != "") width <- paste('width="', width, '"', sep = "")
-
+  if (width != 0) {
+    width <- paste('width="', width, '%"', sep = "")
+  }
+  else width <- ""
+  
+  if (header | footer) {
+    options <- 'options="'
+    if (header & footer) options <- paste(options, 'header,footer', '"', sep = "")
+    else if (header)     options <- paste(options, 'header', '"', sep = "")
+    else if (footer)     options <- paste(options, 'footer', '"', sep = "")
+  }
+  else {options <- ""}
+  
   listarg <- c(frame, grid, valign, options, cols, width)
   listarg <- listarg[listarg != ""]
 
@@ -51,4 +60,5 @@ header <- function(caption = "", frame = "", grid = "", valign = "", options = "
 #~ cat(header(frame = "none", cols = cols(ncol = 3, align = "llrclr")))
 #~ cat(header(caption = "A title", frame = "none", cols = cols(ncol = 3, align = "llrclr")))
 #~ cat(header(caption = "A title"))
-
+#~ cat(header(caption = "A title", header = T, footer = T))
+#~ cat(header(caption = "A title", width = 30))
