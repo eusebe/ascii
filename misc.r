@@ -13,7 +13,7 @@ cols <- function(ncol, align = "", col.width = 1, style = "") {
     style <- unlist(strsplit(style, ""))
     style <- rep(style, length.out = ncol)
   }
-  if (col.width > 1) {
+  if (sum(col.width) > length(col.width)) {
     col.width <- rep(col.width, length.out = ncol)
   }
   else col.width <- ""
