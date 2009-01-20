@@ -108,6 +108,12 @@ Test de asciidoc
 |=================== 
 
 <<>>=
+2+2
+2*2
+2-2
+@
+
+<<results=ascii>>=
 ascii(1:4)
 @
 
@@ -123,6 +129,14 @@ ascii(1:4)
 ascii(1:4)
 2+2
 @
+
+blabla
+
+<<fig=T>>=
+plot(1)
+@
+
+blabla
 
 <<fig=T>>=
 plot(1)

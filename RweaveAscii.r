@@ -139,7 +139,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 if(options$echo && length(dce)){
                     if(!openSinput){
                         if(!openSchunk){
-                            cat("----",
+                            cat("----\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1] <- srcline
                             thisline <- thisline + 1
@@ -149,7 +149,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                             file=chunkout, append=TRUE)
                         openSinput <- TRUE
                     }
-            cat("\n", paste(getOption("prompt"), dce[1L:leading], sep="", collapse="\n"),
+            cat("", paste(getOption("prompt"), dce[1L:leading], sep="", collapse="\n"),
                 file=chunkout, append=TRUE, sep="")
                     if (length(dce) > leading)
                         cat("\n", paste(getOption("continue"), dce[-(1L:leading)], sep="", collapse="\n"),
@@ -164,7 +164,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 sink(file=tmpcon)
                 err <- NULL
                 if(options$eval) err <- evalFunc(ce, options)
-                cat("\n") # make sure final line is complete
+                cat("") # make sure final line is complete
                 sink()
                 output <- readLines(tmpcon)
                 close(tmpcon)
@@ -179,25 +179,40 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 if(length(output) & (options$results != "hide")){
 
                     if(openSinput){
-                        cat("", file=chunkout, append=TRUE)
+                        cat("\n", file=chunkout, append=TRUE)
                         linesout[thisline + 1L:2L] <- srcline
                         thisline <- thisline + 2L
                         openSinput <- FALSE
                     }
                     if(options$results=="verbatim"){
                         if(!openSchunk){
-                            cat("----",
+                            cat("----\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1L] <- srcline
                             thisline <- thisline + 1L
                             openSchunk <- TRUE
                         }
-                        cat("\n",
+                        cat("",
                             file=chunkout, append=TRUE)
                         linesout[thisline + 1L] <- srcline
                         thisline <- thisline + 1L
                     }
-
+                    if(options$results=="ascii"){
+                        if(openSinput){
+                            cat("",
+                                file=chunkout, append=TRUE)
+                            linesout[thisline + 1L] <- srcline
+                            thisline <- thisline + 1L
+                            openSchunk <- TRUE
+                        }
+                        if(openSchunk){
+                            cat("----\n",
+                                file=chunkout, append=TRUE)
+                            linesout[thisline + 1L] <- srcline
+                            thisline <- thisline + 1L
+                            openSchunk <- FALSE
+                        }
+                    }
                     output <- paste(output,collapse="\n")
                     if(options$strip.white %in% c("all", "true")){
                         output <- sub("^[[:space:]]*\n", "", output)
@@ -215,7 +230,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                     remove(output)
 
                     if(options$results=="verbatim"){
-                        cat("", file=chunkout, append=TRUE)
+                        cat("\n", file=chunkout, append=TRUE)
                         linesout[thisline + 1L:2] <- srcline
                         thisline <- thisline + 2L
                     }
@@ -229,8 +244,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           }
 
           if(openSchunk){
-              if (options$echo & options$results=="hide") cat("----", file=chunkout, append=TRUE)
-              else cat("\n----", file=chunkout, append=TRUE)
+              cat("----\n", file=chunkout, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
           }
@@ -285,7 +299,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat("\nimage:", chunkprefix, "}\n", sep="",
+                  cat("\n\nimage::", chunkprefix, ".jpg[]\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L
@@ -400,7 +414,7 @@ RweaveAsciiOptions <- function(options)
     if(!is.null(options$results))
         options$results <- tolower(as.character(options$results))
     options$results <- match.arg(options$results,
-                                 c("verbatim", "txt", "hide"))
+                                 c("verbatim", "ascii", "hide"))
 
     if(!is.null(options$strip.white))
         options$strip.white <- tolower(as.character(options$strip.white))
