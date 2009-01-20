@@ -253,7 +253,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             close(chunkout)
 
           if(options$split & options$include){
-              cat("include::", chunkprefix, "}\n", sep="",
+              cat("include::", chunkprefix, "\n", sep="",
                 file=object$output, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
@@ -299,7 +299,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat("\n\nimage::", chunkprefix, ".jpg[]\n", sep="",
+                  cat("image::", chunkprefix, ".jpg[]\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L

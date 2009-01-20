@@ -142,3 +142,5 @@ blabla
 plot(1)
 2+2
 @
+
+Le résultat de l'opération 2+2 est \Sexpr{2+2}.
