@@ -144,3 +144,10 @@ plot(1)
 @
 
 Le résultat de l'opération 2+2 est \Sexpr{2+2}.
+
+<<results=ascii>>=
+ascii(summary(table(1:4, 1:4)))
+@
+
+
+blabla

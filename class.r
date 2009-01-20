@@ -44,9 +44,9 @@ setClass(
   )
 )
 
-#~ setClass(
-#~   "R2asciidoc.list",
-#~   representation = representation(
-#~     x = "list"
-#~   )
-#~ )
+setClass(
+  "R2asciidocList",
+  representation = representation(
+    x = "list"
+  )
+)

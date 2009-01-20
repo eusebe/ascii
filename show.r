@@ -113,3 +113,18 @@ setMethod(
     cat(topbot, "\n")
   }
 )
+
+setMethod(
+  "show",
+  "R2asciidocList",
+  function (object){
+    x <- object@x
+
+    charac.x <- vector("character", length(x))
+    for (i in 1:length(x)) {
+      charac.x[i] <- sub("( *)(.*)", "\\1- \\2", sub("\t", "  ", x[[i]]))
+    }
+    cat(charac.x, sep = "\n")
+    cat("\n")
+  }
+)
