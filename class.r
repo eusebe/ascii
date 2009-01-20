@@ -47,6 +47,7 @@ setClass(
 setClass(
   "R2asciidocList",
   representation = representation(
-    x = "list"
+    x = "list",
+    caption = "character"
   )
 )
