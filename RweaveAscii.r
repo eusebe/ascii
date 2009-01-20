@@ -177,6 +177,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                   cat(paste(output, collapse="\n"))
 
                 if(length(output) & (options$results != "hide")){
+                    addabreak <- ""
 
                     if(openSinput){
                         cat("\n", file=chunkout, append=TRUE)
@@ -212,6 +213,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                             thisline <- thisline + 1L
                             openSchunk <- FALSE
                         }
+                        addabreak <- "\n"
                     }
                     output <- paste(output,collapse="\n")
                     if(options$strip.white %in% c("all", "true")){
@@ -220,7 +222,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                         if(options$strip.white=="all")
                           output <- sub("\n[[:space:]]*\n", "\n", output)
                     }
-                    cat(output, file=chunkout, append=TRUE)
+                    cat(output,addabreak, file=chunkout, append=TRUE)
                     count <- sum(strsplit(output, NULL)[[1L]] == "\n")
                     if (count > 0L) {
                         linesout[thisline + 1L:count] <- srcline
