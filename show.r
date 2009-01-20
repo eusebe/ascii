@@ -47,7 +47,7 @@ setMethod(
     }
     if (include.colnames) {
     names(cnoms) <- names(charac.x) # for following rbind 
-    charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = F), charac.x)
+    charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
     }
 
     # Beautify cols (digits, format, spacing, na.print)

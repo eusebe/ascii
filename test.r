@@ -1,10 +1,19 @@
-include.rownames = TRUE
+include.rownames = FALSE
 include.colnames = TRUE
 format = "f"
 digits = 2
 decimal.mark = "."
 na.print = ""
-
+    caption           <- ""
+    width             <- 0
+    frame             <- ""
+    grid              <- ""
+    valign            <- ""
+    header            <- T
+    footer            <- F
+    align             <- ""
+    col.width         <- 1
+    style             <- ""
 source("load.r")
 
 x <- data.frame(a = 1:10, bbbbbb = rnorm(10), c = factor(LETTERS[1:10]), d = LETTERS[11:20])
@@ -25,3 +34,6 @@ ascii(1:4, include.rownames = T)
 ascii(1:4)
 
 x <- as.data.frame(t(1:4))
+
+library(survival)
+x = summary(aml)

@@ -7,4 +7,6 @@ source("~/Programmes/fonctionsR/r2asciidoc/asciiVector.r")
 source("~/Programmes/fonctionsR/r2asciidoc/asciiMatrix.r")
 source("~/Programmes/fonctionsR/r2asciidoc/asciiLm.r")
 source("~/Programmes/fonctionsR/r2asciidoc/asciiGlm.r")
+source("~/Programmes/fonctionsR/r2asciidoc/asciiTable.r")
+
 source("~/Programmes/fonctionsR/r2asciidoc/RweaveAscii.r")
