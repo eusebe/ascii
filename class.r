@@ -49,5 +49,11 @@ setClass(
   representation = representation(
     x = "list",
     caption = "character"
-  )
+  ),
+  validity = function(object) {
+    cat("R2asciidocList inspector\n")
+    for (i in 1:length(object@x)) {
+      if (class(object@x[[i]]) != "character") stop("x must be a list of strings.")
+    }
+  }
 )

@@ -26,7 +26,6 @@ setMethod(
     format <- rep(format, length.out = ncol(x))
     digits <- rep(digits, length.out = ncol(x))
 
-    
     # transformation de toute la dataframe en caracteres
     charac.x <- apply(format(x, trim = T), 2, as.character)
     if (is.vector(charac.x)) charac.x <- t(charac.x) # si une seule dimension
