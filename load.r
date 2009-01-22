@@ -10,5 +10,6 @@ source("~/Programmes/fonctionsR/r2asciidoc/asciiLm.r")
 source("~/Programmes/fonctionsR/r2asciidoc/asciiGlm.r")
 source("~/Programmes/fonctionsR/r2asciidoc/asciiTable.r")
 source("~/Programmes/fonctionsR/r2asciidoc/asciiSummaryTable.r")
+source("~/Programmes/fonctionsR/r2asciidoc/asciiSurvdiff.r")
 
 source("~/Programmes/fonctionsR/r2asciidoc/RweaveAscii.r")

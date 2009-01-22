@@ -23,6 +23,7 @@ setMethod(
     # detection des colonnes numeriques
     numerics <- sapply(x, is.numeric)
     # adaption de certains parametres
+    # format <- unlist(strsplit(format, "")) # No, format could be "fg" -> must be a vector
     format <- rep(format, length.out = ncol(x))
     digits <- rep(digits, length.out = ncol(x))
 
