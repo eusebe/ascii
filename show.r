@@ -75,47 +75,6 @@ setMethod(
 
 setMethod(
   "show",
-  "R2asciidocVector",
-  function (object){
-    x                 <- object@x
-    include.rownames  <- object@include.rownames
-    include.colnames  <- object@include.colnames
-    format            <- object@format
-    digits            <- object@digits
-    decimal.mark      <- object@decimal.mark
-    na.print          <- object@na.print
-    caption           <- object@caption
-    width             <- object@width
-    frame             <- object@frame
-    grid              <- object@grid
-    valign            <- object@valign
-    header            <- object@header
-    footer            <- object@footer
-    align             <- object@align
-    col.width         <- object@col.width
-    style             <- object@style
-
-    # transformation du vecteur en caracteres
-    charac.x <- as.character(x)
-
-    if (is.numeric(x)) charac.x <- formatC(as.numeric(charac.x), format = format, digits = digits, decimal.mark = decimal.mark)
-    replacement <- paste(na.print, "\\2", sep = "")
-    charac.x <- sub("(NA)( *)", replacement, charac.x)
-    charac.x <- format(charac.x, justify = "left")
-
-    rows <- paste("|", paste(charac.x, collapse = "|"), sep = "")
-    maxchars <- nchar(rows) - 1
-    topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
-
-    cat(header(caption = caption, frame = frame, grid = grid, valign = valign, header = header, footer = footer, cols = cols(length(charac.x), align = align, col.width = col.width, style = style), width = width))
-    cat(topbot, "\n")
-    cat(rows, sep = "\n")
-    cat(topbot, "\n")
-  }
-)
-
-setMethod(
-  "show",
   "R2asciidocList",
   function (object){
     x <- object@x
@@ -123,7 +82,7 @@ setMethod(
     
     charac.x <- vector("character", length(x))
     for (i in 1:length(x)) {
-      charac.x[i] <- sub("( *)(.*)", "\\1- \\2", sub("\t", "  ", x[[i]]))
+      charac.x[i] <- sub("(^ *)(.*)", "\\1- \\2", gsub('\t|(*COMMIT)(*FAIL)'," ", x[[i]], perl = TRUE))
     }
     if (caption != "") cat(".", caption, "\n", sep = "")
     cat(charac.x, sep = "\n")

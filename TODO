@@ -1,6 +1,4 @@
-* R2asciidocMatrix ? (already a constructor that as.data.frame(matrix...))
-* R2asciidocList (with inspector to control every element is character)
-* add methods for common R objects
 * zero.print ?
 * write inspector to control data
+* new show for ftable (use format.ftable) - no, just use ascii(format(x))
 * write initializator (in order to get show simplier)
