@@ -1,0 +1,5 @@
+h1. r2asciidoc
+
+r2sciidoc is (will be…) an R package that converts common R objects to asciidoc syntax.
+
+It also provides a Sweave driver to embed the R code for complete data analyses in asciidoc documents (see Sweave function and R2HTML package).
