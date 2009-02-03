@@ -41,7 +41,7 @@ setMethod(
     cnoms <- c("", cnoms)
 
     # adaptation de certains parametres
-    format <- rep(format, length.out = ncol(x)+1)
+    format <- c("f", format)
     digits <- c(0, digits)
     numerics <- c(FALSE, numerics)
     }
