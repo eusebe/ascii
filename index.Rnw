@@ -1,17 +1,65 @@
 r2asciidoc
 ==========
-David Hajage <dhajage@gmail.com>
+David Hajage <dhajage[at]gmail[dot]com>
 
 http://eusebe.github.com/r2asciidoc[r2asciidoc] is a R package for writing document with embeded R commands.
 
 Short example
 -------------
 
+As you can see, r2asciidoc is simple.
+
+  <<>>=
+  x <- matrix(1:4, 2, 2)
+  x
+  @
+
+gives :
+
 <<simplematrix1>>=
 x <- matrix(1:4, 2, 2)
 x
 @
 
-<<simplematrix2,results=ascii>>=
-ascii(x)
+  <<results=ascii,echo=FALSE>>=
+  ascii(x, caption = "A simple matrix", width = 30)
+  @
+
+gives :
+
+<<simplematrix2,results=ascii,echo=FALSE>>=
+ascii(x, caption = "A simple matrix", width = 30)
+@
+
+What r2asciidoc provides
+------------------------
+
+r2asciidoc provided :
+
+- a Sweave driver: +Sweave("yourfile.Rnw", RweaveAscii())+ to use it
+- a generic method for common R objects: +ascii()+ 
+  * caption : title ("a title")
+
+Gallery
+-------
+
+Vector
+~~~~~~
+
+<<vector,results=ascii>>=
+ascii(1:4)
+@
+
+Matrix
+~~~~~~
+
+<<matrix,results=ascii>>=
+ascii(matrix(1:4, 2, 2))
+@
+
+Summary table
+~~~~~~~~~~~~~
+
+<<summaryTable,results=ascii>>=
+ascii(summary(table(1:4, 1:4)))
 @
