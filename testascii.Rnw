@@ -125,9 +125,16 @@ ascii(1:4)
 ascii(1:4)
 @
 
+<<results=hide>>=
+ascii(1:4)
+2+2
+3+3
+@
+
 <<echo=FALSE,results=hide>>=
 ascii(1:4)
 2+2
+3+3
 @
 
 blabla
