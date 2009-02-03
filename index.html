@@ -680,10 +680,10 @@ cellspacing="0" cellpadding="4">
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
-+     header = T, width = 50, valign = "center", align = "lrrrr",
++     header = T, width = 50, valign = "middle", align = "lrrrr",
 +     frame = "topbot", grid = "none")
 .VADeaths
-[frame="topbot",grid="none",valign="center",options="header",cols="&lt;,&gt;,&gt;,&gt;,&gt;",width="50%"]
+[frame="topbot",grid="none",valign="middle",options="header",cols="&lt;,&gt;,&gt;,&gt;,&gt;",width="50%"]
 |=====================================================
 |     |Rural Male|Rural Female|Urban Male|Urban Female
 |50-54|11.70     |8.70        |15.40     |8.40
@@ -704,7 +704,7 @@ cellspacing="0" cellpadding="4">
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
-<thead valign="center">
+<thead valign="middle">
 <tr>
 <th align="left">     </th>
 <th align="right">Rural Male</th>
@@ -713,7 +713,7 @@ cellspacing="0" cellpadding="4">
 <th align="right">Urban Female</th>
 </tr>
 </thead>
-<tbody valign="center">
+<tbody valign="middle">
 <tr>
 <td align="left"><p class="table">50-54</p></td>
 <td align="right"><p class="table">11.70</p></td>
@@ -1125,14 +1125,14 @@ cellspacing="0" cellpadding="4">
 <pre><tt>&gt; library(survival)
 &gt; survdiff.aml &lt;- survdiff(Surv(time, status) ~ x, data = aml)
 &gt; ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0,
-+     0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
++     2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
 .survdiff.aml
 [options="header"]
-|===============================================================
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df  |p
-|x=Maintained   |11|7       |11      |1.27     |3.40     |1.00|0
-|x=Nonmaintained|12|11      |7       |1.86     |3.40     |    |
-|===============================================================</tt></pre>
+|=======================================================================
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p
+|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
+|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |
+|=======================================================================</tt></pre>
 </div></div>
 <div class="tableblock">
 <table rules="all"
@@ -1156,7 +1156,7 @@ cellspacing="0" cellpadding="4">
 <th align="left">Expected</th>
 <th align="left">(O-E)^2/E</th>
 <th align="left">(O-E)^2/V</th>
-<th align="left">df  </th>
+<th align="left">df</th>
 <th align="left">p</th>
 </tr>
 </thead>
@@ -1165,17 +1165,17 @@ cellspacing="0" cellpadding="4">
 <td align="left"><p class="table">x=Maintained</p></td>
 <td align="left"><p class="table">11</p></td>
 <td align="left"><p class="table">7</p></td>
-<td align="left"><p class="table">11</p></td>
+<td align="left"><p class="table">10.69</p></td>
 <td align="left"><p class="table">1.27</p></td>
 <td align="left"><p class="table">3.40</p></td>
-<td align="left"><p class="table">1.00</p></td>
-<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">1</p></td>
+<td align="left"><p class="table">6.53393E-02</p></td>
 </tr>
 <tr>
 <td align="left"><p class="table">x=Nonmaintained</p></td>
 <td align="left"><p class="table">12</p></td>
 <td align="left"><p class="table">11</p></td>
-<td align="left"><p class="table">7</p></td>
+<td align="left"><p class="table">7.31</p></td>
 <td align="left"><p class="table">1.86</p></td>
 <td align="left"><p class="table">3.40</p></td>
 <td align="left"><p class="table"></p></td>
@@ -1187,7 +1187,7 @@ cellspacing="0" cellpadding="4">
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-02-03 15:31:49 CEST
+Last updated 2009-02-03 15:47:43 CEST
 </div>
 </div>
 </body>

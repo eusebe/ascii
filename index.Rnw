@@ -84,11 +84,11 @@ Matrix
 ~~~~~~
 
 <<matrix>>=
-ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, width = 50, valign = "center", align = "lrrrr", frame = "topbot", grid = "none")
+ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, width = 50, valign = "middle", align = "lrrrr", frame = "topbot", grid = "none")
 @
 
 <<matrix2,echo=FALSE,results=ascii>>=
-ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, width = 50, valign = "center", align = "lrrrr", frame = "topbot", grid = "none")
+ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, width = 50, valign = "middle", align = "lrrrr", frame = "topbot", grid = "none")
 @
 
 Data Frame
@@ -140,9 +140,9 @@ Survdiff
 <<survdiff>>=
 library(survival)
 survdiff.aml <- survdiff(Surv(time, status) ~ x, data = aml)
-ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
+ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
 @
 
 <<survdiff2,echo=FALSE,results=ascii>>=
-ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
+ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
 @

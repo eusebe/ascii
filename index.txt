@@ -94,10 +94,10 @@ Matrix
 
 ----
 > ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", 
-+     header = T, width = 50, valign = "center", align = "lrrrr", 
++     header = T, width = 50, valign = "middle", align = "lrrrr", 
 +     frame = "topbot", grid = "none")
 .VADeaths
-[frame="topbot",grid="none",valign="center",options="header",cols="<,>,>,>,>",width="50%"]
+[frame="topbot",grid="none",valign="middle",options="header",cols="<,>,>,>,>",width="50%"]
 |===================================================== 
 |     |Rural Male|Rural Female|Urban Male|Urban Female
 |50-54|11.70     |8.70        |15.40     |8.40        
@@ -109,7 +109,7 @@ Matrix
 ----
 
 .VADeaths
-[frame="topbot",grid="none",valign="center",options="header",cols="<,>,>,>,>",width="50%"]
+[frame="topbot",grid="none",valign="middle",options="header",cols="<,>,>,>,>",width="50%"]
 |===================================================== 
 |     |Rural Male|Rural Female|Urban Male|Urban Female
 |50-54|11.70     |8.70        |15.40     |8.40        
@@ -264,20 +264,20 @@ Survdiff
 > library(survival)
 > survdiff.aml <- survdiff(Surv(time, status) ~ x, data = aml)
 > ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 
-+     0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
++     2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
 .survdiff.aml
 [options="header"]
-|=============================================================== 
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df  |p
-|x=Maintained   |11|7       |11      |1.27     |3.40     |1.00|0
-|x=Nonmaintained|12|11      |7       |1.86     |3.40     |    | 
-|===============================================================  
+|======================================================================= 
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p          
+|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
+|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |           
+|=======================================================================  
 ----
 
 .survdiff.aml
 [options="header"]
-|=============================================================== 
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df  |p
-|x=Maintained   |11|7       |11      |1.27     |3.40     |1.00|0
-|x=Nonmaintained|12|11      |7       |1.86     |3.40     |    | 
-|===============================================================  
+|======================================================================= 
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p          
+|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
+|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |           
+|=======================================================================  

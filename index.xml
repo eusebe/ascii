@@ -1,0 +1,816 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.2//EN" "http://www.oasis-open.org/docbook/xml/4.2/docbookx.dtd">
+
+<article lang="en">
+<articleinfo>
+    <title>r2asciidoc</title>
+    <author>
+        <firstname>David</firstname>
+        <surname>Hajage</surname>
+        <affiliation><address><email>dhajage[at]gmail[dot]com</email></address></affiliation>
+    </author>
+    <authorinitials>DH</authorinitials>
+
+
+</articleinfo>
+<simpara><ulink url="http://eusebe.github.com/r2asciidoc">r2asciidoc</ulink> is a R package for writing document with embeded R commands.</simpara>
+<section id="_short_example">
+<title>Short example</title>
+<simpara>As you can see, r2asciidoc is simple.</simpara>
+<literallayout class="monospaced">&lt;&lt;&gt;&gt;=
+x &lt;- matrix(1:4, 2, 2)
+x
+@</literallayout>
+<simpara>gives :</simpara>
+<screen>&gt; x &lt;- matrix(1:4, 2, 2)
+&gt; x
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</screen>
+<literallayout class="monospaced">&lt;&lt;results=ascii,echo=FALSE&gt;&gt;=
+ascii(x, caption = "A simple matrix", width = 30)
+@</literallayout>
+<simpara>gives :</simpara>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>A simple matrix</title>
+<tgroup cols="2">
+<colspec colwidth="63pt" align="left"/>
+<colspec colwidth="63pt" align="left"/>
+<tbody valign="top">
+<row>
+<entry><simpara>1.00</simpara></entry>
+<entry><simpara>3.00</simpara></entry>
+</row>
+<row>
+<entry><simpara>2.00</simpara></entry>
+<entry><simpara>4.00</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_what_r2asciidoc_provides">
+<title>What r2asciidoc provides</title>
+<simpara>r2asciidoc provided :</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+a Sweave driver: <literal>Sweave("yourfile.Rnw", RweaveAscii())</literal> to use it
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+a generic method for common R objects: <literal>ascii()</literal>. Default argument depends of R object.
+</simpara>
+<informaltable tabstyle="horizontal" frame="none" colsep="0" rowsep="0"><tgroup cols="2"><colspec colwidth="15*"/><colspec colwidth="85*"/><tbody valign="top">
+<row>
+<entry>
+<simpara>
+<literal>x</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+R object
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>include.rownames</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+include rownames ? (logical)
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>include.colnames</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+include colnames ? (logical)
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>format</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+equal to <literal>"d"</literal>  (for integers), <literal>"f"</literal>, <literal>"e"</literal>, <literal>"E"</literal>, <literal>"g"</literal>,
+          <literal>"G"</literal>, <literal>"fg"</literal> (for reals).  Default is <literal>"f"</literal>.
+          <literal>"f"</literal> gives numbers in the usual <emphasis>xxx.xxx</emphasis> format;  <literal>"e"</literal> and
+          <literal>"E"</literal> give <emphasis>n.ddde+nn</emphasis> or <emphasis>n.dddE+nn</emphasis> (scientific format);
+          <literal>"g"</literal> and <literal>"G"</literal> put <emphasis>x[i]</emphasis> into scientific format only if it
+          saves space to do so.
+          <literal>"fg"</literal> uses fixed format as <literal>"f"</literal>, but <emphasis>digits</emphasis> as the
+          minimum number of <emphasis>significant</emphasis> digits.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>digits</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+the desired number of digits after the decimal point.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>decimal.mark</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+the character to be used to indicate the numeric decimal point.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>na.print</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+the character to be used for NA
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>caption</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+the title (character)
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>width</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+the desired width of the table
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>frame</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+defines the table border. Can take the following values: <literal>"tobpot"</literal> (top and bottom), <literal>"all"</literal> (all sides), <literal>"none"</literal> and <literal>"sides"</literal> (left and right). Default is <literal>"all"</literal>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>grid</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+defines which ruller lines are drawn between table rows and columns. Can take <literal>"none"</literal>, <literal>"cols"</literal>, <literal>"rows"</literal> and <literal>"all"</literal>. Default is <literal>"all"</literal>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>valign</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+vertically align all cells in a table. Can take <literal>"top"</literal>, <literal>"bottom"</literal> and <literal>"middle"</literal>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>header</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+emphase the first line of a table (logical).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>footer</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+emphase the last line of a table (logical).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>align</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+column alignment. Can be <literal>"r"</literal> (right), <literal>"l"</literal> (left) or <literal>"c"</literal> (center).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>col.width</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+columns width (integer proportional value).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>style</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+columns styles. Equal to <literal>"d"</literal> (default), <literal>"e"</literal> (emphasis), <literal>"m"</literal> (monospaced), <literal>"s"</literal> (strong), <literal>"a"</literal> (cells cans contain any of the <emphasis>AsciiDoc</emphasis> elements that are allowed inside document), <literal>"l"</literal> (literal), <literal>"v"</literal> (verse; all line breaks are retained).
+</simpara>
+</entry>
+</row>
+</tbody></tgroup></informaltable>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_gallery">
+<title>Gallery</title>
+<section id="_vector">
+<title>Vector</title>
+<screen>&gt; ascii(1:4)
+|===================
+|1.00|2.00|3.00|4.00
+|===================</screen>
+<informaltable
+frame="all"
+rowsep="1" colsep="1"
+>
+<tgroup cols="4">
+<colspec colwidth="25*" align="left"/>
+<colspec colwidth="25*" align="left"/>
+<colspec colwidth="25*" align="left"/>
+<colspec colwidth="25*" align="left"/>
+<tbody valign="top">
+<row>
+<entry><simpara>1.00</simpara></entry>
+<entry><simpara>2.00</simpara></entry>
+<entry><simpara>3.00</simpara></entry>
+<entry><simpara>4.00</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+</section>
+<section id="_matrix">
+<title>Matrix</title>
+<screen>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
++     header = T, width = 50, valign = "middle", align = "lrrrr",
++     frame = "topbot", grid = "none")
+.VADeaths
+[frame="topbot",grid="none",valign="middle",options="header",cols="&lt;,&gt;,&gt;,&gt;,&gt;",width="50%"]
+|=====================================================
+|     |Rural Male|Rural Female|Urban Male|Urban Female
+|50-54|11.70     |8.70        |15.40     |8.40
+|55-59|18.10     |11.70       |24.30     |13.60
+|60-64|26.90     |20.30       |37.00     |19.30
+|65-69|41.00     |30.90       |54.60     |35.10
+|70-74|66.00     |54.30       |71.10     |50.00
+|=====================================================</screen>
+<table
+frame="topbot"
+rowsep="0" colsep="0"
+>
+<title>VADeaths</title>
+<tgroup cols="5">
+<colspec colwidth="42pt" align="left"/>
+<colspec colwidth="42pt" align="right"/>
+<colspec colwidth="42pt" align="right"/>
+<colspec colwidth="42pt" align="right"/>
+<colspec colwidth="42pt" align="right"/>
+<thead valign="middle">
+<row>
+<entry>     </entry>
+<entry>Rural Male</entry>
+<entry>Rural Female</entry>
+<entry>Urban Male</entry>
+<entry>Urban Female</entry>
+</row>
+</thead>
+<tbody valign="middle">
+<row>
+<entry><simpara>50-54</simpara></entry>
+<entry><simpara>11.70</simpara></entry>
+<entry><simpara>8.70</simpara></entry>
+<entry><simpara>15.40</simpara></entry>
+<entry><simpara>8.40</simpara></entry>
+</row>
+<row>
+<entry><simpara>55-59</simpara></entry>
+<entry><simpara>18.10</simpara></entry>
+<entry><simpara>11.70</simpara></entry>
+<entry><simpara>24.30</simpara></entry>
+<entry><simpara>13.60</simpara></entry>
+</row>
+<row>
+<entry><simpara>60-64</simpara></entry>
+<entry><simpara>26.90</simpara></entry>
+<entry><simpara>20.30</simpara></entry>
+<entry><simpara>37.00</simpara></entry>
+<entry><simpara>19.30</simpara></entry>
+</row>
+<row>
+<entry><simpara>65-69</simpara></entry>
+<entry><simpara>41.00</simpara></entry>
+<entry><simpara>30.90</simpara></entry>
+<entry><simpara>54.60</simpara></entry>
+<entry><simpara>35.10</simpara></entry>
+</row>
+<row>
+<entry><simpara>70-74</simpara></entry>
+<entry><simpara>66.00</simpara></entry>
+<entry><simpara>54.30</simpara></entry>
+<entry><simpara>71.10</simpara></entry>
+<entry><simpara>50.00</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_data_frame">
+<title>Data Frame</title>
+<screen>&gt; ascii(iris[1:10, ], include.rownames = F, caption = "iris", width = 50,
++     align = "c", valign = "bottom")
+.iris
+[valign="bottom",options="header",cols="^,^,^,^,^",width="50%"]
+|=========================================================
+|Sepal.Length|Sepal.Width|Petal.Length|Petal.Width|Species
+|5.10        |3.50       |1.40        |0.20       |setosa
+|4.90        |3.00       |1.40        |0.20       |setosa
+|4.70        |3.20       |1.30        |0.20       |setosa
+|4.60        |3.10       |1.50        |0.20       |setosa
+|5.00        |3.60       |1.40        |0.20       |setosa
+|5.40        |3.90       |1.70        |0.40       |setosa
+|4.60        |3.40       |1.40        |0.30       |setosa
+|5.00        |3.40       |1.50        |0.20       |setosa
+|4.40        |2.90       |1.40        |0.20       |setosa
+|4.90        |3.10       |1.50        |0.10       |setosa
+|=========================================================</screen>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>iris</title>
+<tgroup cols="5">
+<colspec colwidth="42pt" align="center"/>
+<colspec colwidth="42pt" align="center"/>
+<colspec colwidth="42pt" align="center"/>
+<colspec colwidth="42pt" align="center"/>
+<colspec colwidth="42pt" align="center"/>
+<thead valign="bottom">
+<row>
+<entry>Sepal.Length</entry>
+<entry>Sepal.Width</entry>
+<entry>Petal.Length</entry>
+<entry>Petal.Width</entry>
+<entry>Species</entry>
+</row>
+</thead>
+<tbody valign="bottom">
+<row>
+<entry><simpara>5.10</simpara></entry>
+<entry><simpara>3.50</simpara></entry>
+<entry><simpara>1.40</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>4.90</simpara></entry>
+<entry><simpara>3.00</simpara></entry>
+<entry><simpara>1.40</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>4.70</simpara></entry>
+<entry><simpara>3.20</simpara></entry>
+<entry><simpara>1.30</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>4.60</simpara></entry>
+<entry><simpara>3.10</simpara></entry>
+<entry><simpara>1.50</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>5.00</simpara></entry>
+<entry><simpara>3.60</simpara></entry>
+<entry><simpara>1.40</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>5.40</simpara></entry>
+<entry><simpara>3.90</simpara></entry>
+<entry><simpara>1.70</simpara></entry>
+<entry><simpara>0.40</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>4.60</simpara></entry>
+<entry><simpara>3.40</simpara></entry>
+<entry><simpara>1.40</simpara></entry>
+<entry><simpara>0.30</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>5.00</simpara></entry>
+<entry><simpara>3.40</simpara></entry>
+<entry><simpara>1.50</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>4.40</simpara></entry>
+<entry><simpara>2.90</simpara></entry>
+<entry><simpara>1.40</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+<row>
+<entry><simpara>4.90</simpara></entry>
+<entry><simpara>3.10</simpara></entry>
+<entry><simpara>1.50</simpara></entry>
+<entry><simpara>0.10</simpara></entry>
+<entry><simpara>setosa</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_summary_table">
+<title>Summary table</title>
+<screen>&gt; ascii(summary(table(1:4, 1:4)))
+- Number of cases in table: 4
+- Number of factors: 2
+- Test for independence of all factors:
+ * Chisq = 12, df = 9, p-value = 0.2133
+ * Chi-squared approximation may be incorrect</screen>
+<itemizedlist>
+<listitem>
+<simpara>
+Number of cases in table: 4
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Number of factors: 2
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Test for independence of all factors:
+</simpara>
+<itemizedlist>
+<listitem>
+<simpara>
+Chisq = 12, df = 9, p-value = 0.2133
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+Chi-squared approximation may be incorrect
+</simpara>
+</listitem>
+</itemizedlist>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_glm">
+<title>Glm</title>
+<screen>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+&gt; outcome &lt;- gl(3, 1, 9)
+&gt; treatment &lt;- gl(3, 3)
+&gt; d.AD &lt;- data.frame(treatment, outcome, counts)
+&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())
+&gt; glm.D93
+Call:  glm(formula = counts ~ outcome + treatment, family = poisson())
+
+Coefficients:
+(Intercept)     outcome2     outcome3   treatment2   treatment3
+  3.045e+00   -4.543e-01   -2.930e-01    8.717e-16    4.557e-16
+
+Degrees of Freedom: 8 Total (i.e. Null);  4 Residual
+Null Deviance:      10.58
+Residual Deviance: 5.129        AIC: 56.76
+&gt; ascii(glm.D93, caption = "glm.D93")
+.glm.D93
+[options="header"]
+|==================================================
+|           |Estimate|Std. Error|z value|Pr(&gt;\|z\|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00
+|outcome2   |-0.45   |0.20      |-2.25  |0.02
+|outcome3   |-0.29   |0.19      |-1.52  |0.13
+|treatment2 |0.00    |0.20      |0.00   |1.00
+|treatment3 |0.00    |0.20      |0.00   |1.00
+|==================================================
+&gt; ascii(summary(glm.D93), caption = "summary glm.D93")
+.summary glm.D93
+[options="header"]
+|==================================================
+|           |Estimate|Std. Error|z value|Pr(&gt;\|z\|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00
+|outcome2   |-0.45   |0.20      |-2.25  |0.02
+|outcome3   |-0.29   |0.19      |-1.52  |0.13
+|treatment2 |0.00    |0.20      |0.00   |1.00
+|treatment3 |0.00    |0.20      |0.00   |1.00
+|==================================================
+&gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
+.anova glm.D93
+[options="header"]
+|============================================
+|         |Df  |Deviance|Resid. Df|Resid. Dev
+|NULL     |    |        |8.00     |10.58
+|outcome  |2.00|5.45    |6.00     |5.13
+|treatment|2.00|0.00    |4.00     |5.13
+|============================================</screen>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>glm.D93</title>
+<tgroup cols="5">
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<thead valign="top">
+<row>
+<entry>           </entry>
+<entry>Estimate</entry>
+<entry>Std. Error</entry>
+<entry>z value</entry>
+<entry>Pr(&gt;|z|)</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>(Intercept)</simpara></entry>
+<entry><simpara>3.04</simpara></entry>
+<entry><simpara>0.17</simpara></entry>
+<entry><simpara>17.81</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+</row>
+<row>
+<entry><simpara>outcome2</simpara></entry>
+<entry><simpara>-0.45</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>-2.25</simpara></entry>
+<entry><simpara>0.02</simpara></entry>
+</row>
+<row>
+<entry><simpara>outcome3</simpara></entry>
+<entry><simpara>-0.29</simpara></entry>
+<entry><simpara>0.19</simpara></entry>
+<entry><simpara>-1.52</simpara></entry>
+<entry><simpara>0.13</simpara></entry>
+</row>
+<row>
+<entry><simpara>treatment2</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>1.00</simpara></entry>
+</row>
+<row>
+<entry><simpara>treatment3</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>1.00</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>summary glm.D93</title>
+<tgroup cols="5">
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<thead valign="top">
+<row>
+<entry>           </entry>
+<entry>Estimate</entry>
+<entry>Std. Error</entry>
+<entry>z value</entry>
+<entry>Pr(&gt;|z|)</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>(Intercept)</simpara></entry>
+<entry><simpara>3.04</simpara></entry>
+<entry><simpara>0.17</simpara></entry>
+<entry><simpara>17.81</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+</row>
+<row>
+<entry><simpara>outcome2</simpara></entry>
+<entry><simpara>-0.45</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>-2.25</simpara></entry>
+<entry><simpara>0.02</simpara></entry>
+</row>
+<row>
+<entry><simpara>outcome3</simpara></entry>
+<entry><simpara>-0.29</simpara></entry>
+<entry><simpara>0.19</simpara></entry>
+<entry><simpara>-1.52</simpara></entry>
+<entry><simpara>0.13</simpara></entry>
+</row>
+<row>
+<entry><simpara>treatment2</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>1.00</simpara></entry>
+</row>
+<row>
+<entry><simpara>treatment3</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>0.20</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>1.00</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>anova glm.D93</title>
+<tgroup cols="5">
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<colspec colwidth="20*" align="left"/>
+<thead valign="top">
+<row>
+<entry>         </entry>
+<entry>Df  </entry>
+<entry>Deviance</entry>
+<entry>Resid. Df</entry>
+<entry>Resid. Dev</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>NULL</simpara></entry>
+<entry><simpara></simpara></entry>
+<entry><simpara></simpara></entry>
+<entry><simpara>8.00</simpara></entry>
+<entry><simpara>10.58</simpara></entry>
+</row>
+<row>
+<entry><simpara>outcome</simpara></entry>
+<entry><simpara>2.00</simpara></entry>
+<entry><simpara>5.45</simpara></entry>
+<entry><simpara>6.00</simpara></entry>
+<entry><simpara>5.13</simpara></entry>
+</row>
+<row>
+<entry><simpara>treatment</simpara></entry>
+<entry><simpara>2.00</simpara></entry>
+<entry><simpara>0.00</simpara></entry>
+<entry><simpara>4.00</simpara></entry>
+<entry><simpara>5.13</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+<section id="_survdiff">
+<title>Survdiff</title>
+<screen>&gt; library(survival)
+&gt; survdiff.aml &lt;- survdiff(Surv(time, status) ~ x, data = aml)
+&gt; ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0,
++     2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
+.survdiff.aml
+[options="header"]
+|=======================================================================
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p
+|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
+|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |
+|=======================================================================</screen>
+<table
+frame="all"
+rowsep="1" colsep="1"
+>
+<title>survdiff.aml</title>
+<tgroup cols="8">
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<colspec colwidth="12*" align="left"/>
+<thead valign="top">
+<row>
+<entry>               </entry>
+<entry>N </entry>
+<entry>Observed</entry>
+<entry>Expected</entry>
+<entry>(O-E)^2/E</entry>
+<entry>(O-E)^2/V</entry>
+<entry>df</entry>
+<entry>p</entry>
+</row>
+</thead>
+<tbody valign="top">
+<row>
+<entry><simpara>x=Maintained</simpara></entry>
+<entry><simpara>11</simpara></entry>
+<entry><simpara>7</simpara></entry>
+<entry><simpara>10.69</simpara></entry>
+<entry><simpara>1.27</simpara></entry>
+<entry><simpara>3.40</simpara></entry>
+<entry><simpara>1</simpara></entry>
+<entry><simpara>6.53393E-02</simpara></entry>
+</row>
+<row>
+<entry><simpara>x=Nonmaintained</simpara></entry>
+<entry><simpara>12</simpara></entry>
+<entry><simpara>11</simpara></entry>
+<entry><simpara>7.31</simpara></entry>
+<entry><simpara>1.86</simpara></entry>
+<entry><simpara>3.40</simpara></entry>
+<entry><simpara></simpara></entry>
+<entry><simpara></simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</table>
+</section>
+</section>
+</article>
