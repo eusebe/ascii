@@ -122,7 +122,7 @@ outcome <- gl(3,1,9)
 treatment <- gl(3,3)
 d.AD <- data.frame(treatment, outcome, counts)
 glm.D93 <- glm(counts ~ outcome + treatment, family=poisson())
-ascii(summary(glm.D93))
+ascii(glm.D93, caption = "glm.D93", align = "lrrrr", col.width = c(1, 5, 5, 5, 5),  frame = "topbot", grid = "none")
 @
 
 <<glm2,echo=FALSE,results=ascii>>=

@@ -914,38 +914,36 @@ Chi-squared approximation may be incorrect
 &gt; treatment &lt;- gl(3, 3)
 &gt; d.AD &lt;- data.frame(treatment, outcome, counts)
 &gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())
-&gt; ascii(summary(glm.D93))
-[options="header"]
-|================================================
-|           |Estimate|Std. Error|z value|Pr(&gt;|z|)
+&gt; ascii(glm.D93, caption = "glm.D93", align = "lrrrr", col.width = c(1,
++     5, 5, 5, 5), frame = "topbot", grid = "none")
+.glm.D93
+[frame="topbot",grid="none",options="header",cols="&lt;1,&gt;5,&gt;5,&gt;5,&gt;5"]
+|==================================================
+|           |Estimate|Std. Error|z value|Pr(&gt;\|z\|)
 |(Intercept)|3.04    |0.17      |17.81  |0.00
 |outcome2   |-0.45   |0.20      |-2.25  |0.02
 |outcome3   |-0.29   |0.19      |-1.52  |0.13
 |treatment2 |0.00    |0.20      |0.00   |1.00
 |treatment3 |0.00    |0.20      |0.00   |1.00
-|================================================</tt></pre>
+|==================================================</tt></pre>
 </div></div>
 <div class="tableblock">
 <table rules="all"
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
 <thead valign="top">
 <tr>
 <th align="left">           </th>
 <th align="left">Estimate</th>
 <th align="left">Std. Error</th>
 <th align="left">z value</th>
-<th align="left">Pr(&gt;</th>
-<th align="left">z</th>
-<th align="left">)</th>
+<th align="left">Pr(&gt;|z|)</th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -955,35 +953,34 @@ cellspacing="0" cellpadding="4">
 <td align="left"><p class="table">0.17</p></td>
 <td align="left"><p class="table">17.81</p></td>
 <td align="left"><p class="table">0.00</p></td>
-<td align="left"><p class="table">outcome2</p></td>
-<td align="left"><p class="table">-0.45</p></td>
 </tr>
 <tr>
+<td align="left"><p class="table">outcome2</p></td>
+<td align="left"><p class="table">-0.45</p></td>
 <td align="left"><p class="table">0.20</p></td>
 <td align="left"><p class="table">-2.25</p></td>
 <td align="left"><p class="table">0.02</p></td>
+</tr>
+<tr>
 <td align="left"><p class="table">outcome3</p></td>
 <td align="left"><p class="table">-0.29</p></td>
 <td align="left"><p class="table">0.19</p></td>
 <td align="left"><p class="table">-1.52</p></td>
+<td align="left"><p class="table">0.13</p></td>
 </tr>
 <tr>
-<td align="left"><p class="table">0.13</p></td>
 <td align="left"><p class="table">treatment2</p></td>
 <td align="left"><p class="table">0.00</p></td>
 <td align="left"><p class="table">0.20</p></td>
 <td align="left"><p class="table">0.00</p></td>
 <td align="left"><p class="table">1.00</p></td>
-<td align="left"><p class="table">treatment3</p></td>
 </tr>
 <tr>
+<td align="left"><p class="table">treatment3</p></td>
 <td align="left"><p class="table">0.00</p></td>
 <td align="left"><p class="table">0.20</p></td>
 <td align="left"><p class="table">0.00</p></td>
 <td align="left"><p class="table">1.00</p></td>
-<td align="left"><p class="table"></p></td>
-<td align="left"><p class="table"></p></td>
-<td align="left"><p class="table"></p></td>
 </tr>
 </tbody>
 </table>
@@ -991,7 +988,7 @@ cellspacing="0" cellpadding="4">
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-02-03 14:41:30 CEST
+Last updated 2009-02-03 14:55:22 CEST
 </div>
 </div>
 </body>

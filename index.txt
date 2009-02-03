@@ -185,25 +185,27 @@ Glm
 > treatment <- gl(3, 3)
 > d.AD <- data.frame(treatment, outcome, counts)
 > glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
-> ascii(summary(glm.D93))
-[options="header"]
-|================================================ 
-|           |Estimate|Std. Error|z value|Pr(>|z|)
+> ascii(glm.D93, caption = "glm.D93", align = "lrrrr", col.width = c(1, 
++     5, 5, 5, 5), frame = "topbot", grid = "none")
+.glm.D93
+[frame="topbot",grid="none",options="header",cols="<1,>5,>5,>5,>5"]
+|================================================== 
+|           |Estimate|Std. Error|z value|Pr(>\|z\|)
 |(Intercept)|3.04    |0.17      |17.81  |0.00    
 |outcome2   |-0.45   |0.20      |-2.25  |0.02    
 |outcome3   |-0.29   |0.19      |-1.52  |0.13    
 |treatment2 |0.00    |0.20      |0.00   |1.00    
 |treatment3 |0.00    |0.20      |0.00   |1.00    
-|================================================  
+|==================================================  
 ----
 
 [options="header"]
-|================================================ 
-|           |Estimate|Std. Error|z value|Pr(>|z|)
+|================================================== 
+|           |Estimate|Std. Error|z value|Pr(>\|z\|)
 |(Intercept)|3.04    |0.17      |17.81  |0.00    
 |outcome2   |-0.45   |0.20      |-2.25  |0.02    
 |outcome3   |-0.29   |0.19      |-1.52  |0.13    
 |treatment2 |0.00    |0.20      |0.00   |1.00    
 |treatment3 |0.00    |0.20      |0.00   |1.00    
-|================================================  
+|==================================================  
 
