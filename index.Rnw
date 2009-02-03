@@ -84,11 +84,11 @@ Matrix
 ~~~~~~
 
 <<matrix>>=
-ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, width = 50, valign = "middle", align = "lrrrr", frame = "topbot", grid = "none")
+ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, col.width = c(1, 3, 3, 3, 3, 3), valign = "middle", align = "lrrrr", frame = "topbot", grid = "none")
 @
 
 <<matrix2,echo=FALSE,results=ascii>>=
-ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, width = 50, valign = "middle", align = "lrrrr", frame = "topbot", grid = "none")
+ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, col.width = c(1, 3, 3, 3, 3, 3), vvalign = "middle", align = "lrrrr", frame = "topbot", grid = "none")
 @
 
 Data Frame

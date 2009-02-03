@@ -7,11 +7,9 @@
     <author>
         <firstname>David</firstname>
         <surname>Hajage</surname>
-        <affiliation><address><email>dhajage[at]gmail[dot]com</email></address></affiliation>
+        <email>dhajage[at]gmail[dot]com</email>
     </author>
     <authorinitials>DH</authorinitials>
-
-
 </articleinfo>
 <simpara><ulink url="http://eusebe.github.com/r2asciidoc">r2asciidoc</ulink> is a R package for writing document with embeded R commands.</simpara>
 <section id="_short_example">
