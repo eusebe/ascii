@@ -82,7 +82,9 @@ setMethod(
     
     charac.x <- vector("character", length(x))
     for (i in 1:length(x)) {
-      charac.x[i] <- sub("(^ *)(.*)", "\\1- \\2", gsub('\t|(*COMMIT)(*FAIL)'," ", x[[i]], perl = TRUE))
+      tmp <- gsub('\t|(*COMMIT)(*FAIL)','*', x[[i]], perl = TRUE)
+      tmp <- sub('(^\\*+)(.*)', ' \\1 \\2', tmp)
+      charac.x[i] <- sub("(^[^  \*].*)", "- \\1", tmp)
     }
     if (caption != "") cat(".", caption, "\n", sep = "")
     cat(charac.x, sep = "\n")
