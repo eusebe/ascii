@@ -43,8 +43,34 @@ What r2asciidoc provides
 r2asciidoc provided :
 
 - a Sweave driver: +Sweave("yourfile.Rnw", RweaveAscii())+ to use it
-- a generic method for common R objects: +ascii()+ 
-  * caption : title ("a title")
+- a generic method for common R objects: +ascii()+. Default argument depends of R object.
+
+[horizontal]
++x+:: R object
++include.rownames+:: include rownames ? (logical)
++include.colnames+:: include colnames ? (logical)
++format+:: equal to +"d"+  (for integers), +"f"+, +"e"+, +"E"+, +"g"+,
+          +"G"+, +"fg"+ (for reals).  Default is +"f"+.
+          +"f"+ gives numbers in the usual 'xxx.xxx' format;  +"e"+ and
+          +"E"+ give 'n.ddde+nn' or 'n.dddE+nn' (scientific format);
+          +"g"+ and +"G"+ put 'x[i]' into scientific format only if it
+          saves space to do so.
+          +"fg"+ uses fixed format as +"f"+, but 'digits' as the
+          minimum number of 'significant' digits.
++digits+:: the desired number of digits after the decimal point.  
++decimal.mark+:: the character to be used to indicate the numeric decimal point.
++na.print+:: the character to be used for NA
++caption+:: the title (character)
++width+:: the desired width of the table
++frame+:: defines the table border. Can take the following values: +"tobpot"+ (top and bottom), +"all"+ (all sides), +"none"+ and +"sides"+ (left and right). Default is +"all"+. 
++grid+:: defines which ruller lines are drawn between table rows and columns. Can take +"none"+, +"cols"+, +"rows"+ and +"all"+. Default is +"all"+.
++valign+:: vertically align all cells in a table. Can take +"top"+, +"bottom"+ and +"middle"+.
++header+:: emphase the first line of a table (logical).
++footer+:: emphase the last line of a table (logical).
++align+:: column alignment. Can be +"r"+ (right), +"l"+ (left) or +"c"+ (center).
++col.width+:: columns width (integer proportional value).
++style+:: columns styles. Equal to +"d"+ (default), +"e"+ (emphasis), +"m"+ (monospaced), +"s"+ (strong), +"a"+ (cells cans contain any of the 'AsciiDoc' elements that are allowed inside document), +"l"+ (literal), +"v"+ (verse; all line breaks are retained).
+
 
 Gallery
 -------
@@ -54,7 +80,11 @@ Vector
 
 ----
 > ascii(1:4)
+|=================== 
+|1.00|2.00|3.00|4.00
+|===================  
 ----
+
 |=================== 
 |1.00|2.00|3.00|4.00
 |===================  
@@ -63,21 +93,117 @@ Matrix
 ~~~~~~
 
 ----
-> ascii(matrix(1:4, 2, 2))
+> ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", 
++     header = T, width = 50, valign = "center", align = "lrrrr", 
++     frame = "topbot", grid = "none")
+.VADeaths
+[frame="topbot",grid="none",valign="center",options="header",cols="<,>,>,>,>",width="50%"]
+|===================================================== 
+|     |Rural Male|Rural Female|Urban Male|Urban Female
+|50-54|11.70     |8.70        |15.40     |8.40        
+|55-59|18.10     |11.70       |24.30     |13.60       
+|60-64|26.90     |20.30       |37.00     |19.30       
+|65-69|41.00     |30.90       |54.60     |35.10       
+|70-74|66.00     |54.30       |71.10     |50.00       
+|=====================================================  
 ----
-|========= 
-|1.00|3.00
-|2.00|4.00
-|=========  
+
+.VADeaths
+[frame="topbot",grid="none",valign="center",options="header",cols="<,>,>,>,>",width="50%"]
+|===================================================== 
+|     |Rural Male|Rural Female|Urban Male|Urban Female
+|50-54|11.70     |8.70        |15.40     |8.40        
+|55-59|18.10     |11.70       |24.30     |13.60       
+|60-64|26.90     |20.30       |37.00     |19.30       
+|65-69|41.00     |30.90       |54.60     |35.10       
+|70-74|66.00     |54.30       |71.10     |50.00       
+|=====================================================  
+
+Data Frame
+~~~~~~~~~~
+
+----
+> ascii(iris[1:10, ], include.rownames = F, caption = "iris", width = 50, 
++     align = "c", valign = "bottom")
+.iris
+[valign="bottom",options="header",cols="^,^,^,^,^",width="50%"]
+|========================================================= 
+|Sepal.Length|Sepal.Width|Petal.Length|Petal.Width|Species
+|5.10        |3.50       |1.40        |0.20       |setosa 
+|4.90        |3.00       |1.40        |0.20       |setosa 
+|4.70        |3.20       |1.30        |0.20       |setosa 
+|4.60        |3.10       |1.50        |0.20       |setosa 
+|5.00        |3.60       |1.40        |0.20       |setosa 
+|5.40        |3.90       |1.70        |0.40       |setosa 
+|4.60        |3.40       |1.40        |0.30       |setosa 
+|5.00        |3.40       |1.50        |0.20       |setosa 
+|4.40        |2.90       |1.40        |0.20       |setosa 
+|4.90        |3.10       |1.50        |0.10       |setosa 
+|=========================================================  
+----
+
+.iris
+[valign="bottom",options="header",cols="^,^,^,^,^",width="50%"]
+|========================================================= 
+|Sepal.Length|Sepal.Width|Petal.Length|Petal.Width|Species
+|5.10        |3.50       |1.40        |0.20       |setosa 
+|4.90        |3.00       |1.40        |0.20       |setosa 
+|4.70        |3.20       |1.30        |0.20       |setosa 
+|4.60        |3.10       |1.50        |0.20       |setosa 
+|5.00        |3.60       |1.40        |0.20       |setosa 
+|5.40        |3.90       |1.70        |0.40       |setosa 
+|4.60        |3.40       |1.40        |0.30       |setosa 
+|5.00        |3.40       |1.50        |0.20       |setosa 
+|4.40        |2.90       |1.40        |0.20       |setosa 
+|4.90        |3.10       |1.50        |0.10       |setosa 
+|=========================================================  
 
 Summary table
 ~~~~~~~~~~~~~
 
 ----
 > ascii(summary(table(1:4, 1:4)))
-----
 - Number of cases in table: 4 
 - Number of factors: 2 
 - Test for independence of all factors:
- - Chisq = 12, df = 9, p-value = 0.2133
- - Chi-squared approximation may be incorrect 
+ * Chisq = 12, df = 9, p-value = 0.2133
+ * Chi-squared approximation may be incorrect 
+----
+
+- Number of cases in table: 4 
+- Number of factors: 2 
+- Test for independence of all factors:
+ * Chisq = 12, df = 9, p-value = 0.2133
+ * Chi-squared approximation may be incorrect 
+
+Glm
+~~~
+
+----
+> counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+> outcome <- gl(3, 1, 9)
+> treatment <- gl(3, 3)
+> d.AD <- data.frame(treatment, outcome, counts)
+> glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
+> ascii(summary(glm.D93))
+[options="header"]
+|================================================ 
+|           |Estimate|Std. Error|z value|Pr(>|z|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00    
+|outcome2   |-0.45   |0.20      |-2.25  |0.02    
+|outcome3   |-0.29   |0.19      |-1.52  |0.13    
+|treatment2 |0.00    |0.20      |0.00   |1.00    
+|treatment3 |0.00    |0.20      |0.00   |1.00    
+|================================================  
+----
+
+[options="header"]
+|================================================ 
+|           |Estimate|Std. Error|z value|Pr(>|z|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00    
+|outcome2   |-0.45   |0.20      |-2.25  |0.02    
+|outcome3   |-0.29   |0.19      |-1.52  |0.13    
+|treatment2 |0.00    |0.20      |0.00   |1.00    
+|treatment3 |0.00    |0.20      |0.00   |1.00    
+|================================================  
+
