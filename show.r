@@ -60,6 +60,7 @@ setMethod(
       }
       charac.x[,i] <- sub("(NA)( *)", replacement, charac.x[,i])
       charac.x[,i] <- format(charac.x[,i], justify = "left")
+      charac.x[,i] <- gsub("\\|", "\\\\|", charac.x[,i])
     }
 
     # cat result
