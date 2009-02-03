@@ -185,20 +185,18 @@ Glm
 > treatment <- gl(3, 3)
 > d.AD <- data.frame(treatment, outcome, counts)
 > glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
-> ascii(glm.D93, caption = "glm.D93", align = "lrrrr", col.width = c(1, 
-+     5, 5, 5, 5), frame = "topbot", grid = "none")
-.glm.D93
-[frame="topbot",grid="none",options="header",cols="<1,>5,>5,>5,>5"]
-|================================================== 
-|           |Estimate|Std. Error|z value|Pr(>\|z\|)
-|(Intercept)|3.04    |0.17      |17.81  |0.00    
-|outcome2   |-0.45   |0.20      |-2.25  |0.02    
-|outcome3   |-0.29   |0.19      |-1.52  |0.13    
-|treatment2 |0.00    |0.20      |0.00   |1.00    
-|treatment3 |0.00    |0.20      |0.00   |1.00    
-|==================================================  
-----
+> glm.D93
+Call:  glm(formula = counts ~ outcome + treatment, family = poisson()) 
 
+Coefficients:
+(Intercept)     outcome2     outcome3   treatment2   treatment3  
+  3.045e+00   -4.543e-01   -2.930e-01    8.717e-16    4.557e-16  
+
+Degrees of Freedom: 8 Total (i.e. Null);  4 Residual
+Null Deviance:	    10.58 
+Residual Deviance: 5.129 	AIC: 56.76  
+> ascii(glm.D93, caption = "glm.D93")
+.glm.D93
 [options="header"]
 |================================================== 
 |           |Estimate|Std. Error|z value|Pr(>\|z\|)
@@ -208,4 +206,61 @@ Glm
 |treatment2 |0.00    |0.20      |0.00   |1.00    
 |treatment3 |0.00    |0.20      |0.00   |1.00    
 |==================================================  
+> ascii(summary(glm.D93), caption = "summary glm.D93")
+.summary glm.D93
+[options="header"]
+|================================================== 
+|           |Estimate|Std. Error|z value|Pr(>\|z\|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00    
+|outcome2   |-0.45   |0.20      |-2.25  |0.02    
+|outcome3   |-0.29   |0.19      |-1.52  |0.13    
+|treatment2 |0.00    |0.20      |0.00   |1.00    
+|treatment3 |0.00    |0.20      |0.00   |1.00    
+|==================================================  
+> ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
+.anova glm.D93
+[options="header"]
+|============================================ 
+|         |Df  |Deviance|Resid. Df|Resid. Dev
+|NULL     |    |        |8.00     |10.58     
+|outcome  |2.00|5.45    |6.00     |5.13      
+|treatment|2.00|0.00    |4.00     |5.13      
+|============================================  
+----
 
+.glm.D93
+[options="header"]
+|================================================== 
+|           |Estimate|Std. Error|z value|Pr(>\|z\|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00    
+|outcome2   |-0.45   |0.20      |-2.25  |0.02    
+|outcome3   |-0.29   |0.19      |-1.52  |0.13    
+|treatment2 |0.00    |0.20      |0.00   |1.00    
+|treatment3 |0.00    |0.20      |0.00   |1.00    
+|==================================================  
+.summary glm.D93
+[options="header"]
+|================================================== 
+|           |Estimate|Std. Error|z value|Pr(>\|z\|)
+|(Intercept)|3.04    |0.17      |17.81  |0.00    
+|outcome2   |-0.45   |0.20      |-2.25  |0.02    
+|outcome3   |-0.29   |0.19      |-1.52  |0.13    
+|treatment2 |0.00    |0.20      |0.00   |1.00    
+|treatment3 |0.00    |0.20      |0.00   |1.00    
+|==================================================  
+.anova glm.D93
+[options="header"]
+|============================================ 
+|         |Df  |Deviance|Resid. Df|Resid. Dev
+|NULL     |    |        |8.00     |10.58     
+|outcome  |2.00|5.45    |6.00     |5.13      
+|treatment|2.00|0.00    |4.00     |5.13      
+|============================================  
+
+Survdiff
+~~~~~~~~
+
+----
+> library(survival)
+> survdiff.aml <- survdiff(Surv(time, status) ~ x, data = aml)
+> ascii(survdiff.aml)
