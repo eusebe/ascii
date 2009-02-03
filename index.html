@@ -1119,10 +1119,75 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
+<h3 id="_survdiff">Survdiff</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(survival)
+&gt; survdiff.aml &lt;- survdiff(Surv(time, status) ~ x, data = aml)
+&gt; ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0,
++     0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
+.survdiff.aml
+[options="header"]
+|===============================================================
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df  |p
+|x=Maintained   |11|7       |11      |1.27     |3.40     |1.00|0
+|x=Nonmaintained|12|11      |7       |1.86     |3.40     |    |
+|===============================================================</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">survdiff.aml</caption>
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<thead valign="top">
+<tr>
+<th align="left">               </th>
+<th align="left">N </th>
+<th align="left">Observed</th>
+<th align="left">Expected</th>
+<th align="left">(O-E)^2/E</th>
+<th align="left">(O-E)^2/V</th>
+<th align="left">df  </th>
+<th align="left">p</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table">x=Maintained</p></td>
+<td align="left"><p class="table">11</p></td>
+<td align="left"><p class="table">7</p></td>
+<td align="left"><p class="table">11</p></td>
+<td align="left"><p class="table">1.27</p></td>
+<td align="left"><p class="table">3.40</p></td>
+<td align="left"><p class="table">1.00</p></td>
+<td align="left"><p class="table">0</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">x=Nonmaintained</p></td>
+<td align="left"><p class="table">12</p></td>
+<td align="left"><p class="table">11</p></td>
+<td align="left"><p class="table">7</p></td>
+<td align="left"><p class="table">1.86</p></td>
+<td align="left"><p class="table">3.40</p></td>
+<td align="left"><p class="table"></p></td>
+<td align="left"><p class="table"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-02-03 15:13:23 CEST
+Last updated 2009-02-03 15:31:49 CEST
 </div>
 </div>
 </body>

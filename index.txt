@@ -263,4 +263,21 @@ Survdiff
 ----
 > library(survival)
 > survdiff.aml <- survdiff(Surv(time, status) ~ x, data = aml)
-> ascii(survdiff.aml)
+> ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 
++     0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
+.survdiff.aml
+[options="header"]
+|=============================================================== 
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df  |p
+|x=Maintained   |11|7       |11      |1.27     |3.40     |1.00|0
+|x=Nonmaintained|12|11      |7       |1.86     |3.40     |    | 
+|===============================================================  
+----
+
+.survdiff.aml
+[options="header"]
+|=============================================================== 
+|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df  |p
+|x=Maintained   |11|7       |11      |1.27     |3.40     |1.00|0
+|x=Nonmaintained|12|11      |7       |1.86     |3.40     |    | 
+|===============================================================  

@@ -140,9 +140,9 @@ Survdiff
 <<survdiff>>=
 library(survival)
 survdiff.aml <- survdiff(Surv(time, status) ~ x, data = aml)
-ascii(survdiff.aml)
+ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
 @
 
 <<survdiff2,echo=FALSE,results=ascii>>=
-ascii(survdiff.aml)
+ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 0, 2, 2, 2, 0, 5), format = c(rep("f", 7), "E"))
 @
