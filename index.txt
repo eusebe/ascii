@@ -94,10 +94,10 @@ Matrix
 
 ----
 > ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", 
-+     header = T, width = 50, valign = "middle", align = "lrrrr", 
-+     frame = "topbot", grid = "none")
++     header = T, col.width = c(1, 5, 5, 5, 5, 5), valign = "middle", 
++     align = "lrrrr", frame = "topbot", grid = "none")
 .VADeaths
-[frame="topbot",grid="none",valign="middle",options="header",cols="<,>,>,>,>",width="50%"]
+[frame="topbot",grid="none",valign="middle",options="header",cols="<1,>5,>5,>5,>5"]
 |===================================================== 
 |     |Rural Male|Rural Female|Urban Male|Urban Female
 |50-54|11.70     |8.70        |15.40     |8.40        
@@ -109,7 +109,7 @@ Matrix
 ----
 
 .VADeaths
-[frame="topbot",grid="none",valign="middle",options="header",cols="<,>,>,>,>",width="50%"]
+[frame="topbot",grid="none",valign="middle",options="header",cols="<1,>5,>5,>5,>5"]
 |===================================================== 
 |     |Rural Male|Rural Female|Urban Male|Urban Female
 |50-54|11.70     |8.70        |15.40     |8.40        
