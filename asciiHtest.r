@@ -1,7 +1,4 @@
-setMethod(
-  "ascii",
-  "htest",
-  function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
+ascii.htest <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
   if (x$method == "Fisher's Exact Test for Count Data") {
     res <- cbind(x$estimate, x$conf.int[1], x$conf.int[2], x$p.value)
     colnames(res) <- c("Odds ratio", "lower .95", "upper .95", "p-value")
@@ -16,5 +13,4 @@ setMethod(
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
          col.width = col.width, style = style)
-  }
-)
+}
