@@ -482,17 +482,17 @@ Stangle <- function(file, driver=Rtangle(),
     Sweave(file=file, driver=driver, ...)
 }
 
-Rtangle <-  function()
+RtangleAscii <-  function()
 {
-    list(setup = RtangleSetup,
-         runcode = RtangleRuncode,
-         writedoc = RtangleWritedoc,
-         finish = RtangleFinish,
+    list(setup = RtangleAsciiSetup,
+         runcode = RtangleAsciiRuncode,
+         writedoc = RtangleAsciiWritedoc,
+         finish = RtangleAsciiFinish,
          checkopts = RweaveAsciiOptions)
 }
 
 
-RtangleSetup <- function(file, syntax,
+RtangleAsciiSetup <- function(file, syntax,
                          output=NULL, annotate=TRUE, split=FALSE,
                          prefix=TRUE, quiet=FALSE)
 {
@@ -524,7 +524,7 @@ RtangleSetup <- function(file, syntax,
 }
 
 
-RtangleRuncode <-  function(object, chunk, options)
+RtangleAsciiRuncode <-  function(object, chunk, options)
 {
     if(!(options$engine %in% c("R", "S"))){
         return(object)
@@ -572,7 +572,7 @@ RtangleRuncode <-  function(object, chunk, options)
     return(object)
 }
 
-RtangleWritedoc <- function(object, chunk)
+RtangleAsciiWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk)))
     {
@@ -586,7 +586,7 @@ RtangleWritedoc <- function(object, chunk)
 }
 
 
-RtangleFinish <- function(object, error=FALSE)
+RtangleAsciiFinish <- function(object, error=FALSE)
 {
     if(!is.null(object$output))
         close(object$output)
