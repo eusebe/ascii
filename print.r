@@ -1,2 +1,2 @@
-print.Ascii <- function(x) x$show()
+print.Ascii <- function(x) x$show.asciidoc()
 

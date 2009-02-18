@@ -37,7 +37,7 @@ asciiDataFrame <- proto(expr = {
     col.width = col.width,
     style = style)
 
-  show <- function(.) {
+  charac <- function(.) {
 
     # detection des colonnes numeriques
     numerics <- sapply(.$x, is.numeric)
@@ -56,17 +56,17 @@ asciiDataFrame <- proto(expr = {
     rnoms <- rownames(.$x)
     cnoms <- names(.$x)
     if (.$include.rownames) {
-    charac.x <- data.frame(rnoms, charac.x, stringsAsFactors = F)
-    cnoms <- c("", cnoms)
+      charac.x <- data.frame(rnoms, charac.x, stringsAsFactors = F)
+      cnoms <- c("", cnoms)
 
-    # adaptation de certains parametres
-    format <- c("f", format)
-    digits <- c(0, digits)
-    numerics <- c(FALSE, numerics)
+      # adaptation de certains parametres
+      format <- c("f", format)
+      digits <- c(0, digits)
+      numerics <- c(FALSE, numerics)
     }
     if (.$include.colnames) {
-    names(cnoms) <- names(charac.x) # for following rbind
-    charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
+      names(cnoms) <- names(charac.x) # for following rbind
+      charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
     }
 
     # Beautify cols (digits, format, spacing, na.print)
@@ -81,7 +81,11 @@ asciiDataFrame <- proto(expr = {
       charac.x[,i] <- format(charac.x[,i], justify = "left")
       charac.x[,i] <- gsub("\\|", "\\\\|", charac.x[,i])
     }
+    return(charac.x)
+  }
 
+  show.asciidoc <- function(.) {
+    charac.x <- charac(.)
     # cat result
     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
     maxchars <- max(nchar(rows)) - 1
