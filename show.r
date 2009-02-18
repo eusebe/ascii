@@ -95,6 +95,13 @@ asciiDataFrame <- proto(expr = {
     cat(rows, sep = "\n")
     cat(topbot, "\n")
   }
+
+  show.t2t <- function(.) {
+    charac.x <- charac(.)
+    # cat result
+    rows <- apply(charac.x, 1, function(x) paste("| ", paste(x, collapse = " | "), sep = ""))
+    cat(rows, sep = "\n")
+  }
 })
 
 asciiList <- proto(expr = {
