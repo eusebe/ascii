@@ -38,7 +38,6 @@ asciiDataFrame <- proto(expr = {
     style = style)
 
   charac <- function(.) {
-
     # detection des colonnes numeriques
     numerics <- sapply(.$x, is.numeric)
     # adaption de certains parametres
@@ -100,6 +99,12 @@ asciiDataFrame <- proto(expr = {
     charac.x <- charac(.)
     # cat result
     rows <- apply(charac.x, 1, function(x) paste("| ", paste(x, collapse = " | "), sep = ""))
+    if (.$header) {
+      rows[1] <- paste("|", rows[1], sep = "")
+    }
+    if (.$footer) {
+      rows[length(rows)] <- paste("|", rows[length(rows)], sep = "")
+    }
     cat(rows, sep = "\n")
   }
 })
