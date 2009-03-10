@@ -37,8 +37,7 @@ asciiDataFrame <- proto(expr = {
     col.width = col.width,
     style = style)
 
-  show <- function(.) {
-
+  charac <- function(.) {
     # detection des colonnes numeriques
     numerics <- sapply(.$x, is.numeric)
     # adaption de certains parametres
@@ -56,17 +55,17 @@ asciiDataFrame <- proto(expr = {
     rnoms <- rownames(.$x)
     cnoms <- names(.$x)
     if (.$include.rownames) {
-    charac.x <- data.frame(rnoms, charac.x, stringsAsFactors = F)
-    cnoms <- c("", cnoms)
+      charac.x <- data.frame(rnoms, charac.x, stringsAsFactors = F)
+      cnoms <- c("", cnoms)
 
-    # adaptation de certains parametres
-    format <- c("f", format)
-    digits <- c(0, digits)
-    numerics <- c(FALSE, numerics)
+      # adaptation de certains parametres
+      format <- c("f", format)
+      digits <- c(0, digits)
+      numerics <- c(FALSE, numerics)
     }
     if (.$include.colnames) {
-    names(cnoms) <- names(charac.x) # for following rbind
-    charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
+      names(cnoms) <- names(charac.x) # for following rbind
+      charac.x <- rbind(data.frame(as.list(cnoms), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
     }
 
     # Beautify cols (digits, format, spacing, na.print)
@@ -81,7 +80,11 @@ asciiDataFrame <- proto(expr = {
       charac.x[,i] <- format(charac.x[,i], justify = "left")
       charac.x[,i] <- gsub("\\|", "\\\\|", charac.x[,i])
     }
+    return(charac.x)
+  }
 
+  show.asciidoc <- function(.) {
+    charac.x <- charac(.)
     # cat result
     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
     maxchars <- max(nchar(rows)) - 1
@@ -91,6 +94,39 @@ asciiDataFrame <- proto(expr = {
     cat(rows, sep = "\n")
     cat(topbot, "\n")
   }
+
+  show.t2t <- function(.) {
+    charac.x <- charac(.)
+    # prise en compte du style
+    if (.$style != "") {  
+      style <- unlist(strsplit(.$style, ""))
+      style <- rep(style, length.out = ncol(charac.x))
+      for (i in 1:ncol(charac.x)) {
+        charac.x[,i] <- beauty(charac.x[,i], style[i])
+      }
+    }
+    # prise en compte de l'alignement
+    if (.$align != "") {  
+      align <- unlist(strsplit(.$align, ""))
+      align <- rep(align, length.out = ncol(charac.x))
+      for (i in 1:ncol(charac.x)) {
+        if (length(grep("^ *$", charac.x[1, i])) == 0) {
+          if (align[i] == "c") { charac.x[1, i] <- sub("^ *", " ", charac.x[1, i]) ; charac.x[1, i] <- sub(" *$", " ", charac.x[1, i]) }
+          if (align[i] == "r") { charac.x[1, i] <- sub("^ *", " ", charac.x[1, i]) ; charac.x[1, i] <- sub(" *$", "", charac.x[1, i]) } 
+        }
+      }
+    }
+    # cat result
+    rows <- apply(charac.x, 1, function(x) paste("| ", paste(x, collapse = " | "), sep = ""))
+    if (.$header) {
+      rows[1] <- paste("|", rows[1], sep = "")
+    }
+    if (.$footer) {
+      rows[length(rows)] <- paste("|", rows[length(rows)], sep = "")
+    }
+    if (.$frame == "" | .$frame == "all") rows <- paste(rows, " |", sep = "")
+    cat(rows, sep = "\n")
+  }
 })
 
 asciiList <- proto(expr = {
@@ -99,7 +135,8 @@ asciiList <- proto(expr = {
     caption) proto(.,
     x = x,
     caption = caption)
-  show <- function(.) {
+
+  show.asciidoc <- show.t2t <- function(.) {
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
       tmp <- gsub('\t|(*COMMIT)(*FAIL)','*', .$x[[i]], perl = TRUE)
