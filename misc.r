@@ -62,6 +62,7 @@ header <- function(caption = "", frame = "", grid = "", valign = "", header = FA
 #~ cat(header(caption = "A title", header = T, footer = T))
 #~ cat(header(caption = "A title", width = 30))
 
+# beautify for t2t
 beauty <- function(x, beauti = c("e", "m", "s")) {
   if (beauti == "s") {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*\\*.*\\*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
