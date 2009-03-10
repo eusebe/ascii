@@ -61,3 +61,20 @@ header <- function(caption = "", frame = "", grid = "", valign = "", header = FA
 #~ cat(header(caption = "A title"))
 #~ cat(header(caption = "A title", header = T, footer = T))
 #~ cat(header(caption = "A title", width = 30))
+
+beauty <- function(x, beauti = c("e", "m", "s")) {
+  if (beauti == "s") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*\\*.*\\*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
+    if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\*\\2", x[!y]))
+  }
+  if (beauti == "e") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("//.*//", x)+1)/2) # it seulement si != de "" et si pas de it
+    if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1//\\2", sub("([:alpha:]*)( *$)", "\\1//\\2", x[!y])) 
+  }
+  if (beauti == "m") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("``.*``", x)+1)/2) # it seulement si != de "" et si pas de mono
+    if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1``\\2", sub("([:alpha:]*)( *$)", "\\1``\\2", x[!y])) 
+  }
+  return(x)
+}
+

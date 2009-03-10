@@ -97,14 +97,23 @@ asciiDataFrame <- proto(expr = {
 
   show.t2t <- function(.) {
     charac.x <- charac(.)
+    # prise en compte du style
+    if (.$style != "") {  
+      style <- unlist(strsplit(.$style, ""))
+      style <- rep(style, length.out = ncol(charac.x))
+      for (i in 1:ncol(charac.x)) {
+        charac.x[,i] <- beauty(charac.x[,i], style[i])
+      }
+    }
     # prise en compte de l'alignement
     if (.$align != "") {  
       align <- unlist(strsplit(.$align, ""))
       align <- rep(align, length.out = ncol(charac.x))
       for (i in 1:ncol(charac.x)) {
-        if (align[i] == "c") { charac.x[1 ,i] <- sub("^ *", " ", charac.x[1 ,i]) ; charac.x[1 ,i] <- sub(" *$", " ", charac.x[1 ,i]) }
-        if (align[i] == "r") { charac.x[1 ,i] <- sub("^ *", " ", charac.x[1 ,i]) ; charac.x[1 ,i] <- sub(" *$", "", charac.x[1 ,i]) } 
-        #if (align[i] == "l") { charac.x[1 ,i] <- sub("^ *", "", charac.x[1 ,i]) ; charac.x[1 ,i] <- sub(" *$", " ", charac.x[1 ,i]) } 
+        if (length(grep("^ *$", charac.x[1, i])) == 0) {
+          if (align[i] == "c") { charac.x[1, i] <- sub("^ *", " ", charac.x[1, i]) ; charac.x[1, i] <- sub(" *$", " ", charac.x[1, i]) }
+          if (align[i] == "r") { charac.x[1, i] <- sub("^ *", " ", charac.x[1, i]) ; charac.x[1, i] <- sub(" *$", "", charac.x[1, i]) } 
+        }
       }
     }
     # cat result
