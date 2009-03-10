@@ -69,14 +69,14 @@ asciiDataFrame <- proto(expr = {
     }
 
     # Beautify cols (digits, format, spacing, na.print)
-    replacement <- paste(.$na.print, "\\2", sep = "")
+    replacement <- paste("\\1", .$na.print, "\\3", sep = "")
     for (i in 1:ncol(charac.x)) {
       if (numerics[i]) {
         charac.x[, i][charac.x[, i] == "NA"] <- "" # necessaire avant le formatage des nombres avec formatC(as.numeric(...))
         if (.$include.colnames)  charac.x[2:nrow(charac.x),i] <- formatC(as.numeric(charac.x[2:nrow(charac.x),i]), format = format[i], digits = digits[i], decimal.mark = .$decimal.mark)
         if (!.$include.colnames) charac.x[,i] <- formatC(as.numeric(charac.x[,i]), format = format[i], digits = digits[i], decimal.mark = .$decimal.mark)
       }
-      charac.x[,i] <- sub("(NA)( *)", replacement, charac.x[,i])
+      charac.x[,i] <- sub("(^ *)(NA)( *$)", replacement, charac.x[,i])
       charac.x[,i] <- format(charac.x[,i], justify = "left")
       charac.x[,i] <- gsub("\\|", "\\\\|", charac.x[,i])
     }
