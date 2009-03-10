@@ -97,6 +97,16 @@ asciiDataFrame <- proto(expr = {
 
   show.t2t <- function(.) {
     charac.x <- charac(.)
+    # prise en compte de l'alignement
+    if (.$align != "") {  
+      align <- unlist(strsplit(.$align, ""))
+      align <- rep(align, length.out = ncol(charac.x))
+      for (i in 1:ncol(charac.x)) {
+        if (align[i] == "c") { charac.x[1 ,i] <- sub("^ *", " ", charac.x[1 ,i]) ; charac.x[1 ,i] <- sub(" *$", " ", charac.x[1 ,i]) }
+        if (align[i] == "r") { charac.x[1 ,i] <- sub("^ *", " ", charac.x[1 ,i]) ; charac.x[1 ,i] <- sub(" *$", "", charac.x[1 ,i]) } 
+        #if (align[i] == "l") { charac.x[1 ,i] <- sub("^ *", "", charac.x[1 ,i]) ; charac.x[1 ,i] <- sub(" *$", " ", charac.x[1 ,i]) } 
+      }
+    }
     # cat result
     rows <- apply(charac.x, 1, function(x) paste("| ", paste(x, collapse = " | "), sep = ""))
     if (.$header) {
@@ -105,6 +115,7 @@ asciiDataFrame <- proto(expr = {
     if (.$footer) {
       rows[length(rows)] <- paste("|", rows[length(rows)], sep = "")
     }
+    if (.$frame == "" | .$frame == "all") rows <- paste(rows, " |", sep = "")
     cat(rows, sep = "\n")
   }
 })
@@ -115,7 +126,7 @@ asciiList <- proto(expr = {
     caption) proto(.,
     x = x,
     caption = caption)
-  show <- function(.) {
+  show.asciidoc <- function(.) {
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
       tmp <- gsub('\t|(*COMMIT)(*FAIL)','*', .$x[[i]], perl = TRUE)
