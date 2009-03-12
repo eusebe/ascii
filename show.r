@@ -136,7 +136,7 @@ asciiList <- proto(expr = {
     x = x,
     caption = caption)
 
-  show.asciidoc function(.) {
+  show.asciidoc <- function(.) {
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
       tmp <- gsub('\t|(*COMMIT)(*FAIL)','*', .$x[[i]], perl = TRUE)
