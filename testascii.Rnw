@@ -139,14 +139,14 @@ ascii(1:4)
 
 blabla
 
-<<fig=T>>=
+<<fig=T, eps=TRUE>>=
 plot(1)
 @
 
 blabla
 
 <<fig=T>>=
-plot(1)
+plot(2)
 2+2
 @
 

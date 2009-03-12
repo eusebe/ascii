@@ -23,7 +23,7 @@ RweaveAsciiSetup <-
 
     options <- list(prefix=TRUE, prefix.string=prefix.string,
                     engine="R", print=FALSE, eval=TRUE,
-                    fig=FALSE, png=TRUE, jpg=TRUE, pdf=TRUE, eps=TRUE,
+                    fig=FALSE, png=FALSE, jpg=TRUE, pdf=TRUE, eps=FALSE,
                     width=6, height=6, res=100, term=TRUE,
                     echo=TRUE, keep.source=FALSE, results="verbatim",
                     split=FALSE, strip.white="true", include=TRUE,
