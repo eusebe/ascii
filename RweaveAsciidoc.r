@@ -23,7 +23,7 @@ RweaveAsciiSetup <-
 
     options <- list(prefix=TRUE, prefix.string=prefix.string,
                     engine="R", print=FALSE, eval=TRUE,
-                    fig=FALSE, png=FALSE, jpg=TRUE, pdf=TRUE, eps=FALSE,
+                    fig=FALSE, ext = "jpg", png=FALSE, jpg=TRUE, pdf=TRUE, eps=FALSE,
                     width=6, height=6, res=100, term=TRUE,
                     echo=TRUE, keep.source=FALSE, results="verbatim",
                     split=FALSE, strip.white="true", include=TRUE,
@@ -303,7 +303,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat("image::", chunkprefix, ".jpg[]\n", sep="",
+                  cat("image::", chunkprefix, ".", options$ext, "[]\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L
@@ -396,7 +396,7 @@ RweaveAsciiOptions <- function(options)
     }
 
     NUMOPTS <- c("width", "height", "res")
-    NOLOGOPTS <- c(NUMOPTS, "results", "prefix.string",
+    NOLOGOPTS <- c(NUMOPTS, "ext", "results", "prefix.string",
                    "engine", "label", "strip.white",
                    "pdf.version", "pdf.encoding", "pointsize")
 
