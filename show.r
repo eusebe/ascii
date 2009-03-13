@@ -156,5 +156,4 @@ asciiList <- proto(expr = {
     if (.$caption != "") cat("=====", .$caption, "=====\n", sep = "")
     cat(charac.x, sep = "\n")
   }
-  cat("\n\n")
 })
