@@ -1,0 +1,56 @@
+Test de t2tdoc
+
+
+
+
+<<>>=
+options(asciiType = "t2t")
+2+2
+2*2
+2-2
+@
+
+<<results=t2t>>=
+ascii(1:4)
+@
+
+<<echo=F>>=
+ascii(1:4)
+@
+
+<<results=hide>>=
+ascii(1:4)
+@
+
+<<results=hide>>=
+ascii(1:4)
+2+2
+3+3
+@
+
+<<echo=FALSE,results=hide>>=
+ascii(1:4)
+2+2
+3+3
+@
+
+blabla
+
+<<fig=T, eps=TRUE>>=
+plot(1)
+@
+
+blabla
+
+<<fig=T, ext=pdf>>=
+plot(2)
+2+2
+@
+
+Le résultat de l'opération 2+2 est \Sexpr{2+2}.
+
+<<results=t2t>>=
+ascii(summary(table(1:4, 1:4)), caption  = "A title for list")
+@
+
+blabla
