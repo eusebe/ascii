@@ -1,5 +1,6 @@
 *~
 test.r
+temp.r
 *.swp
 *.png
 *.pdf
@@ -12,3 +13,4 @@ test.r
 *.toc
 *.text
 *.rtf
+*.t2t
