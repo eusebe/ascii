@@ -150,9 +150,11 @@ asciiList <- proto(expr = {
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
       tmp <- gsub('\t|(*COMMIT)(*FAIL)','-', .$x[[i]], perl = TRUE)
-      charac.x[i] <- sub('(^-+)(.*)', ' \\1 \\2', tmp)
+      tmp <- sub('(^-+)(.*)', ' \\1 \\2', tmp)
+      charac.x[i] <- sub("(^[^  \\-].*)", "- \\1", tmp)
     }
-    if (.$caption != "") cat(".", .$caption, "\n", sep = "")
+    if (.$caption != "") cat("=====", .$caption, "=====\n", sep = "")
     cat(charac.x, sep = "\n")
   }
+  cat("\n\n")
 })
