@@ -1,4 +1,4 @@
-library(proto)
+require(proto)
 
 asciiDataFrame <- proto(expr = {
   new <- function(.,

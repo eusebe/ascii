@@ -1,4 +1,4 @@
-ascii.anova <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
+ascii.anova <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
     x <- as.data.frame(x, check.names = FALSE)
     obj <- asciiDataFrame$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,
@@ -10,7 +10,7 @@ ascii.anova <- function (x, include.rownames = TRUE, include.colnames = TRUE, fo
     return(obj)
 }
 
-ascii.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
+ascii.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
   ascii.anova(unclass(summary(x))[[1]], include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,
          digits = digits, decimal.mark = decimal.mark, na.print = na.print,
@@ -19,7 +19,7 @@ ascii.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, form
          col.width = col.width, style = style)
 }
 
-ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
+ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
   ascii.anova(unclass(x)[[1]], include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,
          digits = digits, decimal.mark = decimal.mark, na.print = na.print,
@@ -28,7 +28,7 @@ ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TR
          col.width = col.width, style = style)
 }
 
-ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
+ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
   y <- summary(x)
   n <- length(y)
   if (n == 1) ascii.anova(unclass(y[[1]][[1]]), include.rownames = include.rownames,
@@ -49,7 +49,7 @@ ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, 
   }
 }
 
-ascii.summary.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = ""){
+ascii.summary.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
   n <- length(x)
   if (n == 1) ascii.anova(unclass(x[[1]][[1]]), include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,

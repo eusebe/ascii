@@ -1,18 +1,18 @@
-\name{RweaveAsciidoc}
-\alias{RweaveAsciidoc}
-\alias{RweaveAsciidocOptions}
-\alias{RweaveAsciidocFinish}
-\alias{RweaveAsciidocWritedoc}
-\alias{RweaveAsciidocSetup}
-\alias{RweaveAsciidocRuncode}
-\alias{SweaveSyntaxAsciidoc}
+\name{RweaveT2t}
+\alias{RweaveT2t}
+\alias{RweaveT2tOptions}
+\alias{RweaveT2tFinish}
+\alias{RweaveT2tWritedoc}
+\alias{RweaveT2tSetup}
+\alias{RweaveT2tRuncode}
+\alias{SweaveSyntaxT2t}
 
-\title{ A driver to parse Asciidoc noweb files with Sweave tool}
+\title{ A driver to parse txt2tags noweb files with Sweave tool}
 \description{
-     This driver parses Asciidoc files containing R code and replace pieces of code with their output. 
+     This driver parses txt2tags files containing R code and replace pieces of code with their output. 
 }
 \usage{
-  RweaveAsciidoc()
+  RweaveT2t()
 }
 \value{
     None value is returned. From a .Rnw noweb file, the corresponding .txt is produced (as eventuals files for graphs).
@@ -29,7 +29,7 @@
 
   \dontrun{
 library(tools)
-Sweave("file.Rnw",driver=RweaveAsciidoc)
+Sweave("file.Rnw",driver=RweaveT2t)
   }
 }
 \keyword{ IO}

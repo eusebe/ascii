@@ -6,7 +6,7 @@
 #~     new("R2asciidocList", x = x)
 #~   }
 #~ )
-ascii.summary.table <- function(x, caption = "") {
+ascii.summary.table <- function(x, caption = "", ...) {
     x <- as.list(capture.output(x))
     obj <- asciiList$new(x = x, caption = caption)
     class(obj) <- c("ascii", "proto", "environment")

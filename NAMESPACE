@@ -1,4 +1,5 @@
 export("ascii", "print.ascii")
+import(methods)
 
 S3method("print", "ascii")
 S3method("ascii", "anova")

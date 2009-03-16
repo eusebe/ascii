@@ -6,7 +6,8 @@ Date: 2009-03-13
 Author: David Hajage
 Maintainer: David Hajage <dhajage@gmail.com>
 Description: Coerce R object to asciidoc or txt2tags syntax. 
-Package comes with two drivers for Sweave.
+ Package comes with two drivers for Sweave.
 License: GPL (>= 2)
-LazyLoad: yes
-Depends: methods, proto
+Imports: proto, methods
+Depends: R (>= 2.7), proto, methods
+LazyLoad: false

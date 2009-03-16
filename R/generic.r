@@ -3,4 +3,7 @@ setGeneric(
   def = function(x, ...){standardGeneric("ascii")}
 )
 
-ascii <- function (x, ...) UseMethod("ascii")
+ascii <- function (x, ...) {
+  require(proto)
+  UseMethod("ascii")
+}
