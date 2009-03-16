@@ -1,4 +1,3 @@
 * zero.print ?
-* write inspector to control data
-* new show for ftable (use format.ftable) - no, just use ascii(format(x))
-* write initializator (in order to get show simplier)
+* new option for asciiList : with bullets, without bullets, with verbatim environment
+* new object mixing asciiDataFrame and asciiList
