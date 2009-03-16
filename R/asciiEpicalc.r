@@ -12,7 +12,7 @@ ascii.tab1 <- function (x, include.rownames = TRUE, include.colnames = TRUE, for
          caption, width, frame, grid,
          valign, header, footer, align,
          col.width, style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 

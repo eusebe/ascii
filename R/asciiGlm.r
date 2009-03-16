@@ -6,7 +6,7 @@ ascii.glm <- function (x, include.rownames = TRUE, include.colnames = TRUE, form
           caption = caption, width = width, frame = frame, grid = grid,
           valign = valign, header = header, footer = footer, align = align,
           col.width = col.width, style = style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -18,7 +18,7 @@ ascii.summary.glm <- function (x, include.rownames = TRUE, include.colnames = TR
         caption = caption, width = width, frame = frame, grid = grid,
         valign = valign, header = header, footer = footer, align = align,
         col.width = col.width, style = style)
-  class(obj) <- c("Ascii", "proto", "environment")
+  class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }
 

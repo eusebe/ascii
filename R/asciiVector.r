@@ -6,7 +6,7 @@ ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
          col.width = col.width, style = style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -18,7 +18,7 @@ ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
          col.width = col.width, style = style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -30,7 +30,7 @@ ascii.character <- function (x, include.rownames = FALSE, include.colnames = FAL
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
          col.width = col.width, style = style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -42,6 +42,6 @@ ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE,
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
          col.width = col.width, style = style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }

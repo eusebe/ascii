@@ -31,6 +31,6 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
       caption = caption, width = width, frame = frame, grid = grid,
       valign = valign, header = header, footer = footer, align = align,
       col.width = col.width, style = style)
-  class(obj) <- c("Ascii", "proto", "environment")
+  class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }

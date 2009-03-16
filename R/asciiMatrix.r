@@ -6,7 +6,7 @@ ascii.matrix <- function (x, include.rownames = FALSE, include.colnames = FALSE,
          caption, width, frame, grid,
          valign, header, footer, align,
          col.width, style)
-    class(obj) <- c("Ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 

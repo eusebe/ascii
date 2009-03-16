@@ -1,0 +1,12 @@
+Package: ascii
+Type: Package
+Title: Export tables to asciidoc or txt2tags 
+Version: 0.1
+Date: 2009-03-13
+Author: David Hajage
+Maintainer: David Hajage <dhajage@gmail.com>
+Description: Coerce R object to asciidoc or txt2tags tables. 
+Packages comes with two drivers for Sweave.
+License: GPL (>= 2)
+LazyLoad: yes
+Depends: methods, proto
