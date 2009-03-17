@@ -1,4 +1,4 @@
-export("ascii", "print.ascii")
+export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t")
 import(methods)
 
 S3method("print", "ascii")

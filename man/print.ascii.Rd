@@ -11,14 +11,17 @@ print.ascii(x, type = getOption("asciiType"), ...)
               Default value produce AsciiDoc syntax.}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
+\details{
+  The package provides the new global option \code{asciiType}. Default value is \code{"asciidoc"} (see examples).
+}
 \author{David Hajage \email{dhajage@gmail.com}}
 \seealso{\code{\link{ascii}}}
 \examples{
 data(esoph)
-ascii(esoph[1:20,])
-print(ascii(esoph[1:20,]), type = "t2t")
+ascii(esoph[1:10,])
+print(ascii(esoph[1:10,]), type = "t2t")
 options(asciiType = "t2t")
-ascii(esoph[1:20,])
+ascii(esoph[1:10,])
 options(asciiType = "asciidoc")
 }
 \keyword{print}
