@@ -34,3 +34,22 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
   class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }
+
+# frome xtable package
+ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+
+    cox <- x
+    beta <- cox$coef
+    se <- sqrt(diag(cox$var))
+    tmp <- cbind(beta, exp(beta), se, beta/se, 1 - pchisq((beta/se)^2, 1))
+    dimnames(tmp) <- list(names(beta), c("coef", "exp(coef)", "se(coef)", "z", "p"))
+
+    obj <- asciiDataFrame$new(x = as.data.frame(tmp), include.rownames = include.rownames,
+      include.colnames = include.colnames, format = format,
+      digits = digits, decimal.mark = decimal.mark, na.print = na.print,
+      caption = caption, width = width, frame = frame, grid = grid,
+      valign = valign, header = header, footer = footer, align = align,
+      col.width = col.width, style = style)
+  class(obj) <- c("ascii", "proto", "environment")
+  return(obj)
+}

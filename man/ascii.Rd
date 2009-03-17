@@ -1,28 +1,35 @@
 \name{ascii}
 \alias{ascii}
-\alias{ascii.default}
 \alias{ascii.anova}
 \alias{ascii.aov}
 \alias{ascii.aovlist}
 \alias{ascii.cast_df}
 \alias{ascii.character}
+\alias{ascii.coxph}
 \alias{ascii.data.frame}
+\alias{ascii.default}
 \alias{ascii.density}
 \alias{ascii.factor}
 \alias{ascii.glm}
 \alias{ascii.htest}
 \alias{ascii.integer}
+\alias{ascii.list}
 \alias{ascii.lm}
 \alias{ascii.matrix}
 \alias{ascii.numeric}
+\alias{ascii.prcomp}
+\alias{ascii.smooth.spline}
 \alias{ascii.summary.aov}
 \alias{ascii.summary.aovlist}
 \alias{ascii.summary.glm}
 \alias{ascii.summary.lm}
+\alias{ascii.summary.prcomp}
 \alias{ascii.summary.table}
 \alias{ascii.survdiff}
 \alias{ascii.tab1}
 \alias{ascii.table}
+\alias{ascii.ts}
+\alias{ascii.zoo}
 \alias{package-ascii}
 \title{Export R object to asciidoc or txt2tags}
 \description{
@@ -35,6 +42,8 @@
     caption = "", width = 0, frame = "", grid = "", valign = "", 
     header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", \dots)
   \method{ascii}{summary.table}(x, caption = "", \dots)
+  \method{ascii}{list}(x, caption = "", \dots)
+  \method{ascii}{smooth.spline}(x, caption = "", \dots)
 }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
