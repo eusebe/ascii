@@ -125,6 +125,7 @@ asciiDataFrame <- proto(expr = {
       rows[length(rows)] <- paste("|", rows[length(rows)], sep = "")
     }
     if (.$frame == "" | .$frame == "all") rows <- paste(rows, " |", sep = "")
+    if (.$caption != "") cat("=====", .$caption, "=====\n", sep = "")
     cat(rows, sep = "\n")
   }
 })
@@ -157,3 +158,22 @@ asciiList <- proto(expr = {
     cat(charac.x, sep = "\n")
   }
 })
+
+asciiDataFrameList <- proto(expr = {
+  new <- function(.,
+    x.df,
+    x.list) proto(.,
+    x.df = x.df,
+    x.list = x.list)
+
+  show.asciidoc <- function(.) {
+    .$x.df$show.asciidoc()
+    .$x.list$show.asciidoc()
+  }
+
+  show.t2t <- function(.) {
+    .$x.df$show.t2t()
+    .$x.list$show.t2t()
+  }
+})
+
