@@ -1,13 +1,13 @@
-RweaveAsciidoc <- function()
+RweaveTextile <- function()
 {
-    list(setup = RweaveAsciidocSetup,
-         runcode = RweaveAsciidocRuncode,
-         writedoc = RweaveAsciidocWritedoc,
-         finish = RweaveAsciidocFinish,
-         checkopts = RweaveAsciidocOptions)
+    list(setup = RweaveTextileSetup,
+         runcode = RweaveTextileRuncode,
+         writedoc = RweaveTextileWritedoc,
+         finish = RweaveTextileFinish,
+         checkopts = RweaveTextileOptions)
 }
 
-RweaveAsciidocSetup <-
+RweaveTextileSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
 {
@@ -33,7 +33,7 @@ RweaveAsciidocSetup <-
     options[names(dots)] <- dots
 
     ## to be on the safe side: see if defaults pass the check
-    options <- RweaveAsciidocOptions(options)
+    options <- RweaveTextileOptions(options)
 
     list(output=output, 
          debug=debug, quiet=quiet, syntax = syntax,
@@ -41,12 +41,12 @@ RweaveAsciidocSetup <-
          srcfile=srcfile(file))
 }
 
-makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
+makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
     ## of an Sweave driver.  evalFunc will be used for the
     ## actual evaluation of chunk code.
-    RweaveAsciidocRuncode <- function(object, chunk, options)
+    RweaveTextileRuncode <- function(object, chunk, options)
       {
           if(!(options$engine %in% c("R", "S"))){
               return(object)
@@ -139,7 +139,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 if(options$echo && length(dce)){
                     if(!openSinput){
                         if(!openSchunk){
-                            cat("----\n",
+                            cat("<pre>\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1] <- srcline
                             thisline <- thisline + 1
@@ -189,7 +189,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                     }
                     if(options$results=="verbatim"){
                         if(!openSchunk){
-                            cat("----\n",
+                            cat("<pre>\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1L] <- srcline
                             thisline <- thisline + 1L
@@ -209,7 +209,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                             openSchunk <- TRUE
                         }
                         if(openSchunk){
-                            cat("----\n",
+                            cat("</pre>\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1L] <- srcline
                             thisline <- thisline + 1L
@@ -248,7 +248,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           }
 
           if(openSchunk){
-              cat("----\n", file=chunkout, append=TRUE)
+              cat("</pre>\n", file=chunkout, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
           }
@@ -303,7 +303,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat("image::", chunkprefix, ".", options$ext, "[]\n", sep="",
+                  cat(":", chunkprefix, ".", options$ext, "!\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L
@@ -312,12 +312,12 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           object$linesout <- c(object$linesout, linesout)
           return(object)
       }
-    RweaveAsciidocRuncode
+    RweaveTextileRuncode
 }
 
-RweaveAsciidocRuncode <- makeRweaveAsciidocCodeRunner()
+RweaveTextileRuncode <- makeRweaveTextileCodeRunner()
 
-RweaveAsciidocWritedoc <- function(object, chunk)
+RweaveTextileWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
 
@@ -342,7 +342,7 @@ RweaveAsciidocWritedoc <- function(object, chunk)
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
                     "\\1", chunk[pos[1L]])
         object$options <- SweaveParseOptions(opts, object$options,
-                                             RweaveAsciidocOptions)
+                                             RweaveTextileOptions)
             chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
     }
 
@@ -352,13 +352,13 @@ RweaveAsciidocWritedoc <- function(object, chunk)
     return(object)
 }
 
-RweaveAsciidocFinish <- function(object, error=FALSE)
+RweaveTextileFinish <- function(object, error=FALSE)
 {
     outputname <- summary(object$output)$description
     inputname <- object$srcfile$filename
     if(!object$quiet && !error)
         cat("\n",
-            gettextf("You can now run asciidoc on '%s'", outputname),
+            gettextf("You can now run textile on '%s'", outputname),
             "\n", sep = "")
     close(object$output)
     if(length(object$chunkout))
@@ -383,7 +383,7 @@ RweaveAsciidocFinish <- function(object, error=FALSE)
     invisible(outputname)
 }
 
-RweaveAsciidocOptions <- function(options)
+RweaveTextileOptions <- function(options)
 {
 
     ## ATTENTION: Changes in this function have to be reflected in the
@@ -482,17 +482,17 @@ Stangle <- function(file, driver=Rtangle(),
     Sweave(file=file, driver=driver, ...)
 }
 
-RtangleAsciidoc <-  function()
+RtangleTextile <-  function()
 {
-    list(setup = RtangleAsciidocSetup,
-         runcode = RtangleAsciidocRuncode,
-         writedoc = RtangleAsciidocWritedoc,
-         finish = RtangleAsciidocFinish,
-         checkopts = RweaveAsciidocOptions)
+    list(setup = RtangleTextileSetup,
+         runcode = RtangleTextileRuncode,
+         writedoc = RtangleTextileWritedoc,
+         finish = RtangleTextileFinish,
+         checkopts = RweaveTextileOptions)
 }
 
 
-RtangleAsciidocSetup <- function(file, syntax,
+RtangleTextileSetup <- function(file, syntax,
                          output=NULL, annotate=TRUE, split=FALSE,
                          prefix=TRUE, quiet=FALSE)
 {
@@ -524,7 +524,7 @@ RtangleAsciidocSetup <- function(file, syntax,
 }
 
 
-RtangleAsciidocRuncode <-  function(object, chunk, options)
+RtangleTextileRuncode <-  function(object, chunk, options)
 {
     if(!(options$engine %in% c("R", "S"))){
         return(object)
@@ -572,21 +572,21 @@ RtangleAsciidocRuncode <-  function(object, chunk, options)
     return(object)
 }
 
-RtangleAsciidocWritedoc <- function(object, chunk)
+RtangleTextileWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk)))
     {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
                     "\\1", chunk[pos[1L]])
         object$options <- SweaveParseOptions(opts, object$options,
-                                             RweaveAsciidocOptions)
+                                             RweaveTextileOptions)
         chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
     }
     return(object)
 }
 
 
-RtangleAsciidocFinish <- function(object, error=FALSE)
+RtangleTextileFinish <- function(object, error=FALSE)
 {
     if(!is.null(object$output))
         close(object$output)
@@ -595,5 +595,6 @@ RtangleAsciidocFinish <- function(object, error=FALSE)
         for(con in object$chunkout) close(con)
     }
 }
+
 
 
