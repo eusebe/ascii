@@ -33,7 +33,7 @@
 \alias{package-ascii}
 \title{Export R object to asciidoc or txt2tags}
 \description{
-  Function converting an R object to an \code{ascii} object, which can then be printed with Asciidoc or txt2tags syntax.
+  Function converting an R object to an \code{ascii} object, which can then be printed with Asciidoc, txt2tags or textile syntax.
 }
 \usage{
   \method{ascii}{default}(x, 
@@ -76,18 +76,18 @@
   \item{frame}{Character vector of length one. Defines the table border, 
                and can take the following values: \code{"topbot"} (top and bottom), 
                \code{"all"} (all sides), \code{"none"} and \code{"sides"} (left and right).
-               The default value is \code{""} (same as \code{"all"})}
+               The default value is \code{""}.}
   \item{grid}{Character vector of length one. Defines which ruler lines are drawn between table rows and columns, 
               and can take the following values: \code{"all"}, \code{"rows"}, \code{"cols"} and \code{"none"}. 
-              Default is \code{""} (same as \code{"all"})}
+              Default is \code{""}.}
   \item{valign}{Character vector of length one indicating vertical alignment of all cells in table. 
                 Can take the following values: \code{"top"}, \code{"bottom"} and \code{"middle"}.
-                Default is \code{""} (same as \code{"top"}.}
+                Default is \code{""}.}
   \item{header}{logical. If \code{TRUE} the first line of the table is emphasized. The default value depends of class of \code{x}.}
   \item{footer}{logical. If \code{TRUE} the last line of the table is emphasized. The default value depends of class of \code{x}.}
   \item{align}{Character vector of length one indicating the alignment of the corresponding columns. 
                Can be composed with \code{"r"} (right), \code{"l"} (left) and \code{"c"} (center). 
-               Default value is \code{""} (same as \code{"l"}).} 
+               Default value is \code{""}.} 
   \item{col.width}{Numeric vector of length equal to the number of columns of the resulting table 
                    (otherwise it will be replicated or truncated as necessary)
                    indicating width of the corresponding columns (integer proportional values).
@@ -96,7 +96,7 @@
                Can be composed with \code{"d"} (default), \code{"e"} (emphasis), \code{"m"} (monospaced), 
                \code{"a"} (cells can contain any of the AsciiDoc elements that are allowed inside document), 
                \code{"l"} (literal), \code{"v"} (verse; all line breaks are retained). 
-               Default is \code{""} (same as \code{"d"}).}
+               Default is \code{""}.}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
 \details{
