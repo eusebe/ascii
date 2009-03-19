@@ -149,7 +149,7 @@ asciiDataFrame <- proto(expr = {
     }
     # prise en compte des header, footer
     if (.$header) charac.x[1,] <- beauty.textile(charac.x[1,], "header") 
-    if (.$footer) charac.x[nrow(charac.x),] <- beauty.textile(nrow(charac.x), "header")
+    if (.$footer) charac.x[nrow(charac.x),] <- beauty.textile(charac.x[nrow(charac.x),], "header")
     # cat result
     cat(header.textile(frame = .$frame))
     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), "|", sep = ""))
