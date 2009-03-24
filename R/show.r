@@ -129,32 +129,32 @@ asciiDataFrame <- proto(expr = {
     cat(rows, sep = "\n")
   }
 
-  show.textile <- function(.) {
-    charac.x <- charac(.)
-    # prise en compte du style
-    if (.$style != "") {  
-      style <- unlist(strsplit(.$style, ""))
-      style <- rep(style, length.out = ncol(charac.x))
-      for (i in 1:ncol(charac.x)) {
-        charac.x[,i] <- beauty.textile(charac.x[,i], style[i])
-      }
-    }
-    # prise en compte de l'alignement
-    if (.$align != "") {  
-      align <- unlist(strsplit(.$align, ""))
-      align <- rep(align, length.out = ncol(charac.x))
-      for (i in 1:ncol(charac.x)) {
-        charac.x[,i] <- beauty.textile(charac.x[,i], align[i])
-      }
-    }
-    # prise en compte des header, footer
-    if (.$header) charac.x[1,] <- beauty.textile(charac.x[1,], "header") 
-    if (.$footer) charac.x[nrow(charac.x),] <- beauty.textile(charac.x[nrow(charac.x),], "header")
-    # cat result
-    cat(header.textile(frame = .$frame))
-    rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), "|", sep = ""))
-    cat(rows, sep = "\n")
-  }
+#   show.textile <- function(.) {
+#     charac.x <- charac(.)
+#     # prise en compte du style
+#     if (.$style != "") {  
+#       style <- unlist(strsplit(.$style, ""))
+#       style <- rep(style, length.out = ncol(charac.x))
+#       for (i in 1:ncol(charac.x)) {
+#         charac.x[,i] <- beauty.textile(charac.x[,i], style[i])
+#       }
+#     }
+#     # prise en compte de l'alignement
+#     if (.$align != "") {  
+#       align <- unlist(strsplit(.$align, ""))
+#       align <- rep(align, length.out = ncol(charac.x))
+#       for (i in 1:ncol(charac.x)) {
+#         charac.x[,i] <- beauty.textile(charac.x[,i], align[i])
+#       }
+#     }
+#     # prise en compte des header, footer
+#     if (.$header) charac.x[1,] <- beauty.textile(charac.x[1,], "header") 
+#     if (.$footer) charac.x[nrow(charac.x),] <- beauty.textile(charac.x[nrow(charac.x),], "header")
+#     # cat result
+#     cat(header.textile(frame = .$frame))
+#     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), "|", sep = ""))
+#     cat(rows, sep = "\n")
+#   }
 })
 
 asciiList <- proto(expr = {

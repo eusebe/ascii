@@ -1,3 +1,6 @@
+############
+# ASCIIDOC #
+############
 # generate column specifiers for asciidoc
 cols <- function(ncol, align = "", col.width = 1, style = "") {
 
@@ -62,20 +65,9 @@ header.asciidoc <- function(caption = "", frame = "", grid = "", valign = "", he
 #~ cat(header.asciidoc(caption = "A title", header = T, footer = T))
 #~ cat(header.asciidoc(caption = "A title", width = 30))
 
-# generate headers for textile
-header.textile <- function(frame = "") {
-
-  if (frame != "") frame <- switch(frame, topbot = "border-top:1px solid black;border-bottom:1px solid black", sides = "border-left:1px solid black;border-right:1px solid black", all = "border:1px solid black", none = "")
-
-  listarg <- frame
-  listarg <- listarg[listarg != ""]
-
-  if (length(listarg) != 0) {
-    res <- paste("table{", paste(listarg, collapse = ";"), "}\n", sep = "")
-  }
-  else res <- ""
-  return(res)
-}
+############
+# TXT2TAGS #
+############
 
 # beautify for t2t
 beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
@@ -92,6 +84,24 @@ beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
     if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1``\\2", sub("([:alpha:]*)( *$)", "\\1``\\2", x[!y])) 
   }
   return(x)
+}
+
+###########
+# TEXTILE #
+###########
+# generate headers for textile
+header.textile <- function(frame = "") {
+
+  if (frame != "") frame <- switch(frame, topbot = "border-top:1px solid black;border-bottom:1px solid black", sides = "border-left:1px solid black;border-right:1px solid black", all = "border:1px solid black", none = "")
+
+  listarg <- frame
+  listarg <- listarg[listarg != ""]
+
+  if (length(listarg) != 0) {
+    res <- paste("table{", paste(listarg, collapse = ";"), "}\n", sep = "")
+  }
+  else res <- ""
+  return(res)
 }
 
 # beautify for textile
