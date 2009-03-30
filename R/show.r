@@ -190,7 +190,7 @@ asciiMixed <- proto(expr = {
   new <- function(.,
     ...) {
     args <- list(...)
-    names(args) <- paste("obj", 1:length(args), sep = "")
+    names(args) <- as.character(as.list(substitute(list(...)))[-1])
     as.proto(args)
   }
 
