@@ -186,21 +186,27 @@ asciiList <- proto(expr = {
   }
 })
 
-asciiDataFrameList <- proto(expr = {
+asciiMixed <- proto(expr = {
   new <- function(.,
-    x.df,
-    x.list) proto(.,
-    x.df = x.df,
-    x.list = x.list)
-
-  show.asciidoc <- function(.) {
-    .$x.df$show.asciidoc()
-    .$x.list$show.asciidoc()
+    ...) {
+    args <- list(...)
+    names(args) <- paste("obj", 1:length(args), sep = "")
+    as.proto(args)
   }
 
+  show.asciidoc <- function(.) {
+    args <- rev(as.list(.))
+    for (i in seq_along(args)) {
+      print(args[[i]], type = "asciidoc") 
+      if (i != length(args)) cat("\n") 
+    }
+  }
   show.t2t <- function(.) {
-    .$x.df$show.t2t()
-    .$x.list$show.t2t()
+    args <- rev(as.list(.))
+    for (i in seq_along(args)) {
+      print(args[[i]], type = "t2t")
+      if (i != length(args)) cat("\n") 
+    }
   }
 })
 

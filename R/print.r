@@ -5,3 +5,4 @@ print.ascii <- function(x, type = getOption("asciiType"), ...) {
  if (type == "t2t") x$show.t2t()
 #  if (type == "textile") x$show.textile()
 }
+
