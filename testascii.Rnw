@@ -58,5 +58,10 @@ tata <- ascii(toto)
 titi <- ascii(summary(table(toto)))
 tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
 tutu$show.asciidoc()
-
 @
+
+<<results=ascii>>=
+ascii(describe(esoph))
+@
+
+

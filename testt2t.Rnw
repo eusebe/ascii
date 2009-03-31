@@ -54,3 +54,16 @@ ascii(summary(table(1:4, 1:4)), caption  = "A title for list")
 @
 
 blabla
+
+<<results=t2t>>=
+toto <- matrix(1:4, 2, 2)
+tata <- ascii(toto)
+titi <- ascii(summary(table(toto)))
+tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
+tutu$show.t2t()
+@
+
+<<results=t2t>>=
+ascii(describe(esoph))
+@
+

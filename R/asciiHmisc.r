@@ -8,7 +8,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
       des <- paste(des, " \\[", x$units, "\\]", sep = "")
         if (length(x$format)) 
           des <- paste(des, "  Format:", x$format, sep = "")
-            counts <- ascii(x$count, include.colnames = T, caption = des)
+            counts <- ascii(x$count, include.colnames = TRUE, caption = des)
             val <- x$values
             if (length(val)) {
               if (!is.matrix(val)) {
@@ -20,7 +20,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
                             val, ")", sep = ""), ""), sep = "")
                     val <- strwrap(val, exdent = 4)
                     val <- as.list(sub('(^    )(.*)', '\t\\2', val))
-                    val <- ascii(val)
+                    val <- ascii(val, list.type = "none")
                 }
                 else {
                   if (condense) {
@@ -29,10 +29,10 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
                       if (nchar(low) + nchar(hi) + 2 > wide) 
                         val <- as.list(c(low, hi))
                       else val <- as.list(paste(low, hi, sep = ", "))
-                    val <- ascii(val)
+                    val <- ascii(val, list.type = "none")
                   }
                   else {
-                    val <- ascii(val)
+                    val <- ascii(val, include.colnames = TRUE)
                   }
                 }
               }
@@ -48,10 +48,10 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
                           if (i == 1) z <- w
                           else z <- paste(z, w, sep = ", ")
                   }
-                  val <- ascii(as.list(z))
+                  val <- ascii(as.list(z), list.type = "none")
                   }
                   else {
-                      val <- ascii(val, include.rownames = T, include.colnames = T)
+                      val <- ascii(val, include.rownames = TRUE, include.colnames = TRUE)
                   }
               }
             }
@@ -68,7 +68,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
 ascii.describe <- function (x, condense = TRUE, ...) 
 {
   at <- attributes(x)
-  xx <- lapply(x, ascii)
+  xx <- lapply(x, ascii.describe.single, condense = condense)
     if (length(at$dimensions)) {
             res <- NULL
             for (z in 1:length(x)) {
