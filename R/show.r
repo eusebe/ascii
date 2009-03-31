@@ -190,13 +190,16 @@ asciiMixed <- proto(expr = {
   new <- function(.,
     ...) {
     args <- list(...)
-    names(args) <- as.character(as.list(substitute(list(...)))[-1])
+    noms <- as.character(as.list(substitute(list(...)))[-1])
+    if (is.null(noms)) noms <- paste("obj", 1:length(args), sep = "")
+    names(args) <- noms 
     as.proto(args)
   }
 
   show.asciidoc <- function(.) {
     args <- rev(as.list(.))
     for (i in seq_along(args)) {
+      if (is.null(args[[i]])) next
       print(args[[i]], type = "asciidoc") 
       if (i != length(args)) cat("\n") 
     }
@@ -204,6 +207,7 @@ asciiMixed <- proto(expr = {
   show.t2t <- function(.) {
     args <- rev(as.list(.))
     for (i in seq_along(args)) {
+      if (is.null(args[[i]])) next
       print(args[[i]], type = "t2t")
       if (i != length(args)) cat("\n") 
     }
