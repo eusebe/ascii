@@ -125,7 +125,7 @@ asciiDataFrame <- proto(expr = {
       rows[length(rows)] <- paste("|", rows[length(rows)], sep = "")
     }
     if (.$frame == "" | .$frame == "all") rows <- paste(rows, " |", sep = "")
-    if (.$caption != "") cat("=====", .$caption, "=====\n", sep = "")
+    if (.$caption != "") cat(.$caption, "\n", sep = "")
     cat(rows, sep = "\n")
   }
 
@@ -160,28 +160,35 @@ asciiDataFrame <- proto(expr = {
 asciiList <- proto(expr = {
   new <- function(.,
     x,
-    caption) proto(.,
+    caption, 
+    list.type) proto(.,
     x = x,
-    caption = caption)
+    caption = caption, 
+    list.type = list.type)
 
   show.asciidoc <- function(.) {
+    if (.$list.type == "bullet") mark <- "*"
+    if (.$list.type == "number") mark <- "."
+    if (.$list.type == "none")   mark <- ""
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
-      tmp <- gsub('\t|(*COMMIT)(*FAIL)','*', .$x[[i]], perl = TRUE)
-      tmp <- sub('(^\\*+)(.*)', ' \\1 \\2', tmp)
-      charac.x[i] <- sub("(^[^  \\*].*)", "- \\1", tmp)
+      tmp <- sub("(^.*)", paste(mark, "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, .$x[[i]], perl = TRUE))
+      charac.x[i] <- sub(paste('(^\\', mark, '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
     if (.$caption != "") cat(".", .$caption, "\n", sep = "")
     cat(charac.x, sep = "\n")
   }
   show.t2t <- function(.) {
+    indent.mark <- " "
+    if (.$list.type == "bullet") mark <- "-"
+    if (.$list.type == "number") mark <- "+"
+    if (.$list.type == "none")  { mark <- ""; indent.mark = "" }
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
-      tmp <- gsub('\t|(*COMMIT)(*FAIL)','-', .$x[[i]], perl = TRUE)
-      tmp <- sub('(^-+)(.*)', ' \\1 \\2', tmp)
-      charac.x[i] <- sub("(^[^  \\-].*)", "- \\1", tmp)
+      tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, .$x[[i]], perl = TRUE)
+      charac.x[i] <- sub("(^ *)", paste("\\1", mark, indent.mark, sep = ""), tmp)
     }
-    if (.$caption != "") cat("=====", .$caption, "=====\n", sep = "")
+    if (.$caption != "") cat(.$caption, "\n", sep = "")
     cat(charac.x, sep = "\n")
   }
 })
