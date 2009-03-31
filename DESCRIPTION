@@ -10,4 +10,5 @@ Description: Coerce R object to asciidoc or txt2tags syntax.
 License: GPL (>= 2)
 Imports: proto, methods
 Depends: R (>= 2.7), proto, methods
+Suggests: survival, Hmisc, epicalc
 LazyLoad: false
