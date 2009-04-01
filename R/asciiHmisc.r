@@ -8,7 +8,11 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
       des <- paste(des, " \\[", x$units, "\\]", sep = "")
         if (length(x$format)) 
           des <- paste(des, "  Format:", x$format, sep = "")
-            counts <- ascii(x$count, include.colnames = TRUE, caption = des)
+            dim.counts <- dim(x$count)
+            if (is.null(dim.counts)) {counts <-as.character(x$count)} else {
+            counts <- matrix(as.character(x$count), dim.counts[1], dim.counts[2])}
+            names(counts) <- names(x$count)
+            counts <- ascii(counts, include.colnames = TRUE, caption = des)
             val <- x$values
             if (length(val)) {
               if (!is.matrix(val)) {
@@ -32,6 +36,10 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
                     val <- ascii(val, list.type = "none")
                   }
                   else {
+                    dim.val <- dim(val)
+                    if (is.null(dim.val)) {val <- as.character(val)} else {
+                    val <- matrix(as.character(val), dim.val[1], dim.val[2])}
+                    names(val) <- names(x$values)
                     val <- ascii(val, include.colnames = TRUE)
                   }
                 }
@@ -51,7 +59,12 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
                   val <- ascii(as.list(z), list.type = "none")
                   }
                   else {
-                      val <- ascii(val, include.rownames = TRUE, include.colnames = TRUE)
+                    dim.val <- dim(val)
+                    if (is.null(dim.val)) {val <- as.character(val)} else {
+                    val <- matrix(as.character(val), dim.val[1], dim.val[2])}
+                    rownames(val) <- rownames(x$values)
+                    colnames(val) <- colnames(x$values)
+                    val <- ascii(val, include.rownames = TRUE, include.colnames = TRUE)
                   }
               }
             }
