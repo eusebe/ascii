@@ -81,14 +81,14 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
 ascii.describe <- function (x, condense = TRUE, ...) 
 {
   at <- attributes(x)
-  xx <- lapply(x, ascii.describe.single, condense = condense)
     if (length(at$dimensions)) {
-            res <- NULL
-            for (z in 1:length(x)) {
-              if (length(x[[z]]) == 0) next
-              res <- asciiMixed$new(res, xx[[z]])
-              class(res) <- c("ascii", "proto", "environment")
-            }
+      xx <- lapply(x, ascii.describe.single, condense = condense)
+        res <- NULL
+        for (z in 1:length(x)) {
+          if (length(x[[z]]) == 0) next
+          res <- asciiMixed$new(res, xx[[z]])
+          class(res) <- c("ascii", "proto", "environment")
+        }
     }
     else res <- ascii.describe.single(x, condense = condense)
   return(res)
