@@ -172,6 +172,7 @@ asciiList <- proto(expr = {
     if (.$list.type == "none")   mark <- ""
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
+      if (is.null(.$x[[i]])) next 
       tmp <- sub("(^.*)", paste(mark, "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, .$x[[i]], perl = TRUE))
       charac.x[i] <- sub(paste('(^\\', mark, '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
