@@ -224,7 +224,7 @@ You can convert it to html format with the following command:
 ----
 asciidoc yourdocument.txt
 or
-txt2tags -t html yourdocument.txt
+txt2tags -t html yourdocument.t2t
 ----
 
 or to xhtml, docbook, man, tex... 
