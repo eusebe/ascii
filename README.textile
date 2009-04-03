@@ -1,14 +1,13 @@
 h1. ascii
 
-ascii is (will be…) an R package that converts common R objects to asciidoc or txt2tags syntax.
+ascii is an R package that converts common R objects to asciidoc or txt2tags syntax.
 
 It also provides a Sweave driver to embed the R code for complete data analyses in asciidoc or txt2tags documents (see Sweave function and R2HTML package).
 
-h2. instructions
+h2. example
 
-For now, manually download all files... and see http://eusebe.github.com/ascii
+(see http://eusebe.github.com/ascii)
 
-Example:
 <pre>
 > library(reshape)
 > names(airquality) <- tolower(names(airquality))
