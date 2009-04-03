@@ -10,7 +10,7 @@ options(asciiType = "t2t")
 2-2
 @
 
-<<results=t2t>>=
+<<results=ascii>>=
 ascii(1:4)
 @
 
@@ -49,13 +49,13 @@ plot(2)
 
 Le résultat de l'opération 2+2 est \Sexpr{2+2}.
 
-<<results=t2t>>=
+<<results=ascii>>=
 ascii(summary(table(1:4, 1:4)), caption  = "A title for list")
 @
 
 blabla
 
-<<results=t2t>>=
+<<results=ascii>>=
 toto <- matrix(1:4, 2, 2)
 tata <- ascii(toto)
 titi <- ascii(summary(table(toto)))
@@ -63,7 +63,4 @@ tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
 tutu$show.t2t()
 @
 
-<<results=t2t>>=
-ascii(describe(esoph))
-@
 

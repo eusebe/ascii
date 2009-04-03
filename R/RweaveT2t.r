@@ -200,7 +200,7 @@ makeRweaveT2tCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                         linesout[thisline + 1L] <- srcline
                         thisline <- thisline + 1L
                     }
-                    if(options$results=="t2t"){
+                    if(options$results=="ascii"){
                         if(openSinput){
                             cat("",
                                 file=chunkout, append=TRUE)
@@ -418,7 +418,7 @@ RweaveT2tOptions <- function(options)
     if(!is.null(options$results))
         options$results <- tolower(as.character(options$results))
     options$results <- match.arg(options$results,
-                                 c("verbatim", "t2t", "hide"))
+                                 c("verbatim", "ascii", "hide"))
 
     if(!is.null(options$strip.white))
         options$strip.white <- tolower(as.character(options$strip.white))
