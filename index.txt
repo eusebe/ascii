@@ -118,9 +118,11 @@ ascii manual
 +type+:: Type of syntax produce.  Possible values for +type+ are
   +"asciidoc"+, +"t2t"+ or +"textile"+. Default value produce
   AsciiDoc syntax.
++list.type+:: Character vector of length one indicating the list type
+          (+"bullet"+, +"number"+ or +"none"+). Default is '"bullet"'.
 +...+:: Additional arguments.  (Currently ignored.)
 
-ascii gallery
+ascii examples
 -------------
 
 ascii provides methods for:
@@ -130,18 +132,19 @@ ascii provides methods for:
  [1] ascii.anova*           ascii.aov*             ascii.aovlist*        
  [4] ascii.cast_df*         ascii.character*       ascii.coxph*          
  [7] ascii.data.frame*      ascii.default*         ascii.density*        
-[10] ascii.factor*          ascii.glm*             ascii.htest*          
-[13] ascii.integer*         ascii.list*            ascii.lm*             
-[16] ascii.matrix*          ascii.numeric*         ascii.prcomp*         
-[19] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[22] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp* 
-[25] ascii.summary.table*   ascii.survdiff*        ascii.tab1*           
-[28] ascii.table*           ascii.ts*              ascii.zoo*            
+[10] ascii.describe*        ascii.describe.single* ascii.factor*         
+[13] ascii.glm*             ascii.htest*           ascii.integer*        
+[16] ascii.list*            ascii.lm*              ascii.matrix*         
+[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*  
+[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*    
+[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*  
+[28] ascii.survdiff*        ascii.tab1*            ascii.table*          
+[31] ascii.ts*              ascii.zoo*            
 
    Non-visible functions are asterisked 
 ----
 
-Vector
+vector
 ~~~~~~
 
 ----
@@ -155,7 +158,7 @@ Vector
 |1.00|2.00|3.00|4.00
 |===================  
 
-Matrix
+matrix
 ~~~~~~
 
 ----
@@ -185,7 +188,7 @@ Matrix
 |70-74|66.00     |54.30       |71.10     |50.00       
 |=====================================================  
 
-Data Frame
+data.frame
 ~~~~~~~~~~
 
 ----
@@ -224,25 +227,25 @@ Data Frame
 |4.90        |3.10       |1.50        |0.10       |setosa 
 |=========================================================  
 
-Summary table
+summary.table
 ~~~~~~~~~~~~~
 
 ----
 > ascii(summary(table(1:4, 1:4)))
-- Number of cases in table: 4 
-- Number of factors: 2 
-- Test for independence of all factors:
- * Chisq = 12, df = 9, p-value = 0.2133
- * Chi-squared approximation may be incorrect 
+* Number of cases in table: 4 
+* Number of factors: 2 
+* Test for independence of all factors:
+** Chisq = 12, df = 9, p-value = 0.2133
+** Chi-squared approximation may be incorrect 
 ----
 
-- Number of cases in table: 4 
-- Number of factors: 2 
-- Test for independence of all factors:
- * Chisq = 12, df = 9, p-value = 0.2133
- * Chi-squared approximation may be incorrect 
+* Number of cases in table: 4 
+* Number of factors: 2 
+* Test for independence of all factors:
+** Chisq = 12, df = 9, p-value = 0.2133
+** Chi-squared approximation may be incorrect 
 
-Glm
+glm
 ~~~
 
 ----
@@ -263,17 +266,6 @@ Null Deviance:	    10.58
 Residual Deviance: 5.129 	AIC: 56.76  
 > ascii(glm.D93, caption = "glm.D93")
 .glm.D93
-[options="header"]
-|================================================== 
-|           |Estimate|Std. Error|z value|Pr(>\|z\|)
-|(Intercept)|3.04    |0.17      |17.81  |0.00    
-|outcome2   |-0.45   |0.20      |-2.25  |0.02    
-|outcome3   |-0.29   |0.19      |-1.52  |0.13    
-|treatment2 |0.00    |0.20      |0.00   |1.00    
-|treatment3 |0.00    |0.20      |0.00   |1.00    
-|==================================================  
-> ascii(summary(glm.D93), caption = "summary glm.D93")
-.summary glm.D93
 [options="header"]
 |================================================== 
 |           |Estimate|Std. Error|z value|Pr(>\|z\|)
@@ -304,16 +296,6 @@ Residual Deviance: 5.129 	AIC: 56.76
 |treatment2 |0.00    |0.20      |0.00   |1.00    
 |treatment3 |0.00    |0.20      |0.00   |1.00    
 |==================================================  
-.summary glm.D93
-[options="header"]
-|================================================== 
-|           |Estimate|Std. Error|z value|Pr(>\|z\|)
-|(Intercept)|3.04    |0.17      |17.81  |0.00    
-|outcome2   |-0.45   |0.20      |-2.25  |0.02    
-|outcome3   |-0.29   |0.19      |-1.52  |0.13    
-|treatment2 |0.00    |0.20      |0.00   |1.00    
-|treatment3 |0.00    |0.20      |0.00   |1.00    
-|==================================================  
 .anova glm.D93
 [options="header"]
 |============================================ 
@@ -323,46 +305,63 @@ Residual Deviance: 5.129 	AIC: 56.76
 |treatment|2.00|0.00    |4.00     |5.13      
 |============================================  
 
-Survdiff
+plot
+~~~~
+
+----
+> library(ggplot2)
+> p <- qplot(price, ..density.., data = diamonds, geom = "freqpoly", 
++     binwidth = 1000, colour = color)
+> print(p)
+
+----
+image::index-ggplot2.jpg[]
+
+txt2tags
 ~~~~~~~~
 
 ----
-> library(survival)
-> survdiff.aml <- survdiff(Surv(time, status) ~ x, data = aml)
-> ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0, 
-+     2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
-.survdiff.aml
-[options="header"]
-|======================================================================= 
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p          
-|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
-|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |           
-|=======================================================================  
+> library(reshape)
+> names(airquality) <- tolower(names(airquality))
+> aqm <- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+> res <- cast(aqm, month ~ variable, mean, margins = "grand_row")
+> res
+  month    ozone  solar.r      wind     temp
+1     5 23.61538 181.2963 11.622581 65.54839
+2     6 29.44444 190.1667 10.266667 79.10000
+3     7 59.11538 216.4839  8.941935 83.90323
+4     8 59.96154 171.8571  8.793548 83.96774
+5     9 31.44828 167.4333 10.180000 76.90000
+6 (all) 42.12931 185.9315  9.957516 77.88235 
+> print(ascii(res), "t2t")
+|| month | ozone | solar.r | wind  | temp  |
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 | 
 ----
 
-.survdiff.aml
-[options="header"]
-|======================================================================= 
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p          
-|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
-|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |           
-|=======================================================================  
 
-Convert
+
+convert
 -------
 
 +Sweave+ process creates a +yourdocument.txt+ file from +yourdocument.Rnw+.
+
+----
+Sweave("youdocument.Rnw", RweaveXxx)
+----
 
 You can convert it to html format with the following command:
 
 ----
 asciidoc yourdocument.txt
+or
+txt2tags -t html yourdocument.txt
 ----
 
-or to docbook format with:
-
-----
-asciidoc -b docbook yourdocument.txt
-----
+or to xhtml, docbook, man, tex... 
 
 For example, you can see the source of http://eusebe.github.com/r2asciidoc/index.Rnw[this documentation], the file http://eusebe.github.com/r2asciidoc/index.txt[generated by +Sweave+], the same file in http://eusebe.github.com/r2asciidoc/index.xml[docbook format], the same file http://eusebe.github.com/r2asciidoc/index.pdf[converted to pdf] with dblatex, and the same file http://eusebe.github.com/r2asciidoc/index.odt[converted to odt] with docbook2odf.

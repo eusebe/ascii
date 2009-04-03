@@ -345,6 +345,18 @@ Type of syntax produce.  Possible values for <tt>type</tt> are
 </tr>
 <tr>
 <td class="hdlist1">
+<tt>list.type</tt>
+<br />
+</td>
+<td class="hdlist2">
+<p style="margin-top: 0;">
+Character vector of length one indicating the list type
+          (<tt>"bullet"</tt>, <tt>"number"</tt> or <tt>"none"</tt>). Default is <em>"bullet"</em>.
+</p>
+</td>
+</tr>
+<tr>
+<td class="hdlist1">
 <tt>&#8230;</tt>
 <br />
 </td>
@@ -356,7 +368,7 @@ Additional arguments.  (Currently ignored.)
 </tr>
 </table></div>
 </div>
-<h2 id="_ascii_gallery">ascii gallery</h2>
+<h2 id="_ascii_examples">ascii examples</h2>
 <div class="sectionbody">
 <div class="paragraph"><p>ascii provides methods for:</p></div>
 <div class="listingblock">
@@ -365,17 +377,18 @@ Additional arguments.  (Currently ignored.)
  [1] ascii.anova*           ascii.aov*             ascii.aovlist*
  [4] ascii.cast_df*         ascii.character*       ascii.coxph*
  [7] ascii.data.frame*      ascii.default*         ascii.density*
-[10] ascii.factor*          ascii.glm*             ascii.htest*
-[13] ascii.integer*         ascii.list*            ascii.lm*
-[16] ascii.matrix*          ascii.numeric*         ascii.prcomp*
-[19] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[22] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp*
-[25] ascii.summary.table*   ascii.survdiff*        ascii.tab1*
-[28] ascii.table*           ascii.ts*              ascii.zoo*
+[10] ascii.describe*        ascii.describe.single* ascii.factor*
+[13] ascii.glm*             ascii.htest*           ascii.integer*
+[16] ascii.list*            ascii.lm*              ascii.matrix*
+[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*
+[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*
+[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*
+[28] ascii.survdiff*        ascii.tab1*            ascii.table*
+[31] ascii.ts*              ascii.zoo*
 
    Non-visible functions are asterisked</tt></pre>
 </div></div>
-<h3 id="_vector">Vector</h3><div style="clear:left"></div>
+<h3 id="_vector">vector</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; ascii(1:4)
@@ -402,7 +415,7 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<h3 id="_matrix">Matrix</h3><div style="clear:left"></div>
+<h3 id="_matrix">matrix</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
@@ -478,7 +491,7 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<h3 id="_data_frame">Data Frame</h3><div style="clear:left"></div>
+<h3 id="_data_frame">data.frame</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; ascii(iris[1:10, ], include.rownames = F, caption = "iris", width = 75,
@@ -593,15 +606,15 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<h3 id="_summary_table">Summary table</h3><div style="clear:left"></div>
+<h3 id="_summary_table">summary.table</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; ascii(summary(table(1:4, 1:4)))
-- Number of cases in table: 4
-- Number of factors: 2
-- Test for independence of all factors:
- * Chisq = 12, df = 9, p-value = 0.2133
- * Chi-squared approximation may be incorrect</tt></pre>
+* Number of cases in table: 4
+* Number of factors: 2
+* Test for independence of all factors:
+** Chisq = 12, df = 9, p-value = 0.2133
+** Chi-squared approximation may be incorrect</tt></pre>
 </div></div>
 <div class="ulist"><ul>
 <li>
@@ -632,7 +645,7 @@ Chi-squared approximation may be incorrect
 </ul></div>
 </li>
 </ul></div>
-<h3 id="_glm">Glm</h3><div style="clear:left"></div>
+<h3 id="_glm">glm</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
@@ -661,17 +674,6 @@ Residual Deviance: 5.129        AIC: 56.76
 |treatment2 |0.00    |0.20      |0.00   |1.00
 |treatment3 |0.00    |0.20      |0.00   |1.00
 |==================================================
-&gt; ascii(summary(glm.D93), caption = "summary glm.D93")
-.summary glm.D93
-[options="header"]
-|==================================================
-|           |Estimate|Std. Error|z value|Pr(&gt;\|z\|)
-|(Intercept)|3.04    |0.17      |17.81  |0.00
-|outcome2   |-0.45   |0.20      |-2.25  |0.02
-|outcome3   |-0.29   |0.19      |-1.52  |0.13
-|treatment2 |0.00    |0.20      |0.00   |1.00
-|treatment3 |0.00    |0.20      |0.00   |1.00
-|==================================================
 &gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
 .anova glm.D93
 [options="header"]
@@ -688,65 +690,6 @@ width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
 <caption class="title">glm.D93</caption>
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<thead valign="top">
-<tr>
-<th align="left">           </th>
-<th align="left">Estimate</th>
-<th align="left">Std. Error</th>
-<th align="left">z value</th>
-<th align="left">Pr(&gt;|z|)</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr>
-<td align="left"><p class="table">(Intercept)</p></td>
-<td align="left"><p class="table">3.04</p></td>
-<td align="left"><p class="table">0.17</p></td>
-<td align="left"><p class="table">17.81</p></td>
-<td align="left"><p class="table">0.00</p></td>
-</tr>
-<tr>
-<td align="left"><p class="table">outcome2</p></td>
-<td align="left"><p class="table">-0.45</p></td>
-<td align="left"><p class="table">0.20</p></td>
-<td align="left"><p class="table">-2.25</p></td>
-<td align="left"><p class="table">0.02</p></td>
-</tr>
-<tr>
-<td align="left"><p class="table">outcome3</p></td>
-<td align="left"><p class="table">-0.29</p></td>
-<td align="left"><p class="table">0.19</p></td>
-<td align="left"><p class="table">-1.52</p></td>
-<td align="left"><p class="table">0.13</p></td>
-</tr>
-<tr>
-<td align="left"><p class="table">treatment2</p></td>
-<td align="left"><p class="table">0.00</p></td>
-<td align="left"><p class="table">0.20</p></td>
-<td align="left"><p class="table">0.00</p></td>
-<td align="left"><p class="table">1.00</p></td>
-</tr>
-<tr>
-<td align="left"><p class="table">treatment3</p></td>
-<td align="left"><p class="table">0.00</p></td>
-<td align="left"><p class="table">0.20</p></td>
-<td align="left"><p class="table">0.00</p></td>
-<td align="left"><p class="table">1.00</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
-<caption class="title">summary glm.D93</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -845,90 +788,64 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<h3 id="_survdiff">Survdiff</h3><div style="clear:left"></div>
+<h3 id="_plot">plot</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(survival)
-&gt; survdiff.aml &lt;- survdiff(Surv(time, status) ~ x, data = aml)
-&gt; ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0,
-+     2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
-.survdiff.aml
-[options="header"]
-|=======================================================================
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p
-|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
-|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |
-|=======================================================================</tt></pre>
+<pre><tt>&gt; library(ggplot2)
+&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
++     binwidth = 1000, colour = color)
+&gt; print(p)</tt></pre>
 </div></div>
-<div class="tableblock">
-<table rules="all"
-width="100%"
-frame="border"
-cellspacing="0" cellpadding="4">
-<caption class="title">survdiff.aml</caption>
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<thead valign="top">
-<tr>
-<th align="left">               </th>
-<th align="left">N </th>
-<th align="left">Observed</th>
-<th align="left">Expected</th>
-<th align="left">(O-E)^2/E</th>
-<th align="left">(O-E)^2/V</th>
-<th align="left">df</th>
-<th align="left">p</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr>
-<td align="left"><p class="table">x=Maintained</p></td>
-<td align="left"><p class="table">11</p></td>
-<td align="left"><p class="table">7</p></td>
-<td align="left"><p class="table">10.69</p></td>
-<td align="left"><p class="table">1.27</p></td>
-<td align="left"><p class="table">3.40</p></td>
-<td align="left"><p class="table">1</p></td>
-<td align="left"><p class="table">6.53393E-02</p></td>
-</tr>
-<tr>
-<td align="left"><p class="table">x=Nonmaintained</p></td>
-<td align="left"><p class="table">12</p></td>
-<td align="left"><p class="table">11</p></td>
-<td align="left"><p class="table">7.31</p></td>
-<td align="left"><p class="table">1.86</p></td>
-<td align="left"><p class="table">3.40</p></td>
-<td align="left"><p class="table"></p></td>
-<td align="left"><p class="table"></p></td>
-</tr>
-</tbody>
-</table>
+<div class="imageblock">
+<div class="content">
+<img src="index-ggplot2.jpg" alt="index-ggplot2.jpg"/>
 </div>
 </div>
-<h2 id="_convert">Convert</h2>
+<h3 id="_txt2tags">txt2tags</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(reshape)
+&gt; names(airquality) &lt;- tolower(names(airquality))
+&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")
+&gt; res
+  month    ozone  solar.r      wind     temp
+1     5 23.61538 181.2963 11.622581 65.54839
+2     6 29.44444 190.1667 10.266667 79.10000
+3     7 59.11538 216.4839  8.941935 83.90323
+4     8 59.96154 171.8571  8.793548 83.96774
+5     9 31.44828 167.4333 10.180000 76.90000
+6 (all) 42.12931 185.9315  9.957516 77.88235
+&gt; print(ascii(res), "t2t")
+|| month | ozone | solar.r | wind  | temp  |
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |</tt></pre>
+</div></div>
+</div>
+<h2 id="_convert">convert</h2>
 <div class="sectionbody">
 <div class="paragraph"><p><tt>Sweave</tt> process creates a <tt>yourdocument.txt</tt> file from <tt>yourdocument.Rnw</tt>.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>Sweave("youdocument.Rnw", RweaveXxx)</tt></pre>
+</div></div>
 <div class="paragraph"><p>You can convert it to html format with the following command:</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>asciidoc yourdocument.txt</tt></pre>
+<pre><tt>asciidoc yourdocument.txt
+or
+txt2tags -t html yourdocument.txt</tt></pre>
 </div></div>
-<div class="paragraph"><p>or to docbook format with:</p></div>
-<div class="listingblock">
-<div class="content">
-<pre><tt>asciidoc -b docbook yourdocument.txt</tt></pre>
-</div></div>
+<div class="paragraph"><p>or to xhtml, docbook, man, tex&#8230;</p></div>
 <div class="paragraph"><p>For example, you can see the source of <a href="http://eusebe.github.com/r2asciidoc/index.Rnw">this documentation</a>, the file <a href="http://eusebe.github.com/r2asciidoc/index.txt">generated by <tt>Sweave</tt></a>, the same file in <a href="http://eusebe.github.com/r2asciidoc/index.xml">docbook format</a>, the same file <a href="http://eusebe.github.com/r2asciidoc/index.pdf">converted to pdf</a> with dblatex, and the same file <a href="http://eusebe.github.com/r2asciidoc/index.odt">converted to odt</a> with docbook2odf.</p></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-03-31 21:56:06 CEST
+Last updated 2009-04-03 15:35:45 CEST
 </div>
 </div>
 </body>

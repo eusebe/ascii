@@ -348,6 +348,19 @@ Type of syntax produce.  Possible values for <literal>type</literal> are
 <row>
 <entry>
 <simpara>
+<literal>list.type</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one indicating the list type
+          (<literal>"bullet"</literal>, <literal>"number"</literal> or <literal>"none"</literal>). Default is <emphasis>"bullet"</emphasis>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
 <literal>&#8230;</literal>
 </simpara>
 </entry>
@@ -359,10 +372,25 @@ Additional arguments.  (Currently ignored.)
 </row>
 </tbody></tgroup></table>
 </section>
-<section id="_ascii_gallery">
-<title>ascii gallery</title>
+<section id="_ascii_examples">
+<title>ascii examples</title>
+<simpara>ascii provides methods for:</simpara>
+<screen>&gt; methods(ascii)
+ [1] ascii.anova*           ascii.aov*             ascii.aovlist*
+ [4] ascii.cast_df*         ascii.character*       ascii.coxph*
+ [7] ascii.data.frame*      ascii.default*         ascii.density*
+[10] ascii.describe*        ascii.describe.single* ascii.factor*
+[13] ascii.glm*             ascii.htest*           ascii.integer*
+[16] ascii.list*            ascii.lm*              ascii.matrix*
+[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*
+[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*
+[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*
+[28] ascii.survdiff*        ascii.tab1*            ascii.table*
+[31] ascii.ts*              ascii.zoo*
+
+   Non-visible functions are asterisked</screen>
 <section id="_vector">
-<title>Vector</title>
+<title>vector</title>
 <screen>&gt; ascii(1:4)
 |===================
 |1.00|2.00|3.00|4.00
@@ -388,7 +416,7 @@ rowsep="1" colsep="1"
 </informaltable>
 </section>
 <section id="_matrix">
-<title>Matrix</title>
+<title>matrix</title>
 <screen>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
 +     header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle",
 +     align = "lrrrr", frame = "topbot")
@@ -463,7 +491,7 @@ rowsep="1" colsep="1"
 </table>
 </section>
 <section id="_data_frame">
-<title>Data Frame</title>
+<title>data.frame</title>
 <screen>&gt; ascii(iris[1:10, ], include.rownames = F, caption = "iris", width = 75,
 +     align = "c", valign = "bottom", frame = "topbot", grid = "none")
 .iris
@@ -577,13 +605,13 @@ rowsep="0" colsep="0"
 </table>
 </section>
 <section id="_summary_table">
-<title>Summary table</title>
+<title>summary.table</title>
 <screen>&gt; ascii(summary(table(1:4, 1:4)))
-- Number of cases in table: 4
-- Number of factors: 2
-- Test for independence of all factors:
- * Chisq = 12, df = 9, p-value = 0.2133
- * Chi-squared approximation may be incorrect</screen>
+* Number of cases in table: 4
+* Number of factors: 2
+* Test for independence of all factors:
+** Chisq = 12, df = 9, p-value = 0.2133
+** Chi-squared approximation may be incorrect</screen>
 <itemizedlist>
 <listitem>
 <simpara>
@@ -615,7 +643,7 @@ Chi-squared approximation may be incorrect
 </itemizedlist>
 </section>
 <section id="_glm">
-<title>Glm</title>
+<title>glm</title>
 <screen>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
 &gt; outcome &lt;- gl(3, 1, 9)
 &gt; treatment &lt;- gl(3, 3)
@@ -642,17 +670,6 @@ Residual Deviance: 5.129        AIC: 56.76
 |treatment2 |0.00    |0.20      |0.00   |1.00
 |treatment3 |0.00    |0.20      |0.00   |1.00
 |==================================================
-&gt; ascii(summary(glm.D93), caption = "summary glm.D93")
-.summary glm.D93
-[options="header"]
-|==================================================
-|           |Estimate|Std. Error|z value|Pr(&gt;\|z\|)
-|(Intercept)|3.04    |0.17      |17.81  |0.00
-|outcome2   |-0.45   |0.20      |-2.25  |0.02
-|outcome3   |-0.29   |0.19      |-1.52  |0.13
-|treatment2 |0.00    |0.20      |0.00   |1.00
-|treatment3 |0.00    |0.20      |0.00   |1.00
-|==================================================
 &gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
 .anova glm.D93
 [options="header"]
@@ -667,65 +684,6 @@ frame="all"
 rowsep="1" colsep="1"
 >
 <title>glm.D93</title>
-<tgroup cols="5">
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<thead valign="top">
-<row>
-<entry>           </entry>
-<entry>Estimate</entry>
-<entry>Std. Error</entry>
-<entry>z value</entry>
-<entry>Pr(&gt;|z|)</entry>
-</row>
-</thead>
-<tbody valign="top">
-<row>
-<entry><simpara>(Intercept)</simpara></entry>
-<entry><simpara>3.04</simpara></entry>
-<entry><simpara>0.17</simpara></entry>
-<entry><simpara>17.81</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-</row>
-<row>
-<entry><simpara>outcome2</simpara></entry>
-<entry><simpara>-0.45</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>-2.25</simpara></entry>
-<entry><simpara>0.02</simpara></entry>
-</row>
-<row>
-<entry><simpara>outcome3</simpara></entry>
-<entry><simpara>-0.29</simpara></entry>
-<entry><simpara>0.19</simpara></entry>
-<entry><simpara>-1.52</simpara></entry>
-<entry><simpara>0.13</simpara></entry>
-</row>
-<row>
-<entry><simpara>treatment2</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>1.00</simpara></entry>
-</row>
-<row>
-<entry><simpara>treatment3</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>1.00</simpara></entry>
-</row>
-</tbody>
-</tgroup>
-</table>
-<table
-frame="all"
-rowsep="1" colsep="1"
->
-<title>summary glm.D93</title>
 <tgroup cols="5">
 <colspec colwidth="20*" align="left"/>
 <colspec colwidth="20*" align="left"/>
@@ -826,78 +784,54 @@ rowsep="1" colsep="1"
 </tgroup>
 </table>
 </section>
-<section id="_survdiff">
-<title>Survdiff</title>
-<screen>&gt; library(survival)
-&gt; survdiff.aml &lt;- survdiff(Surv(time, status) ~ x, data = aml)
-&gt; ascii(survdiff.aml, caption = "survdiff.aml", digits = c(0, 0,
-+     2, 2, 2, 0, 5), format = c(rep("f", 6), "E"))
-.survdiff.aml
-[options="header"]
-|=======================================================================
-|               |N |Observed|Expected|(O-E)^2/E|(O-E)^2/V|df|p
-|x=Maintained   |11|7       |10.69   |1.27     |3.40     |1 |6.53393E-02
-|x=Nonmaintained|12|11      |7.31    |1.86     |3.40     |  |
-|=======================================================================</screen>
-<table
-frame="all"
-rowsep="1" colsep="1"
->
-<title>survdiff.aml</title>
-<tgroup cols="8">
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<colspec colwidth="12*" align="left"/>
-<thead valign="top">
-<row>
-<entry>               </entry>
-<entry>N </entry>
-<entry>Observed</entry>
-<entry>Expected</entry>
-<entry>(O-E)^2/E</entry>
-<entry>(O-E)^2/V</entry>
-<entry>df</entry>
-<entry>p</entry>
-</row>
-</thead>
-<tbody valign="top">
-<row>
-<entry><simpara>x=Maintained</simpara></entry>
-<entry><simpara>11</simpara></entry>
-<entry><simpara>7</simpara></entry>
-<entry><simpara>10.69</simpara></entry>
-<entry><simpara>1.27</simpara></entry>
-<entry><simpara>3.40</simpara></entry>
-<entry><simpara>1</simpara></entry>
-<entry><simpara>6.53393E-02</simpara></entry>
-</row>
-<row>
-<entry><simpara>x=Nonmaintained</simpara></entry>
-<entry><simpara>12</simpara></entry>
-<entry><simpara>11</simpara></entry>
-<entry><simpara>7.31</simpara></entry>
-<entry><simpara>1.86</simpara></entry>
-<entry><simpara>3.40</simpara></entry>
-<entry><simpara></simpara></entry>
-<entry><simpara></simpara></entry>
-</row>
-</tbody>
-</tgroup>
-</table>
+<section id="_plot">
+<title>plot</title>
+<screen>&gt; library(ggplot2)
+&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
++     binwidth = 1000, colour = color)
+&gt; print(p)</screen>
+<informalfigure>
+<mediaobject>
+  <imageobject>
+  <imagedata fileref="index-ggplot2.jpg"/>
+  </imageobject>
+  <textobject><phrase>index-ggplot2.jpg</phrase></textobject>
+</mediaobject>
+</informalfigure>
+</section>
+<section id="_txt2tags">
+<title>txt2tags</title>
+<screen>&gt; library(reshape)
+&gt; names(airquality) &lt;- tolower(names(airquality))
+&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")
+&gt; res
+  month    ozone  solar.r      wind     temp
+1     5 23.61538 181.2963 11.622581 65.54839
+2     6 29.44444 190.1667 10.266667 79.10000
+3     7 59.11538 216.4839  8.941935 83.90323
+4     8 59.96154 171.8571  8.793548 83.96774
+5     9 31.44828 167.4333 10.180000 76.90000
+6 (all) 42.12931 185.9315  9.957516 77.88235
+&gt; print(ascii(res), "t2t")
+|| month | ozone | solar.r | wind  | temp  |
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |</screen>
 </section>
 </section>
 <section id="_convert">
-<title>Convert</title>
+<title>convert</title>
 <simpara><literal>Sweave</literal> process creates a <literal>yourdocument.txt</literal> file from <literal>yourdocument.Rnw</literal>.</simpara>
+<screen>Sweave("youdocument.Rnw", RweaveXxx)</screen>
 <simpara>You can convert it to html format with the following command:</simpara>
-<screen>asciidoc yourdocument.txt</screen>
-<simpara>or to docbook format with:</simpara>
-<screen>asciidoc -b docbook yourdocument.txt</screen>
+<screen>asciidoc yourdocument.txt
+or
+txt2tags -t html yourdocument.txt</screen>
+<simpara>or to xhtml, docbook, man, tex&#8230;</simpara>
 <simpara>For example, you can see the source of <ulink url="http://eusebe.github.com/r2asciidoc/index.Rnw">this documentation</ulink>, the file <ulink url="http://eusebe.github.com/r2asciidoc/index.txt">generated by <literal>Sweave</literal></ulink>, the same file in <ulink url="http://eusebe.github.com/r2asciidoc/index.xml">docbook format</ulink>, the same file <ulink url="http://eusebe.github.com/r2asciidoc/index.pdf">converted to pdf</ulink> with dblatex, and the same file <ulink url="http://eusebe.github.com/r2asciidoc/index.odt">converted to odt</ulink> with docbook2odf.</simpara>
 </section>
 </article>
