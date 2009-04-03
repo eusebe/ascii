@@ -132,14 +132,13 @@ ascii provides methods for:
  [1] ascii.anova*           ascii.aov*             ascii.aovlist*        
  [4] ascii.cast_df*         ascii.character*       ascii.coxph*          
  [7] ascii.data.frame*      ascii.default*         ascii.density*        
-[10] ascii.describe*        ascii.describe.single* ascii.factor*         
-[13] ascii.glm*             ascii.htest*           ascii.integer*        
-[16] ascii.list*            ascii.lm*              ascii.matrix*         
-[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*  
-[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*    
-[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*  
-[28] ascii.survdiff*        ascii.tab1*            ascii.table*          
-[31] ascii.ts*              ascii.zoo*            
+[10] ascii.factor*          ascii.glm*             ascii.htest*          
+[13] ascii.integer*         ascii.list*            ascii.lm*             
+[16] ascii.matrix*          ascii.numeric*         ascii.prcomp*         
+[19] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
+[22] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp* 
+[25] ascii.summary.table*   ascii.survdiff*        ascii.table*          
+[28] ascii.ts*              ascii.zoo*            
 
    Non-visible functions are asterisked 
 ----

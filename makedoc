@@ -1,6 +1,6 @@
 #!/bin/sh
 
-echo "library(ascii); Sweave(\"$FILE\", RweaveAsciidoc)" | R --no-save --no-restore || { echo "Probleme dans Sweave() | R..." >&2; exit 1; }
+echo "library(ascii); Sweave(\"index.Rnw\", RweaveAsciidoc)" | R --no-save --no-restore || { echo "Probleme dans Sweave() | R..." >&2; exit 1; }
 asciidoc -a linkcss -a stylesheet=compact.css -a stylesdir=. index.txt 
 asciidoc -b docbook index.txt
 dblatex index.xml
