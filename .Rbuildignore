@@ -6,3 +6,7 @@ README.textile
 temp.r
 testascii*
 testt2t*
+
+R/asciiHmisc.r
+R/asciiEpicalc.r
+R/RweaveTextile.r

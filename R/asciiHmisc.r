@@ -120,18 +120,20 @@ ascii.summary.formula.response <- function (x, vnames = c("labels", "names"), pr
     if (exists("print.char.matrix")) {
       nr <- length(at$nlevels)
         vlab <- if (ul) 
-        vlabels[vlabels != ""]
-        else at$vname[at$vname != ""]
-            z <- cbind(at$vname, at$dimnames[[1]], unclass(stats))
+        at$vlabel
+        else at$vname
 #           z <- matrix("", nrow = nr, ncol = 1 + d[2], dimnames = list(vlab, 
 #                 NULL))
-#             dz <- dimnames(stats)[[1]]
-#             cstats <- matrix("", nrow = d[1], ncol = d[2])
-#             for (j in 1:d[2]) {
-#               ww <- c(list(stats[, j]), formatArgs)
-#                 cstats[, j] <- do.call("format", ww)
-#                 cstats[is.na(stats[, j]), j] <- ""
-#             }
+            dz <- dimnames(stats)[[1]]
+            cstats <- matrix("", nrow = d[1], ncol = d[2])
+            for (j in 1:d[2]) {
+              ww <- c(list(stats[, j]), formatArgs)
+                cstats[, j] <- do.call("format", ww)
+                cstats[is.na(stats[, j]), j] <- ""
+            }
+            z <- cbind(vlab, at$dimnames[[1]], cstats)
+            dimnames(z) <- list(NULL, c("", "", dimnames(stats)[[2]]))
+
 #         is <- 1
 #           for (i in 1:nr) {
 #             ie <- is + at$nlevels[i] - 1

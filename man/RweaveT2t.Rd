@@ -20,7 +20,10 @@
 
 \author{ David Hajage \email{dhajage@gmail.com}}
 \note{
-  In order to work properly, noweb codes have to be located at the beginning of a line (no indentation). See samples in the samples directory of the package.
+  In order to work properly, noweb codes have to be located at the beginning of a line (no indentation). 
+  Compare with RweaveLatex driver, RweaveT2t provides two new options : 
+  \code{res} for the resolution of jpg or png figure (if produced), and 
+  \code{ext} (extension) for the format of figure that will be inserted.
 }
 
 

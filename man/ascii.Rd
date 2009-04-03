@@ -9,8 +9,6 @@
 \alias{ascii.data.frame}
 \alias{ascii.default}
 \alias{ascii.density}
-\alias{ascii.describe}
-\alias{ascii.describe.single}
 \alias{ascii.factor}
 \alias{ascii.glm}
 \alias{ascii.htest}
@@ -28,7 +26,6 @@
 \alias{ascii.summary.prcomp}
 \alias{ascii.summary.table}
 \alias{ascii.survdiff}
-\alias{ascii.tab1}
 \alias{ascii.table}
 \alias{ascii.ts}
 \alias{ascii.zoo}
@@ -43,7 +40,6 @@
     format = "f", digits = 2, decimal.mark = ".", na.print = "", 
     caption = "", width = 0, frame = "", grid = "", valign = "", 
     header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", \dots)
-  \method{ascii}{describe}(x, condense = TRUE, \dots)
   \method{ascii}{summary.table}(x, caption = "", list.type = "bullet", \dots)
   \method{ascii}{list}(x, caption = "", list.type = "bullet", \dots)
   \method{ascii}{smooth.spline}(x, caption = "", list.type = "bullet", \dots)
@@ -102,8 +98,6 @@
                Default is \code{""}.}
   \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"} or \code{"none"}).
                    Default is \code{"bullet"}.}
-  \item{condense}{logical. If \code{TRUE} the output is condense with regard to the 5
-            lowest and highest values and the frequency table (function \code{describe} from package \code{Hmisc}.}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
 \details{
