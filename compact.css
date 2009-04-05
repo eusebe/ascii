@@ -11,7 +11,7 @@ img { border: 0; }
 
 /*** Layout ***/
 
-body                        { margin: 10px 20px; }
+body                        { margin: 10px 250px; }
 #header br                  { display: none; }
 #revision                   { display: block; }
 #toc                        { margin: 1em 0; }
@@ -85,7 +85,7 @@ dt, td.hlist1, .qlist em    { font-family: Times New Roman, serif;
 
 /*** Colors and Backgrounds ***/
 
-h1                          { color: #527bbd; border-bottom: 2px solid silver; }
+h1                          { color: #527bbd; padding-left:5px; margin-bottom:10px;}
 #footer                     {                 border-top:    2px solid silver; }
 
 h2                          { color: #527bbd; border-bottom: 2px solid silver; }
