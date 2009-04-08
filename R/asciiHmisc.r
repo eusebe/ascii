@@ -94,82 +94,82 @@ ascii.describe <- function (x, condense = TRUE, ...)
   return(res)
 }
 
-ascii.summary.formula.response <- function (x, vnames = c("labels", "names"), prUnits = TRUE, abbreviate.dimnames = FALSE, 
-    prefix.width, min.colwidth, formatArgs = NULL, ...) 
-{
-  stats <- x
-    stats <- oldUnclass(stats)
-    vnames <- match.arg(vnames)
-    ul <- vnames == "labels"
-    at <- attributes(stats)
-    ns <- length(at$strat.levels)
-    vlabels <- at$labels
-    if (prUnits) {
-      atu <- translate(at$units, "*", " ")
-        vlabels <- ifelse(atu == "", vlabels, paste(vlabels, 
-              " [", atu, "]", sep = ""))
-    }
-  entete <- list(paste(at$ylabel, if (ns > 1) 
-      paste(" by", if (ul) 
-        at$strat.label
-        else at$strat.name), "    N=", at$n, if (at$nmiss) 
-      paste(", ", at$nmiss, " Missing", sep = ""), 
-      sep = ""))
-  entete <- ascii(entete, list.type = "none")
-    d <- dim(stats)
-    if (exists("print.char.matrix")) {
-      nr <- length(at$nlevels)
-        vlab <- if (ul) 
-        at$vlabel
-        else at$vname
-#           z <- matrix("", nrow = nr, ncol = 1 + d[2], dimnames = list(vlab, 
-#                 NULL))
-            dz <- dimnames(stats)[[1]]
-            cstats <- matrix("", nrow = d[1], ncol = d[2])
-            for (j in 1:d[2]) {
-              ww <- c(list(stats[, j]), formatArgs)
-                cstats[, j] <- do.call("format", ww)
-                cstats[is.na(stats[, j]), j] <- ""
-            }
-            z <- cbind(vlab, at$dimnames[[1]], cstats)
-            dimnames(z) <- list(NULL, c("", "", dimnames(stats)[[2]]))
-
-#         is <- 1
-#           for (i in 1:nr) {
-#             ie <- is + at$nlevels[i] - 1
-#               z[i, 1] <- paste(dz[is:ie], collapse = "\n")
-#               for (j in 1:d[2]) z[i, j + 1] <- paste(cstats[is:ie, 
-#                   j], collapse = "\n")
-#                 is <- ie + 1
-#           }
-#         if (missing(prefix.width)) 
-#           prefix.width <- max(nchar(dimnames(z)[[1]]))
-#             if (missing(min.colwidth)) 
-#               min.colwidth <- max(min(nchar(cstats)[nchar(cstats) > 
-#                     0]), min(nchar(dimnames(stats)[[2]])))
-#                 z <- rbind(c("", dimnames(stats)[[2]]), z)
-#                  print.char.matrix(z, col.names = FALSE, ...)
-                 tab <- ascii(z, include.colnames = TRUE)
-    }
-#   dz <- if (length(at$strat.levels) == 1) 
-#     dimnames(stats)[[2]]
-#     else paste(rep(at$strat.levels, length = d[2]), dimnames(stats)[[2]], 
-#         sep = ":")
-#       z <- matrix("", ncol = d[2] + 2, nrow = d[1], dimnames = list(rep("", 
-#               d[1]), c("", "", dz)))
-#         z[, 1] <- if (ul) 
-#         vlabels
+# ascii.summary.formula.response <- function (x, vnames = c("labels", "names"), prUnits = TRUE, abbreviate.dimnames = FALSE, 
+#     prefix.width, min.colwidth, formatArgs = NULL, ...) 
+# {
+#   stats <- x
+#     stats <- oldUnclass(stats)
+#     vnames <- match.arg(vnames)
+#     ul <- vnames == "labels"
+#     at <- attributes(stats)
+#     ns <- length(at$strat.levels)
+#     vlabels <- at$labels
+#     if (prUnits) {
+#       atu <- translate(at$units, "*", " ")
+#         vlabels <- ifelse(atu == "", vlabels, paste(vlabels, 
+#               " [", atu, "]", sep = ""))
+#     }
+#   entete <- list(paste(at$ylabel, if (ns > 1) 
+#       paste(" by", if (ul) 
+#         at$strat.label
+#         else at$strat.name), "    N=", at$n, if (at$nmiss) 
+#       paste(", ", at$nmiss, " Missing", sep = ""), 
+#       sep = ""))
+#   entete <- ascii(entete, list.type = "none")
+#     d <- dim(stats)
+#     if (exists("print.char.matrix")) {
+#       nr <- length(at$nlevels)
+#         vlab <- if (ul) 
+#         at$vlabel
 #         else at$vname
-#           z[, 2] <- dimnames(stats)[[1]]
-#             for (i in 1:d[2]) {
-#               ww <- c(list(stats[, i]), formatArgs)
-#                 z[, i + 2] <- do.call("format", ww)
+# #           z <- matrix("", nrow = nr, ncol = 1 + d[2], dimnames = list(vlab, 
+# #                 NULL))
+#             dz <- dimnames(stats)[[1]]
+#             cstats <- matrix("", nrow = d[1], ncol = d[2])
+#             for (j in 1:d[2]) {
+#               ww <- c(list(stats[, j]), formatArgs)
+#                 cstats[, j] <- do.call("format", ww)
+#                 cstats[is.na(stats[, j]), j] <- ""
 #             }
-#         print(z, quote = FALSE)
-#           invisible()
-  res <- asciiMixed$new(entete, tab)
-  class(res) <- c("ascii", "proto", "environment")
-  return(res)
-
-}
-
+#             z <- cbind(vlab, at$dimnames[[1]], cstats)
+#             dimnames(z) <- list(NULL, c("", "", dimnames(stats)[[2]]))
+# 
+# #         is <- 1
+# #           for (i in 1:nr) {
+# #             ie <- is + at$nlevels[i] - 1
+# #               z[i, 1] <- paste(dz[is:ie], collapse = "\n")
+# #               for (j in 1:d[2]) z[i, j + 1] <- paste(cstats[is:ie, 
+# #                   j], collapse = "\n")
+# #                 is <- ie + 1
+# #           }
+# #         if (missing(prefix.width)) 
+# #           prefix.width <- max(nchar(dimnames(z)[[1]]))
+# #             if (missing(min.colwidth)) 
+# #               min.colwidth <- max(min(nchar(cstats)[nchar(cstats) > 
+# #                     0]), min(nchar(dimnames(stats)[[2]])))
+# #                 z <- rbind(c("", dimnames(stats)[[2]]), z)
+# #                  print.char.matrix(z, col.names = FALSE, ...)
+#                  tab <- ascii(z, include.colnames = TRUE)
+#     }
+# #   dz <- if (length(at$strat.levels) == 1) 
+# #     dimnames(stats)[[2]]
+# #     else paste(rep(at$strat.levels, length = d[2]), dimnames(stats)[[2]], 
+# #         sep = ":")
+# #       z <- matrix("", ncol = d[2] + 2, nrow = d[1], dimnames = list(rep("", 
+# #               d[1]), c("", "", dz)))
+# #         z[, 1] <- if (ul) 
+# #         vlabels
+# #         else at$vname
+# #           z[, 2] <- dimnames(stats)[[1]]
+# #             for (i in 1:d[2]) {
+# #               ww <- c(list(stats[, i]), formatArgs)
+# #                 z[, i + 2] <- do.call("format", ww)
+# #             }
+# #         print(z, quote = FALSE)
+# #           invisible()
+#   res <- asciiMixed$new(entete, tab)
+#   class(res) <- c("ascii", "proto", "environment")
+#   return(res)
+# 
+# }
+# 

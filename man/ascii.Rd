@@ -11,6 +11,8 @@
 \alias{ascii.density}
 \alias{ascii.factor}
 \alias{ascii.glm}
+\alias{ascii.describe.single}
+\alias{ascii.describe}
 \alias{ascii.htest}
 \alias{ascii.integer}
 \alias{ascii.list}
@@ -40,6 +42,7 @@
     format = "f", digits = 2, decimal.mark = ".", na.print = "", 
     caption = "", width = 0, frame = "", grid = "", valign = "", 
     header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", \dots)
+  \method{ascii}{describe}(x, condense = TRUE, \dots)
   \method{ascii}{summary.table}(x, caption = "", list.type = "bullet", \dots)
   \method{ascii}{list}(x, caption = "", list.type = "bullet", \dots)
   \method{ascii}{smooth.spline}(x, caption = "", list.type = "bullet", \dots)
@@ -96,6 +99,8 @@
                \code{"a"} (cells can contain any of the AsciiDoc elements that are allowed inside document), 
                \code{"l"} (literal), \code{"v"} (verse; all line breaks are retained). 
                Default is \code{""}.}
+  \item{condense}{default is TRUE to condense the output with regard to the 5
+                  lowest and highest values and the frequency table (\code{describe()} in package \code{Hmisc}).}
   \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"} or \code{"none"}).
                    Default is \code{"bullet"}.}
   \item{...}{Additional arguments.  (Currently ignored.)}
