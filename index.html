@@ -3,17 +3,27 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.3.5" />
+<meta name="generator" content="AsciiDoc 8.4.3" />
 <title>ascii</title>
 <link rel="stylesheet" href="./xhtml11.css" type="text/css" />
 <link rel="stylesheet" href="./xhtml11-quirks.css" type="text/css" />
 <link rel="stylesheet" href="./compact.css" type="text/css" />
+<script type="text/javascript">
+/*<![CDATA[*/
+window.onload = function(){generateToc(2)}
+/*]]>*/
+</script>
+<script type="text/javascript" src="./toc.js"></script>
 </head>
 <body>
 <div id="header">
 <h1>ascii</h1>
 <span id="author">David Hajage</span><br />
 <span id="email"><tt>&lt;<a href="mailto:dhajage[at]gmail[dot]com">dhajage[at]gmail[dot]com</a>&gt;</tt></span><br />
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
 </div>
 <div id="preamble">
 <div class="sectionbody">
@@ -377,13 +387,14 @@ Additional arguments.  (Currently ignored.)
  [1] ascii.anova*           ascii.aov*             ascii.aovlist*
  [4] ascii.cast_df*         ascii.character*       ascii.coxph*
  [7] ascii.data.frame*      ascii.default*         ascii.density*
-[10] ascii.factor*          ascii.glm*             ascii.htest*
-[13] ascii.integer*         ascii.list*            ascii.lm*
-[16] ascii.matrix*          ascii.numeric*         ascii.prcomp*
-[19] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[22] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp*
-[25] ascii.summary.table*   ascii.survdiff*        ascii.table*
-[28] ascii.ts*              ascii.zoo*
+[10] ascii.describe*        ascii.describe.single* ascii.factor*
+[13] ascii.glm*             ascii.htest*           ascii.integer*
+[16] ascii.list*            ascii.lm*              ascii.matrix*
+[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*
+[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*
+[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*
+[28] ascii.survdiff*        ascii.table*           ascii.ts*
+[31] ascii.zoo*
 
    Non-visible functions are asterisked</tt></pre>
 </div></div>
@@ -787,6 +798,327 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
+<h3 id="_describe">describe</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(Hmisc)
+&gt; ascii(describe(esoph))
+.agegp
+|=================
+|n |missing|unique
+|88|0      |6
+|=================
+
+|===========================================
+|         |25-34|35-44|45-54|55-64|65-74|75+
+|Frequency|15   |15   |16   |16   |15   |11
+|%        |17   |17   |18   |18   |17   |12
+|===========================================
+
+.alcgp
+|=================
+|n |missing|unique
+|88|0      |4
+|=================
+
+0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+
+.tobgp
+|=================
+|n |missing|unique
+|88|0      |4
+|=================
+
+0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+
+.ncases
+|===================================================
+|n |missing|unique|Mean |.05|.10|.25|.50|.75|.90|.95
+|88|0      |10    |2.273|0.0|0.0|0.0|1.0|4.0|5.3|6.0
+|===================================================
+
+|==================================
+|         |0 |1 |2 |3 |4|5|6|8|9|17
+|Frequency|29|16|11|9 |8|6|5|1|2|1
+|%        |33|18|12|10|9|7|6|1|2|1
+|==================================
+
+.ncontrols
+|==========================================================
+|n |missing|unique|Mean |.05 |.10 |.25 |.50 |.75 |.90 |.95
+|88|0      |30    |11.08| 1.0| 1.0| 3.0| 6.0|14.0|29.1|40.0
+|==========================================================
+
+lowest:  1  2  3  4  5, highest: 40 46 48 49 60</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">agegp</caption>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table">n</p></td>
+<td align="left"><p class="table">missing</p></td>
+<td align="left"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">88</p></td>
+<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table"></p></td>
+<td align="left"><p class="table">25-34</p></td>
+<td align="left"><p class="table">35-44</p></td>
+<td align="left"><p class="table">45-54</p></td>
+<td align="left"><p class="table">55-64</p></td>
+<td align="left"><p class="table">65-74</p></td>
+<td align="left"><p class="table">75+</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">Frequency</p></td>
+<td align="left"><p class="table">15</p></td>
+<td align="left"><p class="table">15</p></td>
+<td align="left"><p class="table">16</p></td>
+<td align="left"><p class="table">16</p></td>
+<td align="left"><p class="table">15</p></td>
+<td align="left"><p class="table">11</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">%</p></td>
+<td align="left"><p class="table">17</p></td>
+<td align="left"><p class="table">17</p></td>
+<td align="left"><p class="table">18</p></td>
+<td align="left"><p class="table">18</p></td>
+<td align="left"><p class="table">17</p></td>
+<td align="left"><p class="table">12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">alcgp</caption>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table">n</p></td>
+<td align="left"><p class="table">missing</p></td>
+<td align="left"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">88</p></td>
+<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">tobgp</caption>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table">n</p></td>
+<td align="left"><p class="table">missing</p></td>
+<td align="left"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">88</p></td>
+<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">ncases</caption>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table">n</p></td>
+<td align="left"><p class="table">missing</p></td>
+<td align="left"><p class="table">unique</p></td>
+<td align="left"><p class="table">Mean</p></td>
+<td align="left"><p class="table">.05</p></td>
+<td align="left"><p class="table">.10</p></td>
+<td align="left"><p class="table">.25</p></td>
+<td align="left"><p class="table">.50</p></td>
+<td align="left"><p class="table">.75</p></td>
+<td align="left"><p class="table">.90</p></td>
+<td align="left"><p class="table">.95</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">88</p></td>
+<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">10</p></td>
+<td align="left"><p class="table">2.273</p></td>
+<td align="left"><p class="table">0.0</p></td>
+<td align="left"><p class="table">0.0</p></td>
+<td align="left"><p class="table">0.0</p></td>
+<td align="left"><p class="table">1.0</p></td>
+<td align="left"><p class="table">4.0</p></td>
+<td align="left"><p class="table">5.3</p></td>
+<td align="left"><p class="table">6.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table"></p></td>
+<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">1</p></td>
+<td align="left"><p class="table">2</p></td>
+<td align="left"><p class="table">3</p></td>
+<td align="left"><p class="table">4</p></td>
+<td align="left"><p class="table">5</p></td>
+<td align="left"><p class="table">6</p></td>
+<td align="left"><p class="table">8</p></td>
+<td align="left"><p class="table">9</p></td>
+<td align="left"><p class="table">17</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">Frequency</p></td>
+<td align="left"><p class="table">29</p></td>
+<td align="left"><p class="table">16</p></td>
+<td align="left"><p class="table">11</p></td>
+<td align="left"><p class="table">9</p></td>
+<td align="left"><p class="table">8</p></td>
+<td align="left"><p class="table">6</p></td>
+<td align="left"><p class="table">5</p></td>
+<td align="left"><p class="table">1</p></td>
+<td align="left"><p class="table">2</p></td>
+<td align="left"><p class="table">1</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">%</p></td>
+<td align="left"><p class="table">33</p></td>
+<td align="left"><p class="table">18</p></td>
+<td align="left"><p class="table">12</p></td>
+<td align="left"><p class="table">10</p></td>
+<td align="left"><p class="table">9</p></td>
+<td align="left"><p class="table">7</p></td>
+<td align="left"><p class="table">6</p></td>
+<td align="left"><p class="table">1</p></td>
+<td align="left"><p class="table">2</p></td>
+<td align="left"><p class="table">1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">ncontrols</caption>
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<tbody valign="top">
+<tr>
+<td align="left"><p class="table">n</p></td>
+<td align="left"><p class="table">missing</p></td>
+<td align="left"><p class="table">unique</p></td>
+<td align="left"><p class="table">Mean</p></td>
+<td align="left"><p class="table">.05</p></td>
+<td align="left"><p class="table">.10</p></td>
+<td align="left"><p class="table">.25</p></td>
+<td align="left"><p class="table">.50</p></td>
+<td align="left"><p class="table">.75</p></td>
+<td align="left"><p class="table">.90</p></td>
+<td align="left"><p class="table">.95</p></td>
+</tr>
+<tr>
+<td align="left"><p class="table">88</p></td>
+<td align="left"><p class="table">0</p></td>
+<td align="left"><p class="table">30</p></td>
+<td align="left"><p class="table">11.08</p></td>
+<td align="left"><p class="table">1.0</p></td>
+<td align="left"><p class="table">1.0</p></td>
+<td align="left"><p class="table">3.0</p></td>
+<td align="left"><p class="table">6.0</p></td>
+<td align="left"><p class="table">14.0</p></td>
+<td align="left"><p class="table">29.1</p></td>
+<td align="left"><p class="table">40.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</p></div>
 <h3 id="_plot">plot</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
@@ -859,7 +1191,7 @@ asciidoc: <a href="http://www.methods.co.nz/asciidoc">http://www.methods.co.nz/a
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-04-04 08:50:57 CEST
+Last updated 2009-04-14 21:02:41 CEST
 </div>
 </div>
 </body>

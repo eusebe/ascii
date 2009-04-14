@@ -188,6 +188,19 @@ ascii(glm.D93, caption = "glm.D93")
 ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
 @
 
+describe
+~~~~~~~~
+
+<<describe>>=
+library(Hmisc)
+ascii(describe(esoph))
+@
+
+<<describe,echo=FALSE,results=ascii>>=
+library(Hmisc)
+ascii(describe(esoph))
+@
+
 plot
 ~~~~
 

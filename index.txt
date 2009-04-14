@@ -132,13 +132,14 @@ ascii provides methods for:
  [1] ascii.anova*           ascii.aov*             ascii.aovlist*        
  [4] ascii.cast_df*         ascii.character*       ascii.coxph*          
  [7] ascii.data.frame*      ascii.default*         ascii.density*        
-[10] ascii.factor*          ascii.glm*             ascii.htest*          
-[13] ascii.integer*         ascii.list*            ascii.lm*             
-[16] ascii.matrix*          ascii.numeric*         ascii.prcomp*         
-[19] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[22] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp* 
-[25] ascii.summary.table*   ascii.survdiff*        ascii.table*          
-[28] ascii.ts*              ascii.zoo*            
+[10] ascii.describe*        ascii.describe.single* ascii.factor*         
+[13] ascii.glm*             ascii.htest*           ascii.integer*        
+[16] ascii.list*            ascii.lm*              ascii.matrix*         
+[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*  
+[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*    
+[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*  
+[28] ascii.survdiff*        ascii.table*           ascii.ts*             
+[31] ascii.zoo*            
 
    Non-visible functions are asterisked 
 ----
@@ -303,6 +304,110 @@ Residual Deviance: 5.129 	AIC: 56.76
 |outcome  |2.00|5.45    |6.00     |5.13      
 |treatment|2.00|0.00    |4.00     |5.13      
 |============================================  
+
+describe
+~~~~~~~~
+
+----
+> library(Hmisc)
+> ascii(describe(esoph))
+.agegp
+|================= 
+|n |missing|unique
+|88|0      |6     
+|================= 
+
+|=========================================== 
+|         |25-34|35-44|45-54|55-64|65-74|75+
+|Frequency|15   |15   |16   |16   |15   |11 
+|%        |17   |17   |18   |18   |17   |12 
+|=========================================== 
+
+.alcgp
+|================= 
+|n |missing|unique
+|88|0      |4     
+|================= 
+
+0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+
+.tobgp
+|================= 
+|n |missing|unique
+|88|0      |4     
+|================= 
+
+0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+
+.ncases
+|=================================================== 
+|n |missing|unique|Mean |.05|.10|.25|.50|.75|.90|.95
+|88|0      |10    |2.273|0.0|0.0|0.0|1.0|4.0|5.3|6.0
+|=================================================== 
+
+|================================== 
+|         |0 |1 |2 |3 |4|5|6|8|9|17
+|Frequency|29|16|11|9 |8|6|5|1|2|1 
+|%        |33|18|12|10|9|7|6|1|2|1 
+|================================== 
+
+.ncontrols
+|========================================================== 
+|n |missing|unique|Mean |.05 |.10 |.25 |.50 |.75 |.90 |.95 
+|88|0      |30    |11.08| 1.0| 1.0| 3.0| 6.0|14.0|29.1|40.0
+|========================================================== 
+
+lowest:  1  2  3  4  5, highest: 40 46 48 49 60 
+----
+
+
+.agegp
+|================= 
+|n |missing|unique
+|88|0      |6     
+|================= 
+
+|=========================================== 
+|         |25-34|35-44|45-54|55-64|65-74|75+
+|Frequency|15   |15   |16   |16   |15   |11 
+|%        |17   |17   |18   |18   |17   |12 
+|=========================================== 
+
+.alcgp
+|================= 
+|n |missing|unique
+|88|0      |4     
+|================= 
+
+0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+
+.tobgp
+|================= 
+|n |missing|unique
+|88|0      |4     
+|================= 
+
+0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+
+.ncases
+|=================================================== 
+|n |missing|unique|Mean |.05|.10|.25|.50|.75|.90|.95
+|88|0      |10    |2.273|0.0|0.0|0.0|1.0|4.0|5.3|6.0
+|=================================================== 
+
+|================================== 
+|         |0 |1 |2 |3 |4|5|6|8|9|17
+|Frequency|29|16|11|9 |8|6|5|1|2|1 
+|%        |33|18|12|10|9|7|6|1|2|1 
+|================================== 
+
+.ncontrols
+|========================================================== 
+|n |missing|unique|Mean |.05 |.10 |.25 |.50 |.75 |.90 |.95 
+|88|0      |30    |11.08| 1.0| 1.0| 3.0| 6.0|14.0|29.1|40.0
+|========================================================== 
+
+lowest:  1  2  3  4  5, highest: 40 46 48 49 60 
 
 plot
 ~~~~
