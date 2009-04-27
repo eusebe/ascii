@@ -129,17 +129,19 @@ ascii provides methods for:
 
 ----
 > methods(ascii)
- [1] ascii.anova           ascii.aov             ascii.aovlist        
- [4] ascii.cast_df         ascii.character       ascii.coxph          
- [7] ascii.data.frame      ascii.default         ascii.density        
-[10] ascii.describe        ascii.describe.single ascii.factor         
-[13] ascii.glm             ascii.htest           ascii.integer        
-[16] ascii.list            ascii.lm              ascii.matrix         
-[19] ascii.numeric         ascii.prcomp          ascii.smooth.spline  
-[22] ascii.summary.aov     ascii.summary.aovlist ascii.summary.glm    
-[25] ascii.summary.lm      ascii.summary.prcomp  ascii.summary.table  
-[28] ascii.survdiff        ascii.tab1            ascii.table          
-[31] ascii.ts              ascii.zoo             
+ [1] ascii.anova*           ascii.aov*             ascii.aovlist*        
+ [4] ascii.cast_df*         ascii.character*       ascii.coxph*          
+ [7] ascii.data.frame*      ascii.default*         ascii.density*        
+[10] ascii.describe*        ascii.describe.single* ascii.factor*         
+[13] ascii.glm*             ascii.htest*           ascii.integer*        
+[16] ascii.list*            ascii.lm*              ascii.matrix*         
+[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*  
+[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*    
+[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*  
+[28] ascii.survdiff*        ascii.table*           ascii.ts*             
+[31] ascii.zoo*            
+
+   Non-visible functions are asterisked 
 ----
 
 vector
@@ -367,7 +369,7 @@ describe
 
 lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
-*age : Age \[Years\]*
+*age : Age [Years]*
 |================= 
 |n |missing|unique
 |88|0      |6     
@@ -433,7 +435,7 @@ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
 lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
-*age : Age \[Years\]*
+*age : Age [Years]*
 |================= 
 |n |missing|unique
 |88|0      |6     
