@@ -56,11 +56,11 @@ header.asciidoc <- function(caption = "", caption.level = "", frame = "", grid =
   else res <- ""
   if (caption != "") {
     if (caption.level == ".") res <- paste(".", caption, "\n", res, sep = "") 
-    else if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n", res, sep = "") } 
-    else if (caption.level == "s") res <- paste(beauty.asciidoc(caption, "s"), "\n", sep = "")
-    else if (caption.level == "e") res <- paste(beauty.asciidoc(caption, "e"), "\n", sep = "")
-    else if (caption.level == "m") res <- paste(beauty.asciidoc(caption, "m"), "\n", sep = "")
-    else res <- paste(caption, "\n", res, sep = "") 
+    else if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n\n", res, sep = "") } 
+    else if (caption.level == "s") res <- paste(beauty.asciidoc(caption, "s"), "\n\n", sep = "")
+    else if (caption.level == "e") res <- paste(beauty.asciidoc(caption, "e"), "\n\n", sep = "")
+    else if (caption.level == "m") res <- paste(beauty.asciidoc(caption, "m"), "\n\n", sep = "")
+    else res <- paste(caption, "\n\n", res, sep = "") 
   }
   return(res)
 }
@@ -90,11 +90,11 @@ beauty.asciidoc <- function(x, beauti = c("e", "m", "s")) {
 header.t2t <- function(caption = "", caption.level = "") {
   res <- ""
   if (caption != "") {
-    if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n", sep = "") }
-    else if (caption.level == "s") res <- paste(beauty.t2t(caption, "s"), "\n", sep = "")
-    else if (caption.level == "e") res <- paste(beauty.t2t(caption, "e"), "\n", sep = "")
-    else if (caption.level == "m") res <- paste(beauty.t2t(caption, "m"), "\n", sep = "")
-    else res <- paste(caption, "\n", sep = "") 
+    if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n\n", sep = "") }
+    else if (caption.level == "s") res <- paste(beauty.t2t(caption, "s"), "\n\n", sep = "")
+    else if (caption.level == "e") res <- paste(beauty.t2t(caption, "e"), "\n\n", sep = "")
+    else if (caption.level == "m") res <- paste(beauty.t2t(caption, "m"), "\n\n", sep = "")
+    else res <- paste(caption, "\n\n", sep = "") 
   }
   return(res)
 }

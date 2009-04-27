@@ -1,4 +1,4 @@
-ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
     x <- as.data.frame(t(x))
     obj <- asciiDataFrame$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,
@@ -10,7 +10,7 @@ ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE
     return(obj)
 }
 
-ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
     x <- as.data.frame(t(x))
     obj <- asciiDataFrame$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,
@@ -22,7 +22,7 @@ ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE
     return(obj)
 }
 
-ascii.character <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+ascii.character <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
     x <- as.data.frame(t(x))
     obj <- asciiDataFrame$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,
@@ -34,7 +34,7 @@ ascii.character <- function (x, include.rownames = FALSE, include.colnames = FAL
     return(obj)
 }
 
-ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, align = "", col.width = 1, style = "", ...){
     x <- as.data.frame(t(as.character(x)))
     obj <- asciiDataFrame$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, format = format,

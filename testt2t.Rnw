@@ -63,4 +63,7 @@ tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
 tutu$show.t2t()
 @
 
+<<results=ascii>>=
+ascii(describe(esoph))
+@
 

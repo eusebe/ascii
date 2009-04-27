@@ -2,6 +2,7 @@ Test de asciidoc
 ================
 
 <<>>=
+options(asciiType = "asciidoc")
 2+2
 2*2
 2-2

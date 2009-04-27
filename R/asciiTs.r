@@ -1,5 +1,5 @@
 # from xtable package
-ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 0, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 0, decimal.mark = ".", na.print = "", caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
 
   if (inherits(x, "ts") && !is.null(ncol(x))) {
     tp.1 <- trunc(time(x))

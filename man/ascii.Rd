@@ -40,12 +40,12 @@
   \method{ascii}{default}(x, 
     include.rownames = TRUE, include.colnames = TRUE, 
     format = "f", digits = 2, decimal.mark = ".", na.print = "", 
-    caption = "", width = 0, frame = "", grid = "", valign = "", 
+    caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", 
     header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", \dots)
   \method{ascii}{describe}(x, condense = TRUE, \dots)
-  \method{ascii}{summary.table}(x, caption = "", list.type = "bullet", \dots)
-  \method{ascii}{list}(x, caption = "", list.type = "bullet", \dots)
-  \method{ascii}{smooth.spline}(x, caption = "", list.type = "bullet", \dots)
+  \method{ascii}{summary.table}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
+  \method{ascii}{list}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
+  \method{ascii}{smooth.spline}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
 }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
@@ -72,6 +72,12 @@
   \item{na.print}{The character string specifying how \code{NA} should be formatted specially. Default is "".}
   \item{caption}{Character vector of length 1 containing the table's caption or title.
                  Set to \code{""} to suppress the caption.  Default value is \code{""}.}
+  \item{caption.level}{Character or numeric vector of length 1 containing the caption's level.
+                       Can take the following values: \code{0} to \code{5}, \code{"."} (block titles 
+                       in asciidoc markup), \code{"s"} (strong), \code{"e"} (emphasis), \code{"m"} (monospaced)
+                       or \code{""} (no markup).
+                       Default is ".".}
+
   \item{width}{Numeric vector of length one containing the table width
                relative to the available width (expressed as a percentage value, \code{1}\dots \code{99}).
                Default is \code{0} (all available width).}
