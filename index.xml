@@ -28,26 +28,26 @@ x
 ascii(x, caption = "A simple matrix", width = 30)
 @</literallayout>
 <simpara>gives :</simpara>
-<table
+<simpara>A simple matrix</simpara>
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>A simple matrix</title>
 <tgroup cols="2">
-<colspec colwidth="63pt" align="left"/>
-<colspec colwidth="63pt" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="63pt"/>
+<colspec colname="col_2" colwidth="63pt"/>
+<tbody>
 <row>
-<entry><simpara>1.00</simpara></entry>
-<entry><simpara>3.00</simpara></entry>
+<entry align="left" valign="top"><simpara>1.00</simpara></entry>
+<entry align="left" valign="top"><simpara>3.00</simpara></entry>
 </row>
 <row>
-<entry><simpara>2.00</simpara></entry>
-<entry><simpara>4.00</simpara></entry>
+<entry align="left" valign="top"><simpara>2.00</simpara></entry>
+<entry align="left" valign="top"><simpara>4.00</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 </section>
 <section id="_what_ascii_provides">
 <title>what ascii provides</title>
@@ -376,19 +376,17 @@ Additional arguments.  (Currently ignored.)
 <title>ascii examples</title>
 <simpara>ascii provides methods for:</simpara>
 <screen>&gt; methods(ascii)
- [1] ascii.anova*           ascii.aov*             ascii.aovlist*
- [4] ascii.cast_df*         ascii.character*       ascii.coxph*
- [7] ascii.data.frame*      ascii.default*         ascii.density*
-[10] ascii.describe*        ascii.describe.single* ascii.factor*
-[13] ascii.glm*             ascii.htest*           ascii.integer*
-[16] ascii.list*            ascii.lm*              ascii.matrix*
-[19] ascii.numeric*         ascii.prcomp*          ascii.smooth.spline*
-[22] ascii.summary.aov*     ascii.summary.aovlist* ascii.summary.glm*
-[25] ascii.summary.lm*      ascii.summary.prcomp*  ascii.summary.table*
-[28] ascii.survdiff*        ascii.table*           ascii.ts*
-[31] ascii.zoo*
-
-   Non-visible functions are asterisked</screen>
+ [1] ascii.anova           ascii.aov             ascii.aovlist
+ [4] ascii.cast_df         ascii.character       ascii.coxph
+ [7] ascii.data.frame      ascii.default         ascii.density
+[10] ascii.describe        ascii.describe.single ascii.factor
+[13] ascii.glm             ascii.htest           ascii.integer
+[16] ascii.list            ascii.lm              ascii.matrix
+[19] ascii.numeric         ascii.prcomp          ascii.smooth.spline
+[22] ascii.summary.aov     ascii.summary.aovlist ascii.summary.glm
+[25] ascii.summary.lm      ascii.summary.prcomp  ascii.summary.table
+[28] ascii.survdiff        ascii.tab1            ascii.table
+[31] ascii.ts              ascii.zoo</screen>
 <section id="_vector">
 <title>vector</title>
 <screen>&gt; ascii(1:4)
@@ -400,16 +398,16 @@ frame="all"
 rowsep="1" colsep="1"
 >
 <tgroup cols="4">
-<colspec colwidth="25*" align="left"/>
-<colspec colwidth="25*" align="left"/>
-<colspec colwidth="25*" align="left"/>
-<colspec colwidth="25*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="25*"/>
+<colspec colname="col_2" colwidth="25*"/>
+<colspec colname="col_3" colwidth="25*"/>
+<colspec colname="col_4" colwidth="25*"/>
+<tbody>
 <row>
-<entry><simpara>1.00</simpara></entry>
-<entry><simpara>2.00</simpara></entry>
-<entry><simpara>3.00</simpara></entry>
-<entry><simpara>4.00</simpara></entry>
+<entry align="left" valign="top"><simpara>1.00</simpara></entry>
+<entry align="left" valign="top"><simpara>2.00</simpara></entry>
+<entry align="left" valign="top"><simpara>3.00</simpara></entry>
+<entry align="left" valign="top"><simpara>4.00</simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -420,7 +418,7 @@ rowsep="1" colsep="1"
 <screen>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
 +     header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle",
 +     align = "lrrrr", frame = "topbot")
-.VADeaths
+VADeaths
 [frame="topbot",valign="middle",options="header",cols="&lt;1,&gt;2,&gt;2,&gt;2,&gt;2"]
 |=====================================================
 |     |Rural Male|Rural Female|Urban Male|Urban Female
@@ -430,71 +428,71 @@ rowsep="1" colsep="1"
 |65-69|41.00     |30.90       |54.60     |35.10
 |70-74|66.00     |54.30       |71.10     |50.00
 |=====================================================</screen>
-<table
+<simpara>VADeaths</simpara>
+<informaltable
 frame="topbot"
 rowsep="1" colsep="1"
 >
-<title>VADeaths</title>
 <tgroup cols="5">
-<colspec colwidth="11*" align="left"/>
-<colspec colwidth="22*" align="right"/>
-<colspec colwidth="22*" align="right"/>
-<colspec colwidth="22*" align="right"/>
-<colspec colwidth="22*" align="right"/>
-<thead valign="middle">
+<colspec colname="col_1" colwidth="11*"/>
+<colspec colname="col_2" colwidth="22*"/>
+<colspec colname="col_3" colwidth="22*"/>
+<colspec colname="col_4" colwidth="22*"/>
+<colspec colname="col_5" colwidth="22*"/>
+<thead>
 <row>
-<entry>     </entry>
-<entry>Rural Male</entry>
-<entry>Rural Female</entry>
-<entry>Urban Male</entry>
-<entry>Urban Female</entry>
+<entry align="left" valign="middle">     </entry>
+<entry align="right" valign="middle">Rural Male</entry>
+<entry align="right" valign="middle">Rural Female</entry>
+<entry align="right" valign="middle">Urban Male</entry>
+<entry align="right" valign="middle">Urban Female</entry>
 </row>
 </thead>
-<tbody valign="middle">
+<tbody>
 <row>
-<entry><simpara>50-54</simpara></entry>
-<entry><simpara>11.70</simpara></entry>
-<entry><simpara>8.70</simpara></entry>
-<entry><simpara>15.40</simpara></entry>
-<entry><simpara>8.40</simpara></entry>
+<entry align="left" valign="middle"><simpara>50-54</simpara></entry>
+<entry align="right" valign="middle"><simpara>11.70</simpara></entry>
+<entry align="right" valign="middle"><simpara>8.70</simpara></entry>
+<entry align="right" valign="middle"><simpara>15.40</simpara></entry>
+<entry align="right" valign="middle"><simpara>8.40</simpara></entry>
 </row>
 <row>
-<entry><simpara>55-59</simpara></entry>
-<entry><simpara>18.10</simpara></entry>
-<entry><simpara>11.70</simpara></entry>
-<entry><simpara>24.30</simpara></entry>
-<entry><simpara>13.60</simpara></entry>
+<entry align="left" valign="middle"><simpara>55-59</simpara></entry>
+<entry align="right" valign="middle"><simpara>18.10</simpara></entry>
+<entry align="right" valign="middle"><simpara>11.70</simpara></entry>
+<entry align="right" valign="middle"><simpara>24.30</simpara></entry>
+<entry align="right" valign="middle"><simpara>13.60</simpara></entry>
 </row>
 <row>
-<entry><simpara>60-64</simpara></entry>
-<entry><simpara>26.90</simpara></entry>
-<entry><simpara>20.30</simpara></entry>
-<entry><simpara>37.00</simpara></entry>
-<entry><simpara>19.30</simpara></entry>
+<entry align="left" valign="middle"><simpara>60-64</simpara></entry>
+<entry align="right" valign="middle"><simpara>26.90</simpara></entry>
+<entry align="right" valign="middle"><simpara>20.30</simpara></entry>
+<entry align="right" valign="middle"><simpara>37.00</simpara></entry>
+<entry align="right" valign="middle"><simpara>19.30</simpara></entry>
 </row>
 <row>
-<entry><simpara>65-69</simpara></entry>
-<entry><simpara>41.00</simpara></entry>
-<entry><simpara>30.90</simpara></entry>
-<entry><simpara>54.60</simpara></entry>
-<entry><simpara>35.10</simpara></entry>
+<entry align="left" valign="middle"><simpara>65-69</simpara></entry>
+<entry align="right" valign="middle"><simpara>41.00</simpara></entry>
+<entry align="right" valign="middle"><simpara>30.90</simpara></entry>
+<entry align="right" valign="middle"><simpara>54.60</simpara></entry>
+<entry align="right" valign="middle"><simpara>35.10</simpara></entry>
 </row>
 <row>
-<entry><simpara>70-74</simpara></entry>
-<entry><simpara>66.00</simpara></entry>
-<entry><simpara>54.30</simpara></entry>
-<entry><simpara>71.10</simpara></entry>
-<entry><simpara>50.00</simpara></entry>
+<entry align="left" valign="middle"><simpara>70-74</simpara></entry>
+<entry align="right" valign="middle"><simpara>66.00</simpara></entry>
+<entry align="right" valign="middle"><simpara>54.30</simpara></entry>
+<entry align="right" valign="middle"><simpara>71.10</simpara></entry>
+<entry align="right" valign="middle"><simpara>50.00</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 </section>
 <section id="_data_frame">
 <title>data.frame</title>
 <screen>&gt; ascii(iris[1:10, ], include.rownames = F, caption = "iris", width = 75,
 +     align = "c", valign = "bottom", frame = "topbot", grid = "none")
-.iris
+iris
 [frame="topbot",grid="none",valign="bottom",options="header",cols="^,^,^,^,^",width="75%"]
 |=========================================================
 |Sepal.Length|Sepal.Width|Petal.Length|Petal.Width|Species
@@ -509,100 +507,100 @@ rowsep="1" colsep="1"
 |4.40        |2.90       |1.40        |0.20       |setosa
 |4.90        |3.10       |1.50        |0.10       |setosa
 |=========================================================</screen>
-<table
+<simpara>iris</simpara>
+<informaltable
 frame="topbot"
 rowsep="0" colsep="0"
 >
-<title>iris</title>
 <tgroup cols="5">
-<colspec colwidth="63pt" align="center"/>
-<colspec colwidth="63pt" align="center"/>
-<colspec colwidth="63pt" align="center"/>
-<colspec colwidth="63pt" align="center"/>
-<colspec colwidth="63pt" align="center"/>
-<thead valign="bottom">
+<colspec colname="col_1" colwidth="63pt"/>
+<colspec colname="col_2" colwidth="63pt"/>
+<colspec colname="col_3" colwidth="63pt"/>
+<colspec colname="col_4" colwidth="63pt"/>
+<colspec colname="col_5" colwidth="63pt"/>
+<thead>
 <row>
-<entry>Sepal.Length</entry>
-<entry>Sepal.Width</entry>
-<entry>Petal.Length</entry>
-<entry>Petal.Width</entry>
-<entry>Species</entry>
+<entry align="center" valign="bottom">Sepal.Length</entry>
+<entry align="center" valign="bottom">Sepal.Width</entry>
+<entry align="center" valign="bottom">Petal.Length</entry>
+<entry align="center" valign="bottom">Petal.Width</entry>
+<entry align="center" valign="bottom">Species</entry>
 </row>
 </thead>
-<tbody valign="bottom">
+<tbody>
 <row>
-<entry><simpara>5.10</simpara></entry>
-<entry><simpara>3.50</simpara></entry>
-<entry><simpara>1.40</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>5.10</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.50</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>4.90</simpara></entry>
-<entry><simpara>3.00</simpara></entry>
-<entry><simpara>1.40</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>4.90</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.00</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>4.70</simpara></entry>
-<entry><simpara>3.20</simpara></entry>
-<entry><simpara>1.30</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>4.70</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.30</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>4.60</simpara></entry>
-<entry><simpara>3.10</simpara></entry>
-<entry><simpara>1.50</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>4.60</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.10</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.50</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>5.00</simpara></entry>
-<entry><simpara>3.60</simpara></entry>
-<entry><simpara>1.40</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>5.00</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.60</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>5.40</simpara></entry>
-<entry><simpara>3.90</simpara></entry>
-<entry><simpara>1.70</simpara></entry>
-<entry><simpara>0.40</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>5.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.90</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.70</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>4.60</simpara></entry>
-<entry><simpara>3.40</simpara></entry>
-<entry><simpara>1.40</simpara></entry>
-<entry><simpara>0.30</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>4.60</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.30</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>5.00</simpara></entry>
-<entry><simpara>3.40</simpara></entry>
-<entry><simpara>1.50</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>5.00</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.50</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>4.40</simpara></entry>
-<entry><simpara>2.90</simpara></entry>
-<entry><simpara>1.40</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>4.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>2.90</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 <row>
-<entry><simpara>4.90</simpara></entry>
-<entry><simpara>3.10</simpara></entry>
-<entry><simpara>1.50</simpara></entry>
-<entry><simpara>0.10</simpara></entry>
-<entry><simpara>setosa</simpara></entry>
+<entry align="center" valign="bottom"><simpara>4.90</simpara></entry>
+<entry align="center" valign="bottom"><simpara>3.10</simpara></entry>
+<entry align="center" valign="bottom"><simpara>1.50</simpara></entry>
+<entry align="center" valign="bottom"><simpara>0.10</simpara></entry>
+<entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 </section>
 <section id="_summary_table">
 <title>summary.table</title>
@@ -660,7 +658,7 @@ Degrees of Freedom: 8 Total (i.e. Null);  4 Residual
 Null Deviance:      10.58
 Residual Deviance: 5.129        AIC: 56.76
 &gt; ascii(glm.D93, caption = "glm.D93")
-.glm.D93
+glm.D93
 [options="header"]
 |==================================================
 |           |Estimate|Std. Error|z value|Pr(&gt;\|z\|)
@@ -671,7 +669,7 @@ Residual Deviance: 5.129        AIC: 56.76
 |treatment3 |0.00    |0.20      |0.00   |1.00
 |==================================================
 &gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
-.anova glm.D93
+anova glm.D93
 [options="header"]
 |============================================
 |         |Df  |Deviance|Resid. Df|Resid. Dev
@@ -679,116 +677,126 @@ Residual Deviance: 5.129        AIC: 56.76
 |outcome  |2.00|5.45    |6.00     |5.13
 |treatment|2.00|0.00    |4.00     |5.13
 |============================================</screen>
-<table
+<simpara>glm.D93</simpara>
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>glm.D93</title>
 <tgroup cols="5">
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<thead valign="top">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
 <row>
-<entry>           </entry>
-<entry>Estimate</entry>
-<entry>Std. Error</entry>
-<entry>z value</entry>
-<entry>Pr(&gt;|z|)</entry>
+<entry align="left" valign="top">           </entry>
+<entry align="left" valign="top">Estimate</entry>
+<entry align="left" valign="top">Std. Error</entry>
+<entry align="left" valign="top">z value</entry>
+<entry align="left" valign="top">Pr(&gt;|z|)</entry>
 </row>
 </thead>
-<tbody valign="top">
+<tbody>
 <row>
-<entry><simpara>(Intercept)</simpara></entry>
-<entry><simpara>3.04</simpara></entry>
-<entry><simpara>0.17</simpara></entry>
-<entry><simpara>17.81</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
+<entry align="left" valign="top"><simpara>(Intercept)</simpara></entry>
+<entry align="left" valign="top"><simpara>3.04</simpara></entry>
+<entry align="left" valign="top"><simpara>0.17</simpara></entry>
+<entry align="left" valign="top"><simpara>17.81</simpara></entry>
+<entry align="left" valign="top"><simpara>0.00</simpara></entry>
 </row>
 <row>
-<entry><simpara>outcome2</simpara></entry>
-<entry><simpara>-0.45</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>-2.25</simpara></entry>
-<entry><simpara>0.02</simpara></entry>
+<entry align="left" valign="top"><simpara>outcome2</simpara></entry>
+<entry align="left" valign="top"><simpara>-0.45</simpara></entry>
+<entry align="left" valign="top"><simpara>0.20</simpara></entry>
+<entry align="left" valign="top"><simpara>-2.25</simpara></entry>
+<entry align="left" valign="top"><simpara>0.02</simpara></entry>
 </row>
 <row>
-<entry><simpara>outcome3</simpara></entry>
-<entry><simpara>-0.29</simpara></entry>
-<entry><simpara>0.19</simpara></entry>
-<entry><simpara>-1.52</simpara></entry>
-<entry><simpara>0.13</simpara></entry>
+<entry align="left" valign="top"><simpara>outcome3</simpara></entry>
+<entry align="left" valign="top"><simpara>-0.29</simpara></entry>
+<entry align="left" valign="top"><simpara>0.19</simpara></entry>
+<entry align="left" valign="top"><simpara>-1.52</simpara></entry>
+<entry align="left" valign="top"><simpara>0.13</simpara></entry>
 </row>
 <row>
-<entry><simpara>treatment2</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>1.00</simpara></entry>
+<entry align="left" valign="top"><simpara>treatment2</simpara></entry>
+<entry align="left" valign="top"><simpara>0.00</simpara></entry>
+<entry align="left" valign="top"><simpara>0.20</simpara></entry>
+<entry align="left" valign="top"><simpara>0.00</simpara></entry>
+<entry align="left" valign="top"><simpara>1.00</simpara></entry>
 </row>
 <row>
-<entry><simpara>treatment3</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>0.20</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>1.00</simpara></entry>
+<entry align="left" valign="top"><simpara>treatment3</simpara></entry>
+<entry align="left" valign="top"><simpara>0.00</simpara></entry>
+<entry align="left" valign="top"><simpara>0.20</simpara></entry>
+<entry align="left" valign="top"><simpara>0.00</simpara></entry>
+<entry align="left" valign="top"><simpara>1.00</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
-<table
+</informaltable>
+<simpara>anova glm.D93</simpara>
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>anova glm.D93</title>
 <tgroup cols="5">
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<colspec colwidth="20*" align="left"/>
-<thead valign="top">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
 <row>
-<entry>         </entry>
-<entry>Df  </entry>
-<entry>Deviance</entry>
-<entry>Resid. Df</entry>
-<entry>Resid. Dev</entry>
+<entry align="left" valign="top">         </entry>
+<entry align="left" valign="top">Df  </entry>
+<entry align="left" valign="top">Deviance</entry>
+<entry align="left" valign="top">Resid. Df</entry>
+<entry align="left" valign="top">Resid. Dev</entry>
 </row>
 </thead>
-<tbody valign="top">
+<tbody>
 <row>
-<entry><simpara>NULL</simpara></entry>
-<entry><simpara></simpara></entry>
-<entry><simpara></simpara></entry>
-<entry><simpara>8.00</simpara></entry>
-<entry><simpara>10.58</simpara></entry>
+<entry align="left" valign="top"><simpara>NULL</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>8.00</simpara></entry>
+<entry align="left" valign="top"><simpara>10.58</simpara></entry>
 </row>
 <row>
-<entry><simpara>outcome</simpara></entry>
-<entry><simpara>2.00</simpara></entry>
-<entry><simpara>5.45</simpara></entry>
-<entry><simpara>6.00</simpara></entry>
-<entry><simpara>5.13</simpara></entry>
+<entry align="left" valign="top"><simpara>outcome</simpara></entry>
+<entry align="left" valign="top"><simpara>2.00</simpara></entry>
+<entry align="left" valign="top"><simpara>5.45</simpara></entry>
+<entry align="left" valign="top"><simpara>6.00</simpara></entry>
+<entry align="left" valign="top"><simpara>5.13</simpara></entry>
 </row>
 <row>
-<entry><simpara>treatment</simpara></entry>
-<entry><simpara>2.00</simpara></entry>
-<entry><simpara>0.00</simpara></entry>
-<entry><simpara>4.00</simpara></entry>
-<entry><simpara>5.13</simpara></entry>
+<entry align="left" valign="top"><simpara>treatment</simpara></entry>
+<entry align="left" valign="top"><simpara>2.00</simpara></entry>
+<entry align="left" valign="top"><simpara>0.00</simpara></entry>
+<entry align="left" valign="top"><simpara>4.00</simpara></entry>
+<entry align="left" valign="top"><simpara>5.13</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 </section>
 <section id="_describe">
 <title>describe</title>
 <screen>&gt; library(Hmisc)
+&gt; label(esoph$agegp) &lt;- "Age group"
+&gt; label(esoph$alcgp) &lt;- "Alcohol group"
+&gt; label(esoph$tobgp) &lt;- "Tobacco group"
+&gt; label(esoph$ncontrols) &lt;- "Number of control"
+&gt; label(esoph$age) &lt;- "Age"
+&gt; units(esoph$age) &lt;- "Years"
 &gt; ascii(describe(esoph))
-.agegp
+.esoph
+* 6 Variable
+* 88 Observations
+
+*agegp : Age group*
 |=================
 |n |missing|unique
 |88|0      |6
@@ -800,7 +808,7 @@ rowsep="1" colsep="1"
 |%        |17   |17   |18   |18   |17   |12
 |===========================================
 
-.alcgp
+*alcgp : Alcohol group*
 |=================
 |n |missing|unique
 |88|0      |4
@@ -808,7 +816,7 @@ rowsep="1" colsep="1"
 
 0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
 
-.tobgp
+*tobgp : Tobacco group*
 |=================
 |n |missing|unique
 |88|0      |4
@@ -816,7 +824,7 @@ rowsep="1" colsep="1"
 
 0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
 
-.ncases
+*ncases*
 |===================================================
 |n |missing|unique|Mean |.05|.10|.25|.50|.75|.90|.95
 |88|0      |10    |2.273|0.0|0.0|0.0|1.0|4.0|5.3|6.0
@@ -828,281 +836,371 @@ rowsep="1" colsep="1"
 |%        |33|18|12|10|9|7|6|1|2|1
 |==================================
 
-.ncontrols
+*ncontrols : Number of control*
 |==========================================================
 |n |missing|unique|Mean |.05 |.10 |.25 |.50 |.75 |.90 |.95
 |88|0      |30    |11.08| 1.0| 1.0| 3.0| 6.0|14.0|29.1|40.0
 |==========================================================
 
-lowest:  1  2  3  4  5, highest: 40 46 48 49 60</screen>
-<table
+lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+
+*age : Age \[Years\]*
+|=================
+|n |missing|unique
+|88|0      |6
+|=================
+
+|===========================================
+|         |25-34|35-44|45-54|55-64|65-74|75+
+|Frequency|15   |15   |16   |16   |15   |11
+|%        |17   |17   |18   |18   |17   |12
+|===========================================</screen>
+<itemizedlist><title>esoph</title>
+<listitem>
+<simpara>
+6 Variable
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+88 Observations
+</simpara>
+</listitem>
+</itemizedlist>
+<simpara><emphasis role="strong">agegp : Age group</emphasis></simpara>
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>agegp</title>
 <tgroup cols="3">
-<colspec colwidth="33*" align="left"/>
-<colspec colwidth="33*" align="left"/>
-<colspec colwidth="33*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<tbody>
 <row>
-<entry><simpara>n</simpara></entry>
-<entry><simpara>missing</simpara></entry>
-<entry><simpara>unique</simpara></entry>
+<entry align="left" valign="top"><simpara>n</simpara></entry>
+<entry align="left" valign="top"><simpara>missing</simpara></entry>
+<entry align="left" valign="top"><simpara>unique</simpara></entry>
 </row>
 <row>
-<entry><simpara>88</simpara></entry>
-<entry><simpara>0</simpara></entry>
-<entry><simpara>6</simpara></entry>
+<entry align="left" valign="top"><simpara>88</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 <informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
 <tgroup cols="7">
-<colspec colwidth="14*" align="left"/>
-<colspec colwidth="14*" align="left"/>
-<colspec colwidth="14*" align="left"/>
-<colspec colwidth="14*" align="left"/>
-<colspec colwidth="14*" align="left"/>
-<colspec colwidth="14*" align="left"/>
-<colspec colwidth="14*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="14*"/>
+<colspec colname="col_2" colwidth="14*"/>
+<colspec colname="col_3" colwidth="14*"/>
+<colspec colname="col_4" colwidth="14*"/>
+<colspec colname="col_5" colwidth="14*"/>
+<colspec colname="col_6" colwidth="14*"/>
+<colspec colname="col_7" colwidth="14*"/>
+<tbody>
 <row>
-<entry><simpara></simpara></entry>
-<entry><simpara>25-34</simpara></entry>
-<entry><simpara>35-44</simpara></entry>
-<entry><simpara>45-54</simpara></entry>
-<entry><simpara>55-64</simpara></entry>
-<entry><simpara>65-74</simpara></entry>
-<entry><simpara>75+</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>25-34</simpara></entry>
+<entry align="left" valign="top"><simpara>35-44</simpara></entry>
+<entry align="left" valign="top"><simpara>45-54</simpara></entry>
+<entry align="left" valign="top"><simpara>55-64</simpara></entry>
+<entry align="left" valign="top"><simpara>65-74</simpara></entry>
+<entry align="left" valign="top"><simpara>75+</simpara></entry>
 </row>
 <row>
-<entry><simpara>Frequency</simpara></entry>
-<entry><simpara>15</simpara></entry>
-<entry><simpara>15</simpara></entry>
-<entry><simpara>16</simpara></entry>
-<entry><simpara>16</simpara></entry>
-<entry><simpara>15</simpara></entry>
-<entry><simpara>11</simpara></entry>
+<entry align="left" valign="top"><simpara>Frequency</simpara></entry>
+<entry align="left" valign="top"><simpara>15</simpara></entry>
+<entry align="left" valign="top"><simpara>15</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>15</simpara></entry>
+<entry align="left" valign="top"><simpara>11</simpara></entry>
 </row>
 <row>
-<entry><simpara>%</simpara></entry>
-<entry><simpara>17</simpara></entry>
-<entry><simpara>17</simpara></entry>
-<entry><simpara>18</simpara></entry>
-<entry><simpara>18</simpara></entry>
-<entry><simpara>17</simpara></entry>
-<entry><simpara>12</simpara></entry>
+<entry align="left" valign="top"><simpara>%</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>18</simpara></entry>
+<entry align="left" valign="top"><simpara>18</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>12</simpara></entry>
 </row>
 </tbody>
 </tgroup>
 </informaltable>
-<table
+<simpara><emphasis role="strong">alcgp : Alcohol group</emphasis></simpara>
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>alcgp</title>
 <tgroup cols="3">
-<colspec colwidth="33*" align="left"/>
-<colspec colwidth="33*" align="left"/>
-<colspec colwidth="33*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<tbody>
 <row>
-<entry><simpara>n</simpara></entry>
-<entry><simpara>missing</simpara></entry>
-<entry><simpara>unique</simpara></entry>
+<entry align="left" valign="top"><simpara>n</simpara></entry>
+<entry align="left" valign="top"><simpara>missing</simpara></entry>
+<entry align="left" valign="top"><simpara>unique</simpara></entry>
 </row>
 <row>
-<entry><simpara>88</simpara></entry>
-<entry><simpara>0</simpara></entry>
-<entry><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>88</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 <simpara>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</simpara>
-<table
+<simpara><emphasis role="strong">tobgp : Tobacco group</emphasis></simpara>
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>tobgp</title>
 <tgroup cols="3">
-<colspec colwidth="33*" align="left"/>
-<colspec colwidth="33*" align="left"/>
-<colspec colwidth="33*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<tbody>
 <row>
-<entry><simpara>n</simpara></entry>
-<entry><simpara>missing</simpara></entry>
-<entry><simpara>unique</simpara></entry>
+<entry align="left" valign="top"><simpara>n</simpara></entry>
+<entry align="left" valign="top"><simpara>missing</simpara></entry>
+<entry align="left" valign="top"><simpara>unique</simpara></entry>
 </row>
 <row>
-<entry><simpara>88</simpara></entry>
-<entry><simpara>0</simpara></entry>
-<entry><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>88</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
 <simpara>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</simpara>
-<table
-frame="all"
-rowsep="1" colsep="1"
->
-<title>ncases</title>
-<tgroup cols="11">
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<tbody valign="top">
-<row>
-<entry><simpara>n</simpara></entry>
-<entry><simpara>missing</simpara></entry>
-<entry><simpara>unique</simpara></entry>
-<entry><simpara>Mean</simpara></entry>
-<entry><simpara>.05</simpara></entry>
-<entry><simpara>.10</simpara></entry>
-<entry><simpara>.25</simpara></entry>
-<entry><simpara>.50</simpara></entry>
-<entry><simpara>.75</simpara></entry>
-<entry><simpara>.90</simpara></entry>
-<entry><simpara>.95</simpara></entry>
-</row>
-<row>
-<entry><simpara>88</simpara></entry>
-<entry><simpara>0</simpara></entry>
-<entry><simpara>10</simpara></entry>
-<entry><simpara>2.273</simpara></entry>
-<entry><simpara>0.0</simpara></entry>
-<entry><simpara>0.0</simpara></entry>
-<entry><simpara>0.0</simpara></entry>
-<entry><simpara>1.0</simpara></entry>
-<entry><simpara>4.0</simpara></entry>
-<entry><simpara>5.3</simpara></entry>
-<entry><simpara>6.0</simpara></entry>
-</row>
-</tbody>
-</tgroup>
-</table>
+<simpara><emphasis role="strong">ncases</emphasis></simpara>
 <informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
 <tgroup cols="11">
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="9*"/>
+<colspec colname="col_2" colwidth="9*"/>
+<colspec colname="col_3" colwidth="9*"/>
+<colspec colname="col_4" colwidth="9*"/>
+<colspec colname="col_5" colwidth="9*"/>
+<colspec colname="col_6" colwidth="9*"/>
+<colspec colname="col_7" colwidth="9*"/>
+<colspec colname="col_8" colwidth="9*"/>
+<colspec colname="col_9" colwidth="9*"/>
+<colspec colname="col_10" colwidth="9*"/>
+<colspec colname="col_11" colwidth="9*"/>
+<tbody>
 <row>
-<entry><simpara></simpara></entry>
-<entry><simpara>0</simpara></entry>
-<entry><simpara>1</simpara></entry>
-<entry><simpara>2</simpara></entry>
-<entry><simpara>3</simpara></entry>
-<entry><simpara>4</simpara></entry>
-<entry><simpara>5</simpara></entry>
-<entry><simpara>6</simpara></entry>
-<entry><simpara>8</simpara></entry>
-<entry><simpara>9</simpara></entry>
-<entry><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>n</simpara></entry>
+<entry align="left" valign="top"><simpara>missing</simpara></entry>
+<entry align="left" valign="top"><simpara>unique</simpara></entry>
+<entry align="left" valign="top"><simpara>Mean</simpara></entry>
+<entry align="left" valign="top"><simpara>.05</simpara></entry>
+<entry align="left" valign="top"><simpara>.10</simpara></entry>
+<entry align="left" valign="top"><simpara>.25</simpara></entry>
+<entry align="left" valign="top"><simpara>.50</simpara></entry>
+<entry align="left" valign="top"><simpara>.75</simpara></entry>
+<entry align="left" valign="top"><simpara>.90</simpara></entry>
+<entry align="left" valign="top"><simpara>.95</simpara></entry>
 </row>
 <row>
-<entry><simpara>Frequency</simpara></entry>
-<entry><simpara>29</simpara></entry>
-<entry><simpara>16</simpara></entry>
-<entry><simpara>11</simpara></entry>
-<entry><simpara>9</simpara></entry>
-<entry><simpara>8</simpara></entry>
-<entry><simpara>6</simpara></entry>
-<entry><simpara>5</simpara></entry>
-<entry><simpara>1</simpara></entry>
-<entry><simpara>2</simpara></entry>
-<entry><simpara>1</simpara></entry>
-</row>
-<row>
-<entry><simpara>%</simpara></entry>
-<entry><simpara>33</simpara></entry>
-<entry><simpara>18</simpara></entry>
-<entry><simpara>12</simpara></entry>
-<entry><simpara>10</simpara></entry>
-<entry><simpara>9</simpara></entry>
-<entry><simpara>7</simpara></entry>
-<entry><simpara>6</simpara></entry>
-<entry><simpara>1</simpara></entry>
-<entry><simpara>2</simpara></entry>
-<entry><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>88</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>10</simpara></entry>
+<entry align="left" valign="top"><simpara>2.273</simpara></entry>
+<entry align="left" valign="top"><simpara>0.0</simpara></entry>
+<entry align="left" valign="top"><simpara>0.0</simpara></entry>
+<entry align="left" valign="top"><simpara>0.0</simpara></entry>
+<entry align="left" valign="top"><simpara>1.0</simpara></entry>
+<entry align="left" valign="top"><simpara>4.0</simpara></entry>
+<entry align="left" valign="top"><simpara>5.3</simpara></entry>
+<entry align="left" valign="top"><simpara>6.0</simpara></entry>
 </row>
 </tbody>
 </tgroup>
 </informaltable>
-<table
+<informaltable
 frame="all"
 rowsep="1" colsep="1"
 >
-<title>ncontrols</title>
 <tgroup cols="11">
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<colspec colwidth="9*" align="left"/>
-<tbody valign="top">
+<colspec colname="col_1" colwidth="9*"/>
+<colspec colname="col_2" colwidth="9*"/>
+<colspec colname="col_3" colwidth="9*"/>
+<colspec colname="col_4" colwidth="9*"/>
+<colspec colname="col_5" colwidth="9*"/>
+<colspec colname="col_6" colwidth="9*"/>
+<colspec colname="col_7" colwidth="9*"/>
+<colspec colname="col_8" colwidth="9*"/>
+<colspec colname="col_9" colwidth="9*"/>
+<colspec colname="col_10" colwidth="9*"/>
+<colspec colname="col_11" colwidth="9*"/>
+<tbody>
 <row>
-<entry><simpara>n</simpara></entry>
-<entry><simpara>missing</simpara></entry>
-<entry><simpara>unique</simpara></entry>
-<entry><simpara>Mean</simpara></entry>
-<entry><simpara>.05</simpara></entry>
-<entry><simpara>.10</simpara></entry>
-<entry><simpara>.25</simpara></entry>
-<entry><simpara>.50</simpara></entry>
-<entry><simpara>.75</simpara></entry>
-<entry><simpara>.90</simpara></entry>
-<entry><simpara>.95</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>3</simpara></entry>
+<entry align="left" valign="top"><simpara>4</simpara></entry>
+<entry align="left" valign="top"><simpara>5</simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>9</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
 </row>
 <row>
-<entry><simpara>88</simpara></entry>
-<entry><simpara>0</simpara></entry>
-<entry><simpara>30</simpara></entry>
-<entry><simpara>11.08</simpara></entry>
-<entry><simpara>1.0</simpara></entry>
-<entry><simpara>1.0</simpara></entry>
-<entry><simpara>3.0</simpara></entry>
-<entry><simpara>6.0</simpara></entry>
-<entry><simpara>14.0</simpara></entry>
-<entry><simpara>29.1</simpara></entry>
-<entry><simpara>40.0</simpara></entry>
+<entry align="left" valign="top"><simpara>Frequency</simpara></entry>
+<entry align="left" valign="top"><simpara>29</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>11</simpara></entry>
+<entry align="left" valign="top"><simpara>9</simpara></entry>
+<entry align="left" valign="top"><simpara>8</simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
+<entry align="left" valign="top"><simpara>5</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>%</simpara></entry>
+<entry align="left" valign="top"><simpara>33</simpara></entry>
+<entry align="left" valign="top"><simpara>18</simpara></entry>
+<entry align="left" valign="top"><simpara>12</simpara></entry>
+<entry align="left" valign="top"><simpara>10</simpara></entry>
+<entry align="left" valign="top"><simpara>9</simpara></entry>
+<entry align="left" valign="top"><simpara>7</simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
+<entry align="left" valign="top"><simpara>2</simpara></entry>
+<entry align="left" valign="top"><simpara>1</simpara></entry>
 </row>
 </tbody>
 </tgroup>
-</table>
+</informaltable>
+<simpara><emphasis role="strong">ncontrols : Number of control</emphasis></simpara>
+<informaltable
+frame="all"
+rowsep="1" colsep="1"
+>
+<tgroup cols="11">
+<colspec colname="col_1" colwidth="9*"/>
+<colspec colname="col_2" colwidth="9*"/>
+<colspec colname="col_3" colwidth="9*"/>
+<colspec colname="col_4" colwidth="9*"/>
+<colspec colname="col_5" colwidth="9*"/>
+<colspec colname="col_6" colwidth="9*"/>
+<colspec colname="col_7" colwidth="9*"/>
+<colspec colname="col_8" colwidth="9*"/>
+<colspec colname="col_9" colwidth="9*"/>
+<colspec colname="col_10" colwidth="9*"/>
+<colspec colname="col_11" colwidth="9*"/>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>n</simpara></entry>
+<entry align="left" valign="top"><simpara>missing</simpara></entry>
+<entry align="left" valign="top"><simpara>unique</simpara></entry>
+<entry align="left" valign="top"><simpara>Mean</simpara></entry>
+<entry align="left" valign="top"><simpara>.05</simpara></entry>
+<entry align="left" valign="top"><simpara>.10</simpara></entry>
+<entry align="left" valign="top"><simpara>.25</simpara></entry>
+<entry align="left" valign="top"><simpara>.50</simpara></entry>
+<entry align="left" valign="top"><simpara>.75</simpara></entry>
+<entry align="left" valign="top"><simpara>.90</simpara></entry>
+<entry align="left" valign="top"><simpara>.95</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>88</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>30</simpara></entry>
+<entry align="left" valign="top"><simpara>11.08</simpara></entry>
+<entry align="left" valign="top"><simpara>1.0</simpara></entry>
+<entry align="left" valign="top"><simpara>1.0</simpara></entry>
+<entry align="left" valign="top"><simpara>3.0</simpara></entry>
+<entry align="left" valign="top"><simpara>6.0</simpara></entry>
+<entry align="left" valign="top"><simpara>14.0</simpara></entry>
+<entry align="left" valign="top"><simpara>29.1</simpara></entry>
+<entry align="left" valign="top"><simpara>40.0</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
 <simpara>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</simpara>
+<simpara><emphasis role="strong">age : Age \[Years\]</emphasis></simpara>
+<informaltable
+frame="all"
+rowsep="1" colsep="1"
+>
+<tgroup cols="3">
+<colspec colname="col_1" colwidth="33*"/>
+<colspec colname="col_2" colwidth="33*"/>
+<colspec colname="col_3" colwidth="33*"/>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara>n</simpara></entry>
+<entry align="left" valign="top"><simpara>missing</simpara></entry>
+<entry align="left" valign="top"><simpara>unique</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>88</simpara></entry>
+<entry align="left" valign="top"><simpara>0</simpara></entry>
+<entry align="left" valign="top"><simpara>6</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
+<informaltable
+frame="all"
+rowsep="1" colsep="1"
+>
+<tgroup cols="7">
+<colspec colname="col_1" colwidth="14*"/>
+<colspec colname="col_2" colwidth="14*"/>
+<colspec colname="col_3" colwidth="14*"/>
+<colspec colname="col_4" colwidth="14*"/>
+<colspec colname="col_5" colwidth="14*"/>
+<colspec colname="col_6" colwidth="14*"/>
+<colspec colname="col_7" colwidth="14*"/>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara>25-34</simpara></entry>
+<entry align="left" valign="top"><simpara>35-44</simpara></entry>
+<entry align="left" valign="top"><simpara>45-54</simpara></entry>
+<entry align="left" valign="top"><simpara>55-64</simpara></entry>
+<entry align="left" valign="top"><simpara>65-74</simpara></entry>
+<entry align="left" valign="top"><simpara>75+</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>Frequency</simpara></entry>
+<entry align="left" valign="top"><simpara>15</simpara></entry>
+<entry align="left" valign="top"><simpara>15</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>16</simpara></entry>
+<entry align="left" valign="top"><simpara>15</simpara></entry>
+<entry align="left" valign="top"><simpara>11</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>%</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>18</simpara></entry>
+<entry align="left" valign="top"><simpara>18</simpara></entry>
+<entry align="left" valign="top"><simpara>17</simpara></entry>
+<entry align="left" valign="top"><simpara>12</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
 </section>
 <section id="_plot">
 <title>plot</title>

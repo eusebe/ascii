@@ -193,6 +193,13 @@ describe
 
 <<describe>>=
 library(Hmisc)
+label(esoph$agegp) <- "Age group"
+label(esoph$alcgp) <- "Alcohol group"
+label(esoph$tobgp) <- "Tobacco group"
+label(esoph$ncontrols) <- "Number of control"
+label(esoph$age) <- "Age"
+units(esoph$age) <- "Years"
+
 ascii(describe(esoph))
 @
 
