@@ -5,7 +5,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
     # des : le titre 
     des <- x$descript
     if (length(x$units)) 
-      des <- paste(des, " \\[", x$units, "\\]", sep = "")
+      des <- paste(des, " [", x$units, "]", sep = "")
         if (length(x$format)) 
           des <- paste(des, "  Format:", x$format, sep = "")
             dim.counts <- dim(x$count)
