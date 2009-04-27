@@ -1,5 +1,5 @@
 # from xtable package
-ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 0, decimal.mark = ".", na.print = "", caption = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
+ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 0, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", ...){
 
   if (inherits(x, "ts") && !is.null(ncol(x))) {
     tp.1 <- trunc(time(x))
@@ -33,7 +33,7 @@ ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, forma
   obj <- asciiDataFrame$new(x = as.data.frame(tmp), include.rownames = include.rownames,
       include.colnames = include.colnames, format = format,
       digits = digits, decimal.mark = decimal.mark, na.print = na.print,
-      caption = caption, width = width, frame = frame, grid = grid,
+      caption = caption, caption.level = caption.level, width = width, frame = frame, grid = grid,
       valign = valign, header = header, footer = footer, align = align,
       col.width = col.width, style = style)
   class(obj) <- c("ascii", "proto", "environment")

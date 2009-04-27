@@ -10,6 +10,7 @@ asciiDataFrame <- proto(expr = {
     decimal.mark,
     na.print,
     caption,
+    caption.level,
     width,
     frame,
     grid,
@@ -27,6 +28,7 @@ asciiDataFrame <- proto(expr = {
     decimal.mark = decimal.mark,
     na.print = na.print,
     caption = caption,
+    caption.level = caption.level, 
     width = width,
     frame = frame,
     grid = grid,
@@ -89,7 +91,7 @@ asciiDataFrame <- proto(expr = {
     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
     maxchars <- max(nchar(rows)) - 1
     topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
-    cat(header.asciidoc(caption = .$caption, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, cols = cols(ncol(charac.x), align = .$align, col.width = .$col.width, style = .$style), width = .$width))
+    cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, cols = cols(ncol(charac.x), align = .$align, col.width = .$col.width, style = .$style), width = .$width))
     cat(topbot, "\n")
     cat(rows, sep = "\n")
     cat(topbot, "\n")
@@ -125,7 +127,7 @@ asciiDataFrame <- proto(expr = {
       rows[length(rows)] <- paste("|", rows[length(rows)], sep = "")
     }
     if (.$frame == "" | .$frame == "all") rows <- paste(rows, " |", sep = "")
-    if (.$caption != "") cat(.$caption, "\n", sep = "")
+    cat(header.t2t(caption = .$caption, caption.level = .$caption.level))
     cat(rows, sep = "\n")
   }
 
@@ -161,9 +163,11 @@ asciiList <- proto(expr = {
   new <- function(.,
     x,
     caption, 
+    caption.level, 
     list.type) proto(.,
     x = x,
     caption = caption, 
+    caption.level = caption.level, 
     list.type = list.type)
 
   show.asciidoc <- function(.) {
@@ -176,7 +180,7 @@ asciiList <- proto(expr = {
       tmp <- sub("(^.*)", paste(mark, "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, .$x[[i]], perl = TRUE))
       charac.x[i] <- sub(paste('(^\\', mark, '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
-    if (.$caption != "") cat(".", .$caption, "\n", sep = "")
+    cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
   }
   show.t2t <- function(.) {
@@ -189,7 +193,7 @@ asciiList <- proto(expr = {
       tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, .$x[[i]], perl = TRUE)
       charac.x[i] <- sub("(^ *)", paste("\\1", mark, indent.mark, sep = ""), tmp)
     }
-    if (.$caption != "") cat(.$caption, "\n", sep = "")
+    cat(header.t2t(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
   }
 })

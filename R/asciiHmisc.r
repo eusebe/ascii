@@ -12,7 +12,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
             if (is.null(dim.counts)) {counts <-as.character(x$count)} else {
             counts <- matrix(as.character(x$count), dim.counts[1], dim.counts[2])}
             names(counts) <- names(x$count)
-            counts <- ascii(counts, include.colnames = TRUE, caption = des)
+            counts <- ascii(counts, include.colnames = TRUE, caption = des, caption.level = "s")
             val <- x$values
             if (length(val)) {
               if (!is.matrix(val)) {
@@ -81,6 +81,8 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
 ascii.describe <- function (x, condense = TRUE, ...) 
 {
   at <- attributes(x)
+  des <- ascii(as.list(c(paste(at$dimensions[2], "Variable"), paste(at$dimensions[1], "Observations"))), caption = at$descrip, caption.level = ".")
+  
     if (length(at$dimensions)) {
       xx <- lapply(x, ascii.describe.single, condense = condense)
         res <- NULL
@@ -91,6 +93,11 @@ ascii.describe <- function (x, condense = TRUE, ...)
         }
     }
     else res <- ascii.describe.single(x, condense = condense)
+
+  if (length(at$naprint)) { na <- ascii(as.list(at$naprint)) ; res <- asciiMixed$new(des, na, res) }
+  else res <- asciiMixed$new(des, res)
+  class(res) <- c("ascii", "proto", "environment")
+
   return(res)
 }
 

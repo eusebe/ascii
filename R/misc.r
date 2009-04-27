@@ -28,7 +28,7 @@ cols <- function(ncol, align = "", col.width = 1, style = "") {
 #~ cols(ncol = 3, align = "llrclr")
 
 # generate headers for asciidoc
-header.asciidoc <- function(caption = "", frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, cols = "", width = 0) {
+header.asciidoc <- function(caption = "", caption.level = "", frame = "", grid = "", valign = "", header = FALSE, footer = FALSE, cols = "", width = 0) {
 
   if (frame != "") frame <- paste('frame="', switch(frame, topbot = "topbot", sides = "sides", all = "all", none = "none"), '"', sep = "")
   if (grid != "") grid <- paste('grid="', switch(grid, all = "all", rows = "rows", cols = "cols", none = "none"), '"', sep = "")
@@ -54,20 +54,50 @@ header.asciidoc <- function(caption = "", frame = "", grid = "", valign = "", he
     res <- paste("[", paste(listarg, collapse = ","), "]\n", sep = "")
   }
   else res <- ""
-  if (caption != "") res <- paste(".", caption, "\n", res, sep = "")
+  if (caption != "") {
+    if (caption.level == ".") res <- paste(".", caption, "\n", res, sep = "") 
+    else if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n", res, sep = "") } 
+    else if (caption.level == "s") res <- paste(beauty.asciidoc(caption, "s"), "\n", sep = "")
+    else if (caption.level == "e") res <- paste(beauty.asciidoc(caption, "e"), "\n", sep = "")
+    else if (caption.level == "m") res <- paste(beauty.asciidoc(caption, "m"), "\n", sep = "")
+    else res <- paste(caption, "\n", res, sep = "") 
+  }
   return(res)
 }
-#~ cat(header.asciidoc())
-#~ cat(header.asciidoc(frame = "none"))
-#~ cat(header.asciidoc(frame = "none", cols = cols(ncol = 3, align = "llrclr")))
-#~ cat(header.asciidoc(caption = "A title", frame = "none", cols = cols(ncol = 3, align = "llrclr")))
-#~ cat(header.asciidoc(caption = "A title"))
-#~ cat(header.asciidoc(caption = "A title", header = T, footer = T))
-#~ cat(header.asciidoc(caption = "A title", width = 30))
+
+# beautify for asciidoc
+beauty.asciidoc <- function(x, beauti = c("e", "m", "s")) {
+  if (beauti == "s") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*.*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
+    if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\2", x[!y]))
+  }
+  if (beauti == "e") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("'.*'", x)+1)/2) # it seulement si != de "" et si pas de it
+    if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1'\\2", sub("([:alpha:]*)( *$)", "\\1'\\2", x[!y])) 
+  }
+  if (beauti == "m") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\+.*\\+", x)+1)/2) # it seulement si != de "" et si pas de mono
+    if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1\\+\\2", sub("([:alpha:]*)( *$)", "\\1\\+\\2", x[!y])) 
+  }
+  return(x)
+}
 
 ############
 # TXT2TAGS #
 ############
+
+# generate headers for asciidoc
+header.t2t <- function(caption = "", caption.level = "") {
+  res <- ""
+  if (caption != "") {
+    if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n", sep = "") }
+    else if (caption.level == "s") res <- paste(beauty.t2t(caption, "s"), "\n", sep = "")
+    else if (caption.level == "e") res <- paste(beauty.t2t(caption, "e"), "\n", sep = "")
+    else if (caption.level == "m") res <- paste(beauty.t2t(caption, "m"), "\n", sep = "")
+    else res <- paste(caption, "\n", sep = "") 
+  }
+  return(res)
+}
 
 # beautify for t2t
 beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
