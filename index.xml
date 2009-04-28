@@ -177,6 +177,21 @@ Character vector of length 1 containing the table+s caption
 <row>
 <entry>
 <simpara>
+<literal>caption.level</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character or numeric vector of length 1 containing the
+          \code{"."} (block titles  in asciidoc markup), \code{"s"} (strong),
+          \code{"e"} (emphasis), \code{"m"} (monospaced) or \code{""} (no markup).
+          Default is \code{"."}.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
 <literal>width</literal>
 </simpara>
 </entry>
@@ -308,6 +323,19 @@ Character vector of length one indicating the style of the
 <row>
 <entry>
 <simpara>
+<literal>list.type</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one indicating the list type
+              (<literal>"bullet"</literal>, <literal>"number"</literal> or <literal>"none"</literal>). Default is <emphasis>"bullet"</emphasis>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
 <literal>&#8230;</literal>
 </simpara>
 </entry>
@@ -342,19 +370,6 @@ An object of class <literal>"ascii"</literal>
 Type of syntax produce.  Possible values for <literal>type</literal> are
   <literal>"asciidoc"</literal>, <literal>"t2t"</literal> or <literal>"textile"</literal>. Default value produce
   AsciiDoc syntax.
-</simpara>
-</entry>
-</row>
-<row>
-<entry>
-<simpara>
-<literal>list.type</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating the list type
-          (<literal>"bullet"</literal>, <literal>"number"</literal> or <literal>"none"</literal>). Default is <emphasis>"bullet"</emphasis>.
 </simpara>
 </entry>
 </row>
