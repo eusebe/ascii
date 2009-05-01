@@ -1280,12 +1280,22 @@ txt2tags -t html yourdocument.t2t</screen>
 <itemizedlist>
 <listitem>
 <simpara>
-txt2tags: <ulink url="http://txt2tags.sourceforge.net">http://txt2tags.sourceforge.net</ulink>
+asciidoc: <ulink url="http://www.methods.co.nz/asciidoc">http://www.methods.co.nz/asciidoc</ulink>
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-asciidoc: <ulink url="http://www.methods.co.nz/asciidoc">http://www.methods.co.nz/asciidoc</ulink>
+txt2tags: <ulink url="http://txt2tags.sourceforge.net">http://txt2tags.sourceforge.net</ulink>
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_ascii_for_real">
+<title>ascii for real</title>
+<itemizedlist>
+<listitem>
+<simpara>
+Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">a vignette</ulink> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <ulink url="http://eusebe.github.com/ascii">ascii</ulink>.
 </simpara>
 </listitem>
 </itemizedlist>

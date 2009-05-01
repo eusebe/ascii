@@ -259,5 +259,11 @@ For example, you can see the source of http://eusebe.github.com/ascii/index.Rnw[
 more informations
 -----------------
 
-- txt2tags: http://txt2tags.sourceforge.net
 - asciidoc: http://www.methods.co.nz/asciidoc
+- txt2tags: http://txt2tags.sourceforge.net
+
+ascii for real
+--------------
+
+ - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[a vignette] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[ascii].
+ 
