@@ -1,4 +1,4 @@
-export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "SweaveAscii")
+export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "SweaveAscii", "SweaveSyntaxAscii")
 import(methods)
 import(utils)
 
