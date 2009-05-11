@@ -1,6 +1,8 @@
 Test de asciidoc
 ================
 
+\SweaveOpts{echo=F}
+
 <<>>=
 options(asciiType = "asciidoc")
 2+2

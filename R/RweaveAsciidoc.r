@@ -319,6 +319,7 @@ RweaveAsciidocRuncode <- makeRweaveAsciidocCodeRunner()
 
 RweaveAsciidocWritedoc <- function(object, chunk)
 {
+    SweaveParseOptions <- getAnywhere("SweaveParseOptions")$objs[[1]]
     linesout <- attr(chunk, "srclines")
 
     while(length(pos <- grep(object$syntax$docexpr, chunk)))
