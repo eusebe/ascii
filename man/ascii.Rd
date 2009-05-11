@@ -34,7 +34,7 @@
 \alias{package-ascii}
 \title{Export R object to asciidoc or txt2tags}
 \description{
-  Function converting an R object to an \code{ascii} object, which can then be printed with Asciidoc, txt2tags or textile syntax.
+  Function converting an R object to an \code{ascii} object, which can then be printed with Asciidoc or txt2tags syntax.
 }
 \usage{
   \method{ascii}{default}(x, 
