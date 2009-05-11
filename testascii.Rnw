@@ -1,7 +1,7 @@
 Test de asciidoc
 ================
 
-\SweaveOpts{echo=F}
+SweaveOpts:[echo=F, width = 15]
 
 <<>>=
 options(asciiType = "asciidoc")
@@ -47,7 +47,7 @@ plot(2)
 2+2
 @
 
-Le résultat de l'opération 2+2 est \Sexpr{2+2}.
+Le résultat de l'opération 2+2 est Sexpr:[2+2].
 
 <<results=ascii>>=
 ascii(summary(table(1:4, 1:4)), caption  = "A title for list")
