@@ -27,7 +27,7 @@
   \code{ext} (extension) for the format of figure that will be inserted, and
   \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png and jpg figures.
   
-  \code{ascii} package provides a SweaveSyntax object (\code{SweaveSyntaxAsciidoc}). 
+  \code{ascii} package provides a SweaveSyntax object (\code{SweaveSyntaxAscii}). 
   If used, \code{\SweaveOpts{}} is replaced by \code{SweaveOpts:[]}, 
   and \code{\Sexpr{}} is replaced by \code{Sexpr:[]}.
 }
