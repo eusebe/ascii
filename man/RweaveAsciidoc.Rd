@@ -21,9 +21,15 @@
 \author{ David Hajage \email{dhajage@gmail.com}}
 \note{
   In order to work properly, noweb codes have to be located at the beginning of a line (no indentation). 
-  Compare with RweaveLatex driver, RweaveAsciidoc provides two new options : 
-  \code{res} for the resolution of jpg or png figure (if produced), and 
-  \code{ext} (extension) for the format of figure that will be inserted.
+  
+  Compare with RweaveLatex driver, RweaveAsciidoc provides four new options : 
+  \code{res} for the resolution of jpg or png figure (if produced),  
+  \code{ext} (extension) for the format of figure that will be inserted, and
+  \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png and jpg figures.
+  
+  \code{ascii} package provides a SweaveSyntax object (\code{SweaveSyntaxAsciidoc}). 
+  If used, \code{\SweaveOpts{}} is replaced by \code{SweaveOpts:[]}, 
+  and \code{\Sexpr{}} is replaced by \code{Sexpr:[]}.
 }
 
 
