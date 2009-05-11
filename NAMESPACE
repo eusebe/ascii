@@ -1,5 +1,6 @@
 export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t")
 import(methods)
+import(utils)
 
 S3method("ascii", "anova")
 S3method("ascii", "aov")
