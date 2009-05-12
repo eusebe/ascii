@@ -1,0 +1,20 @@
+2009/05/11
+~~~~~~~~~~
+
+* +\SweaveOpts{}+ now works
+* add +SweaveSyntaxAscii+ (+SweaveOpts:[]+, +Sexpr:[]+) 
+* add a simple wrapper for +Sweave()+ (+SweaveAscii()+) that use +RweaveAsciidoc+ and +SweaveSyntaxAscii+ as default
+
+
+2009/04/27
+~~~~~~~~~~
+
+* add a +caption.level+ argument
+* improve +ascii.describe+ output (package +Hmisc+)
+
+
+2009/04/08
+~~~~~~~~~~
+
+* update DESCRIPTION (with homepage)
+* support for +describe+ function in package +Hmisc+

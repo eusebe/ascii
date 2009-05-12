@@ -471,6 +471,53 @@ function generateToc(toclevels) {
 <div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing asciidoc or txt2tags document with embeded R commands.</p></div>
 </div>
 </div>
+<h2 id="_news">news</h2>
+<div class="sectionbody">
+<h3 id="_2009_05_11">2009/05/11</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>\SweaveOpts{}</tt> now works
+</p>
+</li>
+<li>
+<p>
+add <tt>SweaveSyntaxAscii</tt> (<tt>SweaveOpts:[]</tt>, <tt>Sexpr:[]</tt>)
+</p>
+</li>
+<li>
+<p>
+add a simple wrapper for <tt>Sweave()</tt> (<tt>SweaveAscii()</tt>) that use <tt>RweaveAsciidoc</tt> and <tt>SweaveSyntaxAscii</tt> as default
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_04_27">2009/04/27</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+add a <tt>caption.level</tt> argument
+</p>
+</li>
+<li>
+<p>
+improve <tt>ascii.describe</tt> output (package <tt>Hmisc</tt>)
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_04_08">2009/04/08</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+update DESCRIPTION (with homepage)
+</p>
+</li>
+<li>
+<p>
+support for <tt>describe</tt> function in package <tt>Hmisc</tt>
+</p>
+</li>
+</ul></div>
+</div>
 <h2 id="_short_example">short example</h2>
 <div class="sectionbody">
 <div class="literalblock">
@@ -523,12 +570,22 @@ cellspacing="0" cellpadding="4">
 <div class="ulist"><ul>
 <li>
 <p>
-a generic method for common R objects: <tt>ascii()</tt>. Default argument depends of R object.
+a generic method for common R objects: <tt>ascii()</tt>. Default argument depends of R object,
 </p>
 </li>
 <li>
 <p>
-two Sweave drivers: <tt>Sweave("yourfile.Rnw", RweaveAsciidoc())</tt> or <tt>Sweave("yourfile.Rnw", RweaveT2t())</tt>.
+two Sweave drivers: <tt>Sweave("yourfile.Rnw", RweaveAsciidoc())</tt> or <tt>Sweave("yourfile.Rnw", RweaveT2t())</tt>,
+</p>
+</li>
+<li>
+<p>
+a <tt>SweaveSyntax</tt> object (<tt>SweaveSyntaxAscii</tt>) that replace <tt>\Sexpr{}</tt> by <tt>+ and +\SweaveOpts{}</tt> by <tt>SweaveOpts![]</tt>,
+</p>
+</li>
+<li>
+<p>
+a simple wrapper for <tt>Sweave()</tt> names <tt>SweaveAscii()</tt> that uses <tt>RweaveAsciidoc()</tt> and <tt>SweaveSyntaxAscii</tt> as default.
 </p>
 </li>
 </ul></div>
@@ -1762,7 +1819,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-05-01 17:23:32 CEST
+Last updated 2009-05-12 07:54:51 CEST
 </div>
 </div>
 </body>

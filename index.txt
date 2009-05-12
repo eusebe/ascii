@@ -4,6 +4,12 @@ David Hajage <dhajage[at]gmail[dot]com>
 
 http://eusebe.github.com/ascii[ascii] is a R package for writing asciidoc or txt2tags document with embeded R commands.
 
+
+news
+----
+
+include::NEWS[]
+
 short example
 -------------
 
@@ -41,8 +47,11 @@ what ascii provides
 
 ascii provided :
 
-- a generic method for common R objects: +ascii()+. Default argument depends of R object.
-- two Sweave drivers: +Sweave("yourfile.Rnw", RweaveAsciidoc())+ or +Sweave("yourfile.Rnw", RweaveT2t())+. 
+* a generic method for common R objects: +ascii()+. Default argument depends of R object,
+* two Sweave drivers: +Sweave("yourfile.Rnw", RweaveAsciidoc())+ or +Sweave("yourfile.Rnw", RweaveT2t())+,
+* a +SweaveSyntax+ object (+SweaveSyntaxAscii+) that replace +\Sexpr{}+ by ++ and +\SweaveOpts{}+ by +SweaveOpts![]+,
+* a simple wrapper for +Sweave()+ names +SweaveAscii()+ that uses +RweaveAsciidoc()+ and +SweaveSyntaxAscii+ as default.
+
 
 ascii manual
 ------------

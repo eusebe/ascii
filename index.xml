@@ -12,6 +12,59 @@
     <authorinitials>DH</authorinitials>
 </articleinfo>
 <simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing asciidoc or txt2tags document with embeded R commands.</simpara>
+<section id="_news">
+<title>news</title>
+<section id="_2009_05_11">
+<title>2009/05/11</title>
+<itemizedlist>
+<listitem>
+<simpara>
+<literal>\SweaveOpts{}</literal> now works
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+add <literal>SweaveSyntaxAscii</literal> (<literal>SweaveOpts:[]</literal>, <literal>Sexpr:[]</literal>)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+add a simple wrapper for <literal>Sweave()</literal> (<literal>SweaveAscii()</literal>) that use <literal>RweaveAsciidoc</literal> and <literal>SweaveSyntaxAscii</literal> as default
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_2009_04_27">
+<title>2009/04/27</title>
+<itemizedlist>
+<listitem>
+<simpara>
+add a <literal>caption.level</literal> argument
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+improve <literal>ascii.describe</literal> output (package <literal>Hmisc</literal>)
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+<section id="_2009_04_08">
+<title>2009/04/08</title>
+<itemizedlist>
+<listitem>
+<simpara>
+update DESCRIPTION (with homepage)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+support for <literal>describe</literal> function in package <literal>Hmisc</literal>
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
+</section>
 <section id="_short_example">
 <title>short example</title>
 <literallayout class="monospaced">&lt;&lt;&gt;&gt;=
@@ -55,12 +108,22 @@ rowsep="1" colsep="1"
 <itemizedlist>
 <listitem>
 <simpara>
-a generic method for common R objects: <literal>ascii()</literal>. Default argument depends of R object.
+a generic method for common R objects: <literal>ascii()</literal>. Default argument depends of R object,
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-two Sweave drivers: <literal>Sweave("yourfile.Rnw", RweaveAsciidoc())</literal> or <literal>Sweave("yourfile.Rnw", RweaveT2t())</literal>.
+two Sweave drivers: <literal>Sweave("yourfile.Rnw", RweaveAsciidoc())</literal> or <literal>Sweave("yourfile.Rnw", RweaveT2t())</literal>,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+a <literal>SweaveSyntax</literal> object (<literal>SweaveSyntaxAscii</literal>) that replace <literal>\Sexpr{}</literal> by <literal>+ and +\SweaveOpts{}</literal> by <literal>SweaveOpts![]</literal>,
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+a simple wrapper for <literal>Sweave()</literal> names <literal>SweaveAscii()</literal> that uses <literal>RweaveAsciidoc()</literal> and <literal>SweaveSyntaxAscii</literal> as default.
 </simpara>
 </listitem>
 </itemizedlist>
