@@ -59,12 +59,14 @@ blabla
 toto <- matrix(1:4, 2, 2)
 tata <- ascii(toto)
 titi <- ascii(summary(table(toto)))
-tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
-tutu$show.asciidoc()
+#tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
+#tutu$show.asciidoc()
 @
 
 <<results=ascii>>=
+library(Hmisc)
 ascii(describe(esoph))
 @
 
+latexmath:[$\frac{1}{2}]
 
