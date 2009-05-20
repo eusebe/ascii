@@ -44,9 +44,12 @@ asciiDataFrame <- proto(expr = {
     numerics <- sapply(.$x, is.numeric)
     # adaption de certains parametres
     # format <- unlist(strsplit(format, "")) # No, format could be "fg" -> must be a vector
-    format <- rep(.$format, length.out = ncol(.$x))
+    if (!is.matrix(.$format)) format <- matrix(rep(.$format, length.out = ncol(.$x)), nrow(.$x), ncol(.$x), F)
+    else format <- apply(t(apply(.$format, 1, rep, length = nrow(.$x))), 2, rep, length = ncol(.$x))
     digits <- rep(.$digits, length.out = ncol(.$x))
-
+    if (!is.matrix(.$digits)) digits <- matrix(rep(.$digits, length.out = ncol(.$x)), nrow(.$x), ncol(.$x), F)
+    else digits <- apply(t(apply(.$digits, 1, rep, length = nrow(.$x))), 2, rep, length = ncol(.$x))
+ 
     # transformation de toute la dataframe en caracteres
     charac.x <- apply(format(.$x, trim = T), 2, as.character)
     if (is.vector(charac.x)) charac.x <- t(charac.x) # si une seule dimension
@@ -61,8 +64,8 @@ asciiDataFrame <- proto(expr = {
       cnoms <- c("", cnoms)
 
       # adaptation de certains parametres
-      format <- c("f", format)
-      digits <- c(0, digits)
+      format <- cbind("f", format)
+      digits <- cbind(0, digits)
       numerics <- c(FALSE, numerics)
     }
     if (.$include.colnames) {
@@ -75,8 +78,8 @@ asciiDataFrame <- proto(expr = {
     for (i in 1:ncol(charac.x)) {
       if (numerics[i]) {
         charac.x[, i][charac.x[, i] == "NA"] <- "" # necessaire avant le formatage des nombres avec formatC(as.numeric(...))
-        if (.$include.colnames)  charac.x[2:nrow(charac.x),i] <- formatC(as.numeric(charac.x[2:nrow(charac.x),i]), format = format[i], digits = digits[i], decimal.mark = .$decimal.mark)
-        if (!.$include.colnames) charac.x[,i] <- formatC(as.numeric(charac.x[,i]), format = format[i], digits = digits[i], decimal.mark = .$decimal.mark)
+        if (.$include.colnames)  charac.x[2:nrow(charac.x),i] <- apply(as.matrix(as.numeric(charac.x[2:nrow(charac.x),i])), 2, Vectorize(formatC), digits = digits[,i], format = format[,i])
+        if (!.$include.colnames)  charac.x[,i] <- apply(as.matrix(as.numeric(charac.x[,i])), 2, Vectorize(formatC), digits = digits[,i], format = format[,i])
       }
       charac.x[,i] <- sub("(^ *)(NA)( *$)", replacement, charac.x[,i])
       charac.x[,i] <- format(charac.x[,i], justify = "left")
