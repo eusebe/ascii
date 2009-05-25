@@ -1,12 +1,12 @@
 # From Hmisc package
-ascii.describe.single <- function (x, condense = TRUE, ...) 
+ascii.describe.single <- function (x, condense = TRUE, ...)
 {
    wide <- .Options$width
-    # des : le titre 
+    # des : le titre
     des <- x$descript
-    if (length(x$units)) 
+    if (length(x$units))
       des <- paste(des, " [", x$units, "]", sep = "")
-        if (length(x$format)) 
+        if (length(x$format))
           des <- paste(des, "  Format:", x$format, sep = "")
             dim.counts <- dim(x$count)
             if (is.null(dim.counts)) {counts <-as.character(x$count)} else {
@@ -16,11 +16,11 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
             val <- x$values
             if (length(val)) {
               if (!is.matrix(val)) {
-                if (length(val) != 10 || !all(names(val) == c("L1", 
-                        "L2", "L3", "L4", "L5", "H5", "H4", "H3", "H2", 
+                if (length(val) != 10 || !all(names(val) == c("L1",
+                        "L2", "L3", "L4", "L5", "H5", "H4", "H3", "H2",
                         "H1"))) {
                   cat("\n")
-                    val <- paste(names(val), ifelse(val > 1, paste(" (", 
+                    val <- paste(names(val), ifelse(val > 1, paste(" (",
                             val, ")", sep = ""), ""), sep = "")
                     val <- strwrap(val, exdent = 4)
                     val <- as.list(sub('(^    )(.*)', '\t\\2', val))
@@ -30,7 +30,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
                   if (condense) {
                     low <- paste("lowest:", paste(val[1:5], collapse = " "))
                       hi <- paste("highest:", paste(val[6:10], collapse = " "))
-                      if (nchar(low) + nchar(hi) + 2 > wide) 
+                      if (nchar(low) + nchar(hi) + 2 > wide)
                         val <- as.list(c(low, hi))
                       else val <- as.list(paste(low, hi, sep = ", "))
                     val <- ascii(val, list.type = "none")
@@ -46,12 +46,12 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
               }
               else {
                 lev <- dimnames(val)[[2]]
-                  if (condense && (mean(nchar(lev)) > 10 | length(lev) < 
+                  if (condense && (mean(nchar(lev)) > 10 | length(lev) <
                         5)) {
                     z <- ""
                       len <- 0
                       for (i in 1:length(lev)) {
-                        w <- paste(lev[i], " (", val[1, i], ", ", val[2, 
+                        w <- paste(lev[i], " (", val[1, i], ", ", val[2,
                             i], "%)", sep = "")
                           if (i == 1) z <- w
                           else z <- paste(z, w, sep = ", ")
@@ -78,11 +78,22 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
 
 
 
-ascii.describe <- function (x, condense = TRUE, ...) 
+ascii.describe <- function (x, condense = TRUE, ...)
 {
   at <- attributes(x)
-  des <- ascii(as.list(c(paste(at$dimensions[2], "Variable"), paste(at$dimensions[1], "Observations"))), caption = at$descrip, caption.level = ".")
-  
+  descrip <- ifelse(is.null(at$descript), "", at$descrip)
+  if (is.null(at$dimensions[2])) {
+    variable <- NULL
+  } else {
+    variable <- paste(at$dimensions[2], "Variable")
+  }
+  if (is.null(at$dimensions[1])) {
+    observation <- NULL
+  } else {
+    observation <- paste(at$dimensions[1], "Observations")
+  }
+  des <- ascii(list(variable, observation), caption = descrip, caption.level = ".")
+
     if (length(at$dimensions)) {
       xx <- lapply(x, ascii.describe.single, condense = condense)
         res <- NULL
@@ -101,8 +112,8 @@ ascii.describe <- function (x, condense = TRUE, ...)
   return(res)
 }
 
-# ascii.summary.formula.response <- function (x, vnames = c("labels", "names"), prUnits = TRUE, abbreviate.dimnames = FALSE, 
-#     prefix.width, min.colwidth, formatArgs = NULL, ...) 
+# ascii.summary.formula.response <- function (x, vnames = c("labels", "names"), prUnits = TRUE, abbreviate.dimnames = FALSE,
+#     prefix.width, min.colwidth, formatArgs = NULL, ...)
 # {
 #   stats <- x
 #     stats <- oldUnclass(stats)
@@ -113,23 +124,23 @@ ascii.describe <- function (x, condense = TRUE, ...)
 #     vlabels <- at$labels
 #     if (prUnits) {
 #       atu <- translate(at$units, "*", " ")
-#         vlabels <- ifelse(atu == "", vlabels, paste(vlabels, 
+#         vlabels <- ifelse(atu == "", vlabels, paste(vlabels,
 #               " [", atu, "]", sep = ""))
 #     }
-#   entete <- list(paste(at$ylabel, if (ns > 1) 
-#       paste(" by", if (ul) 
+#   entete <- list(paste(at$ylabel, if (ns > 1)
+#       paste(" by", if (ul)
 #         at$strat.label
-#         else at$strat.name), "    N=", at$n, if (at$nmiss) 
-#       paste(", ", at$nmiss, " Missing", sep = ""), 
+#         else at$strat.name), "    N=", at$n, if (at$nmiss)
+#       paste(", ", at$nmiss, " Missing", sep = ""),
 #       sep = ""))
 #   entete <- ascii(entete, list.type = "none")
 #     d <- dim(stats)
 #     if (exists("print.char.matrix")) {
 #       nr <- length(at$nlevels)
-#         vlab <- if (ul) 
+#         vlab <- if (ul)
 #         at$vlabel
 #         else at$vname
-# #           z <- matrix("", nrow = nr, ncol = 1 + d[2], dimnames = list(vlab, 
+# #           z <- matrix("", nrow = nr, ncol = 1 + d[2], dimnames = list(vlab,
 # #                 NULL))
 #             dz <- dimnames(stats)[[1]]
 #             cstats <- matrix("", nrow = d[1], ncol = d[2])
@@ -140,31 +151,31 @@ ascii.describe <- function (x, condense = TRUE, ...)
 #             }
 #             z <- cbind(vlab, at$dimnames[[1]], cstats)
 #             dimnames(z) <- list(NULL, c("", "", dimnames(stats)[[2]]))
-# 
+#
 # #         is <- 1
 # #           for (i in 1:nr) {
 # #             ie <- is + at$nlevels[i] - 1
 # #               z[i, 1] <- paste(dz[is:ie], collapse = "\n")
-# #               for (j in 1:d[2]) z[i, j + 1] <- paste(cstats[is:ie, 
+# #               for (j in 1:d[2]) z[i, j + 1] <- paste(cstats[is:ie,
 # #                   j], collapse = "\n")
 # #                 is <- ie + 1
 # #           }
-# #         if (missing(prefix.width)) 
+# #         if (missing(prefix.width))
 # #           prefix.width <- max(nchar(dimnames(z)[[1]]))
-# #             if (missing(min.colwidth)) 
-# #               min.colwidth <- max(min(nchar(cstats)[nchar(cstats) > 
+# #             if (missing(min.colwidth))
+# #               min.colwidth <- max(min(nchar(cstats)[nchar(cstats) >
 # #                     0]), min(nchar(dimnames(stats)[[2]])))
 # #                 z <- rbind(c("", dimnames(stats)[[2]]), z)
 # #                  print.char.matrix(z, col.names = FALSE, ...)
 #                  tab <- ascii(z, include.colnames = TRUE)
 #     }
-# #   dz <- if (length(at$strat.levels) == 1) 
+# #   dz <- if (length(at$strat.levels) == 1)
 # #     dimnames(stats)[[2]]
-# #     else paste(rep(at$strat.levels, length = d[2]), dimnames(stats)[[2]], 
+# #     else paste(rep(at$strat.levels, length = d[2]), dimnames(stats)[[2]],
 # #         sep = ":")
-# #       z <- matrix("", ncol = d[2] + 2, nrow = d[1], dimnames = list(rep("", 
+# #       z <- matrix("", ncol = d[2] + 2, nrow = d[1], dimnames = list(rep("",
 # #               d[1]), c("", "", dz)))
-# #         z[, 1] <- if (ul) 
+# #         z[, 1] <- if (ul)
 # #         vlabels
 # #         else at$vname
 # #           z[, 2] <- dimnames(stats)[[1]]
@@ -177,6 +188,6 @@ ascii.describe <- function (x, condense = TRUE, ...)
 #   res <- asciiMixed$new(entete, tab)
 #   class(res) <- c("ascii", "proto", "environment")
 #   return(res)
-# 
+#
 # }
-# 
+#
