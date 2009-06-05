@@ -319,7 +319,6 @@ RweaveAsciidocRuncode <- makeRweaveAsciidocCodeRunner()
 
 RweaveAsciidocWritedoc <- function(object, chunk)
 {
-    SweaveParseOptions <- getAnywhere("SweaveParseOptions")$objs[[1]]
     linesout <- attr(chunk, "srclines")
 
     while(length(pos <- grep(object$syntax$docexpr, chunk)))
@@ -342,7 +341,7 @@ RweaveAsciidocWritedoc <- function(object, chunk)
     {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
                     "\\1", chunk[pos[1L]])
-        object$options <- SweaveParseOptions(opts, object$options,
+        object$options <- utils:::SweaveParseOptions(opts, object$options,
                                              RweaveAsciidocOptions)
             chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
     }
@@ -579,7 +578,7 @@ RtangleAsciidocWritedoc <- function(object, chunk)
     {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
                     "\\1", chunk[pos[1L]])
-        object$options <- SweaveParseOptions(opts, object$options,
+        object$options <- utils:::SweaveParseOptions(opts, object$options,
                                              RweaveAsciidocOptions)
         chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
     }

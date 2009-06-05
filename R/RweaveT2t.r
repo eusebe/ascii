@@ -341,7 +341,7 @@ RweaveT2tWritedoc <- function(object, chunk)
     {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
                     "\\1", chunk[pos[1L]])
-        object$options <- SweaveParseOptions(opts, object$options,
+        object$options <- utils:::SweaveParseOptions(opts, object$options,
                                              RweaveT2tOptions)
             chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
     }
@@ -578,7 +578,7 @@ RtangleT2tWritedoc <- function(object, chunk)
     {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
                     "\\1", chunk[pos[1L]])
-        object$options <- SweaveParseOptions(opts, object$options,
+        object$options <- utils:::SweaveParseOptions(opts, object$options,
                                              RweaveT2tOptions)
         chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
     }
