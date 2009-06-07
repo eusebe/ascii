@@ -44,11 +44,11 @@ asciiDataFrame <- proto(expr = {
     numerics <- sapply(.$x, is.numeric)
     # adaption de certains parametres
     # format <- unlist(strsplit(format, "")) # No, format could be "fg" -> must be a vector
-    if (!is.matrix(.$format)) format <- matrix(rep(.$format, length.out = ncol(.$x)), nrow(.$x), ncol(.$x), F)
-    else format <- apply(t(apply(.$format, 1, rep, length = nrow(.$x))), 2, rep, length = ncol(.$x))
+    if (!is.matrix(.$format)) format <- t(matrix(rep(.$format, length.out = ncol(.$x)), ncol(.$x), nrow(.$x), F))
+    else format <- apply(t(apply(.$format, 1, rep, length = ncol(.$x))), 2, rep, length = nrow(.$x))
     digits <- rep(.$digits, length.out = ncol(.$x))
-    if (!is.matrix(.$digits)) digits <- matrix(rep(.$digits, length.out = ncol(.$x)), nrow(.$x), ncol(.$x), F)
-    else digits <- apply(t(apply(.$digits, 1, rep, length = nrow(.$x))), 2, rep, length = ncol(.$x))
+    if (!is.matrix(.$digits)) digits <- t(matrix(rep(.$digits, length.out = ncol(.$x)), ncol(.$x), nrow(.$x), F))
+    else digits <- apply(t(apply(.$digits, 1, rep, length = ncol(.$x))), 2, rep, length = nrow(.$x))
  
     # transformation de toute la dataframe en caracteres
     charac.x <- apply(format(.$x, trim = T), 2, as.character)
