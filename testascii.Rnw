@@ -102,3 +102,10 @@ ascii(head(esoph), col.width = 2:3,  style = "e", align = "lr", cgroup = c("Majo
 ascii(head(esoph), col.width = 2:3,  style = "em", align = "lrc", cgroup = c("Major1", "Major2"), n.cgroup = c(4, 3), rgroup = "Minor 1", n.rgroup = 7, rstyle = "m")
 @ 
 
+<<results=ascii>>=
+library(reshape)
+names(airquality) <- tolower(names(airquality))
+aqm <- melt(airquality, id=c("month", "day"), na.rm=TRUE)
+toto <- cast(aqm, month + day ~ variable)
+ascii(toto[, -1], rgroup = c("month", paste("Month:", as.character(unique(toto[,1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+@ 

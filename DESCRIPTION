@@ -1,8 +1,8 @@
 Package: ascii
 Type: Package
 Title: Export R objects to asciidoc or txt2tags 
-Version: 0.1.4
-Date: 2009-04-27
+Version: 0.2
+Date: 2009-06-24
 Author: David Hajage
 Maintainer: David Hajage <dhajage@gmail.com>
 Description: Coerce R object to asciidoc or txt2tags syntax. 

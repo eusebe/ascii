@@ -41,7 +41,9 @@
     include.rownames = TRUE, include.colnames = TRUE, 
     format = "f", digits = 2, decimal.mark = ".", na.print = "", 
     caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", 
-    header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", \dots)
+    header = TRUE, footer = FALSE, align = "", col.width = 1, style = "",
+    cgroup = NULL, n.cgroup = NULL, calign = "", cvalign = "", cstyle = "",
+    rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "", rstyle = "", \dots)
   \method{ascii}{describe}(x, condense = TRUE, \dots)
   \method{ascii}{summary.table}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
   \method{ascii}{list}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
@@ -105,6 +107,27 @@
                \code{"a"} (cells can contain any of the AsciiDoc elements that are allowed inside document), 
                \code{"l"} (literal), \code{"v"} (verse; all line breaks are retained). 
                Default is \code{""}.}
+  \item{cgroup}{Character vector defining major column headings.
+                The default is to have none (\code{NULL}).}
+  \item{n.cgroup}{A numeric vector containing the number of columns for which each
+                  element in cgroup is a heading.  For example, specify
+                  \code{cgroup=c("Major 1","Major 2")}, \code{n.cgroup=c(3,3)} if \code{"Major
+                  1"} is to span columns 1-3 and \code{"Major 2"} is to span columns
+                  4-6. Row names count in the column numbers if
+                  \code{include.rownames = TRUE}.}
+  \item{calign}{Character vector of length one defining alignment of major column headings.}
+  \item{cvalign}{Character vector of length one defining vertical alignment of major column headings.}
+  \item{cstyle}{Character vector of length one indicating the style of
+                major column headings}
+  \item{rgroup}{Character vector defining major row headings.
+                The default is to have none (\code{NULL}).}
+  \item{n.rgroup}{A numeric vector containing the number of rows for which each
+                  element in rgroup is a heading. Column names count in the row numbers if
+                  \code{include.colnames = TRUE}.}
+  \item{ralign}{Character vector of length one defining alignment of major row headings.}
+  \item{rvalign}{Character vector of length one defining vertical alignment of major row headings.}
+  \item{rstyle}{Character vector of length one indicating the style of
+                major row headings}
   \item{condense}{default is TRUE to condense the output with regard to the 5
                   lowest and highest values and the frequency table (\code{describe()} in package \code{Hmisc}).}
   \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"} or \code{"none"}).
