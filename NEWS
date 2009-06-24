@@ -2,7 +2,7 @@
 ----------
 
 * version 0.2
-* digit and format accept matrix, (each cells can have a different number of digits and format)
+* digit and format accept matrix, (each cell can have its own number of digits and format)
 * new arguments (+cgroup+, +rgroup+, ...) to define major column and row headings like in Hmisc::latex() (only for asciidoc output)
 * column style and alignment use cell specifiers
 
