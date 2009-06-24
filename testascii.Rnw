@@ -70,6 +70,12 @@ ascii(describe(esoph))
 
 latexmath:[$\frac{1}{2}$]
 
+<<results=ascii>>=
+library(survival)
+ascii(coxph(Surv(aml$time, aml$status) ~ aml$x))
+@
+
+
 == Test des groupements des lignes et des colonnes
 
 <<results=ascii>>=
