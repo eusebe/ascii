@@ -22,8 +22,14 @@ asciiDataFrame <- proto(expr = {
     style,
     cgroup,
     n.cgroup,
+    calign,
+    cvalign,
+    cstyle,    
     rgroup,
-    n.rgroup) proto(.,
+    n.rgroup,
+    ralign,
+    rvalign,
+    rstyle) proto(.,
     x = x,
     include.rownames = include.rownames,
     include.colnames = include.colnames,
@@ -44,8 +50,15 @@ asciiDataFrame <- proto(expr = {
     style = style,
     cgroup = cgroup,
     n.cgroup = n.cgroup,
+    calign = calign,
+    cvalign = cvalign,
+    cstyle = cstyle, 
     rgroup = rgroup,
-    n.rgroup = n.rgroup)
+    n.rgroup = n.rgroup,
+    ralign = ralign,
+    rvalign = rvalign,
+    rstyle = rstyle
+)
 
   charac <- function(.) {
     # detection des colonnes numeriques
@@ -102,13 +115,15 @@ asciiDataFrame <- proto(expr = {
     rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
     if (!is.null(.$rgroup)) {
       pos.rgroup <- c(1, 1+cumsum(.$n.rgroup))[1:length(.$n.rgroup)]
-      rows[pos.rgroup] <- paste(".", .$n.rgroup, "+|", .$rgroup, rows[pos.rgroup], sep = "")
+      rows[pos.rgroup] <- paste(paste(cells(span = paste(".", .$n.rgroup, "+", sep = ""), align = .$ralign, valign = .$rvalign, style = .$rstyle), .$rgroup, sep = "|"), rows[pos.rgroup], sep = "")
     }
     maxchars <- max(nchar(rows)) - 1
     topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, cols = cols(ncol(charac.x), align = .$align, col.width = .$col.width, style = .$style), width = .$width))
     cat(topbot, "\n")
-    if (!is.null(.$cgroup)) {cat(paste(.$n.cgroup, .$cgroup, sep = "+|"), sep = " ") ; cat("\n")}
+    if (!is.null(.$cgroup)) {
+      cat(paste(cells(span = paste(.$n.cgroup, "+", sep = ""), align = .$calign, valign = .$cvalign, style = .$cstyle), .$cgroup, sep = "|"), "\n")
+    }
     cat(rows, sep = "\n")
     cat(topbot, "\n")
   }
