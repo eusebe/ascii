@@ -172,6 +172,25 @@ ascii(iris[1:10,], include.rownames = F, caption = "iris", width = 75, align = "
 ascii(iris[1:10,], include.rownames = F, caption = "iris", width = 75, align = "c", valign = "bottom", frame = "topbot", grid = "none")
 @
 
+row (and col) headings
+~~~~~~~~~~~~~~~~~~~~~~
+
+<<rowheads>>=
+library(reshape)
+names(airquality) <- tolower(names(airquality))
+aqm <- melt(airquality, id=c("month", "day"), na.rm=TRUE)
+toto <- cast(aqm, month + day ~ variable)
+ascii(toto[, -1], rgroup = c("month", paste("Month:", as.character(unique(toto[,1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+@ 
+
+<<rowheads2,echo=FALSE,results=ascii>>=
+library(reshape)
+names(airquality) <- tolower(names(airquality))
+aqm <- melt(airquality, id=c("month", "day"), na.rm=TRUE)
+toto <- cast(aqm, month + day ~ variable)
+ascii(toto[, -1], rgroup = c("month", paste("Month:", as.character(unique(toto[,1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+@ 
+
 summary.table
 ~~~~~~~~~~~~~
 

@@ -1,3 +1,14 @@
+2009/06/24
+~~~~~~~~~~
+
+* version 0.2
+* digit and format accept matrix, (each cell can have its own number of digits a
+nd format)
+* new arguments (+cgroup+, +rgroup+, ...) to define major column and row heading
+s like in Hmisc::latex() (only for asciidoc output)
+* column style and alignment use cell specifiers
+
+
 2009/05/11
 ~~~~~~~~~~
 
