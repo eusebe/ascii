@@ -140,7 +140,7 @@ asciiDataFrame <- proto(expr = {
       rows[pos.rgroup] <- paste(paste(cells(span = paste(".", .$n.rgroup, "+", sep = ""), align = .$ralign, valign = .$rvalign, style = .$rstyle), .$rgroup, sep = "| "), rows[pos.rgroup], sep = " ")
     }
     
-    if (sum(.$col.width) > length(col.width)) {
+    if (sum(.$col.width) > length(.$col.width)) {
       col.width <- paste(rep(.$col.width, length.out = ncol(charac.x) + !is.null(.$rgroup)), collapse = ",")
     } else col.width <- ""
     
