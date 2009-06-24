@@ -70,3 +70,29 @@ ascii(describe(esoph))
 
 latexmath:[$\frac{1}{2}]
 
+== Test des groupements des lignes et des colonnes
+
+<<results=ascii>>=
+ascii.data.frame(esoph, cgroup = c("Major 1", "Major 2"), n.cgroup = c(2, 3), include.rownames = F)
+@ 
+
+<<results=ascii>>=
+ascii.data.frame(esoph, cgroup = c("", "Major 1", "Major 2"), n.cgroup = c(1, 2, 3), rgroup = c("", "Minor 1", "Minor 2"), n.rgroup = c(1, 33, 55), include.rownames = F, frame = "topbot", grid = "none")
+@ 
+
+<<results=ascii>>=
+ascii.data.frame(esoph, cgroup = c("", "Major 1", "Major 2"), n.cgroup = c(1, 2, 3), calign = "r", cstyle = "e", rgroup = c("", "Minor 1", "Minor 2"), n.rgroup = c(1, 33, 55), rvalign = "middle", rstyle = "s", include.rownames = F, frame = "topbot", align = "lr")
+@ 
+
+<<results=ascii>>=
+ascii(head(esoph), col.width = 2:3,  style = "e")
+@ 
+
+<<results=ascii>>=
+ascii(head(esoph), col.width = 2:3,  style = "e", align = "lr", cgroup = c("Major1", "Major2"), n.cgroup = c(3, 3))
+@ 
+
+<<results=ascii>>=
+ascii(head(esoph), col.width = 2:3,  style = "em", align = "lrc", cgroup = c("Major1", "Major2"), n.cgroup = c(4, 3), rgroup = "Minor 1", n.rgroup = 7, rstyle = "m")
+@ 
+

@@ -139,14 +139,14 @@ asciiDataFrame <- proto(expr = {
       pos.rgroup <- c(1, 1+cumsum(.$n.rgroup))[1:length(.$n.rgroup)]
       rows[pos.rgroup] <- paste(paste(cells(span = paste(".", .$n.rgroup, "+", sep = ""), align = .$ralign, valign = .$rvalign, style = .$rstyle), .$rgroup, sep = "| "), rows[pos.rgroup], sep = " ")
     }
-    maxchars <- max(nchar(rows)) - 1
-
+    
     if (sum(.$col.width) > length(col.width)) {
       col.width <- paste(rep(.$col.width, length.out = ncol(charac.x) + !is.null(.$rgroup)), collapse = ",")
     } else col.width <- ""
     
+    maxchars <- max(nchar(rows)) - 1
+
     topbot <- paste("|", paste(rep("=", maxchars), collapse = ""), sep = "")
-#    cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, cols = cols(ncol(charac.x), align = .$align, col.width = .$col.width, style = .$style), width = .$width))
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, cols = col.width, width = .$width))
     
     cat(topbot, "\n")
