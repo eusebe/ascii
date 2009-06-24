@@ -124,8 +124,36 @@ ascii manual
   contain any of the AsciiDoc elements that are allowed inside
   document),  +"l"+ (literal), +"v"+ (verse; all line breaks
   are retained).  Default is +""+.
++cgroup+:: Character vector defining major column headings. The default
+          is to have none (+NULL+).
++n.cgroup+:: A numeric vector containing the number of columns for which
+  each element in cgroup is a heading.  For example, specify
+  +cgroup=c("Major 1","Major 2")', 'n.cgroup=c(3,3)+ if +"Major
+  1"+ is to span columns 1-3 and +"Major 2"+ is to span columns
+  4-6. Row names count in the column numbers if
+  +include.rownames = TRUE+.
++calign+:: Character vector of length one defining alignment of major
+  column headings.
++cvalign+:: Character vector of length one defining vertical alignment of
+  major column headings.
++cstyle+:: Character vector of length one indicating the style of major
+  column headings
++rgroup+:: Character vector defining major row headings. The default is
+  to have none (+NULL+).
++n.rgroup+:: A numeric vector containing the number of rows for which each
+  element in rgroup is a heading. Column names count in the row
+  numbers if +include.colnames = TRUE+.
++ralign+:: Character vector of length one defining alignment of major
+  row headings.
++rvalign+:: Character vector of length one defining vertical alignment of
+  major row headings.
++rstyle+:: Character vector of length one indicating the style of major
+  row headings
++condense+:: default is +TRUE+ to condense the output with regard to the 5
+  lowest and highest values and the frequency table
+  (+describe()+ in package +Hmisc+).
 +list.type+:: Character vector of length one indicating the list type
-              (+"bullet"+, +"number"+ or +"none"+). Default is '"bullet"'.
+  (+"bullet"+, +"number"+ or +"none"+). Default is '"bullet"'.
 +...+:: Additional arguments.  (Currently ignored.)
 
 .print.ascii
@@ -181,26 +209,26 @@ matrix
 +     align = "lrrrr", frame = "topbot")
 .VADeaths
 [frame="topbot",valign="middle",options="header",cols="1,2,2,2,2"]
-|================================================================================== 
-<m|       >i| Rural Male >d| Rural Female >d| Urban Male >l| Urban Female <e|      
-<m| 50-54 >i| 11.70      >d| 8.70         >d| 15.40      >l| 8.40         <e| 50-54
-<m| 55-59 >i| 18.10      >d| 11.70        >d| 24.30      >l| 13.60        <e| 55-59
-<m| 60-64 >i| 26.90      >d| 20.30        >d| 37.00      >l| 19.30        <e| 60-64
-<m| 65-69 >i| 41.00      >d| 30.90        >d| 54.60      >l| 35.10        <e| 65-69
-<m| 70-74 >i| 66.00      >d| 54.30        >d| 71.10      >l| 50.00        <e| 70-74
-|==================================================================================  
+|============================================================================= 
+<.^|       >.^| Rural Male >.^| Rural Female >.^| Urban Male >.^| Urban Female
+<.^| 50-54 >.^| 11.70      >.^| 8.70         >.^| 15.40      >.^| 8.40        
+<.^| 55-59 >.^| 18.10      >.^| 11.70        >.^| 24.30      >.^| 13.60       
+<.^| 60-64 >.^| 26.90      >.^| 20.30        >.^| 37.00      >.^| 19.30       
+<.^| 65-69 >.^| 41.00      >.^| 30.90        >.^| 54.60      >.^| 35.10       
+<.^| 70-74 >.^| 66.00      >.^| 54.30        >.^| 71.10      >.^| 50.00       
+|=============================================================================  
 ----
 
 .VADeaths
 [frame="topbot",valign="middle",options="header",cols="1,2,2,2,2"]
-|================================================================================== 
-<m|       >i| Rural Male >d| Rural Female >d| Urban Male >l| Urban Female <e|      
-<m| 50-54 >i| 11.70      >d| 8.70         >d| 15.40      >l| 8.40         <e| 50-54
-<m| 55-59 >i| 18.10      >d| 11.70        >d| 24.30      >l| 13.60        <e| 55-59
-<m| 60-64 >i| 26.90      >d| 20.30        >d| 37.00      >l| 19.30        <e| 60-64
-<m| 65-69 >i| 41.00      >d| 30.90        >d| 54.60      >l| 35.10        <e| 65-69
-<m| 70-74 >i| 66.00      >d| 54.30        >d| 71.10      >l| 50.00        <e| 70-74
-|==================================================================================  
+|============================================================================= 
+<.^|       >.^| Rural Male >.^| Rural Female >.^| Urban Male >.^| Urban Female
+<.^| 50-54 >.^| 11.70      >.^| 8.70         >.^| 15.40      >.^| 8.40        
+<.^| 55-59 >.^| 18.10      >.^| 11.70        >.^| 24.30      >.^| 13.60       
+<.^| 60-64 >.^| 26.90      >.^| 20.30        >.^| 37.00      >.^| 19.30       
+<.^| 65-69 >.^| 41.00      >.^| 30.90        >.^| 54.60      >.^| 35.10       
+<.^| 70-74 >.^| 66.00      >.^| 54.30        >.^| 71.10      >.^| 50.00       
+|=============================================================================  
 
 data.frame
 ~~~~~~~~~~
@@ -210,36 +238,36 @@ data.frame
 +     align = "c", valign = "bottom", frame = "topbot", grid = "none")
 .iris
 [frame="topbot",grid="none",valign="bottom",options="header",width="75%"]
-|============================================================================================= 
-^b| Sepal.Length ^o| Sepal.Width ^t| Petal.Length ^t| Petal.Width ^o| Species ^m| Sepal.Length
-^b| 5.10         ^o| 3.50        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 5.10        
-^b| 4.90         ^o| 3.00        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 4.90        
-^b| 4.70         ^o| 3.20        ^t| 1.30         ^t| 0.20        ^o| setosa  ^m| 4.70        
-^b| 4.60         ^o| 3.10        ^t| 1.50         ^t| 0.20        ^o| setosa  ^m| 4.60        
-^b| 5.00         ^o| 3.60        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 5.00        
-^b| 5.40         ^o| 3.90        ^t| 1.70         ^t| 0.40        ^o| setosa  ^m| 5.40        
-^b| 4.60         ^o| 3.40        ^t| 1.40         ^t| 0.30        ^o| setosa  ^m| 4.60        
-^b| 5.00         ^o| 3.40        ^t| 1.50         ^t| 0.20        ^o| setosa  ^m| 5.00        
-^b| 4.40         ^o| 2.90        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 4.40        
-^b| 4.90         ^o| 3.10        ^t| 1.50         ^t| 0.10        ^o| setosa  ^m| 4.90        
-|=============================================================================================  
+|================================================================================= 
+^.>| Sepal.Length ^.>| Sepal.Width ^.>| Petal.Length ^.>| Petal.Width ^.>| Species
+^.>| 5.10         ^.>| 3.50        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 4.90         ^.>| 3.00        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 4.70         ^.>| 3.20        ^.>| 1.30         ^.>| 0.20        ^.>| setosa 
+^.>| 4.60         ^.>| 3.10        ^.>| 1.50         ^.>| 0.20        ^.>| setosa 
+^.>| 5.00         ^.>| 3.60        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 5.40         ^.>| 3.90        ^.>| 1.70         ^.>| 0.40        ^.>| setosa 
+^.>| 4.60         ^.>| 3.40        ^.>| 1.40         ^.>| 0.30        ^.>| setosa 
+^.>| 5.00         ^.>| 3.40        ^.>| 1.50         ^.>| 0.20        ^.>| setosa 
+^.>| 4.40         ^.>| 2.90        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 4.90         ^.>| 3.10        ^.>| 1.50         ^.>| 0.10        ^.>| setosa 
+|=================================================================================  
 ----
 
 .iris
 [frame="topbot",grid="none",valign="bottom",options="header",width="75%"]
-|============================================================================================= 
-^b| Sepal.Length ^o| Sepal.Width ^t| Petal.Length ^t| Petal.Width ^o| Species ^m| Sepal.Length
-^b| 5.10         ^o| 3.50        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 5.10        
-^b| 4.90         ^o| 3.00        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 4.90        
-^b| 4.70         ^o| 3.20        ^t| 1.30         ^t| 0.20        ^o| setosa  ^m| 4.70        
-^b| 4.60         ^o| 3.10        ^t| 1.50         ^t| 0.20        ^o| setosa  ^m| 4.60        
-^b| 5.00         ^o| 3.60        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 5.00        
-^b| 5.40         ^o| 3.90        ^t| 1.70         ^t| 0.40        ^o| setosa  ^m| 5.40        
-^b| 4.60         ^o| 3.40        ^t| 1.40         ^t| 0.30        ^o| setosa  ^m| 4.60        
-^b| 5.00         ^o| 3.40        ^t| 1.50         ^t| 0.20        ^o| setosa  ^m| 5.00        
-^b| 4.40         ^o| 2.90        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 4.40        
-^b| 4.90         ^o| 3.10        ^t| 1.50         ^t| 0.10        ^o| setosa  ^m| 4.90        
-|=============================================================================================  
+|================================================================================= 
+^.>| Sepal.Length ^.>| Sepal.Width ^.>| Petal.Length ^.>| Petal.Width ^.>| Species
+^.>| 5.10         ^.>| 3.50        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 4.90         ^.>| 3.00        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 4.70         ^.>| 3.20        ^.>| 1.30         ^.>| 0.20        ^.>| setosa 
+^.>| 4.60         ^.>| 3.10        ^.>| 1.50         ^.>| 0.20        ^.>| setosa 
+^.>| 5.00         ^.>| 3.60        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 5.40         ^.>| 3.90        ^.>| 1.70         ^.>| 0.40        ^.>| setosa 
+^.>| 4.60         ^.>| 3.40        ^.>| 1.40         ^.>| 0.30        ^.>| setosa 
+^.>| 5.00         ^.>| 3.40        ^.>| 1.50         ^.>| 0.20        ^.>| setosa 
+^.>| 4.40         ^.>| 2.90        ^.>| 1.40         ^.>| 0.20        ^.>| setosa 
+^.>| 4.90         ^.>| 3.10        ^.>| 1.50         ^.>| 0.10        ^.>| setosa 
+|=================================================================================  
 
 row (and col) headings
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -874,5 +902,5 @@ more informations
 ascii for real
 --------------
 
- - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[a vignette] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[ascii].
+ - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[some vignettes] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[ascii].
  

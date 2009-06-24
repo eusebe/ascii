@@ -413,13 +413,162 @@ Character vector of length one indicating the style of the
 <row>
 <entry>
 <simpara>
+<literal>cgroup</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector defining major column headings. The default
+          is to have none (<literal>NULL</literal>).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>n.cgroup</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+A numeric vector containing the number of columns for which
+  each element in cgroup is a heading.  For example, specify
+  <literal>cgroup=c("Major 1","Major 2")', 'n.cgroup=c(3,3)</literal> if <literal>"Major
+  1"</literal> is to span columns 1-3 and <literal>"Major 2"</literal> is to span columns
+  4-6. Row names count in the column numbers if
+  <literal>include.rownames = TRUE</literal>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>calign</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one defining alignment of major
+  column headings.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>cvalign</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one defining vertical alignment of
+  major column headings.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>cstyle</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one indicating the style of major
+  column headings
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>rgroup</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector defining major row headings. The default is
+  to have none (<literal>NULL</literal>).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>n.rgroup</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+A numeric vector containing the number of rows for which each
+  element in rgroup is a heading. Column names count in the row
+  numbers if <literal>include.colnames = TRUE</literal>.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>ralign</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one defining alignment of major
+  row headings.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>rvalign</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one defining vertical alignment of
+  major row headings.
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>rstyle</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+Character vector of length one indicating the style of major
+  row headings
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
+<literal>condense</literal>
+</simpara>
+</entry>
+<entry>
+<simpara>
+default is <literal>TRUE</literal> to condense the output with regard to the 5
+  lowest and highest values and the frequency table
+  (<literal>describe()</literal> in package <literal>Hmisc</literal>).
+</simpara>
+</entry>
+</row>
+<row>
+<entry>
+<simpara>
 <literal>list.type</literal>
 </simpara>
 </entry>
 <entry>
 <simpara>
 Character vector of length one indicating the list type
-              (<literal>"bullet"</literal>, <literal>"number"</literal> or <literal>"none"</literal>). Default is <emphasis>"bullet"</emphasis>.
+  (<literal>"bullet"</literal>, <literal>"number"</literal> or <literal>"none"</literal>). Default is <emphasis>"bullet"</emphasis>.
 </simpara>
 </entry>
 </row>
@@ -527,14 +676,14 @@ rowsep="1" colsep="1"
 +     align = "lrrrr", frame = "topbot")
 .VADeaths
 [frame="topbot",valign="middle",options="header",cols="1,2,2,2,2"]
-|==================================================================================
-&lt;m|       &gt;i| Rural Male &gt;d| Rural Female &gt;d| Urban Male &gt;l| Urban Female &lt;e|
-&lt;m| 50-54 &gt;i| 11.70      &gt;d| 8.70         &gt;d| 15.40      &gt;l| 8.40         &lt;e| 50-54
-&lt;m| 55-59 &gt;i| 18.10      &gt;d| 11.70        &gt;d| 24.30      &gt;l| 13.60        &lt;e| 55-59
-&lt;m| 60-64 &gt;i| 26.90      &gt;d| 20.30        &gt;d| 37.00      &gt;l| 19.30        &lt;e| 60-64
-&lt;m| 65-69 &gt;i| 41.00      &gt;d| 30.90        &gt;d| 54.60      &gt;l| 35.10        &lt;e| 65-69
-&lt;m| 70-74 &gt;i| 66.00      &gt;d| 54.30        &gt;d| 71.10      &gt;l| 50.00        &lt;e| 70-74
-|==================================================================================</screen>
+|=============================================================================
+&lt;.^|       &gt;.^| Rural Male &gt;.^| Rural Female &gt;.^| Urban Male &gt;.^| Urban Female
+&lt;.^| 50-54 &gt;.^| 11.70      &gt;.^| 8.70         &gt;.^| 15.40      &gt;.^| 8.40
+&lt;.^| 55-59 &gt;.^| 18.10      &gt;.^| 11.70        &gt;.^| 24.30      &gt;.^| 13.60
+&lt;.^| 60-64 &gt;.^| 26.90      &gt;.^| 20.30        &gt;.^| 37.00      &gt;.^| 19.30
+&lt;.^| 65-69 &gt;.^| 41.00      &gt;.^| 30.90        &gt;.^| 54.60      &gt;.^| 35.10
+&lt;.^| 70-74 &gt;.^| 66.00      &gt;.^| 54.30        &gt;.^| 71.10      &gt;.^| 50.00
+|=============================================================================</screen>
 <table
 frame="topbot"
 rowsep="1" colsep="1"
@@ -552,51 +701,44 @@ rowsep="1" colsep="1"
 <entry align="right" valign="middle"> Rural Male </entry>
 <entry align="right" valign="middle"> Rural Female </entry>
 <entry align="right" valign="middle"> Urban Male </entry>
-<entry align="right" valign="middle"> Urban Female </entry>
+<entry align="right" valign="middle"> Urban Female</entry>
 </row>
 </thead>
 <tbody>
 <row>
-<entry align="left" valign="middle"><simpara><emphasis></emphasis></simpara></entry>
-<entry align="left" valign="middle"><simpara><literal>50-54</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>50-54</simpara></entry>
 <entry align="right" valign="middle"><simpara>11.70</simpara></entry>
 <entry align="right" valign="middle"><simpara>8.70</simpara></entry>
 <entry align="right" valign="middle"><simpara>15.40</simpara></entry>
+<entry align="right" valign="middle"><simpara>8.40</simpara></entry>
 </row>
 <row>
-<entry align="right" valign="middle"><literallayout class="monospaced"> 8.40         </literallayout></entry>
-<entry align="left" valign="middle"><simpara><emphasis>50-54</emphasis></simpara></entry>
-<entry align="left" valign="middle"><simpara><literal>55-59</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>55-59</simpara></entry>
 <entry align="right" valign="middle"><simpara>18.10</simpara></entry>
 <entry align="right" valign="middle"><simpara>11.70</simpara></entry>
-</row>
-<row>
 <entry align="right" valign="middle"><simpara>24.30</simpara></entry>
-<entry align="right" valign="middle"><literallayout class="monospaced"> 13.60        </literallayout></entry>
-<entry align="left" valign="middle"><simpara><emphasis>55-59</emphasis></simpara></entry>
-<entry align="left" valign="middle"><simpara><literal>60-64</literal></simpara></entry>
-<entry align="right" valign="middle"><simpara>26.90</simpara></entry>
+<entry align="right" valign="middle"><simpara>13.60</simpara></entry>
 </row>
 <row>
+<entry align="left" valign="middle"><simpara>60-64</simpara></entry>
+<entry align="right" valign="middle"><simpara>26.90</simpara></entry>
 <entry align="right" valign="middle"><simpara>20.30</simpara></entry>
 <entry align="right" valign="middle"><simpara>37.00</simpara></entry>
-<entry align="right" valign="middle"><literallayout class="monospaced"> 19.30        </literallayout></entry>
-<entry align="left" valign="middle"><simpara><emphasis>60-64</emphasis></simpara></entry>
-<entry align="left" valign="middle"><simpara><literal>65-69</literal></simpara></entry>
+<entry align="right" valign="middle"><simpara>19.30</simpara></entry>
 </row>
 <row>
+<entry align="left" valign="middle"><simpara>65-69</simpara></entry>
 <entry align="right" valign="middle"><simpara>41.00</simpara></entry>
 <entry align="right" valign="middle"><simpara>30.90</simpara></entry>
 <entry align="right" valign="middle"><simpara>54.60</simpara></entry>
-<entry align="right" valign="middle"><literallayout class="monospaced"> 35.10        </literallayout></entry>
-<entry align="left" valign="middle"><simpara><emphasis>65-69</emphasis></simpara></entry>
+<entry align="right" valign="middle"><simpara>35.10</simpara></entry>
 </row>
 <row>
-<entry align="left" valign="middle"><simpara><literal>70-74</literal></simpara></entry>
+<entry align="left" valign="middle"><simpara>70-74</simpara></entry>
 <entry align="right" valign="middle"><simpara>66.00</simpara></entry>
 <entry align="right" valign="middle"><simpara>54.30</simpara></entry>
 <entry align="right" valign="middle"><simpara>71.10</simpara></entry>
-<entry align="right" valign="middle"><literallayout class="monospaced"> 50.00        </literallayout></entry>
+<entry align="right" valign="middle"><simpara>50.00</simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -608,39 +750,37 @@ rowsep="1" colsep="1"
 +     align = "c", valign = "bottom", frame = "topbot", grid = "none")
 .iris
 [frame="topbot",grid="none",valign="bottom",options="header",width="75%"]
-|=============================================================================================
-^b| Sepal.Length ^o| Sepal.Width ^t| Petal.Length ^t| Petal.Width ^o| Species ^m| Sepal.Length
-^b| 5.10         ^o| 3.50        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 5.10
-^b| 4.90         ^o| 3.00        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 4.90
-^b| 4.70         ^o| 3.20        ^t| 1.30         ^t| 0.20        ^o| setosa  ^m| 4.70
-^b| 4.60         ^o| 3.10        ^t| 1.50         ^t| 0.20        ^o| setosa  ^m| 4.60
-^b| 5.00         ^o| 3.60        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 5.00
-^b| 5.40         ^o| 3.90        ^t| 1.70         ^t| 0.40        ^o| setosa  ^m| 5.40
-^b| 4.60         ^o| 3.40        ^t| 1.40         ^t| 0.30        ^o| setosa  ^m| 4.60
-^b| 5.00         ^o| 3.40        ^t| 1.50         ^t| 0.20        ^o| setosa  ^m| 5.00
-^b| 4.40         ^o| 2.90        ^t| 1.40         ^t| 0.20        ^o| setosa  ^m| 4.40
-^b| 4.90         ^o| 3.10        ^t| 1.50         ^t| 0.10        ^o| setosa  ^m| 4.90
-|=============================================================================================</screen>
+|=================================================================================
+^.&gt;| Sepal.Length ^.&gt;| Sepal.Width ^.&gt;| Petal.Length ^.&gt;| Petal.Width ^.&gt;| Species
+^.&gt;| 5.10         ^.&gt;| 3.50        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.90         ^.&gt;| 3.00        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.70         ^.&gt;| 3.20        ^.&gt;| 1.30         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.60         ^.&gt;| 3.10        ^.&gt;| 1.50         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 5.00         ^.&gt;| 3.60        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 5.40         ^.&gt;| 3.90        ^.&gt;| 1.70         ^.&gt;| 0.40        ^.&gt;| setosa
+^.&gt;| 4.60         ^.&gt;| 3.40        ^.&gt;| 1.40         ^.&gt;| 0.30        ^.&gt;| setosa
+^.&gt;| 5.00         ^.&gt;| 3.40        ^.&gt;| 1.50         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.40         ^.&gt;| 2.90        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.90         ^.&gt;| 3.10        ^.&gt;| 1.50         ^.&gt;| 0.10        ^.&gt;| setosa
+|=================================================================================</screen>
 <table
 frame="topbot"
 rowsep="0" colsep="0"
 >
 <title>iris</title>
-<tgroup cols="6">
-<colspec colname="col_1" colwidth="53pt"/>
-<colspec colname="col_2" colwidth="53pt"/>
-<colspec colname="col_3" colwidth="53pt"/>
-<colspec colname="col_4" colwidth="53pt"/>
-<colspec colname="col_5" colwidth="53pt"/>
-<colspec colname="col_6" colwidth="53pt"/>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="63pt"/>
+<colspec colname="col_2" colwidth="63pt"/>
+<colspec colname="col_3" colwidth="63pt"/>
+<colspec colname="col_4" colwidth="63pt"/>
+<colspec colname="col_5" colwidth="63pt"/>
 <thead>
 <row>
 <entry align="center" valign="bottom"> Sepal.Length </entry>
 <entry align="center" valign="bottom"> Sepal.Width </entry>
 <entry align="center" valign="bottom"> Petal.Length </entry>
 <entry align="center" valign="bottom"> Petal.Width </entry>
-<entry align="center" valign="bottom"> Species </entry>
-<entry align="center" valign="bottom"> Sepal.Length</entry>
+<entry align="center" valign="bottom"> Species</entry>
 </row>
 </thead>
 <tbody>
@@ -650,7 +790,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>5.10</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>4.90</simpara></entry>
@@ -658,7 +797,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>4.90</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>4.70</simpara></entry>
@@ -666,7 +804,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.30</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>4.70</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>4.60</simpara></entry>
@@ -674,7 +811,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.50</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>4.60</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>5.00</simpara></entry>
@@ -682,7 +818,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>5.00</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>5.40</simpara></entry>
@@ -690,7 +825,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.70</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.40</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>5.40</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>4.60</simpara></entry>
@@ -698,7 +832,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.30</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>4.60</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>5.00</simpara></entry>
@@ -706,7 +839,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.50</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>5.00</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>4.40</simpara></entry>
@@ -714,7 +846,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.40</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.20</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>4.40</literal></simpara></entry>
 </row>
 <row>
 <entry align="center" valign="bottom"><simpara>4.90</simpara></entry>
@@ -722,7 +853,6 @@ rowsep="0" colsep="0"
 <entry align="center" valign="bottom"><simpara>1.50</simpara></entry>
 <entry align="center" valign="bottom"><simpara>0.10</simpara></entry>
 <entry align="center" valign="bottom"><simpara>setosa</simpara></entry>
-<entry align="center" valign="bottom"><simpara><literal>4.90</literal></simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -2672,7 +2802,7 @@ txt2tags: <ulink url="http://txt2tags.sourceforge.net">http://txt2tags.sourcefor
 <itemizedlist>
 <listitem>
 <simpara>
-Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">a vignette</ulink> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <ulink url="http://eusebe.github.com/ascii">ascii</ulink>.
+Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">some vignettes</ulink> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <ulink url="http://eusebe.github.com/ascii">ascii</ulink>.
 </simpara>
 </listitem>
 </itemizedlist>

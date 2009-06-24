@@ -118,8 +118,36 @@ ascii manual
   contain any of the AsciiDoc elements that are allowed inside
   document),  +"l"+ (literal), +"v"+ (verse; all line breaks
   are retained).  Default is +""+.
++cgroup+:: Character vector defining major column headings. The default
+          is to have none (+NULL+).
++n.cgroup+:: A numeric vector containing the number of columns for which
+  each element in cgroup is a heading.  For example, specify
+  +cgroup=c("Major 1","Major 2")', 'n.cgroup=c(3,3)+ if +"Major
+  1"+ is to span columns 1-3 and +"Major 2"+ is to span columns
+  4-6. Row names count in the column numbers if
+  +include.rownames = TRUE+.
++calign+:: Character vector of length one defining alignment of major
+  column headings.
++cvalign+:: Character vector of length one defining vertical alignment of
+  major column headings.
++cstyle+:: Character vector of length one indicating the style of major
+  column headings
++rgroup+:: Character vector defining major row headings. The default is
+  to have none (+NULL+).
++n.rgroup+:: A numeric vector containing the number of rows for which each
+  element in rgroup is a heading. Column names count in the row
+  numbers if +include.colnames = TRUE+.
++ralign+:: Character vector of length one defining alignment of major
+  row headings.
++rvalign+:: Character vector of length one defining vertical alignment of
+  major row headings.
++rstyle+:: Character vector of length one indicating the style of major
+  row headings
++condense+:: default is +TRUE+ to condense the output with regard to the 5
+  lowest and highest values and the frequency table
+  (+describe()+ in package +Hmisc+).
 +list.type+:: Character vector of length one indicating the list type
-              (+"bullet"+, +"number"+ or +"none"+). Default is '"bullet"'.
+  (+"bullet"+, +"number"+ or +"none"+). Default is '"bullet"'.
 +...+:: Additional arguments.  (Currently ignored.)
 
 .print.ascii
@@ -293,5 +321,5 @@ more informations
 ascii for real
 --------------
 
- - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[a vignette] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[ascii].
+ - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[some vignettes] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[ascii].
  
