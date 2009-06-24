@@ -4,8 +4,12 @@ help.r
 load.r
 README.textile
 temp.r
+testgroup*
 testascii*
 testt2t*
+index*
+Rplot*
 
 R/asciiEpicalc.r
 R/RweaveTextile.r
+
