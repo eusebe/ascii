@@ -68,7 +68,7 @@ library(Hmisc)
 ascii(describe(esoph))
 @
 
-latexmath:[$\frac{1}{2}]
+latexmath:[$\frac{1}{2}$]
 
 == Test des groupements des lignes et des colonnes
 
