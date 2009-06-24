@@ -111,21 +111,13 @@ asciiDataFrame <- proto(expr = {
 
   show.asciidoc <- function(.) {
     charac.x <- charac(.)
-#    rows <- apply(charac.x, 1, function(x) paste("|", paste(x, collapse = "|"), sep = ""))
     if (.$align != "") {  
       align <- unlist(strsplit(.$align, ""))
       align <- rep(align, length.out = ncol)
-      align[align == "l"] <- "<"
-      align[align == "c"] <- "^"
-      align[align == "r"] <- ">"
     } else align = .$align
 
     if (.$valign != "") {  
-      valign <- unlist(strsplit(.$valign, ""))
-      valign <- rep(valign, length.out = ncol)
-      valign[valign == "top"] <- "<"
-      valign[valign == "middle"] <- "^"
-      valign[valign == "bottom"] <- ">"
+      valign <- rep(.$valign, length.out = ncol)
     } else valign = .$valign
     
     if (.$style != "") {
