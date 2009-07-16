@@ -1,28 +1,32 @@
-2009/06/24
-----------
+2009/07/16
+~~~~~~~~~~
 
 * version 0.2
-* digit and format accept matrix, (each cell can have its own number of digits and format)
-* new arguments (+cgroup+, +rgroup+, ...) to define major column and row headings like in Hmisc::latex() (only for asciidoc output)
+* digit and format accept matrix, (each cell can have its own number of digits a
+nd format)
+* new arguments (+cgroup+, +rgroup+, ...) to define major column and row heading
+s like in Hmisc::latex() (only for asciidoc output)
 * column style and alignment use cell specifiers
+* remove SweaveSyntaxAscii (bug when +]+ is used inside +Sexpr:[]+)
+
 
 2009/05/11
-----------
+~~~~~~~~~~
 
-* \SweaveOpts{} now works
-* add SweaveSyntaxAscii (SweaveOpts:[], Sexpr:[] 
-* add a simple wrapper for Sweave() (SweaveAscii()) that use RweaveAsciidoc and SweaveSyntaxAscii as default
+* +\SweaveOpts{}+ now works
+* add +SweaveSyntaxAscii+ (+SweaveOpts:[]+, +Sexpr:[]+) 
+* add a simple wrapper for +Sweave()+ (+SweaveAscii()+) that use +RweaveAsciidoc+ and +SweaveSyntaxAscii+ as default
 
 
 2009/04/27
-----------
+~~~~~~~~~~
 
-* add a caption.level argument
-* improve ascii.describe output (package Hmisc)
+* add a +caption.level+ argument
+* improve +ascii.describe+ output (package +Hmisc+)
 
 
 2009/04/08
-----------
+~~~~~~~~~~
 
 * update DESCRIPTION (with homepage)
-* support for describe function in package Hmisc
+* support for +describe+ function in package +Hmisc+
