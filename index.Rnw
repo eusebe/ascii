@@ -147,7 +147,7 @@ ascii manual
   lowest and highest values and the frequency table
   (+describe()+ in package +Hmisc+).
 +list.type+:: Character vector of length one indicating the list type
-  (+"bullet"+, +"number"+ or +"none"+). Default is '"bullet"'.
+  (+"bullet"+, +"number"+, "label" or +"none"+). Default is '"bullet"'.
 +...+:: Additional arguments.  (Currently ignored.)
 
 .print.ascii
@@ -205,18 +205,16 @@ row (and col) headings
 
 <<rowheads>>=
 library(reshape)
-names(airquality) <- tolower(names(airquality))
-aqm <- melt(airquality, id=c("month", "day"), na.rm=TRUE)
-toto <- cast(aqm, month + day ~ variable)
-ascii(toto[, -1], rgroup = c("month", paste("Month:", as.character(unique(toto[,1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+ff_d <- melt(french_fries, id=1:4, na.rm=TRUE)
+toto <- cast(ff_d, treatment + subject ~ variable, mean, margins="treatment")
+ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:", as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
 @ 
 
 <<rowheads2,echo=FALSE,results=ascii>>=
 library(reshape)
-names(airquality) <- tolower(names(airquality))
-aqm <- melt(airquality, id=c("month", "day"), na.rm=TRUE)
-toto <- cast(aqm, month + day ~ variable)
-ascii(toto[, -1], rgroup = c("month", paste("Month:", as.character(unique(toto[,1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+ff_d <- melt(french_fries, id=1:4, na.rm=TRUE)
+toto <- cast(ff_d, treatment + subject ~ variable, mean, margins="treatment")
+ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:", as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
 @ 
 
 summary.table
@@ -228,6 +226,17 @@ ascii(summary(table(1:4, 1:4)))
 
 <<summaryTable2,echo=FALSE,results=ascii>>=
 ascii(summary(table(1:4, 1:4)))
+@
+
+labeled list
+~~~~~~~~~~~~
+
+<<labeledlist>>=
+ascii(version)
+@
+
+<<summaryTable2,echo=FALSE,results=ascii>>=
+ascii(version)
 @
 
 glm
