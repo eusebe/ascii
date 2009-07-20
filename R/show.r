@@ -232,13 +232,14 @@ asciiList <- proto(expr = {
       } else {
         namesx <- names(.$x)
       }
-      mark <- paste(namesx, ":: ", sep = "")
+      mark <- paste(namesx, "::\n  ", sep = "")
     }
     
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
       if (is.null(.$x[[i]])) next
-      if (.$list.type == "label") tmp <- sub("^\t*", "", .$x[[i]])
+      tmp <- .$x[[i]]
+      if (.$list.type == "label") tmp <- sub("^\t*", "", tmp)
       tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, tmp, perl = TRUE))
       charac.x[i] <- sub(paste('(^\\', mark, '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
@@ -262,7 +263,8 @@ asciiList <- proto(expr = {
     
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
-      if (.$list.type == "label") tmp <- sub("^\t*", "", .$x[[i]])
+      tmp <- .$x[[i]]
+      if (.$list.type == "label") tmp <- sub("^\t*", "", tmp)
       tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, tmp, perl = TRUE)
       charac.x[i] <- sub("(^ *)", paste("\\1", mark[i], indent.mark, sep = ""), tmp)
     }
