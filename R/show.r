@@ -223,13 +223,23 @@ asciiList <- proto(expr = {
     list.type = list.type)
 
   show.asciidoc <- function(.) {
-    if (.$list.type == "bullet") mark <- "*"
-    if (.$list.type == "number") mark <- "."
-    if (.$list.type == "none")   mark <- ""
+    if (.$list.type == "bullet") mark <- rep("*", length(.$x))
+    if (.$list.type == "number") mark <- rep(".", length(.$x))
+    if (.$list.type == "none")   mark <- rep("", length(.$x))
+    if (.$list.type == "label") {
+      if (is.null(names(.$x))) {
+        namesx <- paste("[[", 1:length(.$x), "]]", sep = "")
+      } else {
+        namesx <- names(.$x)
+      }
+      mark <- paste(namesx, ":: ", sep = "")
+    }
+    
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
-      if (is.null(.$x[[i]])) next 
-      tmp <- sub("(^.*)", paste(mark, "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, .$x[[i]], perl = TRUE))
+      if (is.null(.$x[[i]])) next
+      if (.$list.type == "label") tmp <- sub("^\t*", "", .$x[[i]])
+      tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, tmp, perl = TRUE))
       charac.x[i] <- sub(paste('(^\\', mark, '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level))
@@ -237,13 +247,24 @@ asciiList <- proto(expr = {
   }
   show.t2t <- function(.) {
     indent.mark <- " "
-    if (.$list.type == "bullet") mark <- "-"
-    if (.$list.type == "number") mark <- "+"
-    if (.$list.type == "none")  { mark <- ""; indent.mark = "" }
+    if (.$list.type == "bullet") mark <- rep("-", length(.$x))
+    if (.$list.type == "number") mark <- rep("+", length(.$x))
+    if (.$list.type == "none")  { mark <- rep("", length(.$x)); indent.mark = "" }
+    if (.$list.type == "label") {
+      if (is.null(names(.$x))) {
+        namesx <- paste("[[", 1:length(.$x), "]]", sep = "")
+      } else {
+        namesx <- names(.$x)
+      }
+      mark <- paste(": ", namesx, "\n", sep = "")
+      indent.mark = ""
+    }
+    
     charac.x <- vector("character", length(.$x))
     for (i in 1:length(.$x)) {
-      tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, .$x[[i]], perl = TRUE)
-      charac.x[i] <- sub("(^ *)", paste("\\1", mark, indent.mark, sep = ""), tmp)
+      if (.$list.type == "label") tmp <- sub("^\t*", "", .$x[[i]])
+      tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, tmp, perl = TRUE)
+      charac.x[i] <- sub("(^ *)", paste("\\1", mark[i], indent.mark, sep = ""), tmp)
     }
     cat(header.t2t(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
