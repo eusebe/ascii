@@ -152,7 +152,8 @@ ascii manual
   lowest and highest values and the frequency table
   (+describe()+ in package +Hmisc+).
 +list.type+:: Character vector of length one indicating the list type
-  (+"bullet"+, +"number"+, "label" or +"none"+). Default is '"bullet"'.
+  (+"bullet"+, +"number"+, "label" or +"none"+). If +"label"+, 
+  +names(list)+ is used for labels. Default is +"bullet"+.
 +...+:: Additional arguments.  (Currently ignored.)
 
 .print.ascii
@@ -170,17 +171,19 @@ ascii provides methods for:
 
 ----
 > methods(ascii)
- [1] ascii.anova           ascii.aov             ascii.aovlist        
- [4] ascii.cast_df         ascii.character       ascii.coxph          
- [7] ascii.data.frame      ascii.default         ascii.density        
-[10] ascii.describe        ascii.describe.single ascii.factor         
-[13] ascii.glm             ascii.htest           ascii.integer        
-[16] ascii.list            ascii.lm              ascii.matrix         
-[19] ascii.numeric         ascii.prcomp          ascii.simple.list    
-[22] ascii.smooth.spline   ascii.summary.aov     ascii.summary.aovlist
-[25] ascii.summary.glm     ascii.summary.lm      ascii.summary.prcomp 
-[28] ascii.summary.table   ascii.survdiff        ascii.tab1           
-[31] ascii.table           ascii.ts              ascii.zoo             
+ [1] ascii.anova*           ascii.aov*             ascii.aovlist*        
+ [4] ascii.cast_df*         ascii.character*       ascii.coxph*          
+ [7] ascii.data.frame*      ascii.default*         ascii.density*        
+[10] ascii.describe*        ascii.describe.single* ascii.factor*         
+[13] ascii.glm*             ascii.htest*           ascii.integer*        
+[16] ascii.list*            ascii.lm*              ascii.matrix*         
+[19] ascii.numeric*         ascii.prcomp*          ascii.simple.list*    
+[22] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
+[25] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp* 
+[28] ascii.summary.table*   ascii.survdiff*        ascii.table*          
+[31] ascii.ts*              ascii.zoo*            
+
+   Non-visible functions are asterisked 
 ----
 
 vector

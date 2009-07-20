@@ -146,7 +146,8 @@ ascii manual
   lowest and highest values and the frequency table
   (+describe()+ in package +Hmisc+).
 +list.type+:: Character vector of length one indicating the list type
-  (+"bullet"+, +"number"+, "label" or +"none"+). Default is '"bullet"'.
+  (+"bullet"+, +"number"+, "label" or +"none"+). If +"label"+, 
+  +names(list)+ is used for labels. Default is +"bullet"+.
 +...+:: Additional arguments.  (Currently ignored.)
 
 .print.ascii

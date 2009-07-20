@@ -568,7 +568,8 @@ default is <literal>TRUE</literal> to condense the output with regard to the 5
 <entry>
 <simpara>
 Character vector of length one indicating the list type
-  (<literal>"bullet"</literal>, <literal>"number"</literal>, "label" or <literal>"none"</literal>). Default is <emphasis>"bullet"</emphasis>.
+  (<literal>"bullet"</literal>, <literal>"number"</literal>, "label" or <literal>"none"</literal>). If <literal>"label"</literal>,
+  <literal>names(list)</literal> is used for labels. Default is <literal>"bullet"</literal>.
 </simpara>
 </entry>
 </row>
@@ -630,17 +631,19 @@ Additional arguments.  (Currently ignored.)
 <title>ascii examples</title>
 <simpara>ascii provides methods for:</simpara>
 <screen>&gt; methods(ascii)
- [1] ascii.anova           ascii.aov             ascii.aovlist
- [4] ascii.cast_df         ascii.character       ascii.coxph
- [7] ascii.data.frame      ascii.default         ascii.density
-[10] ascii.describe        ascii.describe.single ascii.factor
-[13] ascii.glm             ascii.htest           ascii.integer
-[16] ascii.list            ascii.lm              ascii.matrix
-[19] ascii.numeric         ascii.prcomp          ascii.simple.list
-[22] ascii.smooth.spline   ascii.summary.aov     ascii.summary.aovlist
-[25] ascii.summary.glm     ascii.summary.lm      ascii.summary.prcomp
-[28] ascii.summary.table   ascii.survdiff        ascii.tab1
-[31] ascii.table           ascii.ts              ascii.zoo</screen>
+ [1] ascii.anova*           ascii.aov*             ascii.aovlist*
+ [4] ascii.cast_df*         ascii.character*       ascii.coxph*
+ [7] ascii.data.frame*      ascii.default*         ascii.density*
+[10] ascii.describe*        ascii.describe.single* ascii.factor*
+[13] ascii.glm*             ascii.htest*           ascii.integer*
+[16] ascii.list*            ascii.lm*              ascii.matrix*
+[19] ascii.numeric*         ascii.prcomp*          ascii.simple.list*
+[22] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
+[25] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp*
+[28] ascii.summary.table*   ascii.survdiff*        ascii.table*
+[31] ascii.ts*              ascii.zoo*
+
+   Non-visible functions are asterisked</screen>
 <section id="_vector">
 <title>vector</title>
 <screen>&gt; ascii(1:4)

@@ -999,7 +999,8 @@ default is <tt>TRUE</tt> to condense the output with regard to the 5
 <td class="hdlist2">
 <p style="margin-top: 0;">
 Character vector of length one indicating the list type
-  (<tt>"bullet"</tt>, <tt>"number"</tt>, "label" or <tt>"none"</tt>). Default is <em>"bullet"</em>.
+  (<tt>"bullet"</tt>, <tt>"number"</tt>, "label" or <tt>"none"</tt>). If <tt>"label"</tt>,
+  <tt>names(list)</tt> is used for labels. Default is <tt>"bullet"</tt>.
 </p>
 </td>
 </tr>
@@ -1059,17 +1060,19 @@ Additional arguments.  (Currently ignored.)
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; methods(ascii)
- [1] ascii.anova           ascii.aov             ascii.aovlist
- [4] ascii.cast_df         ascii.character       ascii.coxph
- [7] ascii.data.frame      ascii.default         ascii.density
-[10] ascii.describe        ascii.describe.single ascii.factor
-[13] ascii.glm             ascii.htest           ascii.integer
-[16] ascii.list            ascii.lm              ascii.matrix
-[19] ascii.numeric         ascii.prcomp          ascii.simple.list
-[22] ascii.smooth.spline   ascii.summary.aov     ascii.summary.aovlist
-[25] ascii.summary.glm     ascii.summary.lm      ascii.summary.prcomp
-[28] ascii.summary.table   ascii.survdiff        ascii.tab1
-[31] ascii.table           ascii.ts              ascii.zoo</tt></pre>
+ [1] ascii.anova*           ascii.aov*             ascii.aovlist*
+ [4] ascii.cast_df*         ascii.character*       ascii.coxph*
+ [7] ascii.data.frame*      ascii.default*         ascii.density*
+[10] ascii.describe*        ascii.describe.single* ascii.factor*
+[13] ascii.glm*             ascii.htest*           ascii.integer*
+[16] ascii.list*            ascii.lm*              ascii.matrix*
+[19] ascii.numeric*         ascii.prcomp*          ascii.simple.list*
+[22] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
+[25] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp*
+[28] ascii.summary.table*   ascii.survdiff*        ascii.table*
+[31] ascii.ts*              ascii.zoo*
+
+   Non-visible functions are asterisked</tt></pre>
 </div></div>
 <h3 id="_vector">vector</h3><div style="clear:left"></div>
 <div class="listingblock">
@@ -2508,7 +2511,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-07-20 15:22:29 CEST
+Last updated 2009-07-20 15:41:49 CEST
 </div>
 </div>
 </body>
