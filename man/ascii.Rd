@@ -20,6 +20,7 @@
 \alias{ascii.matrix}
 \alias{ascii.numeric}
 \alias{ascii.prcomp}
+\alias{ascii.simple.list}
 \alias{ascii.smooth.spline}
 \alias{ascii.summary.aov}
 \alias{ascii.summary.aovlist}
@@ -130,7 +131,7 @@
                 major row headings}
   \item{condense}{default is TRUE to condense the output with regard to the 5
                   lowest and highest values and the frequency table (\code{describe()} in package \code{Hmisc}).}
-  \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"} or \code{"none"}).
+  \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"}, \code{"label"} or \code{"none"}).
                    Default is \code{"bullet"}.}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
