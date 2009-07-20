@@ -4,5 +4,5 @@ echo "library(ascii); Sweave(\"index.Rnw\", RweaveAsciidoc)" | R --no-save --no-
 #asciidoc -a toc -a linkcss -a stylesheet=compact.css -a stylesdir=. index.txt 
 asciidoc -a toc index.txt 
 asciidoc -b docbook index.txt
-dblatex index.xml
+dblatex -T db2latex index.xml
 docbook2odf -f index.xml
