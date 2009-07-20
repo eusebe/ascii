@@ -131,8 +131,8 @@
                 major row headings}
   \item{condense}{default is TRUE to condense the output with regard to the 5
                   lowest and highest values and the frequency table (\code{describe()} in package \code{Hmisc}).}
-  \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"}, \code{"label"} or \code{"none"}).
-                   Default is \code{"bullet"}.}
+  \item{list.type}{Character vector of length one indicating the list type (\code{"bullet"}, \code{"number"}, 
+  \code{"label"} or \code{"none"}). If \code{"label"}, \code{names(list)} is used for labels. Default is \code{"bullet"}.}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
 \details{
