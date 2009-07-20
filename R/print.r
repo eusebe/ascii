@@ -13,5 +13,6 @@ print.ascii <- function(x, type = getOption("asciiType"), file = NULL, append = 
     writeLines(res, f)
     close(f)
   }
+  invisible(x)
 }
 
