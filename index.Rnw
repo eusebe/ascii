@@ -43,8 +43,7 @@ ascii provided :
 
 * a generic method for common R objects: +ascii()+. Default argument depends of R object,
 * two Sweave drivers: +Sweave("yourfile.Rnw", RweaveAsciidoc())+ or +Sweave("yourfile.Rnw", RweaveT2t())+,
-* a +SweaveSyntax+ object (+SweaveSyntaxAscii+) that replace +\Sexpr{}+ by +Sexpr:[]+ and +\SweaveOpts{}+ by +SweaveOpts![]+,
-* a simple wrapper for +Sweave()+ names +SweaveAscii()+ that uses +RweaveAsciidoc()+ and +SweaveSyntaxAscii+ as default.
+* a simple wrapper for +Sweave()+ names +SweaveAscii()+ that uses +RweaveAsciidoc()+ as default.
 
 
 ascii manual

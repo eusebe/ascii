@@ -150,12 +150,7 @@ two Sweave drivers: <literal>Sweave("yourfile.Rnw", RweaveAsciidoc())</literal> 
 </listitem>
 <listitem>
 <simpara>
-a <literal>SweaveSyntax</literal> object (<literal>SweaveSyntaxAscii</literal>) that replace <literal>\Sexpr{}</literal> by <literal>Sexpr:[]</literal> and <literal>\SweaveOpts{}</literal> by <literal>SweaveOpts![]</literal>,
-</simpara>
-</listitem>
-<listitem>
-<simpara>
-a simple wrapper for <literal>Sweave()</literal> names <literal>SweaveAscii()</literal> that uses <literal>RweaveAsciidoc()</literal> and <literal>SweaveSyntaxAscii</literal> as default.
+a simple wrapper for <literal>Sweave()</literal> names <literal>SweaveAscii()</literal> that uses <literal>RweaveAsciidoc()</literal> as default.
 </simpara>
 </listitem>
 </itemizedlist>
