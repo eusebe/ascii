@@ -14,6 +14,21 @@
 <simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing asciidoc or txt2tags document with embeded R commands.</simpara>
 <section id="_news">
 <title>news</title>
+<section id="_2009_xx_xx">
+<title>2009/xx/xx</title>
+<itemizedlist>
+<listitem>
+<simpara>
+<literal>list.type</literal> can be "label"
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+ascii.simple.list
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
 <section id="_2009_07_16">
 <title>2009/07/16</title>
 <itemizedlist>
