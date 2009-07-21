@@ -3,6 +3,7 @@
 
 * +list.type+ can be "label"
 * ascii.simple.list
+* fix bug with SweaveAscii (didn't work...)
 
 2009/07/16
 ~~~~~~~~~~
