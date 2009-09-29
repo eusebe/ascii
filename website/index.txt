@@ -409,19 +409,19 @@ status::
 major::
   2
 minor::
-  9.1
+  9.2
 year::
   2009
 month::
-  06
+  08
 day::
-  26
+  24
 svn rev::
-  48839
+  49384
 language::
   R
 version.string::
-  R version 2.9.1 (2009-06-26) 
+  R version 2.9.2 (2009-08-24) 
 ----
 
 platform::
@@ -437,19 +437,19 @@ status::
 major::
   2
 minor::
-  9.1
+  9.2
 year::
   2009
 month::
-  06
+  08
 day::
-  26
+  24
 svn rev::
-  48839
+  49384
 language::
   R
 version.string::
-  R version 2.9.1 (2009-06-26) 
+  R version 2.9.2 (2009-08-24) 
 
 glm
 ~~~

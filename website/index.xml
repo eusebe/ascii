@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd">
+<?asciidoc-toc?>
+<?asciidoc-numbered?>
 
 <article lang="en">
 <articleinfo>
@@ -25,6 +27,11 @@
 <listitem>
 <simpara>
 ascii.simple.list
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+sphinx driver
 </simpara>
 </listitem>
 </itemizedlist>
@@ -1323,19 +1330,19 @@ status::
 major::
   2
 minor::
-  9.1
+  9.2
 year::
   2009
 month::
-  06
+  08
 day::
-  26
+  24
 svn rev::
-  48839
+  49384
 language::
   R
 version.string::
-  R version 2.9.1 (2009-06-26)</screen>
+  R version 2.9.2 (2009-08-24)</screen>
 <variablelist>
 <varlistentry>
 <term>
@@ -1396,7 +1403,7 @@ minor
 </term>
 <listitem>
 <simpara>
-  9.1
+  9.2
 </simpara>
 </listitem>
 </varlistentry>
@@ -1416,7 +1423,7 @@ month
 </term>
 <listitem>
 <simpara>
-  06
+  08
 </simpara>
 </listitem>
 </varlistentry>
@@ -1426,7 +1433,7 @@ day
 </term>
 <listitem>
 <simpara>
-  26
+  24
 </simpara>
 </listitem>
 </varlistentry>
@@ -1436,7 +1443,7 @@ svn rev
 </term>
 <listitem>
 <simpara>
-  48839
+  49384
 </simpara>
 </listitem>
 </varlistentry>
@@ -1456,7 +1463,7 @@ version.string
 </term>
 <listitem>
 <simpara>
-  R version 2.9.1 (2009-06-26)
+  R version 2.9.2 (2009-08-24)
 </simpara>
 </listitem>
 </varlistentry>
