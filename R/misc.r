@@ -102,7 +102,7 @@ beauty.asciidoc <- function(x, beauti = c("e", "m", "s")) {
 # TXT2TAGS #
 ############
 
-# generate headers for asciidoc
+# generate headers for txt2tags
 header.t2t <- function(caption = "", caption.level = "") {
   res <- ""
   if (caption != "") {
@@ -128,6 +128,30 @@ beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
   if (beauti == "m") {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("``.*``", x)+1)/2) # it seulement si != de "" et si pas de mono
     if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1``\\2", sub("([:alpha:]*)( *$)", "\\1``\\2", x[!y])) 
+  }
+  return(x)
+}
+
+##########
+# Sphinx #
+##########
+
+# beautify for sphinx
+beauty.sphinx <- function(x, beauti = c("e", "m", "s")) {
+  if (beauti == "s") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*\\*.*\\*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
+    if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\*\\2", x[!y]))
+    if (length(x[y]) != 0) x[y] <- sub("(^ *$)", "\\1    ", x[y]) # rajouter suffisamment d'espaces lorsque la case est vide pour l'alignement globale
+  }
+  if (beauti == "e") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("'.*'", x)+1)/2) # it seulement si != de "" et si pas de it
+    if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\2", x[!y])) 
+    if (length(x[y]) != 0) x[y] <- sub("(^ *$)", "\\1  ", x[y]) # rajouter suffisamment d'espaces lorsque la case est vide pour l'alignement globale
+  }
+  if (beauti == "m") {
+    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("``.*``", x)+1)/2) # it seulement si != de "" et si pas de mono
+    if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1``\\2", sub("([:alpha:]*)( *$)", "\\1``\\2", x[!y])) 
+    if (length(x[y]) != 0) x[y] <- sub("(^ *$)", "\\1    ", x[y]) # rajouter suffisamment d'espaces lorsque la case est vide pour l'alignement globale
   }
   return(x)
 }

@@ -149,10 +149,21 @@ asciiDataFrame <- proto(expr = {
     cat(topbot, "\n")
   }
 
-  show.sphinx <- function(.) {
+  show.sphinx <- function(.) { # Manque header, style et c/rgroup et bien sur la classe pour les listes et les mixtes
+    # L'alignement et footer ne sont pas gérés
+
     charac.x <- charac(.)
     nrowx <- nrow(charac.x)
     ncolx <- ncol(charac.x)
+
+    if (.$style != "") {  
+      style <- unlist(strsplit(.$style, ""))
+      style <- rep(style, length.out = ncolx)
+      for (i in 1:ncolx) {
+        charac.x[,i] <- beauty.sphinx(charac.x[,i], style[i])
+      }
+    }    
+    
     ncharcell <- nchar(charac.x[1,]) + 2
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     interrows <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
