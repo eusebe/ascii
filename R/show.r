@@ -149,7 +149,7 @@ asciiDataFrame <- proto(expr = {
     cat(topbot, "\n")
   }
 
-  show.sphinx <- function(.) { # Manque header, style et c/rgroup et bien sur la classe pour les listes et les mixtes
+  show.sphinx <- function(.) { # Manque c/rgroup et bien sur la classe pour les listes et les mixtes
     # L'alignement et footer ne sont pas gérés
 
     charac.x <- charac(.)
@@ -167,9 +167,15 @@ asciiDataFrame <- proto(expr = {
     ncharcell <- nchar(charac.x[1,]) + 2
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     interrows <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
-    
+    headinterrows <- gsub("-", "=", interrows)
+
     cat(interrows)
-    for (i in seq_along(nrowx)) {
+    if (.$header) {
+      cat(rows[1:2], sep = paste("\n", headinterrows, sep = ""))
+      cat(interrows)
+      cat(rows[c(-1, -2)], sep = paste("\n", interrows, sep = ""))
+    }
+    else {
       cat(rows, sep = paste("\n", interrows, sep = ""))
     }
     cat(interrows)
