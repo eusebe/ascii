@@ -149,6 +149,21 @@ asciiDataFrame <- proto(expr = {
     cat(topbot, "\n")
   }
 
+  show.sphinx <- function(.) {
+    charac.x <- charac(.)
+    nrowx <- nrow(charac.x)
+    ncolx <- ncol(charac.x)
+    ncharcell <- nchar(charac.x[1,]) + 2
+    rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
+    interrows <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
+    
+    cat(interrows)
+    for (i in seq_along(nrowx)) {
+      cat(rows, sep = paste("\n", interrows, sep = ""))
+    }
+    cat(interrows)
+  }
+  
   show.t2t <- function(.) {
     charac.x <- charac(.)
     # prise en compte du style
