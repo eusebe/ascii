@@ -1,0 +1,13 @@
+Essayons !
+
+<<>>=
+2+2
+@
+
+<<results=sphinx>>=
+print(ascii(head(esoph), style = "dems"), "sphinx")
+@ 
+
+<<fig=T>>=
+plot(1)
+@ 
