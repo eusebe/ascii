@@ -207,7 +207,6 @@ asciiDataFrame <- proto(expr = {
     
     if (.$header & is.null(.$cgroup)) {
       cat(rows[1], paste("\n", headinterrows, sep = ""))
-      cat(interrows)
       cat(rows[-1], sep = paste("\n", interrows, sep = ""))
     }
     else {
