@@ -165,15 +165,50 @@ asciiDataFrame <- proto(expr = {
     }    
     
     ncharcell <- nchar(charac.x[1,]) + 2
+    
+    if (!is.null(.$cgroup)) {
+      newcgroup <- NULL
+      for (i in 1:length(.$cgroup))
+        newcgroup <- c(newcgroup, .$cgroup[i], rep("", .$n.cgroup[i] - 1))
+
+      names(newcgroup) <- names(charac.x) # for following rbind
+      charac.x <- rbind(data.frame(as.list(newcgroup), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
+      charac.x <- format(charac.x, justify = "left")
+      newcgroup <- as.character(charac.x[1,])
+      charac.x <- charac.x[-1,]
+      
+      ccell <- cbind(cumsum(.$n.cgroup) - .$n.cgroup + 1, cumsum(.$n.cgroup))
+      crows <- "|"
+      for (i in 1:length(.$cgroup))
+        crows <- paste(crows, paste(paste(newcgroup[unique(ccell[i,1]:ccell[i,2])], collapse = "   "), "|", collapse = " "), sep = " ")
+      
+      ncharcell <- nchar(charac.x[1,]) + 2
+
+      cncharcell <- apply(cbind(cumsum(.$n.cgroup) - .$n.cgroup + 1, cumsum(.$n.cgroup), .$n.cgroup - 1), 1, function(x) sum(ncharcell[unique(x[1:2])[1]:unique(x[1:2])[length(unique(x[1:2]))]] ) + x[3])
+      cinterrows <- paste("+", paste(sapply(cncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
+    }
+
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
+    
     interrows <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
     headinterrows <- gsub("-", "=", interrows)
 
-    cat(interrows)
-    if (.$header) {
-      cat(rows[1:2], sep = paste("\n", headinterrows, sep = ""))
+    
+    if (!is.null(.$cgroup)) {
+      cat(cinterrows)
+      cat(crows, "\n")
+      if (.$header)
+        cat(headinterrows)
+      else
+        cat(interrows)
+    } else {
       cat(interrows)
-      cat(rows[c(-1, -2)], sep = paste("\n", interrows, sep = ""))
+    }
+    
+    if (.$header & is.null(.$cgroup)) {
+      cat(rows[1], paste("\n", headinterrows, sep = ""))
+      cat(interrows)
+      cat(rows[-1], sep = paste("\n", interrows, sep = ""))
     }
     else {
       cat(rows, sep = paste("\n", interrows, sep = ""))
