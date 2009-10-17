@@ -149,8 +149,8 @@ asciiDataFrame <- proto(expr = {
     cat(topbot, "\n")
   }
 
-  show.sphinx <- function(.) { # Manque c/rgroup et bien sur la classe pour les listes et les mixtes
-    # L'alignement et footer ne sont pas gérés
+  show.sphinx <- function(.) { # Manque la classe pour les listes et les mixtes
+    # L'alignement et footer ne sont pas gérés par sphinx
 
     charac.x <- charac(.)
     nrowx <- nrow(charac.x)
@@ -163,13 +163,21 @@ asciiDataFrame <- proto(expr = {
         charac.x[,i] <- beauty.sphinx(charac.x[,i], style[i])
       }
     }
+
+    cgroup <- .$cgroup
+    rgroup <- .$rgroup
+    if (.$cstyle != "")
+      cgroup <- beauty.sphinx(cgroup, .$cstyle)
+    if (.$rstyle != "")
+      rgroup <- beauty.sphinx(rgroup, .$rstyle)
+
     
     ncharcell <- nchar(charac.x[1,]) + 2
     
-    if (!is.null(.$cgroup)) {
+    if (!is.null(cgroup)) {
       newcgroup <- NULL
-      for (i in 1:length(.$cgroup))
-        newcgroup <- c(newcgroup, .$cgroup[i], rep("", .$n.cgroup[i] - 1))
+      for (i in 1:length(cgroup))
+        newcgroup <- c(newcgroup, cgroup[i], rep("", .$n.cgroup[i] - 1))
 
       names(newcgroup) <- names(charac.x) # for following rbind
       charac.x <- rbind(data.frame(as.list(newcgroup), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
@@ -179,7 +187,7 @@ asciiDataFrame <- proto(expr = {
       
       ccell <- cbind(cumsum(.$n.cgroup) - .$n.cgroup + 1, cumsum(.$n.cgroup))
       crows <- "|"
-      for (i in 1:length(.$cgroup))
+      for (i in 1:length(cgroup))
         crows <- paste(crows, paste(paste(newcgroup[unique(ccell[i,1]:ccell[i,2])], collapse = "   "), "|", collapse = " "), sep = " ")
       
       ncharcell <- nchar(charac.x[1,]) + 2
@@ -191,15 +199,15 @@ asciiDataFrame <- proto(expr = {
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     
   interrows <- rep(paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = ""), nrowx+1)
-    if (!is.null(.$cgroup)) {
+    if (!is.null(cgroup)) {
       interrows <- c(cinterrows, interrows)
       rows <- c(crows, rows)
     }
 
-    if (!is.null(.$rgroup)) {
+    if (!is.null(rgroup)) {
       newrgroup <- rep("", sum(.$n.rgroup))
       rcell <- cumsum(c(1, .$n.rgroup[-length(.$n.rgroup)]))
-      newrgroup[rcell] <- .$rgroup
+      newrgroup[rcell] <- rgroup
       rrows <- paste("| ", format(newrgroup), " ", sep = "")
       rncharcell <- nchar(newrgroup[1]) + 2
       rinterrows <- paste("+", paste(sapply(rncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), sep = "")
