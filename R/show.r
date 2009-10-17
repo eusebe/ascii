@@ -326,6 +326,35 @@ asciiList <- proto(expr = {
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
   }
+
+  show.sphinx <- function(.) {
+    if (.$list.type == "bullet") mark <- rep("*", length(x))
+    if (.$list.type == "number") mark <- rep("#.", length(x))
+    if (.$list.type == "none")  mark <- rep("", length(x))
+    if (.$list.type == "label") {
+      if (is.null(names(.$x))) {
+        namesx <- paste("[[", 1:length(.$x), "]]", sep = "")
+      } else {
+        namesx <- names(.$x)
+      }
+      mark <- paste(namesx, "\n ", sep = "")
+    }
+    y <- gsub("(^\t*)(.*)", "\\1", .$x)
+    z <- NULL
+    for (i in 2:length(y))
+      z <- c(z, ifelse(y[i] != y[i-1], i-1, NA))
+    
+    for (i in 1:length(.$x)) {
+      tmp <- .$x[[i]]
+      if (list.type == "label") tmp <- sub("^\t*", "", tmp)
+      tmp <- gsub('\t|(*COMMIT)(*FAIL)', "  ", tmp, perl = TRUE)
+      tmp <- sub("(^ *)", paste("\\1", mark[i], " ", sep = ""), tmp)
+      cat(tmp, "\n")
+      if (i %in% z)
+        cat("\n")
+    }
+  }
+  
   show.t2t <- function(.) {
     indent.mark <- " "
     if (.$list.type == "bullet") mark <- rep("-", length(.$x))
