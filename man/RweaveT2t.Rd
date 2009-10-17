@@ -30,7 +30,7 @@
 }
 
 
-\seealso{ \code{\link[tools]{Sweave}}}
+\seealso{ \code{\link[utils]{Sweave}}}
 \examples{
 
   \dontrun{
