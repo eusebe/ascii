@@ -162,7 +162,7 @@ asciiDataFrame <- proto(expr = {
       for (i in 1:ncolx) {
         charac.x[,i] <- beauty.sphinx(charac.x[,i], style[i])
       }
-    }    
+    }
     
     ncharcell <- nchar(charac.x[1,]) + 2
     
@@ -185,34 +185,40 @@ asciiDataFrame <- proto(expr = {
       ncharcell <- nchar(charac.x[1,]) + 2
 
       cncharcell <- apply(cbind(cumsum(.$n.cgroup) - .$n.cgroup + 1, cumsum(.$n.cgroup), .$n.cgroup - 1), 1, function(x) sum(ncharcell[unique(x[1:2])[1]:unique(x[1:2])[length(unique(x[1:2]))]] ) + x[3])
-      cinterrows <- paste("+", paste(sapply(cncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
+      cinterrows <- paste("+", paste(sapply(cncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = "")
     }
 
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     
-    interrows <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+\n", sep = "")
-    headinterrows <- gsub("-", "=", interrows)
-
-    
+  interrows <- rep(paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = ""), nrowx+1)
     if (!is.null(.$cgroup)) {
-      cat(cinterrows)
-      cat(crows, "\n")
-      if (.$header)
-        cat(headinterrows)
-      else
-        cat(interrows)
-    } else {
-      cat(interrows)
+      interrows <- c(cinterrows, interrows)
+      rows <- c(crows, rows)
     }
-    
-    if (.$header & is.null(.$cgroup)) {
-      cat(rows[1], paste("\n", headinterrows, sep = ""))
-      cat(rows[-1], sep = paste("\n", interrows, sep = ""))
+
+    if (!is.null(.$rgroup)) {
+      newrgroup <- rep("", sum(.$n.rgroup))
+      rcell <- cumsum(c(1, .$n.rgroup[-length(.$n.rgroup)]))
+      newrgroup[rcell] <- .$rgroup
+      rrows <- paste("| ", format(newrgroup), " ", sep = "")
+      rncharcell <- nchar(newrgroup[1]) + 2
+      rinterrows <- paste("+", paste(sapply(rncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), sep = "")
+      norinterrows <- gsub("-", " ", rinterrows)
+      
+      rows <- paste(rrows, rows, sep = "")
+      tmp <- rinterrows
+      for (i in .$n.rgroup) {
+        if (i == 1)
+          rinterrows <- c(rinterrows, tmp)
+        if (i > 1)
+          rinterrows <- c(rinterrows, rep(norinterrows, i-1), tmp)
+      }
+      interrows <- paste(rinterrows, interrows, sep = "")
     }
-    else {
-      cat(rows, sep = paste("\n", interrows, sep = ""))
-    }
-    cat(interrows)
+    if (.$header)
+      interrows[2] <- gsub("-", "=", interrows[2])
+
+    cat(c(rbind(interrows[-length(interrows)], rows), interrows[length(interrows)]), sep = "\n")
   }
   
   show.t2t <- function(.) {
