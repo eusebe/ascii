@@ -226,6 +226,7 @@ asciiDataFrame <- proto(expr = {
     if (.$header)
       interrows[2] <- gsub("-", "=", interrows[2])
 
+    cat(header.sphinx(caption = .$caption, caption.level = .$caption.level), sep = "\n")    
     cat(c(rbind(interrows[-length(interrows)], rows), interrows[length(interrows)]), sep = "\n")
   }
   
@@ -343,7 +344,9 @@ asciiList <- proto(expr = {
     z <- NULL
     for (i in 2:length(y))
       z <- c(z, ifelse(y[i] != y[i-1], i-1, NA))
-    
+
+    cat(header.sphinx(caption = .$caption, caption.level = .$caption.level), sep = "\n")
+
     for (i in 1:length(.$x)) {
       tmp <- .$x[[i]]
       if (list.type == "label") tmp <- sub("^\t*", "", tmp)
