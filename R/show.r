@@ -229,6 +229,32 @@ asciiDataFrame <- proto(expr = {
     cat(header.sphinx(caption = .$caption, caption.level = .$caption.level), sep = "\n")    
     cat(c(rbind(interrows[-length(interrows)], rows), interrows[length(interrows)]), sep = "\n")
   }
+
+  show.org <- function(.) {
+    charac.x <- charac(.)
+    ncolx <- ncol(charac.x)
+    
+    if (.$style != "") {  
+      style <- unlist(strsplit(.$style, ""))
+      style <- rep(style, length.out = ncolx)
+      for (i in 1:ncolx) {
+        charac.x[,i] <- beauty.org(charac.x[,i], style[i])
+      }
+    }
+    
+    ncharcell <- nchar(charac.x[2,]) + 2
+    
+    rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
+    
+    interrow <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = "")
+    
+    if (.$header)
+      rows <- c(rows[1], interrow, rows[-1])
+
+    cat(interrow, "\n", sep = "")
+    cat(rows, sep = "\n")
+    cat(interrow, "\n", sep = "")
+  }
   
   show.t2t <- function(.) {
     charac.x <- charac(.)
