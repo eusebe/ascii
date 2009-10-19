@@ -251,6 +251,7 @@ asciiDataFrame <- proto(expr = {
     if (.$header)
       rows <- c(rows[1], interrow, rows[-1])
 
+    cat(header.org(caption = .$caption, caption.level = .$caption.level), sep = "\n")    
     cat(interrow, "\n", sep = "")
     cat(rows, sep = "\n")
     cat(interrow, "\n", sep = "")

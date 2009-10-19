@@ -136,29 +136,28 @@ beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
 # Sphinx #
 ##########
 
-# generate headers for txt2tags
+# generate headers for sphinx
 header.sphinx <- function(caption = "", caption.level = "") {
   niv <- c("=", "-", "~", "^", "+")
   ncharcap <- nchar(caption)
   if (caption != "") {
     if (is.numeric(caption.level) & caption.level > 0) {
       res <- c(caption, paste(paste(rep(niv[caption.level], ncharcap), collapse = ""), "\n", sep = ""))
-    }
-    else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
+    } else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
       if (caption.level == "s")
         res <- paste(beauty.sphinx(caption, "s"), "\n", sep = "")
       else if (caption.level == "e")
         res <- paste(beauty.sphinx(caption, "e"), "\n", sep = "")
       else if (caption.level == "m")
         res <- paste(beauty.sphinx(caption, "m"), "\n", sep = "")
-    } else
+    } else if (is.character(caption.level) & caption.level != "") {
       res <- c(caption, paste(paste(rep(caption.level, ncharcap)), collapse = ""), sep = "")
-    } else
+    }
+  } else 
   res <- paste(caption, "\n", sep = "") 
-  
   return(res)
 }
-
+  
 # beautify for sphinx
 beauty.sphinx <- function(x, beauti = c("e", "m", "s")) {
   if (beauti == "s") {
@@ -201,6 +200,27 @@ beauty.org <- function(x, beauti = c("e", "m", "s")) {
     if (length(x[y]) != 0) x[y] <- sub("(^ *$)", "\\1    ", x[y]) # rajouter suffisamment d'espaces lorsque la case est vide pour l'alignement globale
   }
   return(x)
+}
+
+# generate headers for org
+header.org <- function(caption = "", caption.level = "") {
+  if (caption != "") {
+    if (is.numeric(caption.level) & caption.level > 0) {
+      res <- paste(paste(rep("*", caption.level), collapse = ""), caption)
+    }
+    else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
+      if (caption.level == "s")
+        res <- paste(beauty.org(caption, "s"), sep = "")
+      else if (caption.level == "e")
+        res <- paste(beauty.org(caption, "e"), sep = "")
+      else if (caption.level == "m")
+        res <- paste(beauty.org(caption, "m"), sep = "")
+    } else
+      res <- paste("#+CAPTION:", caption)
+    } else
+  res <- caption 
+  
+  return(res)
 }
 
 ###########
