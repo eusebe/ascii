@@ -246,7 +246,7 @@ asciiDataFrame <- proto(expr = {
     
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     
-    interrow <- paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = "")
+    interrow <- paste("|", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = "")
     
     if (.$header)
       rows <- c(rows[1], interrow, rows[-1])

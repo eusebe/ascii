@@ -1,5 +1,8 @@
-Essayons !
+Essai de Sphinx
+===============
 
+Essayons !
+----------
 <<>>=
 2+2
 @
@@ -11,3 +14,7 @@ print(ascii(head(esoph), style = "dems"), "sphinx")
 <<fig=T>>=
 plot(1)
 @ 
+
+Des groupes de colonnes
+-----------------------
+Pas encore supporter par l'export latex...
