@@ -152,9 +152,12 @@ header.sphinx <- function(caption = "", caption.level = "") {
         res <- paste(beauty.sphinx(caption, "m"), "\n", sep = "")
     } else if (is.character(caption.level) & caption.level != "") {
       res <- c(caption, paste(paste(rep(caption.level, ncharcap)), collapse = ""), sep = "")
+    } else if (caption.level == "") {
+      res <- paste(caption, "\n", sep = "")
     }
-  } else 
-  res <- paste(caption, "\n", sep = "") 
+  } else {
+    res <- ""
+  }
   return(res)
 }
   
