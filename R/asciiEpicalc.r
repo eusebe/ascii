@@ -1,4 +1,4 @@
-ascii.tab1 <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = TRUE, align = "", col.width = 1, style = "", ...){
+ascii.tab1 <- function (x, include.rownames = TRUE, include.colnames = TRUE, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = TRUE, align = "", col.width = 1, style = "", ...){
     y <- x$output
     row.names(y)[is.na(row.names(y))] <- "NA"
     colnames(y) <- sub("^ *", "", colnames(y))

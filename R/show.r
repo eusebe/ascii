@@ -226,7 +226,7 @@ asciiDataFrame <- proto(expr = {
     if (.$header)
       interrows[2] <- gsub("-", "=", interrows[2])
 
-    cat(header.sphinx(caption = .$caption, caption.level = .$caption.level), sep = "\n")    
+    cat(header.sphinx(caption = .$caption, caption.level = .$caption.level))    
     cat(c(rbind(interrows[-length(interrows)], rows), interrows[length(interrows)]), sep = "\n")
   }
 
