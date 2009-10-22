@@ -465,6 +465,15 @@ asciiMixed <- proto(expr = {
     }
   }
 
+  show.sphinx <- function(.) {
+    args <- rev(as.list(.))
+    for (i in seq_along(args)) {
+      if (is.null(args[[i]])) next
+      print(args[[i]], type = "org") 
+      if (i != length(args)) cat("\n") 
+    }
+  }
+
   show.t2t <- function(.) {
     args <- rev(as.list(.))
     for (i in seq_along(args)) {
