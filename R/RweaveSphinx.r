@@ -149,11 +149,11 @@ makeRweaveSphinxCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                             file=chunkout, append=TRUE)
                         openSinput <- TRUE
                     }
-            cat("", paste(getOption("prompt"), dce[1L:leading], sep="", collapse="\n"),
-                file=chunkout, append=TRUE, sep="  ")
+            cat("", paste(paste("  ", getOption("prompt"), sep = ""), dce[1L:leading], sep="", collapse="\n"),
+                file=chunkout, append=TRUE, sep="")
                     if (length(dce) > leading)
-                        cat("\n", paste(getOption("continue"), dce[-(1L:leading)], sep="", collapse="\n"),
-                            file=chunkout, append=TRUE, sep="  ")
+                        cat("\n", paste("  ", paste(getOption("continue"), sep = ""), dce[-(1L:leading)], sep="", collapse="\n"),
+                            file=chunkout, append=TRUE, sep="")
             linesout[thisline + 1L:length(dce)] <- srcline
             thisline <- thisline + length(dce)
                 }

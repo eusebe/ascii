@@ -146,15 +146,15 @@ header.sphinx <- function(caption = "", caption.level = "") {
       res <- paste(caption, paste(paste(rep(niv[caption.level], ncharcap), collapse = ""), "\n", sep = ""), sep = "\n")
     } else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
       if (caption.level == "s")
-        res <- paste(beauty.sphinx(caption, "s"), "\n", sep = "")
+        res <- paste(beauty.sphinx(caption, "s"), "\n\n", sep = "")
       else if (caption.level == "e")
-        res <- paste(beauty.sphinx(caption, "e"), "\n", sep = "")
+        res <- paste(beauty.sphinx(caption, "e"), "\n\n", sep = "")
       else if (caption.level == "m")
-        res <- paste(beauty.sphinx(caption, "m"), "\n", sep = "")
+        res <- paste(beauty.sphinx(caption, "m"), "\n\n", sep = "")
     } else if (is.character(caption.level) & caption.level != "" & caption.level != "none") {
       res <- paste(caption, paste(paste(rep(caption.level, ncharcap), collapse = ""), "\n", sep = ""), sep = "\n")
     } else if (caption.level == "" | caption.level == "none") {
-      res <- paste(caption, "\n", sep = "")
+      res <- paste(caption, "\n\n", sep = "")
     }
   } 
   return(res)
