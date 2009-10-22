@@ -384,7 +384,32 @@ asciiList <- proto(expr = {
         cat("\n")
     }
   }
-  
+
+  show.org <- function(.) {
+    indent.mark <- "  "
+    if (.$list.type == "bullet") mark <- rep("-", length(.$x))
+    if (.$list.type == "number") mark <- paste(seq(1, length(.$x), 1), ".", sep = "")
+    if (.$list.type == "none")  { mark <- rep("", length(.$x)); indent.mark = ""}
+    if (.$list.type == "label") {
+      if (is.null(names(.$x))) {
+        namesx <- paste("[ [ ", 1:length(.$x), " ] ]", sep = "")
+      } else {
+        namesx <- names(.$x)
+      }
+      mark <- paste("- ", namesx, " ::", sep = "")
+      indent.mark = "  "
+    }
+    
+    charac.x <- vector("character", length(.$x))
+    for (i in 1:length(.$x)) {
+      tmp <- .$x[[i]]
+      tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, tmp, perl = TRUE)
+      charac.x[i] <- sub("(^ *)", paste("\\1", mark[i], " ", sep = ""), tmp)
+    }
+    cat(header.org(caption = .$caption, caption.level = .$caption.level))
+    cat(charac.x, sep = "\n")
+  }
+
   show.t2t <- function(.) {
     indent.mark <- " "
     if (.$list.type == "bullet") mark <- rep("-", length(.$x))
