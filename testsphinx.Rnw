@@ -17,4 +17,7 @@ plot(1)
 
 Des groupes de colonnes
 -----------------------
-Pas encore supporter par l'export latex...
+
+<<results=sphinx>>=
+print(ascii(head(esoph), cgroup = c("toto", "tata"), n.cgroup = c(3, 3), rgroup = c("", "", "toto", "tata"), n.rgroup = c(1, 1, 3, 3)), "sphinx")
+@ 

@@ -209,7 +209,7 @@ asciiDataFrame <- proto(expr = {
       rcell <- cumsum(c(1, .$n.rgroup[-length(.$n.rgroup)]))
       newrgroup[rcell] <- rgroup
       rrows <- paste("| ", format(newrgroup), " ", sep = "")
-      rncharcell <- nchar(newrgroup[1]) + 2
+      rncharcell <- max(nchar(newrgroup)) + 2
       rinterrows <- paste("+", paste(sapply(rncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), sep = "")
       norinterrows <- gsub("-", " ", rinterrows)
       
