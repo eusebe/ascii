@@ -465,7 +465,7 @@ asciiMixed <- proto(expr = {
     }
   }
 
-  show.sphinx <- function(.) {
+  show.org <- function(.) {
     args <- rev(as.list(.))
     for (i in seq_along(args)) {
       if (is.null(args[[i]])) next
