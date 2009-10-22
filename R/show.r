@@ -242,7 +242,7 @@ asciiDataFrame <- proto(expr = {
       }
     }
     
-    ncharcell <- nchar(charac.x[2,]) + 2
+    ncharcell <- nchar(charac.x[1,]) + 2
     
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     
@@ -251,7 +251,7 @@ asciiDataFrame <- proto(expr = {
     if (.$header)
       rows <- c(rows[1], interrow, rows[-1])
 
-    cat(header.org(caption = .$caption, caption.level = .$caption.level), sep = "\n")    
+    cat(header.org(caption = .$caption, caption.level = .$caption.level))    
     cat(interrow, "\n", sep = "")
     cat(rows, sep = "\n")
     cat(interrow, "\n", sep = "")
