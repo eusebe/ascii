@@ -15,7 +15,7 @@
   RweaveT2t()
 }
 \value{
-    None value is returned. From a .Rnw noweb file, the corresponding .txt is produced (as eventuals files for graphs).
+    None value is returned. From a .Rnw noweb file, the corresponding .t2t is produced (as eventuals files for graphs).
 }
 
 \author{ David Hajage \email{dhajage@gmail.com}}
@@ -35,7 +35,7 @@
 
   \dontrun{
 library(tools)
-Sweave("file.Rnw",driver=RweaveT2t)
+Sweave("file.Rnw", driver=RweaveT2t)
   }
 }
 \keyword{ IO}

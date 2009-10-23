@@ -35,7 +35,7 @@
 
   \dontrun{
 library(tools)
-Sweave("file.Rnw",driver=RweaveAsciidoc)
+Sweave("file.Rnw", driver=RweaveAsciidoc)
   }
 }
 \keyword{ IO}
