@@ -1,14 +1,16 @@
 2009/xx/xx
 ~~~~~~~~~~
 
-* +list.type+ can be "label"
-* ascii.simple.list
-* fix bug with SweaveAscii (didn't work...)
+* version 0.3
+* +list.type+ can be +"label"+
+* +ascii.simple.list+ method
+* +rownames+ and +colnames+ arguments
+* +cgroup+ for txt2tags output
+* improve col alignment in txt2tags output
 * http://sphinx.pocoo.org/[sphinx] driver and output
 * http://orgmode.org/[org] driver and output
-* rownames and colnames arguments
-* cgroup for txt2tags output
-* improve col alignment in txt2tags output
+* Remove +SweaveAscii()+ function
+* +Asciidoc()+, +T2t()+, +Sphinx()+ and +Org()+ (wrapper for +Sweave("file.Rnw", RweaveXxx)+)
 
 2009/07/16
 ~~~~~~~~~~
