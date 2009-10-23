@@ -1,4 +1,4 @@
-export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "SweaveAscii")
+export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "RweaveSphinx", "RweaveOrg", "Asciidoc", "T2t", "Sphinx", "Org")
 import(utils)
 
 S3method("ascii", "anova")
@@ -33,4 +33,3 @@ S3method("ascii", "survdiff")
 S3method("ascii", "table")
 S3method("ascii", "ts")
 S3method("ascii", "zoo")
-

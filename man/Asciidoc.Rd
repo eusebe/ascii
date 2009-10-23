@@ -1,10 +1,9 @@
-\name{SweaveAscii}
-\alias{SweaveAscii}
-\alias{SweaveSyntaxAscii}
+\name{Asciidoc}
+\alias{Asciidoc}
 \title{Sweave wrapper for asciidoc}
 \description{Like \code{Sweave}, but use \code{RweaveAsciidoc} driver as default value.}
 \usage{
-SweaveAscii(file, driver = RweaveAsciidoc, syntax = SweaveSyntaxNoweb, ...)
+Asciidoc(file, driver = RweaveAsciidoc, syntax = SweaveSyntaxNoweb, ...)
 }
 \arguments{
   \item{file}{Name of Sweave source file.}

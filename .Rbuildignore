@@ -2,6 +2,9 @@
 .git/*
 help.r
 load.r
+tmp.r
+conf.py
+.doctrees
 README.textile
 temp.r
 testgroup*
