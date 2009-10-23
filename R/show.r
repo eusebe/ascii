@@ -278,20 +278,47 @@ asciiDataFrame <- proto(expr = {
         charac.x[,i] <- beauty.t2t(charac.x[,i], style[i])
       }
     }
+
+    # prise en compte de cgroup
+    if (!is.null(.$cgroup)) {
+      cgroup <- .$cgroup
+      if (.$cstyle != "") {
+        cstyle <- rep(unlist(strsplit(.$cstyle, "")), length.out = length(cgroup))
+        cgroup <- Vectorize(beauty.t2t)(cgroup, cstyle)
+      }
+      if (.$calign != "") {
+        calign <- rep(unlist(strsplit(.$calign, "")), length.out = length(cgroup))
+        for (i in 1:length(cgroup)) {
+          if (calign[i] == "c")
+            cgroup[i] <- paste(" ", cgroup[i], " ", collapse = "")
+          if (calign[i] == "r")
+            cgroup[i] <- paste(" ", cgroup[i], collapse = "")
+        }
+      }
+      newcgroup <- paste("|", paste(paste(cgroup, lapply(.$n.cgroup, function(x) paste(rep("|", time = x), collapse = ""))), collapse = " "))
+    }
+    
     # prise en compte de l'alignement
     if (.$align != "") {  
       align <- unlist(strsplit(.$align, ""))
       align <- rep(align, length.out = ncol(charac.x))
       for (i in 1:ncol(charac.x)) {
-        if (length(grep("^ *$", charac.x[1, i])) == 0) {
-          if (align[i] == "c") { charac.x[1, i] <- sub("^ *", " ", charac.x[1, i]) ; charac.x[1, i] <- sub(" *$", " ", charac.x[1, i]) }
-          if (align[i] == "r") { charac.x[1, i] <- sub("^ *", " ", charac.x[1, i]) ; charac.x[1, i] <- sub(" *$", "", charac.x[1, i]) } 
+        for (j in 1:nrow(charac.x)) {
+          if (length(grep("^ *$", charac.x[j, i])) == 0) {
+            if (align[i] == "c") { charac.x[j, i] <- sub("^ *", " ", charac.x[j, i]) ; charac.x[j, i] <- sub(" *$", " ", charac.x[j, i]) }
+            if (align[i] == "r") { charac.x[j, i] <- sub("^ *", " ", charac.x[j, i]) ; charac.x[j, i] <- sub(" *$", "", charac.x[j, i]) } 
+          }
         }
       }
     }
-    # cat result
     rows <- apply(charac.x, 1, function(x) paste("| ", paste(x, collapse = " | "), sep = ""))
-    if (.$header) {
+    # cat result
+    if (!is.null(.$cgroup)) {
+      if (.$header)
+        cat("|", sep = "")
+      cat(newcgroup, "\n")
+    }
+    if (.$header & is.null(.$cgroup)) {
       rows[1] <- paste("|", rows[1], sep = "")
     }
     if (.$footer) {
