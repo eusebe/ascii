@@ -336,9 +336,9 @@ asciiDataFrame <- proto(expr = {
       n.cgroup <- rep(n.cgroup, length.out = length(.$cgroup))
       if (sum(n.cgroup) != ncol(charac.x)) {
         if (is.null(n.cgroup)) {
-          n.cgroup <- ncol(charac.x) + !is.null(.$rgroup)
+          n.cgroup <- ncol(charac.x)
         } else {
-          n.cgroup[length(n.cgroup)] <- n.cgroup[length(n.cgroup)] + ncol(charac.x) - sum(n.cgroup) + !is.null(.$rgroup)
+          n.cgroup[length(n.cgroup)] <- n.cgroup[length(n.cgroup)] + ncol(charac.x) - sum(n.cgroup)
         }
       }
       cgroup <- .$cgroup
