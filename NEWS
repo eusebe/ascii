@@ -9,7 +9,8 @@
 * improve col alignment in txt2tags output
 * http://sphinx.pocoo.org/[sphinx] driver and output
 * http://orgmode.org/[org] driver and output
-* Remove +SweaveAscii()+ function
+* improve row and col span (cgroup and rgroup)
+* remove +SweaveAscii()+ function
 * +Asciidoc()+, +T2t()+, +Sphinx()+ and +Org()+ (wrapper for +Sweave("file.Rnw", RweaveXxx)+)
 
 2009/07/16
