@@ -43,14 +43,16 @@
     include.rownames = TRUE, include.colnames = TRUE,
     rownames = NULL, colnames = NULL, 
     format = "f", digits = 2, decimal.mark = ".", na.print = "", 
-    caption = "", caption.level = ".", width = 0, frame = "", grid = "", valign = "", 
-    header = TRUE, footer = FALSE, align = "", col.width = 1, style = "",
-    cgroup = NULL, n.cgroup = NULL, calign = "", cvalign = "", cstyle = "",
-    rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "", rstyle = "", \dots)
+    caption = "", caption.level = "", width = 0, frame = "",
+    grid = "", valign = "", header = TRUE, footer = FALSE,
+    align = "", col.width = 1, style = "", cgroup = NULL,
+    n.cgroup = NULL, calign = "", cvalign = "", cstyle = "",
+    rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "",
+    rstyle = "", \dots)
   \method{ascii}{describe}(x, condense = TRUE, \dots)
-  \method{ascii}{summary.table}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
-  \method{ascii}{list}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
-  \method{ascii}{smooth.spline}(x, caption = "", caption.level = ".", list.type = "bullet", \dots)
+  \method{ascii}{summary.table}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
+  \method{ascii}{list}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
+  \method{ascii}{smooth.spline}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
 }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
