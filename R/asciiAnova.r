@@ -57,7 +57,7 @@ ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, 
     z <- y[[1]][[1]]
     for (i in 2:n) z <- rbind(z, y[[i]][[1]])
     ascii.anova(z, include.rownames = include.rownames,
-         include.colnames = include.colnames, rownames = NULL, colnames = NULL format = format,
+         include.colnames = include.colnames, rownames = NULL, colnames = NULL, format = format,
          digits = digits, decimal.mark = decimal.mark, na.print = na.print,
          caption = caption, width = width, frame = frame, grid = grid,
          valign = valign, header = header, footer = footer, align = align,
