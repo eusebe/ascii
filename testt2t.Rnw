@@ -59,7 +59,7 @@ blabla
 toto <- matrix(1:4, 2, 2)
 tata <- ascii(toto)
 titi <- ascii(summary(table(toto)))
-tutu <- asciiMixed$new(tata, titi, titi, tata, tata)
+tutu <- getAnywhere(asciiMixed)[[2]][[1]]$new(tata, titi, titi, tata, tata)
 tutu$show.t2t()
 @
 

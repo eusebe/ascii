@@ -6,16 +6,12 @@
 
 * Un tableau
 
-<<results=hide>>=
-print(ascii(1:4), "sphinx")
-@
-
 <<results = org>>=
 print(ascii(head(esoph)), "org")
 @ 
 
 <<results = org>>=
-print(ascii(head(esoph), style = "eds"), "org")
+print(ascii(head(esoph), style = "eds", "org")
 @ 
 
 <<results = org>>=
