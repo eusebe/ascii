@@ -1,0 +1,47 @@
+#+INFOJS_OPT: view:info 
+#+STYLE: <link rel="stylesheet" type="text/css" href="http://orgmode.org/worg/code/org-info-js/stylesheet.css" />
+#+TITLE: Essai de org-mode et ascii
+#+AUTHOR: David Hajage 
+#+EMAIL: dhajage@gmail.com
+
+* Un tableau
+
+<<results=hide>>=
+print(ascii(1:4), "sphinx")
+@
+
+<<results = org>>=
+print(ascii(head(esoph)), "org")
+@ 
+
+<<results = org>>=
+print(ascii(head(esoph), style = "eds"), "org")
+@ 
+
+<<results = org>>=
+print(ascii(head(esoph), caption = "esoph"), "org")
+@ 
+
+<<results = org>>=
+print(ascii(head(esoph), caption = "esoph", caption.level = "none"), "org")
+@ 
+
+<<results = org>>=
+print(ascii(head(esoph), caption = "esoph", caption.level = "s"), "org")
+@ 
+
+* Une figure
+#+ATTR_LaTeX: width=\linewidth
+<<fig=T>>=
+plot(1)
+@ 
+
+* du R
+
+<<>>=
+2+2
+@ 
+
+<<echo=F>>=
+2+2
+@ 
