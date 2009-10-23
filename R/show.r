@@ -5,6 +5,8 @@ asciiDataFrame <- proto(expr = {
     x,
     include.rownames,
     include.colnames,
+    rownames,
+    colnames,
     format,
     digits,
     decimal.mark,
@@ -33,6 +35,8 @@ asciiDataFrame <- proto(expr = {
     x = x,
     include.rownames = include.rownames,
     include.colnames = include.colnames,
+    rownames = rownames,
+    colnames = colnames,
     format = format,
     digits = digits,
     decimal.mark = decimal.mark,
@@ -78,6 +82,13 @@ asciiDataFrame <- proto(expr = {
     charac.x <- as.data.frame(charac.x, , stringsAsFactors = F)
 
     # rownames and colnames
+    if (!is.null(.$rownames)) {
+      rownames(.$x) <- rep(.$rownames, length.out = nrow(.$x))
+    }
+    if (!is.null(.$colnames)) {
+      colnames(.$x) <- rep(.$colnames, length.out = ncol(.$x))
+    }
+    
     rnoms <- rownames(.$x)
     cnoms <- names(.$x)
     if (.$include.rownames) {
