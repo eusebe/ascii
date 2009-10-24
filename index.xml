@@ -13,25 +13,65 @@
     </author>
     <authorinitials>DH</authorinitials>
 </articleinfo>
-<simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing asciidoc or txt2tags document with embeded R commands.</simpara>
+<simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing asciidoc, txt2tags, sphinx or org documents with embeded R commands.</simpara>
 <section id="_news">
 <title>news</title>
-<section id="_2009_xx_xx">
-<title>2009/xx/xx</title>
+<section id="_2009_10_24">
+<title>2009/10/24</title>
 <itemizedlist>
 <listitem>
 <simpara>
-<literal>list.type</literal> can be "label"
+version 0.3
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-ascii.simple.list
+<literal>list.type</literal> can be <literal>"label"</literal>
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-sphinx driver
+<literal>ascii.simple.list</literal> method
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<literal>rownames</literal> and <literal>colnames</literal> arguments
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<literal>cgroup</literal> for txt2tags output
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+improve col alignment in txt2tags output
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="http://sphinx.pocoo.org/">sphinx</ulink> driver and output
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="http://orgmode.org/">org</ulink> driver and output
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+improve row and col span (cgroup and rgroup)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+remove <literal>SweaveAscii()</literal> function
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<literal>Asciidoc()</literal>, <literal>T2t()</literal>, <literal>Sphinx()</literal> and <literal>Org()</literal> (wrapper for <literal>Sweave("file.Rnw", RweaveXxx)</literal>)
 </simpara>
 </listitem>
 </itemizedlist>
@@ -126,8 +166,7 @@ x &lt;- matrix(1:4, 2, 2)
 x
 @</literallayout>
 <simpara>gives :</simpara>
-<screen>&gt; x &lt;- matrix(1:4, 2, 2)
-&gt; x
+<screen>&gt; x &lt;- matrix(1:4, 2, 2)&gt; x
      [,1] [,2]
 [1,]    1    3
 [2,]    2    4</screen>
@@ -140,9 +179,11 @@ frame="all"
 rowsep="1" colsep="1"
 >
 <title>A simple matrix</title>
+<?dbhtml table-width="30%"?>
+<?dbfo table-width="30%"?>
 <tgroup cols="2">
-<colspec colname="col_1" colwidth="63pt"/>
-<colspec colname="col_2" colwidth="63pt"/>
+<colspec colname="col_1" colwidth="64*"/>
+<colspec colname="col_2" colwidth="64*"/>
 <tbody>
 <row>
 <entry align="left" valign="top"><simpara>1.00</simpara></entry>
@@ -167,487 +208,308 @@ a generic method for common R objects: <literal>ascii()</literal>. Default argum
 </listitem>
 <listitem>
 <simpara>
-two Sweave drivers: <literal>Sweave("yourfile.Rnw", RweaveAsciidoc())</literal> or <literal>Sweave("yourfile.Rnw", RweaveT2t())</literal>,
+several Sweave drivers: <literal>Sweave("yourfile.Rnw", RweaveAsciidoc())</literal>, <literal>Sweave("yourfile.Rnw", RweaveT2t())</literal>, <literal>Sweave("yourfile.Rnw", RweaveSphinx())</literal> and <literal>Sweave("yourfile.Rnw", RweaveOrg())</literal>.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-a simple wrapper for <literal>Sweave()</literal> names <literal>SweaveAscii()</literal> that uses <literal>RweaveAsciidoc()</literal> as default.
+some simple wrappers for <literal>Sweave()</literal> named <literal>Asciidoc()</literal>, <literal>T2t()</literal>, <literal>Sphinx()</literal> and <literal>Org()</literal>.
 </simpara>
 </listitem>
 </itemizedlist>
 </section>
-<section id="_ascii_manual">
-<title>ascii manual</title>
-<table tabstyle="horizontal" frame="none" colsep="0" rowsep="0"><title>ascii</title><tgroup cols="2"><colspec colwidth="15*"/><colspec colwidth="85*"/><tbody valign="top">
+<section id="_features_options">
+<title>features/options</title>
+<simpara>See <literal>?ascii</literal> for the description of all arguments.</simpara>
+<informaltable
+frame="topbot"
+rowsep="0" colsep="0"
+>
+<tgroup cols="5">
+<colspec colname="col_1" colwidth="20*"/>
+<colspec colname="col_2" colwidth="20*"/>
+<colspec colname="col_3" colwidth="20*"/>
+<colspec colname="col_4" colwidth="20*"/>
+<colspec colname="col_5" colwidth="20*"/>
+<thead>
 <row>
-<entry>
-<simpara>
-<literal>x</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-An R object of class found among <literal>methods(ascii)</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top">                  </entry>
+<entry align="left" valign="top"> asciidoc </entry>
+<entry align="left" valign="top"> txt2tags </entry>
+<entry align="left" valign="top"> sphinx </entry>
+<entry align="left" valign="top"> org</entry>
+</row>
+</thead>
+<tbody>
+<row>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Arguments</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>include.rownames</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-logical. If <literal>TRUE</literal> the rows names are printed.
-  Default value depends of class of <literal>x</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>include.rownames</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>include.colnames</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-logical. If <literal>TRUE</literal> the columns names are printed.
-  Default value depends of class of <literal>x</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>include.colnames</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>format</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating the format for the
-  corresponding columns. These values are passed to the
-  <literal>formatC</literal> function.  Use <literal>"d"</literal> (for integers), <literal>"f"</literal>, <literal>"e"</literal>,
-  <literal>"E"</literal>, <literal>"g"</literal>, <literal>"G"</literal>, <literal>"fg"</literal> (for reals), or <literal>"s"</literal> (for
-  strings). <literal>"f"</literal> gives numbers in the usual <literal>xxx.xxx</literal> format;
-  <literal>"e"</literal> and <literal>"E"</literal> give <literal>n.ddde+nn</literal> or <literal>n.dddE+nn</literal> (scientific
-  format); <literal>"g"</literal> and <literal>"G"</literal> put <literal>x[i]</literal> into scientific format
-  only if it saves space to do so.  <literal>"fg"</literal> uses fixed format as
-  <literal>"f"</literal>, but <literal>digits</literal> as number of <emphasis>significant</emphasis> digits.  Note
-  that this can lead to quite long result strings.  Default
-  depends on the class of <literal>x</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>rownames</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>digits</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Numeric vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating the number of digits to
-  display in the corresponding columns. Default is <literal>2</literal>.
-  decimal.mark: The character to be used to indicate the numeric decimal
-  point.  Default is <literal>"."</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>colnames</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>na.print</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-The character string specifying how <literal>NA</literal> should be formatted
-  specially. Default is "".
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>format</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>caption</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length 1 containing the table+s caption
-  or title. Set to <literal>""</literal> to suppress the caption.  Default value
-  is <literal>""</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>digits</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>caption.level</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character or numeric vector of length 1 containing the
-          \code{"."} (block titles  in asciidoc markup), \code{"s"} (strong),
-          \code{"e"} (emphasis), \code{"m"} (monospaced) or \code{""} (no markup).
-          Default is \code{"."}.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>decimal.mark</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>width</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Numeric vector of length one containing the table width
-  relative to the available width (expressed as a percentage
-  value, <literal>1</literal>&#8230; <literal>99</literal>). Default is <literal>0</literal> (all available width).
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>na.print</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>frame</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one. Defines the table border,
-  and can take the following values: <literal>"topbot"</literal> (top and
-  bottom),  <literal>"all"</literal> (all sides), <literal>"none"</literal> and <literal>"sides"</literal> (left
-  and right). The default value is <literal>""</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>caption</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>grid</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one. Defines which ruler lines are
-  drawn between table rows and columns,  and can take the
-  following values: <literal>"all"</literal>, <literal>"rows"</literal>, <literal>"cols"</literal> and <literal>"none"</literal>.
-  Default is <literal>""</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>caption.level</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>valign</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating vertical alignment
-  of all cells in table.  Can take the following values:
-  <literal>"top"</literal>, <literal>"bottom"</literal> and <literal>"middle"</literal>. Default is <literal>""</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>width</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>header</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-logical. If <literal>TRUE</literal> the first line of the table is emphasized.
-  The default value depends of class of <literal>x</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>frame</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes (all or none)</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>footer</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-logical. If <literal>TRUE</literal> the last line of the table is emphasized.
-  The default value depends of class of <literal>x</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>grid</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>align</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating the alignment of
-  the corresponding columns.  Can be composed with <literal>"r"</literal>
-  (right), <literal>"l"</literal> (left) and <literal>"c"</literal> (center).  Default value is
-  <literal>""</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>valign</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>col.width</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Numeric vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating width of the corresponding
-  columns (integer proportional values). Default is <literal>1</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>header</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>style</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating the style of the
-  corresponding columns.  Can be composed with <literal>"d"</literal> (default),
-  <literal>"e"</literal> (emphasis), <literal>"m"</literal> (monospaced),  <literal>"a"</literal> (cells can
-  contain any of the AsciiDoc elements that are allowed inside
-  document),  <literal>"l"</literal> (literal), <literal>"v"</literal> (verse; all line breaks
-  are retained).  Default is <literal>""</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>footer</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>cgroup</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector defining major column headings. The default
-          is to have none (<literal>NULL</literal>).
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>align</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>n.cgroup</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-A numeric vector containing the number of columns for which
-  each element in cgroup is a heading.  For example, specify
-  <literal>cgroup=c("Major 1","Major 2")', 'n.cgroup=c(3,3)</literal> if <literal>"Major
-  1"</literal> is to span columns 1-3 and <literal>"Major 2"</literal> is to span columns
-  4-6. Row names count in the column numbers if
-  <literal>include.rownames = TRUE</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>col.width</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>calign</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one defining alignment of major
-  column headings.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>style</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>cvalign</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one defining vertical alignment of
-  major column headings.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>cgroup</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>cstyle</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating the style of major
-  column headings
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>n.cgroup</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>rgroup</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector defining major row headings. The default is
-  to have none (<literal>NULL</literal>).
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>calign</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>n.rgroup</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-A numeric vector containing the number of rows for which each
-  element in rgroup is a heading. Column names count in the row
-  numbers if <literal>include.colnames = TRUE</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>cvalign</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>ralign</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one defining alignment of major
-  row headings.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>cstyle</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>rvalign</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one defining vertical alignment of
-  major row headings.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>rgroup</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>rstyle</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating the style of major
-  row headings
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>n.rgroup</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>condense</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-default is <literal>TRUE</literal> to condense the output with regard to the 5
-  lowest and highest values and the frequency table
-  (<literal>describe()</literal> in package <literal>Hmisc</literal>).
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>ralign</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>list.type</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Character vector of length one indicating the list type
-  (<literal>"bullet"</literal>, <literal>"number"</literal>, "label" or <literal>"none"</literal>). If <literal>"label"</literal>,
-  <literal>names(list)</literal> is used for labels. Default is <literal>"bullet"</literal>.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>rvalign</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>&#8230;</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Additional arguments.  (Currently ignored.)
-</simpara>
-</entry>
-</row>
-</tbody></tgroup></table>
-<table tabstyle="horizontal" frame="none" colsep="0" rowsep="0"><title>print.ascii</title><tgroup cols="2"><colspec colwidth="15*"/><colspec colwidth="85*"/><tbody valign="top">
-<row>
-<entry>
-<simpara>
-<literal>x</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-An object of class <literal>"ascii"</literal>
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>rstyle</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>type</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Type of syntax produce.  Possible values for <literal>type</literal> are
-  <literal>"asciidoc"</literal>, <literal>"t2t"</literal> or <literal>"textile"</literal>. Default value produce
-  AsciiDoc syntax.
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>list.type</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
 <row>
-<entry>
-<simpara>
-<literal>&#8230;</literal>
-</simpara>
-</entry>
-<entry>
-<simpara>
-Additional arguments.  (Currently ignored.)
-</simpara>
-</entry>
+<entry align="left" valign="top"><simpara>condense</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
 </row>
-</tbody></tgroup></table>
+<row>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Output</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>html</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>docbook</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>latex</simpara></entry>
+<entry align="left" valign="top"><simpara>yes (experimental)</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes (col and row spans not implemented yet)</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara><emphasis role="strong">Feature</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
+</row>
+<row>
+<entry align="left" valign="top"><simpara>syntax color</simpara></entry>
+<entry align="left" valign="top"><simpara>yes (but not for R&#8230;)</simpara></entry>
+<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara>yes</simpara></entry>
+</row>
+</tbody>
+</tgroup>
+</informaltable>
 </section>
 <section id="_ascii_examples">
 <title>ascii examples</title>
@@ -791,12 +653,14 @@ frame="topbot"
 rowsep="0" colsep="0"
 >
 <title>iris</title>
+<?dbhtml table-width="75%"?>
+<?dbfo table-width="75%"?>
 <tgroup cols="5">
-<colspec colname="col_1" colwidth="63pt"/>
-<colspec colname="col_2" colwidth="63pt"/>
-<colspec colname="col_3" colwidth="63pt"/>
-<colspec colname="col_4" colwidth="63pt"/>
-<colspec colname="col_5" colwidth="63pt"/>
+<colspec colname="col_1" colwidth="64*"/>
+<colspec colname="col_2" colwidth="64*"/>
+<colspec colname="col_3" colwidth="64*"/>
+<colspec colname="col_4" colwidth="64*"/>
+<colspec colname="col_5" colwidth="64*"/>
 <thead>
 <row>
 <entry align="center" valign="bottom"> Sepal.Length </entry>
@@ -883,10 +747,7 @@ rowsep="0" colsep="0"
 </section>
 <section id="_row_and_col_headings">
 <title>row (and col) headings</title>
-<screen>&gt; library(reshape)
-&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)
-&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")
-&gt; ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:",
+<screen>&gt; library(reshape)&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")&gt; ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:",
 +     as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[,
 +     1])), rstyle = "s", rvalign = "middle")
 [options="header"]
@@ -931,7 +792,6 @@ rowsep="0" colsep="0"
 | 79      | 7.73   | 0.57    | 0.12   | 1.18   | 0.03
 | 86      | 3.87   | 1.63    | 0.94   | 4.11   | 3.03
 | (all)   | 6.97   | 1.72    | 0.68   | 3.87   | 2.53
-.0+.^s| Treatment NA
 |============================================================================</screen>
 <informaltable
 frame="all"
@@ -1471,12 +1331,7 @@ version.string
 </section>
 <section id="_glm">
 <title>glm</title>
-<screen>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
-&gt; outcome &lt;- gl(3, 1, 9)
-&gt; treatment &lt;- gl(3, 3)
-&gt; d.AD &lt;- data.frame(treatment, outcome, counts)
-&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())
-&gt; glm.D93
+<screen>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)&gt; outcome &lt;- gl(3, 1, 9)&gt; treatment &lt;- gl(3, 3)&gt; d.AD &lt;- data.frame(treatment, outcome, counts)&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())&gt; glm.D93
 Call:  glm(formula = counts ~ outcome + treatment, family = poisson())
 
 Coefficients:
@@ -1613,14 +1468,7 @@ rowsep="1" colsep="1"
 </section>
 <section id="_describe">
 <title>describe</title>
-<screen>&gt; library(Hmisc)
-&gt; label(esoph$agegp) &lt;- "Age group"
-&gt; label(esoph$alcgp) &lt;- "Alcohol group"
-&gt; label(esoph$tobgp) &lt;- "Tobacco group"
-&gt; label(esoph$ncontrols) &lt;- "Number of control"
-&gt; label(esoph$age) &lt;- "Age"
-&gt; units(esoph$age) &lt;- "Years"
-&gt; ascii(describe(esoph))
+<screen>&gt; library(Hmisc)&gt; label(esoph$agegp) &lt;- "Age group"&gt; label(esoph$alcgp) &lt;- "Alcohol group"&gt; label(esoph$tobgp) &lt;- "Tobacco group"&gt; label(esoph$ncontrols) &lt;- "Number of control"&gt; label(esoph$age) &lt;- "Age"&gt; units(esoph$age) &lt;- "Years"&gt; ascii(describe(esoph))
 .esoph
 * 6 Variable
 * 88 Observations
@@ -2039,10 +1887,8 @@ rowsep="1" colsep="1"
 </section>
 <section id="_plot">
 <title>plot</title>
-<screen>&gt; library(ggplot2)
-&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
-+     binwidth = 1000, colour = color)
-&gt; print(p)</screen>
+<screen>&gt; library(ggplot2)&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
++     binwidth = 1000, colour = color)&gt; print(p)</screen>
 <informalfigure>
 <mediaobject>
   <imageobject>
@@ -2052,13 +1898,9 @@ rowsep="1" colsep="1"
 </mediaobject>
 </informalfigure>
 </section>
-<section id="_txt2tags">
-<title>txt2tags</title>
-<screen>&gt; library(reshape)
-&gt; names(airquality) &lt;- tolower(names(airquality))
-&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)
-&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")
-&gt; res
+<section id="_other_outputs">
+<title>other outputs</title>
+<screen>&gt; library(reshape)&gt; names(airquality) &lt;- tolower(names(airquality))&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")&gt; res
   month    ozone  solar.r      wind     temp
 1     5 23.61538 181.2963 11.622581 65.54839
 2     6 29.44444 190.1667 10.266667 79.10000
@@ -2073,18 +1915,49 @@ rowsep="1" colsep="1"
 | 7     | 59.12 | 216.48  | 8.94  | 83.90 |
 | 8     | 59.96 | 171.86  | 8.79  | 83.97 |
 | 9     | 31.45 | 167.43  | 10.18 | 76.90 |
-| (all) | 42.13 | 185.93  | 9.96  | 77.88 |</screen>
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+&gt; print(ascii(res), "sphinx")
++-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
++=======+=======+=========+=======+=======+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
++-------+-------+---------+-------+-------+
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
++-------+-------+---------+-------+-------+
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
++-------+-------+---------+-------+-------+
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
++-------+-------+---------+-------+-------+
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
++-------+-------+---------+-------+-------+
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
++-------+-------+---------+-------+-------+
+&gt; print(ascii(res), "org")
+|-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
+|-------+-------+---------+-------+-------+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+|-------+-------+---------+-------+-------+</screen>
 </section>
 </section>
 <section id="_convert">
 <title>convert</title>
-<simpara><literal>Sweave</literal> process creates a <literal>yourdocument.txt</literal> file from <literal>yourdocument.Rnw</literal>.</simpara>
+<simpara><literal>Sweave</literal> process creates a <literal>yourdocument.xxx</literal> file from <literal>yourdocument.Rnw</literal>.</simpara>
 <screen>Sweave("youdocument.Rnw", RweaveXxx)</screen>
 <simpara>You can convert it to html format with the following command:</simpara>
 <screen>asciidoc yourdocument.txt
 or
-txt2tags -t html yourdocument.t2t</screen>
-<simpara>or to xhtml, docbook, man, tex&#8230;</simpara>
+txt2tags -t html yourdocument.t2t
+or
+sphinx-build -b html . youdocument # need a conf.py file
+or
+Alt-X org-export-as-html</screen>
+<simpara>or to other formats&#8230;</simpara>
 <simpara>For example, you can see the source of <ulink url="http://eusebe.github.com/ascii/index.Rnw">this documentation</ulink>, the file <ulink url="http://eusebe.github.com/ascii/index.txt">generated by <literal>Sweave</literal></ulink>, the same file in <ulink url="http://eusebe.github.com/ascii/index.xml">docbook format</ulink>, the same file <ulink url="http://eusebe.github.com/ascii/index.pdf">converted to pdf</ulink> with dblatex, and the same file <ulink url="http://eusebe.github.com/ascii/index.odt">converted to odt</ulink> with docbook2odf.</simpara>
 </section>
 <section id="_more_informations">
@@ -2100,6 +1973,16 @@ asciidoc: <ulink url="http://www.methods.co.nz/asciidoc">http://www.methods.co.n
 txt2tags: <ulink url="http://txt2tags.sourceforge.net">http://txt2tags.sourceforge.net</ulink>
 </simpara>
 </listitem>
+<listitem>
+<simpara>
+sphinx: <ulink url="http://sphinx.pocoo.org/">http://sphinx.pocoo.org/</ulink>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+org-mode: <ulink url="http://orgmode.org/">http://orgmode.org/</ulink>
+</simpara>
+</listitem>
 </itemizedlist>
 </section>
 <section id="_ascii_for_real">
@@ -2107,7 +1990,17 @@ txt2tags: <ulink url="http://txt2tags.sourceforge.net">http://txt2tags.sourcefor
 <itemizedlist>
 <listitem>
 <simpara>
-Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">some vignettes</ulink> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <ulink url="http://eusebe.github.com/ascii">ascii</ulink>.
+Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">some vignettes</ulink> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <ulink url="http://eusebe.github.com/ascii"><literal>ascii</literal></ulink>.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="http://learnr.wordpress.com/">This blog</ulink> uses <ulink url="http://eusebe.github.com/ascii"><literal>ascii</literal></ulink> and <ulink url="http://srackham.wordpress.com/blogpost1/">blogpost</ulink> to generate and publish post.
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+<ulink url="http://blogisticreflections.wordpress.com/">This blog</ulink> <ulink url="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">too but with another method</ulink>.
 </simpara>
 </listitem>
 </itemizedlist>

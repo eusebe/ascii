@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.4.5" />
+<meta name="generator" content="AsciiDoc 8.5.0" />
 <title>ascii</title>
 <style type="text/css">
 /* Debug borders */
@@ -118,7 +118,7 @@ div#preamble {
 div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
 div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
 div.admonitionblock {
-  margin-top: 1.5em;
+  margin-top: 0.25em;
   margin-bottom: 1.5em;
 }
 div.admonitionblock {
@@ -468,26 +468,66 @@ function generateToc(toclevels) {
 </div>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing asciidoc or txt2tags document with embeded R commands.</p></div>
+<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing asciidoc, txt2tags, sphinx or org documents with embeded R commands.</p></div>
 </div>
 </div>
 <h2 id="_news">news</h2>
 <div class="sectionbody">
-<h3 id="_2009_xx_xx">2009/xx/xx</h3><div style="clear:left"></div>
+<h3 id="_2009_10_24">2009/10/24</h3><div style="clear:left"></div>
 <div class="ulist"><ul>
 <li>
 <p>
-<tt>list.type</tt> can be "label"
+version 0.3
 </p>
 </li>
 <li>
 <p>
-ascii.simple.list
+<tt>list.type</tt> can be <tt>"label"</tt>
 </p>
 </li>
 <li>
 <p>
-sphinx driver
+<tt>ascii.simple.list</tt> method
+</p>
+</li>
+<li>
+<p>
+<tt>rownames</tt> and <tt>colnames</tt> arguments
+</p>
+</li>
+<li>
+<p>
+<tt>cgroup</tt> for txt2tags output
+</p>
+</li>
+<li>
+<p>
+improve col alignment in txt2tags output
+</p>
+</li>
+<li>
+<p>
+<a href="http://sphinx.pocoo.org/">sphinx</a> driver and output
+</p>
+</li>
+<li>
+<p>
+<a href="http://orgmode.org/">org</a> driver and output
+</p>
+</li>
+<li>
+<p>
+improve row and col span (cgroup and rgroup)
+</p>
+</li>
+<li>
+<p>
+remove <tt>SweaveAscii()</tt> function
+</p>
+</li>
+<li>
+<p>
+<tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>Sphinx()</tt> and <tt>Org()</tt> (wrapper for <tt>Sweave("file.Rnw", RweaveXxx)</tt>)
 </p>
 </li>
 </ul></div>
@@ -578,8 +618,7 @@ x
 <div class="paragraph"><p>gives :</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; x &lt;- matrix(1:4, 2, 2)
-&gt; x
+<pre><tt>&gt; x &lt;- matrix(1:4, 2, 2)&gt; x
      [,1] [,2]
 [1,]    1    3
 [2,]    2    4</tt></pre>
@@ -596,7 +635,7 @@ ascii(x, caption = "A simple matrix", width = 30)
 width="30%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">A simple matrix</caption>
+<caption class="title">Table 1: A simple matrix</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -623,454 +662,308 @@ a generic method for common R objects: <tt>ascii()</tt>. Default argument depend
 </li>
 <li>
 <p>
-two Sweave drivers: <tt>Sweave("yourfile.Rnw", RweaveAsciidoc())</tt> or <tt>Sweave("yourfile.Rnw", RweaveT2t())</tt>,
+several Sweave drivers: <tt>Sweave("yourfile.Rnw", RweaveAsciidoc())</tt>, <tt>Sweave("yourfile.Rnw", RweaveT2t())</tt>, <tt>Sweave("yourfile.Rnw", RweaveSphinx())</tt> and <tt>Sweave("yourfile.Rnw", RweaveOrg())</tt>.
 </p>
 </li>
 <li>
 <p>
-a simple wrapper for <tt>Sweave()</tt> names <tt>SweaveAscii()</tt> that uses <tt>RweaveAsciidoc()</tt> as default.
+some simple wrappers for <tt>Sweave()</tt> named <tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>Sphinx()</tt> and <tt>Org()</tt>.
 </p>
 </li>
 </ul></div>
 </div>
-<h2 id="_ascii_manual">ascii manual</h2>
+<h2 id="_features_options">features/options</h2>
 <div class="sectionbody">
-<div class="hdlist"><div class="title">ascii</div><table>
+<div class="paragraph"><p>See <tt>?ascii</tt> for the description of all arguments.</p></div>
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<thead>
 <tr>
-<td class="hdlist1">
-<tt>x</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-An R object of class found among <tt>methods(ascii)</tt>.
-</p>
-</td>
+<th align="left" valign="top">                  </th>
+<th align="left" valign="top"> asciidoc </th>
+<th align="left" valign="top"> txt2tags </th>
+<th align="left" valign="top"> sphinx </th>
+<th align="left" valign="top"> org</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><strong>Arguments</strong></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>include.rownames</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-logical. If <tt>TRUE</tt> the rows names are printed.
-  Default value depends of class of <tt>x</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">include.rownames</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>include.colnames</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-logical. If <tt>TRUE</tt> the columns names are printed.
-  Default value depends of class of <tt>x</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">include.colnames</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>format</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating the format for the
-  corresponding columns. These values are passed to the
-  <tt>formatC</tt> function.  Use <tt>"d"</tt> (for integers), <tt>"f"</tt>, <tt>"e"</tt>,
-  <tt>"E"</tt>, <tt>"g"</tt>, <tt>"G"</tt>, <tt>"fg"</tt> (for reals), or <tt>"s"</tt> (for
-  strings). <tt>"f"</tt> gives numbers in the usual <tt>xxx.xxx</tt> format;
-  <tt>"e"</tt> and <tt>"E"</tt> give <tt>n.ddde+nn</tt> or <tt>n.dddE+nn</tt> (scientific
-  format); <tt>"g"</tt> and <tt>"G"</tt> put <tt>x[i]</tt> into scientific format
-  only if it saves space to do so.  <tt>"fg"</tt> uses fixed format as
-  <tt>"f"</tt>, but <tt>digits</tt> as number of <em>significant</em> digits.  Note
-  that this can lead to quite long result strings.  Default
-  depends on the class of <tt>x</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">rownames</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>digits</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Numeric vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating the number of digits to
-  display in the corresponding columns. Default is <tt>2</tt>.
-  decimal.mark: The character to be used to indicate the numeric decimal
-  point.  Default is <tt>"."</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">colnames</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>na.print</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-The character string specifying how <tt>NA</tt> should be formatted
-  specially. Default is "".
-</p>
-</td>
+<td align="left" valign="top"><p class="table">format</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>caption</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length 1 containing the table+s caption
-  or title. Set to <tt>""</tt> to suppress the caption.  Default value
-  is <tt>""</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">digits</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>caption.level</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character or numeric vector of length 1 containing the
-          \code{"."} (block titles  in asciidoc markup), \code{"s"} (strong),
-          \code{"e"} (emphasis), \code{"m"} (monospaced) or \code{""} (no markup).
-          Default is \code{"."}.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">decimal.mark</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>width</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Numeric vector of length one containing the table width
-  relative to the available width (expressed as a percentage
-  value, <tt>1</tt>&#8230; <tt>99</tt>). Default is <tt>0</tt> (all available width).
-</p>
-</td>
+<td align="left" valign="top"><p class="table">na.print</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>frame</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one. Defines the table border,
-  and can take the following values: <tt>"topbot"</tt> (top and
-  bottom),  <tt>"all"</tt> (all sides), <tt>"none"</tt> and <tt>"sides"</tt> (left
-  and right). The default value is <tt>""</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">caption</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>grid</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one. Defines which ruler lines are
-  drawn between table rows and columns,  and can take the
-  following values: <tt>"all"</tt>, <tt>"rows"</tt>, <tt>"cols"</tt> and <tt>"none"</tt>.
-  Default is <tt>""</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">caption.level</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>valign</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one indicating vertical alignment
-  of all cells in table.  Can take the following values:
-  <tt>"top"</tt>, <tt>"bottom"</tt> and <tt>"middle"</tt>. Default is <tt>""</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">width</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>header</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-logical. If <tt>TRUE</tt> the first line of the table is emphasized.
-  The default value depends of class of <tt>x</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">frame</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes (all or none)</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>footer</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-logical. If <tt>TRUE</tt> the last line of the table is emphasized.
-  The default value depends of class of <tt>x</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">grid</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>align</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one indicating the alignment of
-  the corresponding columns.  Can be composed with <tt>"r"</tt>
-  (right), <tt>"l"</tt> (left) and <tt>"c"</tt> (center).  Default value is
-  <tt>""</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">valign</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>col.width</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Numeric vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating width of the corresponding
-  columns (integer proportional values). Default is <tt>1</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">header</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>style</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one indicating the style of the
-  corresponding columns.  Can be composed with <tt>"d"</tt> (default),
-  <tt>"e"</tt> (emphasis), <tt>"m"</tt> (monospaced),  <tt>"a"</tt> (cells can
-  contain any of the AsciiDoc elements that are allowed inside
-  document),  <tt>"l"</tt> (literal), <tt>"v"</tt> (verse; all line breaks
-  are retained).  Default is <tt>""</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">footer</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>cgroup</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector defining major column headings. The default
-          is to have none (<tt>NULL</tt>).
-</p>
-</td>
+<td align="left" valign="top"><p class="table">align</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>n.cgroup</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-A numeric vector containing the number of columns for which
-  each element in cgroup is a heading.  For example, specify
-  <tt>cgroup=c("Major 1","Major 2")', 'n.cgroup=c(3,3)</tt> if <tt>"Major
-  1"</tt> is to span columns 1-3 and <tt>"Major 2"</tt> is to span columns
-  4-6. Row names count in the column numbers if
-  <tt>include.rownames = TRUE</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">col.width</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>calign</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one defining alignment of major
-  column headings.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">style</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>cvalign</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one defining vertical alignment of
-  major column headings.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">cgroup</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>cstyle</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one indicating the style of major
-  column headings
-</p>
-</td>
+<td align="left" valign="top"><p class="table">n.cgroup</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>rgroup</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector defining major row headings. The default is
-  to have none (<tt>NULL</tt>).
-</p>
-</td>
+<td align="left" valign="top"><p class="table">calign</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>n.rgroup</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-A numeric vector containing the number of rows for which each
-  element in rgroup is a heading. Column names count in the row
-  numbers if <tt>include.colnames = TRUE</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">cvalign</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>ralign</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one defining alignment of major
-  row headings.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">cstyle</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>rvalign</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one defining vertical alignment of
-  major row headings.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">rgroup</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>rstyle</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one indicating the style of major
-  row headings
-</p>
-</td>
+<td align="left" valign="top"><p class="table">n.rgroup</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>condense</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-default is <tt>TRUE</tt> to condense the output with regard to the 5
-  lowest and highest values and the frequency table
-  (<tt>describe()</tt> in package <tt>Hmisc</tt>).
-</p>
-</td>
+<td align="left" valign="top"><p class="table">ralign</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>list.type</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Character vector of length one indicating the list type
-  (<tt>"bullet"</tt>, <tt>"number"</tt>, "label" or <tt>"none"</tt>). If <tt>"label"</tt>,
-  <tt>names(list)</tt> is used for labels. Default is <tt>"bullet"</tt>.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">rvalign</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>&#8230;</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Additional arguments.  (Currently ignored.)
-</p>
-</td>
-</tr>
-</table></div>
-<div class="hdlist"><div class="title">print.ascii</div><table>
-<tr>
-<td class="hdlist1">
-<tt>x</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-An object of class <tt>"ascii"</tt>
-</p>
-</td>
+<td align="left" valign="top"><p class="table">rstyle</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>type</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Type of syntax produce.  Possible values for <tt>type</tt> are
-  <tt>"asciidoc"</tt>, <tt>"t2t"</tt> or <tt>"textile"</tt>. Default value produce
-  AsciiDoc syntax.
-</p>
-</td>
+<td align="left" valign="top"><p class="table">list.type</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
 <tr>
-<td class="hdlist1">
-<tt>&#8230;</tt>
-<br />
-</td>
-<td class="hdlist2">
-<p style="margin-top: 0;">
-Additional arguments.  (Currently ignored.)
-</p>
-</td>
+<td align="left" valign="top"><p class="table">condense</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
 </tr>
-</table></div>
+<tr>
+<td align="left" valign="top"><p class="table"><strong>Output</strong></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">html</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">docbook</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">latex</p></td>
+<td align="left" valign="top"><p class="table">yes (experimental)</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes (col and row spans not implemented yet)</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><strong>Feature</strong></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">syntax color</p></td>
+<td align="left" valign="top"><p class="table">yes (but not for R&#8230;)</p></td>
+<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table">yes</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 <h2 id="_ascii_examples">ascii examples</h2>
 <div class="sectionbody">
@@ -1141,7 +1034,7 @@ cellspacing="0" cellpadding="4">
 width="100%"
 frame="hsides"
 cellspacing="0" cellpadding="4">
-<caption class="title">VADeaths</caption>
+<caption class="title">Table 2: VADeaths</caption>
 <col width="11%" />
 <col width="22%" />
 <col width="22%" />
@@ -1221,7 +1114,7 @@ cellspacing="0" cellpadding="4">
 width="75%"
 frame="hsides"
 cellspacing="0" cellpadding="4">
-<caption class="title">iris</caption>
+<caption class="title">Table 3: iris</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -1313,10 +1206,7 @@ cellspacing="0" cellpadding="4">
 <h3 id="_row_and_col_headings">row (and col) headings</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(reshape)
-&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)
-&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")
-&gt; ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:",
+<pre><tt>&gt; library(reshape)&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")&gt; ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:",
 +     as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[,
 +     1])), rstyle = "s", rvalign = "middle")
 [options="header"]
@@ -1361,7 +1251,6 @@ cellspacing="0" cellpadding="4">
 | 79      | 7.73   | 0.57    | 0.12   | 1.18   | 0.03
 | 86      | 3.87   | 1.63    | 0.94   | 4.11   | 3.03
 | (all)   | 6.97   | 1.72    | 0.68   | 3.87   | 2.53
-.0+.^s| Treatment NA
 |============================================================================</tt></pre>
 </div></div>
 <div class="tableblock">
@@ -1880,12 +1769,7 @@ version.string
 <h3 id="_glm">glm</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
-&gt; outcome &lt;- gl(3, 1, 9)
-&gt; treatment &lt;- gl(3, 3)
-&gt; d.AD &lt;- data.frame(treatment, outcome, counts)
-&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())
-&gt; glm.D93
+<pre><tt>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)&gt; outcome &lt;- gl(3, 1, 9)&gt; treatment &lt;- gl(3, 3)&gt; d.AD &lt;- data.frame(treatment, outcome, counts)&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())&gt; glm.D93
 Call:  glm(formula = counts ~ outcome + treatment, family = poisson())
 
 Coefficients:
@@ -1921,7 +1805,7 @@ Residual Deviance: 5.129        AIC: 56.76
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">glm.D93</caption>
+<caption class="title">Table 4: glm.D93</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -1980,7 +1864,7 @@ cellspacing="0" cellpadding="4">
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">anova glm.D93</caption>
+<caption class="title">Table 5: anova glm.D93</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -2023,14 +1907,7 @@ cellspacing="0" cellpadding="4">
 <h3 id="_describe">describe</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(Hmisc)
-&gt; label(esoph$agegp) &lt;- "Age group"
-&gt; label(esoph$alcgp) &lt;- "Alcohol group"
-&gt; label(esoph$tobgp) &lt;- "Tobacco group"
-&gt; label(esoph$ncontrols) &lt;- "Number of control"
-&gt; label(esoph$age) &lt;- "Age"
-&gt; units(esoph$age) &lt;- "Years"
-&gt; ascii(describe(esoph))
+<pre><tt>&gt; library(Hmisc)&gt; label(esoph$agegp) &lt;- "Age group"&gt; label(esoph$alcgp) &lt;- "Alcohol group"&gt; label(esoph$tobgp) &lt;- "Tobacco group"&gt; label(esoph$ncontrols) &lt;- "Number of control"&gt; label(esoph$age) &lt;- "Age"&gt; units(esoph$age) &lt;- "Years"&gt; ascii(describe(esoph))
 .esoph
 * 6 Variable
 * 88 Observations
@@ -2450,24 +2327,18 @@ cellspacing="0" cellpadding="4">
 <h3 id="_plot">plot</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(ggplot2)
-&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
-+     binwidth = 1000, colour = color)
-&gt; print(p)</tt></pre>
+<pre><tt>&gt; library(ggplot2)&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
++     binwidth = 1000, colour = color)&gt; print(p)</tt></pre>
 </div></div>
 <div class="imageblock">
 <div class="content">
 <img src="index-ggplot2.jpg" alt="index-ggplot2.jpg" />
 </div>
 </div>
-<h3 id="_txt2tags">txt2tags</h3><div style="clear:left"></div>
+<h3 id="_other_outputs">other outputs</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(reshape)
-&gt; names(airquality) &lt;- tolower(names(airquality))
-&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)
-&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")
-&gt; res
+<pre><tt>&gt; library(reshape)&gt; names(airquality) &lt;- tolower(names(airquality))&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")&gt; res
   month    ozone  solar.r      wind     temp
 1     5 23.61538 181.2963 11.622581 65.54839
 2     6 29.44444 190.1667 10.266667 79.10000
@@ -2482,12 +2353,39 @@ cellspacing="0" cellpadding="4">
 | 7     | 59.12 | 216.48  | 8.94  | 83.90 |
 | 8     | 59.96 | 171.86  | 8.79  | 83.97 |
 | 9     | 31.45 | 167.43  | 10.18 | 76.90 |
-| (all) | 42.13 | 185.93  | 9.96  | 77.88 |</tt></pre>
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+&gt; print(ascii(res), "sphinx")
++-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
++=======+=======+=========+=======+=======+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
++-------+-------+---------+-------+-------+
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
++-------+-------+---------+-------+-------+
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
++-------+-------+---------+-------+-------+
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
++-------+-------+---------+-------+-------+
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
++-------+-------+---------+-------+-------+
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
++-------+-------+---------+-------+-------+
+&gt; print(ascii(res), "org")
+|-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
+|-------+-------+---------+-------+-------+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+|-------+-------+---------+-------+-------+</tt></pre>
 </div></div>
 </div>
 <h2 id="_convert">convert</h2>
 <div class="sectionbody">
-<div class="paragraph"><p><tt>Sweave</tt> process creates a <tt>yourdocument.txt</tt> file from <tt>yourdocument.Rnw</tt>.</p></div>
+<div class="paragraph"><p><tt>Sweave</tt> process creates a <tt>yourdocument.xxx</tt> file from <tt>yourdocument.Rnw</tt>.</p></div>
 <div class="listingblock">
 <div class="content">
 <pre><tt>Sweave("youdocument.Rnw", RweaveXxx)</tt></pre>
@@ -2497,9 +2395,13 @@ cellspacing="0" cellpadding="4">
 <div class="content">
 <pre><tt>asciidoc yourdocument.txt
 or
-txt2tags -t html yourdocument.t2t</tt></pre>
+txt2tags -t html yourdocument.t2t
+or
+sphinx-build -b html . youdocument # need a conf.py file
+or
+Alt-X org-export-as-html</tt></pre>
 </div></div>
-<div class="paragraph"><p>or to xhtml, docbook, man, tex&#8230;</p></div>
+<div class="paragraph"><p>or to other formats&#8230;</p></div>
 <div class="paragraph"><p>For example, you can see the source of <a href="http://eusebe.github.com/ascii/index.Rnw">this documentation</a>, the file <a href="http://eusebe.github.com/ascii/index.txt">generated by <tt>Sweave</tt></a>, the same file in <a href="http://eusebe.github.com/ascii/index.xml">docbook format</a>, the same file <a href="http://eusebe.github.com/ascii/index.pdf">converted to pdf</a> with dblatex, and the same file <a href="http://eusebe.github.com/ascii/index.odt">converted to odt</a> with docbook2odf.</p></div>
 </div>
 <h2 id="_more_informations">more informations</h2>
@@ -2515,6 +2417,16 @@ asciidoc: <a href="http://www.methods.co.nz/asciidoc">http://www.methods.co.nz/a
 txt2tags: <a href="http://txt2tags.sourceforge.net">http://txt2tags.sourceforge.net</a>
 </p>
 </li>
+<li>
+<p>
+sphinx: <a href="http://sphinx.pocoo.org/">http://sphinx.pocoo.org/</a>
+</p>
+</li>
+<li>
+<p>
+org-mode: <a href="http://orgmode.org/">http://orgmode.org/</a>
+</p>
+</li>
 </ul></div>
 </div>
 <h2 id="_ascii_for_real">ascii for real</h2>
@@ -2522,14 +2434,24 @@ txt2tags: <a href="http://txt2tags.sourceforge.net">http://txt2tags.sourceforge.
 <div class="ulist"><ul>
 <li>
 <p>
-Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">some vignettes</a> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <a href="http://eusebe.github.com/ascii">ascii</a>.
+Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">some vignettes</a> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <a href="http://eusebe.github.com/ascii"><tt>ascii</tt></a>.
+</p>
+</li>
+<li>
+<p>
+<a href="http://learnr.wordpress.com/">This blog</a> uses <a href="http://eusebe.github.com/ascii"><tt>ascii</tt></a> and <a href="http://srackham.wordpress.com/blogpost1/">blogpost</a> to generate and publish post.
+</p>
+</li>
+<li>
+<p>
+<a href="http://blogisticreflections.wordpress.com/">This blog</a> <a href="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">too but with another method</a>.
 </p>
 </li>
 </ul></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-09-29 14:25:08 CEST
+Last updated 2009-10-24 16:14:02 CEST
 </div>
 </div>
 </body>

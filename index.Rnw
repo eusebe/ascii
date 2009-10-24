@@ -2,8 +2,7 @@ ascii
 =====
 David Hajage <dhajage[at]gmail[dot]com>
 
-http://eusebe.github.com/ascii[ascii] is a R package for writing asciidoc or txt2tags document with embeded R commands.
-
+http://eusebe.github.com/ascii[ascii] is a R package for writing asciidoc, txt2tags, sphinx or org documents with embeded R commands.
 
 news
 ----
@@ -35,128 +34,62 @@ gives :
 ascii(x, caption = "A simple matrix", width = 30)
 @
 
-
 what ascii provides
 -------------------
 
 ascii provided :
 
 * a generic method for common R objects: +ascii()+. Default argument depends of R object,
-* two Sweave drivers: +Sweave("yourfile.Rnw", RweaveAsciidoc())+ or +Sweave("yourfile.Rnw", RweaveT2t())+,
-* a simple wrapper for +Sweave()+ names +SweaveAscii()+ that uses +RweaveAsciidoc()+ as default.
+* several Sweave drivers: +Sweave("yourfile.Rnw", RweaveAsciidoc())+, +Sweave("yourfile.Rnw", RweaveT2t())+, +Sweave("yourfile.Rnw", RweaveSphinx())+ and +Sweave("yourfile.Rnw", RweaveOrg())+. 
+* some simple wrappers for +Sweave()+ named +Asciidoc()+, +T2t()+, +Sphinx()+ and +Org()+.
 
+features/options
+----------------
 
-ascii manual
-------------
+See +?ascii+ for the description of all arguments.
 
-.ascii
-[horizontal]
-+x+:: An R object of class found among +methods(ascii)+.
-+include.rownames+:: logical. If +TRUE+ the rows names are printed.
-  Default value depends of class of +x+.
-+include.colnames+:: logical. If +TRUE+ the columns names are printed.
-  Default value depends of class of +x+.
-+format+:: Character vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating the format for the
-  corresponding columns. These values are passed to the
-  +formatC+ function.  Use +"d"+ (for integers), +"f"+, +"e"+,
-  +"E"+, +"g"+, +"G"+, +"fg"+ (for reals), or +"s"+ (for
-  strings). +"f"+ gives numbers in the usual +xxx.xxx+ format;
-  +"e"+ and +"E"+ give +n.ddde+nn+ or +n.dddE+nn+ (scientific
-  format); +"g"+ and +"G"+ put +x[i]+ into scientific format
-  only if it saves space to do so.  +"fg"+ uses fixed format as
-  +"f"+, but +digits+ as number of _significant_ digits.  Note
-  that this can lead to quite long result strings.  Default
-  depends on the class of +x+.
-+digits+:: Numeric vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating the number of digits to
-  display in the corresponding columns. Default is +2+.
-  decimal.mark: The character to be used to indicate the numeric decimal
-  point.  Default is +"."+.
-+na.print+:: The character string specifying how +NA+ should be formatted
-  specially. Default is "".
-+caption+:: Character vector of length 1 containing the table+s caption
-  or title. Set to +""+ to suppress the caption.  Default value
-  is +""+.
-+caption.level+:: Character or numeric vector of length 1 containing the
-          caption's level. Can take the following values: \code{0} to \code{5},
-          \code{"."} (block titles  in asciidoc markup), \code{"s"} (strong),
-          \code{"e"} (emphasis), \code{"m"} (monospaced) or \code{""} (no markup).
-          Default is \code{"."}.
-+width+:: Numeric vector of length one containing the table width
-  relative to the available width (expressed as a percentage
-  value, +1+... +99+). Default is +0+ (all available width).
-+frame+:: Character vector of length one. Defines the table border,
-  and can take the following values: +"topbot"+ (top and
-  bottom),  +"all"+ (all sides), +"none"+ and +"sides"+ (left
-  and right). The default value is +""+.
-+grid+:: Character vector of length one. Defines which ruler lines are
-  drawn between table rows and columns,  and can take the
-  following values: +"all"+, +"rows"+, +"cols"+ and +"none"+.
-  Default is +""+.
-+valign+:: Character vector of length one indicating vertical alignment
-  of all cells in table.  Can take the following values:
-  +"top"+, +"bottom"+ and +"middle"+. Default is +""+.
-+header+:: logical. If +TRUE+ the first line of the table is emphasized.
-  The default value depends of class of +x+.
-+footer+:: logical. If +TRUE+ the last line of the table is emphasized.
-  The default value depends of class of +x+.
-+align+:: Character vector of length one indicating the alignment of
-  the corresponding columns.  Can be composed with +"r"+
-  (right), +"l"+ (left) and +"c"+ (center).  Default value is
-  +""+.
-+col.width+:: Numeric vector of length equal to the number of columns of
-  the resulting table  (otherwise it will be replicated or
-  truncated as necessary) indicating width of the corresponding
-  columns (integer proportional values). Default is +1+.
-+style+:: Character vector of length one indicating the style of the
-  corresponding columns.  Can be composed with +"d"+ (default),
-  +"e"+ (emphasis), +"m"+ (monospaced),  +"a"+ (cells can
-  contain any of the AsciiDoc elements that are allowed inside
-  document),  +"l"+ (literal), +"v"+ (verse; all line breaks
-  are retained).  Default is +""+.
-+cgroup+:: Character vector defining major column headings. The default
-          is to have none (+NULL+).
-+n.cgroup+:: A numeric vector containing the number of columns for which
-  each element in cgroup is a heading.  For example, specify
-  +cgroup=c("Major 1","Major 2")', 'n.cgroup=c(3,3)+ if +"Major
-  1"+ is to span columns 1-3 and +"Major 2"+ is to span columns
-  4-6. Row names count in the column numbers if
-  +include.rownames = TRUE+.
-+calign+:: Character vector of length one defining alignment of major
-  column headings.
-+cvalign+:: Character vector of length one defining vertical alignment of
-  major column headings.
-+cstyle+:: Character vector of length one indicating the style of major
-  column headings
-+rgroup+:: Character vector defining major row headings. The default is
-  to have none (+NULL+).
-+n.rgroup+:: A numeric vector containing the number of rows for which each
-  element in rgroup is a heading. Column names count in the row
-  numbers if +include.colnames = TRUE+.
-+ralign+:: Character vector of length one defining alignment of major
-  row headings.
-+rvalign+:: Character vector of length one defining vertical alignment of
-  major row headings.
-+rstyle+:: Character vector of length one indicating the style of major
-  row headings
-+condense+:: default is +TRUE+ to condense the output with regard to the 5
-  lowest and highest values and the frequency table
-  (+describe()+ in package +Hmisc+).
-+list.type+:: Character vector of length one indicating the list type
-  (+"bullet"+, +"number"+, "label" or +"none"+). If +"label"+, 
-  +names(list)+ is used for labels. Default is +"bullet"+.
-+...+:: Additional arguments.  (Currently ignored.)
-
-.print.ascii
-[horizontal]
-+x+:: An object of class +"ascii"+
-+type+:: Type of syntax produce.  Possible values for +type+ are
-  +"asciidoc"+, +"t2t"+ or +"textile"+. Default value produce
-  AsciiDoc syntax.
-+...+:: Additional arguments.  (Currently ignored.)
+[options='header', frame = 'topbot', grid = 'none']
+|======================================================
+|                  | asciidoc | txt2tags | sphinx | org
+| *Arguments*      |          |          |        | 
+| include.rownames | yes      | yes      | yes    | yes
+| include.colnames | yes      | yes      | yes    | yes
+| rownames         | yes      | yes      | yes    | yes
+| colnames         | yes      | yes      | yes    | yes
+| format           | yes      | yes      | yes    | yes
+| digits           | yes      | yes      | yes    | yes
+| decimal.mark     | yes      | yes      | yes    | yes
+| na.print         | yes      | yes      | yes    | yes
+| caption          | yes      | yes      | yes    | yes
+| caption.level    | yes      | yes      | yes    | yes
+| width            | yes      | no       | no     | no
+| frame            | yes      | yes (all or none) | no   | no
+| grid             | yes      | no       | no     | no
+| valign           | yes      | no       | no     | no
+| header           | yes      | yes      | yes    | yes
+| footer           | yes      | yes      | no     | no
+| align            | yes      | yes      | no     | no
+| col.width        | yes      | no       | no     | no
+| style            | yes      | yes      | yes    | yes
+| cgroup           | yes      | yes      | yes    | no
+| n.cgroup         | yes      | yes      | yes    | no
+| calign           | yes      | yes      | no     | no
+| cvalign          | yes      | no       | no     | no
+| cstyle           | yes      | yes      | yes    | no
+| rgroup           | yes      | no       | yes    | no
+| n.rgroup         | yes      | no       | yes    | no
+| ralign           | yes      | no       | no     | no
+| rvalign          | yes      | no       | no     | no
+| rstyle           | yes      | no       | yes    | no
+| list.type        | yes      | yes      | yes    | yes
+| condense         | yes      | yes      | yes    | yes
+| *Output*         |          |          |        |
+| html             | yes      | yes      | yes    | yes
+| docbook          | yes      | yes      | no     | yes
+| latex            | yes (experimental) | yes | yes (col and row spans not implemented yet) | yes
+| *Feature*        |          |          |        |
+| syntax color     | yes (but not for R...) | no | yes | yes
+|====================================================================
 
 ascii examples
 -------------
@@ -287,23 +220,25 @@ p <- qplot(price, ..density.., data = diamonds, geom = "freqpoly", binwidth = 10
 print(p)
 @
 
-txt2tags
-~~~~~~~~
+other outputs
+~~~~~~~~~~~~~
 
-<<txt2tags>>=
+<<other>>=
 library(reshape)
 names(airquality) <- tolower(names(airquality))
 aqm <- melt(airquality, id = c("month", "day"), na.rm = TRUE)
 res <- cast(aqm, month ~ variable, mean, margins= "grand_row")
 res
 print(ascii(res), "t2t")
+print(ascii(res), "sphinx")
+print(ascii(res), "org")
 @
 
 
 convert
 -------
 
-+Sweave+ process creates a +yourdocument.txt+ file from +yourdocument.Rnw+.
++Sweave+ process creates a +yourdocument.xxx+ file from +yourdocument.Rnw+.
 
 ----
 Sweave("youdocument.Rnw", RweaveXxx)
@@ -315,9 +250,13 @@ You can convert it to html format with the following command:
 asciidoc yourdocument.txt
 or
 txt2tags -t html yourdocument.t2t
+or
+sphinx-build -b html . youdocument # need a conf.py file
+or
+Alt-X org-export-as-html
 ----
 
-or to xhtml, docbook, man, tex... 
+or to other formats...
 
 For example, you can see the source of http://eusebe.github.com/ascii/index.Rnw[this documentation], the file http://eusebe.github.com/ascii/index.txt[generated by +Sweave+], the same file in http://eusebe.github.com/ascii/index.xml[docbook format], the same file http://eusebe.github.com/ascii/index.pdf[converted to pdf] with dblatex, and the same file http://eusebe.github.com/ascii/index.odt[converted to odt] with docbook2odf.
 
@@ -326,9 +265,12 @@ more informations
 
 - asciidoc: http://www.methods.co.nz/asciidoc
 - txt2tags: http://txt2tags.sourceforge.net
-
+- sphinx: http://sphinx.pocoo.org/
+- org-mode: http://orgmode.org/
+  
 ascii for real
 --------------
 
- - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[some vignettes] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[ascii].
- 
+- Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[some vignettes] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[+ascii+].
+- http://learnr.wordpress.com/[This blog] uses http://eusebe.github.com/ascii[+ascii+] and http://srackham.wordpress.com/blogpost1/[blogpost] to generate and publish post.
+  - http://blogisticreflections.wordpress.com/[This blog] http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/[too but with another method].
