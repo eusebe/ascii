@@ -1,6 +1,11 @@
 2009/10/24
 ~~~~~~~~~~
 
+* small bug fix
+
+2009/10/24
+~~~~~~~~~~
+
 * version 0.3
 * +list.type+ can be +"label"+
 * +ascii.simple.list+ method
