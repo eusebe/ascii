@@ -176,7 +176,7 @@ makeRweaveOrgCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 if(object$debug)
                   cat(paste(output, collapse="\n"))
                   
-                if (length(output) == 0 | options$results == "hide") cat("", file=chunkout, append=TRUE)
+                if (length(output) == 0 | options$results == "hide") cat("\n", file=chunkout, append=TRUE)
 
                 if(length(output) & (options$results != "hide")){
                     addabreak <- ""
