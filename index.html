@@ -618,7 +618,8 @@ x
 <div class="paragraph"><p>gives :</p></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; x &lt;- matrix(1:4, 2, 2)&gt; x
+<pre><tt>&gt; x &lt;- matrix(1:4, 2, 2)
+&gt; x
      [,1] [,2]
 [1,]    1    3
 [2,]    2    4</tt></pre>
@@ -1206,7 +1207,10 @@ cellspacing="0" cellpadding="4">
 <h3 id="_row_and_col_headings">row (and col) headings</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(reshape)&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")&gt; ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:",
+<pre><tt>&gt; library(reshape)
+&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)
+&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")
+&gt; ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:",
 +     as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[,
 +     1])), rstyle = "s", rvalign = "middle")
 [options="header"]
@@ -1769,7 +1773,12 @@ version.string
 <h3 id="_glm">glm</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)&gt; outcome &lt;- gl(3, 1, 9)&gt; treatment &lt;- gl(3, 3)&gt; d.AD &lt;- data.frame(treatment, outcome, counts)&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())&gt; glm.D93
+<pre><tt>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+&gt; outcome &lt;- gl(3, 1, 9)
+&gt; treatment &lt;- gl(3, 3)
+&gt; d.AD &lt;- data.frame(treatment, outcome, counts)
+&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())
+&gt; glm.D93
 Call:  glm(formula = counts ~ outcome + treatment, family = poisson())
 
 Coefficients:
@@ -1907,7 +1916,14 @@ cellspacing="0" cellpadding="4">
 <h3 id="_describe">describe</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(Hmisc)&gt; label(esoph$agegp) &lt;- "Age group"&gt; label(esoph$alcgp) &lt;- "Alcohol group"&gt; label(esoph$tobgp) &lt;- "Tobacco group"&gt; label(esoph$ncontrols) &lt;- "Number of control"&gt; label(esoph$age) &lt;- "Age"&gt; units(esoph$age) &lt;- "Years"&gt; ascii(describe(esoph))
+<pre><tt>&gt; library(Hmisc)
+&gt; label(esoph$agegp) &lt;- "Age group"
+&gt; label(esoph$alcgp) &lt;- "Alcohol group"
+&gt; label(esoph$tobgp) &lt;- "Tobacco group"
+&gt; label(esoph$ncontrols) &lt;- "Number of control"
+&gt; label(esoph$age) &lt;- "Age"
+&gt; units(esoph$age) &lt;- "Years"
+&gt; ascii(describe(esoph))
 .esoph
 * 6 Variable
 * 88 Observations
@@ -2327,8 +2343,10 @@ cellspacing="0" cellpadding="4">
 <h3 id="_plot">plot</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(ggplot2)&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
-+     binwidth = 1000, colour = color)&gt; print(p)</tt></pre>
+<pre><tt>&gt; library(ggplot2)
+&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
++     binwidth = 1000, colour = color)
+&gt; print(p)</tt></pre>
 </div></div>
 <div class="imageblock">
 <div class="content">
@@ -2338,7 +2356,11 @@ cellspacing="0" cellpadding="4">
 <h3 id="_other_outputs">other outputs</h3><div style="clear:left"></div>
 <div class="listingblock">
 <div class="content">
-<pre><tt>&gt; library(reshape)&gt; names(airquality) &lt;- tolower(names(airquality))&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")&gt; res
+<pre><tt>&gt; library(reshape)
+&gt; names(airquality) &lt;- tolower(names(airquality))
+&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")
+&gt; res
   month    ozone  solar.r      wind     temp
 1     5 23.61538 181.2963 11.622581 65.54839
 2     6 29.44444 190.1667 10.266667 79.10000
@@ -2451,7 +2473,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-10-24 16:14:02 CEST
+Last updated 2009-10-24 18:50:06 CEST
 </div>
 </div>
 </body>

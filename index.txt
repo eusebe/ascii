@@ -20,7 +20,8 @@ short example
 gives :
 
 ----
-> x <- matrix(1:4, 2, 2)> x
+> x <- matrix(1:4, 2, 2)
+> x
      [,1] [,2]
 [1,]    1    3
 [2,]    2    4 
@@ -205,7 +206,10 @@ row (and col) headings
 ~~~~~~~~~~~~~~~~~~~~~~
 
 ----
-> library(reshape)> ff_d <- melt(french_fries, id = 1:4, na.rm = TRUE)> toto <- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")> ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:", 
+> library(reshape)
+> ff_d <- melt(french_fries, id = 1:4, na.rm = TRUE)
+> toto <- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")
+> ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:", 
 +     as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[, 
 +     1])), rstyle = "s", rvalign = "middle")
 [options="header"]
@@ -252,6 +256,9 @@ row (and col) headings
 | (all)   | 6.97   | 1.72    | 0.68   | 3.87   | 2.53  
 |============================================================================  
 ----
+
+
+
 
 [options="header"]
 |============================================================================ 
@@ -379,7 +386,12 @@ glm
 ~~~
 
 ----
-> counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)> outcome <- gl(3, 1, 9)> treatment <- gl(3, 3)> d.AD <- data.frame(treatment, outcome, counts)> glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())> glm.D93
+> counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+> outcome <- gl(3, 1, 9)
+> treatment <- gl(3, 3)
+> d.AD <- data.frame(treatment, outcome, counts)
+> glm.D93 <- glm(counts ~ outcome + treatment, family = poisson())
+> glm.D93
 Call:  glm(formula = counts ~ outcome + treatment, family = poisson()) 
 
 Coefficients:
@@ -434,7 +446,14 @@ describe
 ~~~~~~~~
 
 ----
-> library(Hmisc)> label(esoph$agegp) <- "Age group"> label(esoph$alcgp) <- "Alcohol group"> label(esoph$tobgp) <- "Tobacco group"> label(esoph$ncontrols) <- "Number of control"> label(esoph$age) <- "Age"> units(esoph$age) <- "Years"> ascii(describe(esoph))
+> library(Hmisc)
+> label(esoph$agegp) <- "Age group"
+> label(esoph$alcgp) <- "Alcohol group"
+> label(esoph$tobgp) <- "Tobacco group"
+> label(esoph$ncontrols) <- "Number of control"
+> label(esoph$age) <- "Age"
+> units(esoph$age) <- "Years"
+> ascii(describe(esoph))
 .esoph
 * 6 Variable
 * 88 Observations
@@ -505,6 +524,7 @@ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 | %         | 17    | 17    | 18    | 18    | 17    | 12 
 |========================================================  
 ----
+
 
 .esoph
 * 6 Variable
@@ -580,8 +600,11 @@ plot
 ~~~~
 
 ----
-> library(ggplot2)> p <- qplot(price, ..density.., data = diamonds, geom = "freqpoly", 
-+     binwidth = 1000, colour = color)> print(p)
+> library(ggplot2)
+> p <- qplot(price, ..density.., data = diamonds, geom = "freqpoly", 
++     binwidth = 1000, colour = color)
+> print(p)
+
 ----
 image::index-ggplot2.jpg[]
 
@@ -589,7 +612,11 @@ other outputs
 ~~~~~~~~~~~~~
 
 ----
-> library(reshape)> names(airquality) <- tolower(names(airquality))> aqm <- melt(airquality, id = c("month", "day"), na.rm = TRUE)> res <- cast(aqm, month ~ variable, mean, margins = "grand_row")> res
+> library(reshape)
+> names(airquality) <- tolower(names(airquality))
+> aqm <- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+> res <- cast(aqm, month ~ variable, mean, margins = "grand_row")
+> res
   month    ozone  solar.r      wind     temp
 1     5 23.61538 181.2963 11.622581 65.54839
 2     6 29.44444 190.1667 10.266667 79.10000
