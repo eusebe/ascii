@@ -2019,17 +2019,17 @@ rowsep="1" colsep="1"
 <itemizedlist>
 <listitem>
 <simpara>
-./t2t.html[with text2tags]
+<ulink url="http://eusebe.github.com/ascii/t2t.html">with text2tags</ulink>
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-./sphinx.html[with sphinx]
+<ulink url="http://eusebe.github.com/ascii/sphinx.html">with sphinx</ulink>
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-./org.html[with org]
+<ulink url="http://eusebe.github.com/ascii/org.html">with org</ulink>
 </simpara>
 </listitem>
 </itemizedlist>
