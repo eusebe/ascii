@@ -665,7 +665,7 @@ other outputs
 Follow those links to see real examples:
 
 * http://eusebe.github.com/ascii/t2t.html[with text2tags]
-* http://eusebe.github.com/ascii/sphinx.html[with sphinx]
+* http://eusebe.github.com/ascii/sphinx/sphinx.html[with sphinx]
 * http://eusebe.github.com/ascii/org.html[with org]
 
 convert
