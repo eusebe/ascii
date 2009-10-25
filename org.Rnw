@@ -21,13 +21,13 @@ x^2
 
 * a table
 
-<<tab, results = org>>=
+<<tab, results = ascii>>=
 ascii(head(esoph))
 @ 
 
 * a list
 
-<<list, results = org>>=
+<<list, results = ascii>>=
 ascii(summary(table(1:4, 1:4)))
 @ 
 

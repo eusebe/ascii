@@ -235,6 +235,11 @@ print(ascii(res), "sphinx")
 print(ascii(res), "org")
 @
 
+Follow those links to see real examples:
+
+* ./t2t.html[with text2tags]
+* ./sphinx.html[with sphinx]
+* ./org.html[with org]
 
 convert
 -------
