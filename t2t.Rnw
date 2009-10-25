@@ -1,0 +1,43 @@
+ascii and txt2tags
+David Hajage, dhajage@gmail.com
+
+
+= txt2tags output =
+
+<<>>=
+options("asciiType" = "t2t")
+@ 
+
+= some code =
+
+<<>>=
+x <- 2
+sqrt(x)
+x^2
+@ 
+
+= a table =
+
+<<tab, results = ascii>>=
+ascii(head(esoph))
+@ 
+
+= a list =
+
+<<list, results = ascii>>=
+ascii(summary(table(1:4, 1:4)))
+@ 
+
+= a figure =
+
+<<fig=T>>=
+plot(1)
+@ 
+
+= some text =
+
+2+2 equal to \Sexpr{2+2}.
+
+= source of this document =
+
+[Click here ./t2t.Rnw].

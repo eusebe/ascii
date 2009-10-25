@@ -1,0 +1,66 @@
+#+STARTUP: indent
+#+INFOJS_OPT: view:info 
+#+STYLE: <link rel="stylesheet" type="text/css" href="http://orgmode.org/worg/code/org-info-js/stylesheet.css" />
+#+TITLE: ascii and org
+#+AUTHOR: David Hajage 
+#+EMAIL: dhajage@gmail.com
+
+* org output
+
+#+BEGIN_SRC R-transcript
+> options(asciiType = "org")
+
+#+END_SRC
+
+* some code
+
+#+BEGIN_SRC R-transcript
+> x <- 2
+> sqrt(x)
+[1] 1.414214 
+> x^2
+[1] 4 
+#+END_SRC
+
+* a table
+
+#+BEGIN_SRC R-transcript
+> ascii(head(esoph))
+#+END_SRC
+|---+-------+-----------+----------+--------+-----------+-------+
+|   | agegp | alcgp     | tobgp    | ncases | ncontrols | age   |
+|---+-------+-----------+----------+--------+-----------+-------+
+| 1 | 25-34 | 0-39g/day | 0-9g/day | 0.00   | 40.00     | 25-34 |
+| 2 | 25-34 | 0-39g/day | 10-19    | 0.00   | 10.00     | 25-34 |
+| 3 | 25-34 | 0-39g/day | 20-29    | 0.00   | 6.00      | 25-34 |
+| 4 | 25-34 | 0-39g/day | 30+      | 0.00   | 5.00      | 25-34 |
+| 5 | 25-34 | 40-79     | 0-9g/day | 0.00   | 27.00     | 25-34 |
+| 6 | 25-34 | 40-79     | 10-19    | 0.00   | 7.00      | 25-34 |
+|---+-------+-----------+----------+--------+-----------+-------+ 
+
+* a list
+
+#+BEGIN_SRC R-transcript
+> ascii(summary(table(1:4, 1:4)))
+#+END_SRC
+- Number of cases in table: 4 
+- Number of factors: 2 
+- Test for independence of all factors:
+  - Chisq = 12, df = 9, p-value = 0.2133
+  - Chi-squared approximation may be incorrect 
+
+* a figure
+
+#+BEGIN_SRC R-transcript
+> plot(1)
+
+#+END_SRC
+[[file:org-005.jpg]]
+
+* some text
+
+2+2 equal to 4.
+
+* source of this document
+
+[[./org.Rnw][Click here]].

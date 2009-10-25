@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+lang="en" xml:lang="en">
+<head>
+
+<title>ascii and org</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2009-10-25 10:04:03 CET"/>
+<meta name="author" content="David Hajage "/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="http://orgmode.org/worg/code/org-info-js/stylesheet.css" />
+<script type="text/javascript" src="http://orgmode.org/org-info.js"></script>
+<script type="text/javascript" >
+<!--/*--><![CDATA[/*><!--*/
+org_html_manager.set("TOC_DEPTH", "3");
+org_html_manager.set("LINK_HOME", "");
+org_html_manager.set("LINK_UP", "");
+org_html_manager.set("LOCAL_TOC", "1");
+org_html_manager.set("VIEW_BUTTONS", "0");
+org_html_manager.set("MOUSE_HINT", "underline");
+org_html_manager.set("FIXED_TOC", "0");
+org_html_manager.set("TOC", "1");
+org_html_manager.set("VIEW", "info");
+org_html_manager.setup();  // activate after the parameters are set
+/*]]>*///-->
+</script>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">ascii and org</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 org output </a></li>
+<li><a href="#sec-2">2 some code </a></li>
+<li><a href="#sec-3">3 a table </a></li>
+<li><a href="#sec-4">4 a list </a></li>
+<li><a href="#sec-5">5 a figure </a></li>
+<li><a href="#sec-6">6 some text </a></li>
+<li><a href="#sec-7">7 source of this document </a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> org output </h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+
+
+<pre class="src src-R-transcript"><span style="color: #a020f0;">&gt;</span> options(asciiType = <span style="color: #bc8f8f;">"org"</span>)
+
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> some code </h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+
+
+<pre class="src src-R-transcript"><span style="color: #a020f0;">&gt;</span> x <span style="color: #5f9ea0;">&lt;-</span> 2
+<span style="color: #a020f0;">&gt;</span> sqrt(x)
+<span style="color: #5f9ea0;">[1]</span> 1.414214 
+<span style="color: #a020f0;">&gt;</span> x^2
+<span style="color: #5f9ea0;">[1]</span> 4 
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> a table </h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+
+
+<pre class="src src-R-transcript"><span style="color: #a020f0;">&gt;</span> ascii(head(esoph))
+</pre>
+
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col align="right" /><col align="right" /><col align="left" /><col align="left" /><col align="left" /><col align="left" /><col align="left" />
+</colgroup>
+<thead>
+<tr><th scope="col"></th><th scope="col">agegp</th><th scope="col">alcgp</th><th scope="col">tobgp</th><th scope="col">ncases</th><th scope="col">ncontrols</th><th scope="col">age</th></tr>
+</thead>
+<tbody>
+<tr><td>1</td><td>25-34</td><td>0-39g/day</td><td>0-9g/day</td><td>0.00</td><td>40.00</td><td>25-34</td></tr>
+<tr><td>2</td><td>25-34</td><td>0-39g/day</td><td>10-19</td><td>0.00</td><td>10.00</td><td>25-34</td></tr>
+<tr><td>3</td><td>25-34</td><td>0-39g/day</td><td>20-29</td><td>0.00</td><td>6.00</td><td>25-34</td></tr>
+<tr><td>4</td><td>25-34</td><td>0-39g/day</td><td>30+</td><td>0.00</td><td>5.00</td><td>25-34</td></tr>
+<tr><td>5</td><td>25-34</td><td>40-79</td><td>0-9g/day</td><td>0.00</td><td>27.00</td><td>25-34</td></tr>
+<tr><td>6</td><td>25-34</td><td>40-79</td><td>10-19</td><td>0.00</td><td>7.00</td><td>25-34</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> a list </h2>
+<div class="outline-text-2" id="text-4">
+
+
+
+
+
+<pre class="src src-R-transcript"><span style="color: #a020f0;">&gt;</span> ascii(summary(table(1:4, 1:4)))
+</pre>
+
+
+
+<ul>
+<li>
+Number of cases in table: 4 
+</li>
+<li>
+Number of factors: 2 
+</li>
+<li>
+Test for independence of all factors:
+<ul>
+<li>
+Chisq = 12, df = 9, p-value = 0.2133
+</li>
+<li>
+Chi-squared approximation may be incorrect 
+
+</li>
+</ul>
+</li>
+</ul>
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> a figure </h2>
+<div class="outline-text-2" id="text-5">
+
+
+
+
+
+<pre class="src src-R-transcript"><span style="color: #a020f0;">&gt;</span> plot(1)
+
+</pre>
+
+
+
+<p>
+<img src="org-005.jpg"  alt="org-005.jpg" />
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> some text </h2>
+<div class="outline-text-2" id="text-6">
+
+
+<p>
+2+2 equal to 4.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> source of this document </h2>
+<div class="outline-text-2" id="text-7">
+
+
+<p>
+<a href="./org.Rnw">Click here</a>.
+</p></div>
+</div>
+<div id="postamble">
+<p class="author"> Author: David Hajage 
+<a href="mailto:dhajage@gmail.com">&lt;dhajage@gmail.com&gt;</a>
+</p>
+<p class="date"> Date: 2009-10-25 10:04:03 CET</p>
+<p class="creator">HTML generated by org-mode 6.31trans in emacs 23</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+#+STARTUP: indent
+#+INFOJS_OPT: view:info 
+#+STYLE: <link rel="stylesheet" type="text/css" href="http://orgmode.org/worg/code/org-info-js/stylesheet.css" />
+#+TITLE: ascii and org
+#+AUTHOR: David Hajage 
+#+EMAIL: dhajage@gmail.com
+
+* org output
+
+<<>>=
+options("asciiType" = "org")
+@ 
+
+* some code
+
+<<>>=
+x <- 2
+sqrt(x)
+x^2
+@ 
+
+* a table
+
+<<tab, results = org>>=
+ascii(head(esoph))
+@ 
+
+* a list
+
+<<list, results = org>>=
+ascii(summary(table(1:4, 1:4)))
+@ 
+
+* a figure
+
+<<fig=T>>=
+plot(1)
+@ 
+
+* some text
+
+2+2 equal to \Sexpr{2+2}.
+
+* source of this document
+
+[[./org.Rnw][Click here]].
