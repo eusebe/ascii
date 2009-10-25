@@ -468,7 +468,7 @@ function generateToc(toclevels) {
 </div>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing asciidoc, txt2tags, sphinx or org documents with embeded R commands.</p></div>
+<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing <a href="http://www.methods.co.nz/asciidoc/">asciidoc</a>, <a href="http://txt2tags.sourceforge.net/">txt2tags</a>, <a href="http://sphinx.pocoo.org/">sphinx</a> or <a href="http://orgmode.org/">org</a> documents with embeded R code.</p></div>
 </div>
 </div>
 <h2 id="_news">news</h2>
@@ -671,36 +671,38 @@ a generic method for common R objects: <tt>ascii()</tt>. Default argument depend
 </li>
 <li>
 <p>
-several Sweave drivers: <tt>Sweave("yourfile.Rnw", RweaveAsciidoc())</tt>, <tt>Sweave("yourfile.Rnw", RweaveT2t())</tt>, <tt>Sweave("yourfile.Rnw", RweaveSphinx())</tt> and <tt>Sweave("yourfile.Rnw", RweaveOrg())</tt>.
+several Sweave drivers: <tt>RweaveAsciidoc()</tt>, <tt>RweaveT2t()</tt>, <tt>RweaveSphinx()</tt> and <tt>RweaveOrg()</tt>.
 </p>
 </li>
 <li>
 <p>
-some simple wrappers for <tt>Sweave()</tt> named <tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>Sphinx()</tt> and <tt>Org()</tt>.
+some simple wrappers for <tt>Sweave("yourfile.Rnw", RweaveXxx)</tt> named <tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>Sphinx()</tt> and <tt>Org()</tt>.
 </p>
 </li>
 </ul></div>
 </div>
 <h2 id="_features_options">features/options</h2>
 <div class="sectionbody">
-<div class="paragraph"><p>See <tt>?ascii</tt> for the description of all arguments.</p></div>
+<div class="paragraph"><p>See <tt>?ascii</tt> for a complete description of all arguments.</p></div>
 <div class="tableblock">
 <table rules="none"
 width="100%"
 frame="hsides"
 cellspacing="0" cellpadding="4">
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
-<col width="20%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
 <thead>
 <tr>
-<th align="left" valign="top">                  </th>
-<th align="left" valign="top"> asciidoc </th>
-<th align="left" valign="top"> txt2tags </th>
-<th align="left" valign="top"> sphinx </th>
-<th align="left" valign="top"> org</th>
+<th align="left" valign="top">                                                                                                                                                                                           </th>
+<th align="left" valign="top"> asciidoc                        </th>
+<th align="left" valign="top"> txt2tags                          </th>
+<th align="left" valign="top"> sphinx                                               </th>
+<th align="left" valign="top"> org          </th>
+<th align="left" valign="top"></th>
 </tr>
 </thead>
 <tbody>
@@ -710,223 +712,255 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">include.rownames</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">include.colnames</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">rownames</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">colnames</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">format</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">digits</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">decimal.mark</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">na.print</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">caption</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">caption.level</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">width</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">frame</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes (all or none)</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span> (all or none)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">grid</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">valign</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">header</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">footer</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">align</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">col.width</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">style</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">cgroup</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">n.cgroup</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">calign</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">cvalign</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">cstyle</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">rgroup</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">n.rgroup</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">ralign</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">rvalign</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">rstyle</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">list.type</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">condense</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table"><strong>Output</strong></p></td>
@@ -934,27 +968,31 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">html</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">docbook</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">latex</p></td>
-<td align="left" valign="top"><p class="table">yes (experimental)</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes (col and row spans not implemented yet)</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span> (experimental)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span> (col and row spans not implemented yet)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table"><strong>Feature</strong></p></td>
@@ -962,13 +1000,15 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">syntax color</p></td>
-<td align="left" valign="top"><p class="table">yes (but not for R&#8230;)</p></td>
-<td align="left" valign="top"><p class="table">no</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
-<td align="left" valign="top"><p class="table">yes</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span> (but not for R&#8230;)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color: red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color: green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 </tr>
 </tbody>
 </table>
@@ -2458,6 +2498,7 @@ org-mode: <a href="http://orgmode.org/">http://orgmode.org/</a>
 </p>
 </li>
 </ul></div>
+<div class="paragraph"><p>There is another way to create org documents with embedded R code : <a href="http://orgmode.org/worg/org-contrib/babel/org-babel.php">org-babel</a>. Thanks to <a href="http://blogisticreflections.wordpress.com/">Erik Iverson</a> for informing me about org-mode and org-babel.</p></div>
 </div>
 <h2 id="_ascii_for_real">ascii for real</h2>
 <div class="sectionbody">
@@ -2474,14 +2515,14 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 </li>
 <li>
 <p>
-<a href="http://blogisticreflections.wordpress.com/">This blog</a> <a href="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">too but with another method</a>.
+<a href="http://blogisticreflections.wordpress.com/">This blog</a> too but with <a href="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">another method</a>.
 </p>
 </li>
 </ul></div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-10-24 18:58:22 CEST
+Last updated 2009-10-25 09:30:15 CEST
 </div>
 </div>
 </body>

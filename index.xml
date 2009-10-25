@@ -13,7 +13,7 @@
     </author>
     <authorinitials>DH</authorinitials>
 </articleinfo>
-<simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing asciidoc, txt2tags, sphinx or org documents with embeded R commands.</simpara>
+<simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing <ulink url="http://www.methods.co.nz/asciidoc/">asciidoc</ulink>, <ulink url="http://txt2tags.sourceforge.net/">txt2tags</ulink>, <ulink url="http://sphinx.pocoo.org/">sphinx</ulink> or <ulink url="http://orgmode.org/">org</ulink> documents with embeded R code.</simpara>
 <section id="_news">
 <title>news</title>
 <section id="_2009_10_24">
@@ -219,41 +219,44 @@ a generic method for common R objects: <literal>ascii()</literal>. Default argum
 </listitem>
 <listitem>
 <simpara>
-several Sweave drivers: <literal>Sweave("yourfile.Rnw", RweaveAsciidoc())</literal>, <literal>Sweave("yourfile.Rnw", RweaveT2t())</literal>, <literal>Sweave("yourfile.Rnw", RweaveSphinx())</literal> and <literal>Sweave("yourfile.Rnw", RweaveOrg())</literal>.
+several Sweave drivers: <literal>RweaveAsciidoc()</literal>, <literal>RweaveT2t()</literal>, <literal>RweaveSphinx()</literal> and <literal>RweaveOrg()</literal>.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-some simple wrappers for <literal>Sweave()</literal> named <literal>Asciidoc()</literal>, <literal>T2t()</literal>, <literal>Sphinx()</literal> and <literal>Org()</literal>.
+some simple wrappers for <literal>Sweave("yourfile.Rnw", RweaveXxx)</literal> named <literal>Asciidoc()</literal>, <literal>T2t()</literal>, <literal>Sphinx()</literal> and <literal>Org()</literal>.
 </simpara>
 </listitem>
 </itemizedlist>
 </section>
 <section id="_features_options">
 <title>features/options</title>
-<simpara>See <literal>?ascii</literal> for the description of all arguments.</simpara>
+<simpara>See <literal>?ascii</literal> for a complete description of all arguments.</simpara>
 <informaltable
 frame="topbot"
 rowsep="0" colsep="0"
 >
-<tgroup cols="5">
-<colspec colname="col_1" colwidth="20*"/>
-<colspec colname="col_2" colwidth="20*"/>
-<colspec colname="col_3" colwidth="20*"/>
-<colspec colname="col_4" colwidth="20*"/>
-<colspec colname="col_5" colwidth="20*"/>
+<tgroup cols="6">
+<colspec colname="col_1" colwidth="16*"/>
+<colspec colname="col_2" colwidth="16*"/>
+<colspec colname="col_3" colwidth="16*"/>
+<colspec colname="col_4" colwidth="16*"/>
+<colspec colname="col_5" colwidth="16*"/>
+<colspec colname="col_6" colwidth="16*"/>
 <thead>
 <row>
-<entry align="left" valign="top">                  </entry>
-<entry align="left" valign="top"> asciidoc </entry>
-<entry align="left" valign="top"> txt2tags </entry>
-<entry align="left" valign="top"> sphinx </entry>
-<entry align="left" valign="top"> org</entry>
+<entry align="left" valign="top">                                                                                                                                                                                           </entry>
+<entry align="left" valign="top"> asciidoc                        </entry>
+<entry align="left" valign="top"> txt2tags                          </entry>
+<entry align="left" valign="top"> sphinx                                               </entry>
+<entry align="left" valign="top"> org          </entry>
+<entry align="left" valign="top"></entry>
 </row>
 </thead>
 <tbody>
 <row>
 <entry align="left" valign="top"><simpara><emphasis role="strong">Arguments</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
@@ -265,6 +268,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>include.colnames</simpara></entry>
@@ -272,6 +276,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rownames</simpara></entry>
@@ -279,6 +284,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>colnames</simpara></entry>
@@ -286,6 +292,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>format</simpara></entry>
@@ -293,6 +300,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>digits</simpara></entry>
@@ -300,6 +308,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>decimal.mark</simpara></entry>
@@ -307,6 +316,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>na.print</simpara></entry>
@@ -314,6 +324,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>caption</simpara></entry>
@@ -321,6 +332,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>caption.level</simpara></entry>
@@ -328,6 +340,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>width</simpara></entry>
@@ -335,6 +348,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>frame</simpara></entry>
@@ -342,6 +356,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes (all or none)</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>grid</simpara></entry>
@@ -349,6 +364,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>valign</simpara></entry>
@@ -356,6 +372,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>header</simpara></entry>
@@ -363,6 +380,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>footer</simpara></entry>
@@ -370,6 +388,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>align</simpara></entry>
@@ -377,6 +396,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>col.width</simpara></entry>
@@ -384,6 +404,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>style</simpara></entry>
@@ -391,6 +412,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>cgroup</simpara></entry>
@@ -398,6 +420,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>n.cgroup</simpara></entry>
@@ -405,6 +428,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>calign</simpara></entry>
@@ -412,6 +436,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>cvalign</simpara></entry>
@@ -419,6 +444,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>cstyle</simpara></entry>
@@ -426,6 +452,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rgroup</simpara></entry>
@@ -433,6 +460,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>n.rgroup</simpara></entry>
@@ -440,6 +468,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>ralign</simpara></entry>
@@ -447,6 +476,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rvalign</simpara></entry>
@@ -454,6 +484,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rstyle</simpara></entry>
@@ -461,6 +492,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>list.type</simpara></entry>
@@ -468,6 +500,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>condense</simpara></entry>
@@ -475,9 +508,11 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara><emphasis role="strong">Output</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
@@ -489,6 +524,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>docbook</simpara></entry>
@@ -496,6 +532,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>latex</simpara></entry>
@@ -503,9 +540,11 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes (col and row spans not implemented yet)</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara><emphasis role="strong">Feature</emphasis></simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
@@ -517,6 +556,7 @@ rowsep="0" colsep="0"
 <entry align="left" valign="top"><simpara>no</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
 <entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 </tbody>
 </tgroup>
@@ -2016,6 +2056,7 @@ org-mode: <ulink url="http://orgmode.org/">http://orgmode.org/</ulink>
 </simpara>
 </listitem>
 </itemizedlist>
+<simpara>There is another way to create org documents with embedded R code : <ulink url="http://orgmode.org/worg/org-contrib/babel/org-babel.php">org-babel</ulink>. Thanks to <ulink url="http://blogisticreflections.wordpress.com/">Erik Iverson</ulink> for informing me about org-mode and org-babel.</simpara>
 </section>
 <section id="_ascii_for_real">
 <title>ascii for real</title>
@@ -2032,7 +2073,7 @@ Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/booke
 </listitem>
 <listitem>
 <simpara>
-<ulink url="http://blogisticreflections.wordpress.com/">This blog</ulink> <ulink url="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">too but with another method</ulink>.
+<ulink url="http://blogisticreflections.wordpress.com/">This blog</ulink> too but with <ulink url="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">another method</ulink>.
 </simpara>
 </listitem>
 </itemizedlist>

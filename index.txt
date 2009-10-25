@@ -2,7 +2,7 @@ ascii
 =====
 David Hajage <dhajage[at]gmail[dot]com>
 
-http://eusebe.github.com/ascii[ascii] is a R package for writing asciidoc, txt2tags, sphinx or org documents with embeded R commands.
+http://eusebe.github.com/ascii[ascii] is a R package for writing http://www.methods.co.nz/asciidoc/[asciidoc], http://txt2tags.sourceforge.net/[txt2tags], http://sphinx.pocoo.org/[sphinx] or http://orgmode.org/[org] documents with embeded R code.
 
 news
 ----
@@ -46,56 +46,57 @@ what ascii provides
 ascii provided :
 
 * a generic method for common R objects: +ascii()+. Default argument depends of R object,
-* several Sweave drivers: +Sweave("yourfile.Rnw", RweaveAsciidoc())+, +Sweave("yourfile.Rnw", RweaveT2t())+, +Sweave("yourfile.Rnw", RweaveSphinx())+ and +Sweave("yourfile.Rnw", RweaveOrg())+. 
-* some simple wrappers for +Sweave()+ named +Asciidoc()+, +T2t()+, +Sphinx()+ and +Org()+.
+* several Sweave drivers: +RweaveAsciidoc()+, +RweaveT2t()+, +RweaveSphinx()+ and +RweaveOrg()+. 
+* some simple wrappers for +Sweave("yourfile.Rnw", RweaveXxx)+ named +Asciidoc()+, +T2t()+, +Sphinx()+ and +Org()+.
 
 features/options
 ----------------
 
-See +?ascii+ for the description of all arguments.
+See +?ascii+ for a complete description of all arguments.
 
 [options='header', frame = 'topbot', grid = 'none']
-|======================================================
-|                  | asciidoc | txt2tags | sphinx | org
-| *Arguments*      |          |          |        | 
-| include.rownames | yes      | yes      | yes    | yes
-| include.colnames | yes      | yes      | yes    | yes
-| rownames         | yes      | yes      | yes    | yes
-| colnames         | yes      | yes      | yes    | yes
-| format           | yes      | yes      | yes    | yes
-| digits           | yes      | yes      | yes    | yes
-| decimal.mark     | yes      | yes      | yes    | yes
-| na.print         | yes      | yes      | yes    | yes
-| caption          | yes      | yes      | yes    | yes
-| caption.level    | yes      | yes      | yes    | yes
-| width            | yes      | no       | no     | no
-| frame            | yes      | yes (all or none) | no   | no
-| grid             | yes      | no       | no     | no
-| valign           | yes      | no       | no     | no
-| header           | yes      | yes      | yes    | yes
-| footer           | yes      | yes      | no     | no
-| align            | yes      | yes      | no     | no
-| col.width        | yes      | no       | no     | no
-| style            | yes      | yes      | yes    | yes
-| cgroup           | yes      | yes      | yes    | no
-| n.cgroup         | yes      | yes      | yes    | no
-| calign           | yes      | yes      | no     | no
-| cvalign          | yes      | no       | no     | no
-| cstyle           | yes      | yes      | yes    | no
-| rgroup           | yes      | no       | yes    | no
-| n.rgroup         | yes      | no       | yes    | no
-| ralign           | yes      | no       | no     | no
-| rvalign          | yes      | no       | no     | no
-| rstyle           | yes      | no       | yes    | no
-| list.type        | yes      | yes      | yes    | yes
-| condense         | yes      | yes      | yes    | yes
-| *Output*         |          |          |        |
-| html             | yes      | yes      | yes    | yes
-| docbook          | yes      | yes      | no     | yes
-| latex            | yes (experimental) | yes | yes (col and row spans not implemented yet) | yes
-| *Feature*        |          |          |        |
-| syntax color     | yes (but not for R...) | no | yes | yes
-|====================================================================
+|========================================================================================================================================================================================================================================================================================================================================
+|                                                                                                                                                                                           | asciidoc                        | txt2tags                          | sphinx                                               | org          |
+| *Arguments*                                                                                                                                                                               |                                 |                                   |                                                      |              |
+| include.rownames                                                                                                                                                                          | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| include.colnames                                                                                                                                                                          | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| rownames                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| colnames                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| format                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| digits                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| decimal.mark                                                                                                                                                                              | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| na.print                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| caption                                                                                                                                                                                   | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| caption.level                                                                                                                                                                             | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| width                                                                                                                                                                                     | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| frame                                                                                                                                                                                     | [green]#yes#                    | [green]#yes# (all or none)        | [red]#no#                                            | [red]#no#    |
+| grid                                                                                                                                                                                      | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| valign                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| header                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| footer                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [red]#no#    |
+| align                                                                                                                                                                                     | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [red]#no#    |
+| col.width                                                                                                                                                                                 | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| style                                                                                                                                                                                     | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| cgroup                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| n.cgroup                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| calign                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [red]#no#    |
+| cvalign                                                                                                                                                                                   | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| cstyle                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| rgroup                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| n.rgroup                                                                                                                                                                                  | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| ralign                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| rvalign                                                                                                                                                                                   | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| rstyle                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| list.type                                                                                                                                                                                 | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| condense                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| *Output*                                                                                                                                                                                  |                                 |                                   |                                                      |              |
+| html                                                                                                                                                                                      | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
+| docbook                                                                                                                                                                                   | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [green]#yes# |
+| latex                                                                                                                                                                                     | [green]#yes# (experimental)     | [green]#yes#                      | [green]#yes# (col and row spans not implemented yet) | [green]#yes# |
+| *Feature*                                                                                                                                                                                 |                                 |                                   |                                                      |              |
+| syntax color                                                                                                                                                                              | [green]#yes# (but not for R...) | [red]#no#                         | [green]#yes#                                         | [green]#yes# |
+|========================================================================================================================================================================================================================================================================================================================================
+
 
 ascii examples
 -------------
@@ -694,10 +695,12 @@ more informations
 - txt2tags: http://txt2tags.sourceforge.net
 - sphinx: http://sphinx.pocoo.org/
 - org-mode: http://orgmode.org/
+
+There is another way to create org documents with embedded R code : http://orgmode.org/worg/org-contrib/babel/org-babel.php[org-babel]. Thanks to http://blogisticreflections.wordpress.com/[Erik Iverson] for informing me about org-mode and org-babel.
   
 ascii for real
 --------------
 
 - Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[some vignettes] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[+ascii+].
 - http://learnr.wordpress.com/[This blog] uses http://eusebe.github.com/ascii[+ascii+] and http://srackham.wordpress.com/blogpost1/[blogpost] to generate and publish post.
-  - http://blogisticreflections.wordpress.com/[This blog] http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/[too but with another method].
+  - http://blogisticreflections.wordpress.com/[This blog] too but with http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/[another method].
