@@ -5,6 +5,11 @@ ascii and sphinx
 :email: dhajage@gmail.com
 
 
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
 sphinx output
 -------------
 

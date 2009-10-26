@@ -2024,7 +2024,7 @@ rowsep="1" colsep="1"
 </listitem>
 <listitem>
 <simpara>
-<ulink url="http://eusebe.github.com/ascii/sphinx/sphinx.html">with sphinx</ulink>
+<ulink url="http://eusebe.github.com/ascii/.build/html/sphinx.html">with sphinx</ulink>
 </simpara>
 </listitem>
 <listitem>
