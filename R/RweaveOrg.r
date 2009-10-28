@@ -242,7 +242,7 @@ makeRweaveOrgCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             }
 
           if(openSinput){
-              cat("\n", file=chunkout, append=TRUE)
+              cat("", file=chunkout, append=TRUE)
               linesout[thisline + 1L:2L] <- srcline
               thisline <- thisline + 2L
           }
