@@ -23,3 +23,7 @@ ascii.table <- function (x, include.rownames = TRUE, include.colnames = TRUE, ro
   class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }
+
+ascii.ftable <- function(x, digits = getOption("digits")) {
+  ascii(format(x, quote = F, digits = digits))
+}
