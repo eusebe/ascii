@@ -22,6 +22,7 @@
 \alias{ascii.packageDescription}
 \alias{ascii.numeric}
 \alias{ascii.prcomp}
+\alias{ascii.sessionInfo}
 \alias{ascii.simple.list}
 \alias{ascii.smooth.spline}
 \alias{ascii.summary.aov}
@@ -55,6 +56,7 @@
   \method{ascii}{describe}(x, condense = TRUE, \dots)
   \method{ascii}{summary.table}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
   \method{ascii}{list}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
+  \method{ascii}{sessionInfo}(x, locale = TRUE, ...)
   \method{ascii}{smooth.spline}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
 }
 \arguments{
@@ -143,12 +145,14 @@
   \item{rvalign}{Character vector of length one defining vertical alignment of major row headings.}
   \item{rstyle}{Character vector of length one indicating the style of
                 major row headings}
-  \item{condense}{default is TRUE to condense the output with regard to the 5
-                  lowest and highest values and the frequency table (\code{describe()} in package \code{Hmisc}).}
   \item{list.type}{Character vector of length one indicating the list
                    type (\code{"bullet"}, \code{"number"}, \code{"label"} or
                    \code{"none"}). If \code{"label"}, \code{names(list)} is
 	           used for labels. Default is \code{"bullet"}.}
+  \item{condense}{default is TRUE to condense the output with regard to the 5
+                  lowest and highest values and the frequency table
+		  (\code{describe()} in package \code{Hmisc}).}
+  \item{locale}{default is TRUE to show locale information (\code{sessionInfo()}).}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
 \details{
