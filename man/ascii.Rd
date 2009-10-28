@@ -51,7 +51,7 @@
     n.cgroup = NULL, calign = "", cvalign = "", cstyle = "",
     rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "",
     rstyle = "", \dots)
-  \method{ascii}{ftable}(x, header = TRUE, \dots)
+  \method{ascii}{ftable}(x, digits = getOption("digits"), header = TRUE, \dots)
   \method{ascii}{describe}(x, condense = TRUE, \dots)
   \method{ascii}{summary.table}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
   \method{ascii}{list}(x, caption = "", caption.level = "", list.type = "bullet", \dots)

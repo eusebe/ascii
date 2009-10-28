@@ -24,6 +24,6 @@ ascii.table <- function (x, include.rownames = TRUE, include.colnames = TRUE, ro
   return(obj)
 }
 
-ascii.ftable <- function(x, digits = getOption("digits"), header = T, ...) {
+ascii.ftable <- function(x, digits = getOption("digits"), header = TRUE, ...) {
   ascii(format(x, quote = F, digits = digits), header = header)
 }
