@@ -105,17 +105,24 @@ ascii provides methods for:
 
 ----
 > methods(ascii)
- [1] ascii.anova*           ascii.aov*             ascii.aovlist*        
- [4] ascii.cast_df*         ascii.character*       ascii.coxph*          
- [7] ascii.data.frame*      ascii.default*         ascii.density*        
-[10] ascii.describe*        ascii.describe.single* ascii.factor*         
-[13] ascii.glm*             ascii.htest*           ascii.integer*        
-[16] ascii.list*            ascii.lm*              ascii.matrix*         
-[19] ascii.numeric*         ascii.prcomp*          ascii.simple.list*    
-[22] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[25] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp* 
-[28] ascii.summary.table*   ascii.survdiff*        ascii.table*          
-[31] ascii.ts*              ascii.zoo*            
+ [1] ascii.anova*              ascii.aov*               
+ [3] ascii.aovlist*            ascii.cast_df*           
+ [5] ascii.character*          ascii.coxph*             
+ [7] ascii.data.frame*         ascii.default*           
+ [9] ascii.density*            ascii.describe*          
+[11] ascii.describe.single*    ascii.factor*            
+[13] ascii.ftable*             ascii.glm*               
+[15] ascii.htest*              ascii.integer*           
+[17] ascii.list*               ascii.lm*                
+[19] ascii.matrix*             ascii.numeric*           
+[21] ascii.packageDescription* ascii.prcomp*            
+[23] ascii.sessionInfo*        ascii.simple.list*       
+[25] ascii.smooth.spline*      ascii.summary.aov*       
+[27] ascii.summary.aovlist*    ascii.summary.glm*       
+[29] ascii.summary.lm*         ascii.summary.prcomp*    
+[31] ascii.summary.table*      ascii.survdiff*          
+[33] ascii.table*              ascii.ts*                
+[35] ascii.zoo*               
 
    Non-visible functions are asterisked 
 ----
@@ -333,27 +340,27 @@ platform::
 arch::
   i486
 os::
-  linux-gnu
+   linux-gnu
 system::
   i486, linux-gnu
 status::
   
 major::
-  2
+   2
 minor::
-  9.2
+   10.0
 year::
-  2009
+   2009
 month::
-  08
+   10
 day::
-  24
+  26
 svn rev::
-  49384
+  50208
 language::
-  R
+   R
 version.string::
-  R version 2.9.2 (2009-08-24) 
+   R version 2.10.0 (2009-10-26) 
 ----
 
 platform::
@@ -361,27 +368,27 @@ platform::
 arch::
   i486
 os::
-  linux-gnu
+   linux-gnu
 system::
   i486, linux-gnu
 status::
   
 major::
-  2
+   2
 minor::
-  9.2
+   10.0
 year::
-  2009
+   2009
 month::
-  08
+   10
 day::
-  24
+  26
 svn rev::
-  49384
+  50208
 language::
-  R
+   R
 version.string::
-  R version 2.9.2 (2009-08-24) 
+   R version 2.10.0 (2009-10-26) 
 
 glm
 ~~~

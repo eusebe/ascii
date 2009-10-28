@@ -473,6 +473,34 @@ function generateToc(toclevels) {
 </div>
 <h2 id="_news">news</h2>
 <div class="sectionbody">
+<h3 id="_2009_10_28">2009/10/28</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+"results=ascii" for all drivers
+</p>
+</li>
+<li>
+<p>
+method for <tt>ftable</tt> objects
+</p>
+</li>
+<li>
+<p>
+method for <tt>packageDescription</tt> objects
+</p>
+</li>
+<li>
+<p>
+method for <tt>sessionInfo</tt> objects
+</p>
+</li>
+<li>
+<p>
+fix warning with asciidoc list output
+</p>
+</li>
+</ul></div>
 <h3 id="_2009_10_24">2009/10/24</h3><div style="clear:left"></div>
 <div class="ulist"><ul>
 <li>
@@ -1020,17 +1048,24 @@ cellspacing="0" cellpadding="4">
 <div class="listingblock">
 <div class="content">
 <pre><tt>&gt; methods(ascii)
- [1] ascii.anova*           ascii.aov*             ascii.aovlist*
- [4] ascii.cast_df*         ascii.character*       ascii.coxph*
- [7] ascii.data.frame*      ascii.default*         ascii.density*
-[10] ascii.describe*        ascii.describe.single* ascii.factor*
-[13] ascii.glm*             ascii.htest*           ascii.integer*
-[16] ascii.list*            ascii.lm*              ascii.matrix*
-[19] ascii.numeric*         ascii.prcomp*          ascii.simple.list*
-[22] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[25] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp*
-[28] ascii.summary.table*   ascii.survdiff*        ascii.table*
-[31] ascii.ts*              ascii.zoo*
+ [1] ascii.anova*              ascii.aov*
+ [3] ascii.aovlist*            ascii.cast_df*
+ [5] ascii.character*          ascii.coxph*
+ [7] ascii.data.frame*         ascii.default*
+ [9] ascii.density*            ascii.describe*
+[11] ascii.describe.single*    ascii.factor*
+[13] ascii.ftable*             ascii.glm*
+[15] ascii.htest*              ascii.integer*
+[17] ascii.list*               ascii.lm*
+[19] ascii.matrix*             ascii.numeric*
+[21] ascii.packageDescription* ascii.prcomp*
+[23] ascii.sessionInfo*        ascii.simple.list*
+[25] ascii.smooth.spline*      ascii.summary.aov*
+[27] ascii.summary.aovlist*    ascii.summary.glm*
+[29] ascii.summary.lm*         ascii.summary.prcomp*
+[31] ascii.summary.table*      ascii.survdiff*
+[33] ascii.table*              ascii.ts*
+[35] ascii.zoo*
 
    Non-visible functions are asterisked</tt></pre>
 </div></div>
@@ -1695,27 +1730,27 @@ platform::
 arch::
   i486
 os::
-  linux-gnu
+   linux-gnu
 system::
   i486, linux-gnu
 status::
 
 major::
-  2
+   2
 minor::
-  9.2
+   10.0
 year::
-  2009
+   2009
 month::
-  08
+   10
 day::
-  24
+  26
 svn rev::
-  49384
+  50208
 language::
-  R
+   R
 version.string::
-  R version 2.9.2 (2009-08-24)</tt></pre>
+   R version 2.10.0 (2009-10-26)</tt></pre>
 </div></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -1739,7 +1774,7 @@ os
 </dt>
 <dd>
 <p>
-  linux-gnu
+   linux-gnu
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1758,7 +1793,7 @@ major
 </dt>
 <dd>
 <p>
-  2
+   2
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1766,7 +1801,7 @@ minor
 </dt>
 <dd>
 <p>
-  9.2
+   10.0
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1774,7 +1809,7 @@ year
 </dt>
 <dd>
 <p>
-  2009
+   2009
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1782,7 +1817,7 @@ month
 </dt>
 <dd>
 <p>
-  08
+   10
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1790,7 +1825,7 @@ day
 </dt>
 <dd>
 <p>
-  24
+  26
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1798,7 +1833,7 @@ svn rev
 </dt>
 <dd>
 <p>
-  49384
+  50208
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1806,7 +1841,7 @@ language
 </dt>
 <dd>
 <p>
-  R
+   R
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1814,7 +1849,7 @@ version.string
 </dt>
 <dd>
 <p>
-  R version 2.9.2 (2009-08-24)
+   R version 2.10.0 (2009-10-26)
 </p>
 </dd>
 </dl></div>
@@ -2540,7 +2575,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-10-26 16:13:34 CEST
+Last updated 2009-10-28 15:26:52 CEST
 </div>
 </div>
 </body>

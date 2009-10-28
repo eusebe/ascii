@@ -2,7 +2,7 @@ ascii and sphinx
 ================
 
 :Author: David Hajage
-:email: dhajage@gmail.com
+:email: dhajage at gmail dot com
 
 
 Contents:

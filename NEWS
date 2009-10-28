@@ -1,3 +1,12 @@
+2009/10/28
+~~~~~~~~~~
+
+* "results=ascii" for all drivers
+* method for +ftable+ objects
+* method for +packageDescription+ objects
+* method for +sessionInfo+ objects
+* fix warning with asciidoc list output
+
 2009/10/24
 ~~~~~~~~~~
 

@@ -16,6 +16,36 @@
 <simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing <ulink url="http://www.methods.co.nz/asciidoc/">asciidoc</ulink>, <ulink url="http://txt2tags.sourceforge.net/">txt2tags</ulink>, <ulink url="http://sphinx.pocoo.org/">sphinx</ulink> or <ulink url="http://orgmode.org/">org</ulink> documents with embeded R code.</simpara>
 <section id="_news">
 <title>news</title>
+<section id="_2009_10_28">
+<title>2009/10/28</title>
+<itemizedlist>
+<listitem>
+<simpara>
+"results=ascii" for all drivers
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+method for <literal>ftable</literal> objects
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+method for <literal>packageDescription</literal> objects
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+method for <literal>sessionInfo</literal> objects
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+fix warning with asciidoc list output
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
 <section id="_2009_10_24">
 <title>2009/10/24</title>
 <itemizedlist>
@@ -566,17 +596,24 @@ rowsep="0" colsep="0"
 <title>ascii examples</title>
 <simpara>ascii provides methods for:</simpara>
 <screen>&gt; methods(ascii)
- [1] ascii.anova*           ascii.aov*             ascii.aovlist*
- [4] ascii.cast_df*         ascii.character*       ascii.coxph*
- [7] ascii.data.frame*      ascii.default*         ascii.density*
-[10] ascii.describe*        ascii.describe.single* ascii.factor*
-[13] ascii.glm*             ascii.htest*           ascii.integer*
-[16] ascii.list*            ascii.lm*              ascii.matrix*
-[19] ascii.numeric*         ascii.prcomp*          ascii.simple.list*
-[22] ascii.smooth.spline*   ascii.summary.aov*     ascii.summary.aovlist*
-[25] ascii.summary.glm*     ascii.summary.lm*      ascii.summary.prcomp*
-[28] ascii.summary.table*   ascii.survdiff*        ascii.table*
-[31] ascii.ts*              ascii.zoo*
+ [1] ascii.anova*              ascii.aov*
+ [3] ascii.aovlist*            ascii.cast_df*
+ [5] ascii.character*          ascii.coxph*
+ [7] ascii.data.frame*         ascii.default*
+ [9] ascii.density*            ascii.describe*
+[11] ascii.describe.single*    ascii.factor*
+[13] ascii.ftable*             ascii.glm*
+[15] ascii.htest*              ascii.integer*
+[17] ascii.list*               ascii.lm*
+[19] ascii.matrix*             ascii.numeric*
+[21] ascii.packageDescription* ascii.prcomp*
+[23] ascii.sessionInfo*        ascii.simple.list*
+[25] ascii.smooth.spline*      ascii.summary.aov*
+[27] ascii.summary.aovlist*    ascii.summary.glm*
+[29] ascii.summary.lm*         ascii.summary.prcomp*
+[31] ascii.summary.table*      ascii.survdiff*
+[33] ascii.table*              ascii.ts*
+[35] ascii.zoo*
 
    Non-visible functions are asterisked</screen>
 <section id="_vector">
@@ -1236,27 +1273,27 @@ platform::
 arch::
   i486
 os::
-  linux-gnu
+   linux-gnu
 system::
   i486, linux-gnu
 status::
 
 major::
-  2
+   2
 minor::
-  9.2
+   10.0
 year::
-  2009
+   2009
 month::
-  08
+   10
 day::
-  24
+  26
 svn rev::
-  49384
+  50208
 language::
-  R
+   R
 version.string::
-  R version 2.9.2 (2009-08-24)</screen>
+   R version 2.10.0 (2009-10-26)</screen>
 <variablelist>
 <varlistentry>
 <term>
@@ -1284,7 +1321,7 @@ os
 </term>
 <listitem>
 <simpara>
-  linux-gnu
+   linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -1307,7 +1344,7 @@ major
 </term>
 <listitem>
 <simpara>
-  2
+   2
 </simpara>
 </listitem>
 </varlistentry>
@@ -1317,7 +1354,7 @@ minor
 </term>
 <listitem>
 <simpara>
-  9.2
+   10.0
 </simpara>
 </listitem>
 </varlistentry>
@@ -1327,7 +1364,7 @@ year
 </term>
 <listitem>
 <simpara>
-  2009
+   2009
 </simpara>
 </listitem>
 </varlistentry>
@@ -1337,7 +1374,7 @@ month
 </term>
 <listitem>
 <simpara>
-  08
+   10
 </simpara>
 </listitem>
 </varlistentry>
@@ -1347,7 +1384,7 @@ day
 </term>
 <listitem>
 <simpara>
-  24
+  26
 </simpara>
 </listitem>
 </varlistentry>
@@ -1357,7 +1394,7 @@ svn rev
 </term>
 <listitem>
 <simpara>
-  49384
+  50208
 </simpara>
 </listitem>
 </varlistentry>
@@ -1367,7 +1404,7 @@ language
 </term>
 <listitem>
 <simpara>
-  R
+   R
 </simpara>
 </listitem>
 </varlistentry>
@@ -1377,7 +1414,7 @@ version.string
 </term>
 <listitem>
 <simpara>
-  R version 2.9.2 (2009-08-24)
+   R version 2.10.0 (2009-10-26)
 </simpara>
 </listitem>
 </varlistentry>
