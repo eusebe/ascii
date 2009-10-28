@@ -242,7 +242,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             }
 
           if(openSinput){
-              cat("\n", file=chunkout, append=TRUE)
+              cat("", file=chunkout, append=TRUE)
               linesout[thisline + 1L:2L] <- srcline
               thisline <- thisline + 2L
           }
@@ -254,7 +254,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           }
 
           if(is.null(options$label) & options$split)
-            close(chunkout)
+             close(chunkout)
 
           if(options$split & options$include){
               cat("include::", chunkprefix, "\n", sep="",
