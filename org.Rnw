@@ -3,7 +3,7 @@
 #+STYLE: <link rel="stylesheet" type="text/css" href="http://orgmode.org/worg/code/org-info-js/stylesheet.css" />
 #+TITLE: ascii and org
 #+AUTHOR: David Hajage 
-#+EMAIL: dhajage@gmail.com
+#+EMAIL: dhajage[at]gmail [dot]com
 
 * org output
 

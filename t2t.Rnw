@@ -1,5 +1,5 @@
 ascii and txt2tags
-David Hajage, dhajage@gmail.com
+David Hajage, dhajage[at]gmail[dot]com
 
 
 = txt2tags output =
