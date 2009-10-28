@@ -2,6 +2,9 @@
 ~~~~~~~~~~
 
 * "results=ascii" for all drivers
+* method for ftable objects
+* method for packageDescription objects
+* fix warning with asciidoc list output
 
 2009/10/24
 ~~~~~~~~~~
