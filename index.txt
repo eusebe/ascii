@@ -127,6 +127,34 @@ ascii provides methods for:
    Non-visible functions are asterisked 
 ----
 
+sessionInfo
+~~~~~~~~~~~
+
+----
+> ascii(sessionInfo())
+R version::
+   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+locale::
+   LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
+attached base packages::
+  stats, graphics, grDevices, utils, datasets, methods, base
+other attached packages::
+   ascii_0.3.2, proto_0.3-8
+loaded via a namespace (and not attached)::
+  tools_2.10.0 
+----
+
+R version::
+   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+locale::
+   LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
+attached base packages::
+  stats, graphics, grDevices, utils, datasets, methods, base
+other attached packages::
+   ascii_0.3.2, proto_0.3-8
+loaded via a namespace (and not attached)::
+  tools_2.10.0 
+
 vector
 ~~~~~~
 
@@ -691,7 +719,7 @@ asciidoc yourdocument.txt
 or
 txt2tags -t html yourdocument.t2t
 or
-sphinx-build -b html . youdocument # need a conf.py file
+sphinx-build -b html . yourdocument # need a conf.py file
 or
 Alt-X org-export-as-html
 ----

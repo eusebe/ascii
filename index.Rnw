@@ -101,6 +101,17 @@ ascii provides methods for:
 methods(ascii)
 @
 
+sessionInfo
+~~~~~~~~~~~
+
+<<sessionInfo>>=
+ascii(sessionInfo())
+@
+
+<<sessionInfo2,echo=FALSE,results=ascii>>=
+ascii(sessionInfo())
+@
+
 vector
 ~~~~~~
 
@@ -169,7 +180,7 @@ labeled list
 ascii(version)
 @
 
-<<summaryTable2,echo=FALSE,results=ascii>>=
+<<labeledlist2,echo=FALSE,results=ascii>>=
 ascii(version)
 @
 
@@ -257,7 +268,7 @@ asciidoc yourdocument.txt
 or
 txt2tags -t html yourdocument.t2t
 or
-sphinx-build -b html . youdocument # need a conf.py file
+sphinx-build -b html . yourdocument # need a conf.py file
 or
 Alt-X org-export-as-html
 ----
