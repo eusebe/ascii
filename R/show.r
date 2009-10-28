@@ -446,8 +446,8 @@ asciiList <- proto(expr = {
       if (is.null(.$x[[i]])) next
       tmp <- .$x[[i]]
       if (.$list.type == "label") tmp <- sub("^\t*", "", tmp)
-      tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark, tmp, perl = TRUE))
-      charac.x[i] <- sub(paste('(^\\', mark, '+)(.*)', sep = ""), '\\1 \\2', tmp)
+      tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark[i], tmp, perl = TRUE))
+      charac.x[i] <- sub(paste('(^\\', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
