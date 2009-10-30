@@ -91,4 +91,4 @@ some text
 source of this document
 -----------------------
 
-`Click here. <../sphinx.Rnw>`_
+`Click here. <../../sphinx.Rnw>`_
