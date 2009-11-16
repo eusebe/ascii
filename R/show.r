@@ -22,13 +22,13 @@ asciiDataFrame <- proto(expr = {
     align,
     col.width,
     style,
-    cgroup,
-    n.cgroup,
+    tgroup,
+    n.tgroup,
     calign,
     cvalign,
     cstyle,    
-    rgroup,
-    n.rgroup,
+    lgroup,
+    n.lgroup,
     ralign,
     rvalign,
     rstyle) proto(.,
@@ -52,13 +52,13 @@ asciiDataFrame <- proto(expr = {
     align = align,
     col.width = col.width,
     style = style,
-    cgroup = cgroup,
-    n.cgroup = n.cgroup,
+    tgroup = tgroup,
+    n.tgroup = n.tgroup,
     calign = calign,
     cvalign = cvalign,
     cstyle = cstyle, 
-    rgroup = rgroup,
-    n.rgroup = n.rgroup,
+    lgroup = lgroup,
+    n.lgroup = n.lgroup,
     ralign = ralign,
     rvalign = rvalign,
     rstyle = rstyle
@@ -138,26 +138,26 @@ asciiDataFrame <- proto(expr = {
     
     rows <- apply(charac.x, 1, function(x) paste(paste("", Vectorize(cells)(align = align, valign = valign, style = style), "| ", x, sep = ""), collapse = " "))
     
-    if (!is.null(.$rgroup)) {
-      rgroup <- .$rgroup
-      n.rgroup <- .$n.rgroup
-      if (is.null(n.rgroup))
-        rgroup <- rgroup[1]
+    if (!is.null(.$lgroup)) {
+      lgroup <- .$lgroup
+      n.lgroup <- .$n.lgroup
+      if (is.null(n.lgroup))
+        lgroup <- lgroup[1]
       
-      n.rgroup <- rep(n.rgroup, length.out = length(rgroup))
-      if (sum(n.rgroup) != nrow(charac.x)) {
-        if (is.null(n.rgroup)) {
-          n.rgroup <- nrow(charac.x)
+      n.lgroup <- rep(n.lgroup, length.out = length(lgroup))
+      if (sum(n.lgroup) != nrow(charac.x)) {
+        if (is.null(n.lgroup)) {
+          n.lgroup <- nrow(charac.x)
         } else {
-          n.rgroup[length(n.rgroup)] <- n.rgroup[length(n.rgroup)] + nrow(charac.x) - sum(n.rgroup)
+          n.lgroup[length(n.lgroup)] <- n.lgroup[length(n.lgroup)] + nrow(charac.x) - sum(n.lgroup)
         }
       }
-      pos.rgroup <- c(1, 1+cumsum(n.rgroup))[1:length(n.rgroup)]
-      rows[pos.rgroup] <- paste(paste(cells(span = paste(".", n.rgroup, "+", sep = ""), align = .$ralign, valign = .$rvalign, style = .$rstyle), rgroup, sep = "| "), rows[pos.rgroup], sep = " ")
+      pos.lgroup <- c(1, 1+cumsum(n.lgroup))[1:length(n.lgroup)]
+      rows[pos.lgroup] <- paste(paste(cells(span = paste(".", n.lgroup, "+", sep = ""), align = .$ralign, valign = .$rvalign, style = .$rstyle), lgroup, sep = "| "), rows[pos.lgroup], sep = " ")
     }
     
     if (sum(.$col.width) > length(.$col.width)) {
-      col.width <- paste(rep(.$col.width, length.out = ncol(charac.x) + !is.null(.$rgroup)), collapse = ",")
+      col.width <- paste(rep(.$col.width, length.out = ncol(charac.x) + !is.null(.$lgroup)), collapse = ",")
     } else col.width <- ""
     
     maxchars <- max(nchar(rows)) - 1
@@ -166,22 +166,22 @@ asciiDataFrame <- proto(expr = {
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, cols = col.width, width = .$width))
     
     cat(topbot, "\n")
-    if (!is.null(.$cgroup)) {
-      cgroup <- .$cgroup
-      n.cgroup <- .$n.cgroup
-      if (is.null(n.cgroup))
-        cgroup <- cgroup[1]
-      n.cgroup <- rep(n.cgroup, length.out = length(.$cgroup))
-      if (is.null(n.cgroup))
-        n.cgroup <- 0
-      if (!is.null(.$rgroup)) {
-        cgroup <- c("", cgroup)
-        n.cgroup <- c(1, n.cgroup)
+    if (!is.null(.$tgroup)) {
+      tgroup <- .$tgroup
+      n.tgroup <- .$n.tgroup
+      if (is.null(n.tgroup))
+        tgroup <- tgroup[1]
+      n.tgroup <- rep(n.tgroup, length.out = length(.$tgroup))
+      if (is.null(n.tgroup))
+        n.tgroup <- 0
+      if (!is.null(.$lgroup)) {
+        tgroup <- c("", tgroup)
+        n.tgroup <- c(1, n.tgroup)
       }
-      if (sum(n.cgroup) != ncol(charac.x)) {
-        n.cgroup[length(n.cgroup)] <- n.cgroup[length(n.cgroup)] + ncol(charac.x) - sum(n.cgroup) + !is.null(.$rgroup)
+      if (sum(n.tgroup) != ncol(charac.x)) {
+        n.tgroup[length(n.tgroup)] <- n.tgroup[length(n.tgroup)] + ncol(charac.x) - sum(n.tgroup) + !is.null(.$lgroup)
       }
-      cat(paste(cells(span = paste(n.cgroup, "+", sep = ""), align = .$calign, valign = .$cvalign, style = .$cstyle), cgroup, sep = "| "), "\n")
+      cat(paste(cells(span = paste(n.tgroup, "+", sep = ""), align = .$calign, valign = .$cvalign, style = .$cstyle), tgroup, sep = "| "), "\n")
     }
     cat(rows, sep = "\n")
     cat(topbot, "\n")
@@ -202,82 +202,82 @@ asciiDataFrame <- proto(expr = {
       }
     }
 
-    cgroup <- .$cgroup
-    rgroup <- .$rgroup
+    tgroup <- .$tgroup
+    lgroup <- .$lgroup
     if (.$cstyle != "")
-      cgroup <- beauty.sphinx(cgroup, .$cstyle)
+      tgroup <- beauty.sphinx(tgroup, .$cstyle)
     if (.$rstyle != "")
-      rgroup <- beauty.sphinx(rgroup, .$rstyle)
+      lgroup <- beauty.sphinx(lgroup, .$rstyle)
 
     
     ncharcell <- nchar(charac.x[1,]) + 2
     
-    if (!is.null(cgroup)) {
-      n.cgroup <- .$n.cgroup
-      if (is.null(n.cgroup))
-        cgroup <- cgroup[1]
-      n.cgroup <- rep(n.cgroup, length.out = length(cgroup))
-      if (sum(n.cgroup) != ncol(charac.x)) {
-        if (is.null(n.cgroup)) {
-          n.cgroup <- ncol(charac.x)# + !is.null(rgroup)
+    if (!is.null(tgroup)) {
+      n.tgroup <- .$n.tgroup
+      if (is.null(n.tgroup))
+        tgroup <- tgroup[1]
+      n.tgroup <- rep(n.tgroup, length.out = length(tgroup))
+      if (sum(n.tgroup) != ncol(charac.x)) {
+        if (is.null(n.tgroup)) {
+          n.tgroup <- ncol(charac.x)# + !is.null(lgroup)
         } else {
-          n.cgroup[length(n.cgroup)] <- n.cgroup[length(n.cgroup)] + ncol(charac.x) - sum(n.cgroup)# + !is.null(rgroup)
+          n.tgroup[length(n.tgroup)] <- n.tgroup[length(n.tgroup)] + ncol(charac.x) - sum(n.tgroup)# + !is.null(lgroup)
         }
       }
-      newcgroup <- NULL
-      for (i in 1:length(cgroup))
-        newcgroup <- c(newcgroup, cgroup[i], rep("", n.cgroup[i] - 1))
+      newtgroup <- NULL
+      for (i in 1:length(tgroup))
+        newtgroup <- c(newtgroup, tgroup[i], rep("", n.tgroup[i] - 1))
 
-      names(newcgroup) <- names(charac.x) # for following rbind
-      charac.x <- rbind(data.frame(as.list(newcgroup), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
+      names(newtgroup) <- names(charac.x) # for following rbind
+      charac.x <- rbind(data.frame(as.list(newtgroup), stringsAsFactors = FALSE, check.names = FALSE), charac.x)
       charac.x <- format(charac.x, justify = "left")
-      newcgroup <- as.character(charac.x[1,])
+      newtgroup <- as.character(charac.x[1,])
       charac.x <- charac.x[-1,]
       
-      ccell <- cbind(cumsum(n.cgroup) - n.cgroup + 1, cumsum(n.cgroup))
+      ccell <- cbind(cumsum(n.tgroup) - n.tgroup + 1, cumsum(n.tgroup))
       crows <- "|"
-      for (i in 1:length(cgroup))
-        crows <- paste(crows, paste(paste(newcgroup[unique(ccell[i,1]:ccell[i,2])], collapse = "   "), "|", collapse = " "), sep = " ")
+      for (i in 1:length(tgroup))
+        crows <- paste(crows, paste(paste(newtgroup[unique(ccell[i,1]:ccell[i,2])], collapse = "   "), "|", collapse = " "), sep = " ")
       
       ncharcell <- nchar(charac.x[1,]) + 2
 
-      cncharcell <- apply(cbind(cumsum(n.cgroup) - n.cgroup + 1, cumsum(n.cgroup), n.cgroup - 1), 1, function(x) sum(ncharcell[unique(x[1:2])[1]:unique(x[1:2])[length(unique(x[1:2]))]] ) + x[3])
+      cncharcell <- apply(cbind(cumsum(n.tgroup) - n.tgroup + 1, cumsum(n.tgroup), n.tgroup - 1), 1, function(x) sum(ncharcell[unique(x[1:2])[1]:unique(x[1:2])[length(unique(x[1:2]))]] ) + x[3])
       cinterrows <- paste("+", paste(sapply(cncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = "")
     }
 
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     
   interrows <- rep(paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = ""), nrowx+1)
-    if (!is.null(cgroup)) {
+    if (!is.null(tgroup)) {
       interrows <- c(cinterrows, interrows)
       rows <- c(crows, rows)
     }
 
-    if (!is.null(rgroup)) {
-      n.rgroup <- .$n.rgroup
-      if (is.null(n.rgroup))
-        rgroup <- rgroup[1]
-      n.rgroup <- rep(n.rgroup, length.out = length(rgroup))
-      if (is.null(n.rgroup))
-        n.rgroup <- 0
-      if (!is.null(cgroup)) {
-        rgroup <- c("", rgroup)
-        n.rgroup <- c(1, n.rgroup)
+    if (!is.null(lgroup)) {
+      n.lgroup <- .$n.lgroup
+      if (is.null(n.lgroup))
+        lgroup <- lgroup[1]
+      n.lgroup <- rep(n.lgroup, length.out = length(lgroup))
+      if (is.null(n.lgroup))
+        n.lgroup <- 0
+      if (!is.null(tgroup)) {
+        lgroup <- c("", lgroup)
+        n.lgroup <- c(1, n.lgroup)
       }
-      if (sum(n.rgroup) != nrow(charac.x)) {
-        n.rgroup[length(n.rgroup)] <- n.rgroup[length(n.rgroup)] + nrow(charac.x) - sum(n.rgroup) + !is.null(cgroup)
+      if (sum(n.lgroup) != nrow(charac.x)) {
+        n.lgroup[length(n.lgroup)] <- n.lgroup[length(n.lgroup)] + nrow(charac.x) - sum(n.lgroup) + !is.null(tgroup)
       }
-      newrgroup <- rep("", sum(n.rgroup))
-      rcell <- cumsum(c(1, n.rgroup[-length(n.rgroup)]))
-      newrgroup[rcell] <- rgroup
-      rrows <- paste("| ", format(newrgroup), " ", sep = "")
-      rncharcell <- max(nchar(newrgroup)) + 2
+      newlgroup <- rep("", sum(n.lgroup))
+      rcell <- cumsum(c(1, n.lgroup[-length(n.lgroup)]))
+      newlgroup[rcell] <- lgroup
+      rrows <- paste("| ", format(newlgroup), " ", sep = "")
+      rncharcell <- max(nchar(newlgroup)) + 2
       rinterrows <- paste("+", paste(sapply(rncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), sep = "")
       norinterrows <- gsub("-", " ", rinterrows)
       
       rows <- paste(rrows, rows, sep = "")
       tmp <- rinterrows
-      for (i in n.rgroup) {
+      for (i in n.lgroup) {
         if (i == 1)
           rinterrows <- c(rinterrows, tmp)
         if (i > 1)
@@ -330,32 +330,32 @@ asciiDataFrame <- proto(expr = {
       }
     }
 
-    # prise en compte de cgroup
-    if (!is.null(.$cgroup)) {
-      n.cgroup <- .$n.cgroup
-      n.cgroup <- rep(n.cgroup, length.out = length(.$cgroup))
-      if (sum(n.cgroup) != ncol(charac.x)) {
-        if (is.null(n.cgroup)) {
-          n.cgroup <- ncol(charac.x)
+    # prise en compte de tgroup
+    if (!is.null(.$tgroup)) {
+      n.tgroup <- .$n.tgroup
+      n.tgroup <- rep(n.tgroup, length.out = length(.$tgroup))
+      if (sum(n.tgroup) != ncol(charac.x)) {
+        if (is.null(n.tgroup)) {
+          n.tgroup <- ncol(charac.x)
         } else {
-          n.cgroup[length(n.cgroup)] <- n.cgroup[length(n.cgroup)] + ncol(charac.x) - sum(n.cgroup)
+          n.tgroup[length(n.tgroup)] <- n.tgroup[length(n.tgroup)] + ncol(charac.x) - sum(n.tgroup)
         }
       }
-      cgroup <- .$cgroup
+      tgroup <- .$tgroup
       if (.$cstyle != "") {
-        cstyle <- rep(unlist(strsplit(.$cstyle, "")), length.out = length(cgroup))
-        cgroup <- Vectorize(beauty.t2t)(cgroup, cstyle)
+        cstyle <- rep(unlist(strsplit(.$cstyle, "")), length.out = length(tgroup))
+        tgroup <- Vectorize(beauty.t2t)(tgroup, cstyle)
       }
       if (.$calign != "") {
-        calign <- rep(unlist(strsplit(.$calign, "")), length.out = length(cgroup))
-        for (i in 1:length(cgroup)) {
+        calign <- rep(unlist(strsplit(.$calign, "")), length.out = length(tgroup))
+        for (i in 1:length(tgroup)) {
           if (calign[i] == "c")
-            cgroup[i] <- paste(" ", cgroup[i], " ", collapse = "")
+            tgroup[i] <- paste(" ", tgroup[i], " ", collapse = "")
           if (calign[i] == "r")
-            cgroup[i] <- paste(" ", cgroup[i], collapse = "")
+            tgroup[i] <- paste(" ", tgroup[i], collapse = "")
         }
       }
-      newcgroup <- paste("|", paste(paste(cgroup, lapply(n.cgroup, function(x) paste(rep("|", time = x), collapse = ""))), collapse = " "))
+      newtgroup <- paste("|", paste(paste(tgroup, lapply(n.tgroup, function(x) paste(rep("|", time = x), collapse = ""))), collapse = " "))
     }
     
     # prise en compte de l'alignement
@@ -373,12 +373,12 @@ asciiDataFrame <- proto(expr = {
     }
     rows <- apply(charac.x, 1, function(x) paste("| ", paste(x, collapse = " | "), sep = ""))
     # cat result
-    if (!is.null(.$cgroup)) {
+    if (!is.null(.$tgroup)) {
       if (.$header)
         cat("|", sep = "")
-      cat(newcgroup, "\n")
+      cat(newtgroup, "\n")
     }
-    if (.$header & is.null(.$cgroup)) {
+    if (.$header & is.null(.$tgroup)) {
       rows[1] <- paste("|", rows[1], sep = "")
     }
     if (.$footer) {
