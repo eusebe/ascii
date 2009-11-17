@@ -71,11 +71,21 @@ See +?ascii+ for a complete description of all arguments.
 | align                                                                                                                                                                                     | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [red]#no#    |
 | col.width                                                                                                                                                                                 | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
 | style                                                                                                                                                                                     | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [green]#yes# |
-| cgroup                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
-| n.cgroup                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
-| calign                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [red]#no#    |
-| cvalign                                                                                                                                                                                   | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
-| cstyle                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| tgroup                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| n.tgroup                                                                                                                                                                                  | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| talign                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [red]#no#                                            | [red]#no#    |
+| tvalign                                                                                                                                                                                   | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| tstyle                                                                                                                                                                                    | [green]#yes#                    | [green]#yes#                      | [green]#yes#                                         | [red]#no#    |
+| bgroup                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| n.bgroup                                                                                                                                                                                  | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| balign                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| bvalign                                                                                                                                                                                   | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| bstyle                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| lgroup                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| n.lgroup                                                                                                                                                                                  | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
+| lalign                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| lvalign                                                                                                                                                                                   | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
+| lstyle                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
 | rgroup                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
 | n.rgroup                                                                                                                                                                                  | [green]#yes#                    | [red]#no#                         | [green]#yes#                                         | [red]#no#    |
 | ralign                                                                                                                                                                                    | [green]#yes#                    | [red]#no#                         | [red]#no#                                            | [red]#no#    |
@@ -152,14 +162,14 @@ row (and col) headings
 library(reshape)
 ff_d <- melt(french_fries, id=1:4, na.rm=TRUE)
 toto <- cast(ff_d, treatment + subject ~ variable, mean, margins="treatment")
-ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:", as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+ascii(toto[, -1], lgroup = c("Treatment", paste("Treatment:", as.character(unique(toto[, 1])))), n.lgroup = c(1, table(toto[, 1])), rstyle = "s", lvalign = "middle")
 @ 
 
 <<rowheads2,echo=FALSE,results=ascii>>=
 library(reshape)
 ff_d <- melt(french_fries, id=1:4, na.rm=TRUE)
 toto <- cast(ff_d, treatment + subject ~ variable, mean, margins="treatment")
-ascii(toto[, -1], rgroup = c("Treatment", paste("Treatment:", as.character(unique(toto[, 1])))), n.rgroup = c(1, table(toto[, 1])), rstyle = "s", rvalign = "middle")
+ascii(toto[, -1], lgroup = c("Treatment", paste("Treatment:", as.character(unique(toto[, 1])))), n.lgroup = c(1, table(toto[, 1])), lstyle = "s", lvalign = "middle")
 @ 
 
 summary.table
@@ -218,9 +228,22 @@ units(esoph$age) <- "Years"
 ascii(describe(esoph))
 @
 
-<<describe,echo=FALSE,results=ascii>>=
+<<describe2, echo=FALSE,results=ascii>>=
 library(Hmisc)
 ascii(describe(esoph))
+@
+
+CrossTable
+~~~~~~~~~~
+
+<<CrossTable>>=
+library(descr)
+ascii(describe(esoph))
+@
+
+<<CrossTable2,echo=FALSE,results=ascii>>=
+library(descr)
+CrossTable(warpbreaks$wool, warpbreaks$tension, dnn = c("Wool", "Tension"))
 @
 
 plot
