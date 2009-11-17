@@ -30,11 +30,11 @@ ascii.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, rown
          tstyle = tstyle,
          bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign,
          bstyle = bstyle,
-         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign,
-         rstyle = rstyle,
+         lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign,
+         lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
-w}
+}
 
 ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", tgroup = NULL, n.tgroup = NULL, talign = "", tvalign = "", tstyle = "", bgroup = NULL, n.bgroup = NULL, balign = "", bvalign = "", bstyle = "", lgroup = NULL, n.lgroup = NULL, lalign = "", lvalign = "", lstyle = "", rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "", rstyle = "", ...){
   ascii.anova(unclass(x)[[1]], include.rownames = include.rownames,
@@ -48,8 +48,8 @@ ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TR
          tstyle = tstyle,
          bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign,
          bstyle = bstyle,
-         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign,
-         rstyle = rstyle,
+         lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign,
+         lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
 }
@@ -67,8 +67,8 @@ ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, 
          tstyle = tstyle,
          bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign,
          bstyle = bstyle,
-         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign,
-         rstyle = rstyle,
+         lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign,
+         lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
   else {
@@ -84,8 +84,8 @@ ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, 
          tstyle = tstyle,
          bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign,
          bstyle = bstyle,
-         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign,
-         rstyle = rstyle,
+         lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign,
+         lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
   }
@@ -103,8 +103,8 @@ ascii.summary.aovlist <- function (x, include.rownames = TRUE, include.colnames 
          tstyle = tstyle,
          bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign,
          bstyle = bstyle,
-         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign,
-         rstyle = rstyle,
+         lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign,
+         lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
   else {
@@ -120,10 +120,9 @@ ascii.summary.aovlist <- function (x, include.rownames = TRUE, include.colnames 
          tstyle = tstyle,
          bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign,
          bstyle = bstyle,
-         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign,
-         rstyle = rstyle,
+         lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign,
+         lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
   }
 }
-

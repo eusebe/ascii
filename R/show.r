@@ -252,8 +252,8 @@ asciiDataFrame <- proto(expr = {
     cat(topbot, "\n")
   }
 
-  show.sphinx <- function(.) { # Manque la classe pour les listes et les mixtes
-    # L'alignement et footer ne sont pas gérés par sphinx
+  show.rest <- function(.) { # Manque la classe pour les listes et les mixtes
+    # L'alignement et footer ne sont pas gérés
 
     charac.x <- charac(.)
     nrowx <- nrow(charac.x)
@@ -263,7 +263,7 @@ asciiDataFrame <- proto(expr = {
       style <- unlist(strsplit(.$style, ""))
       style <- rep(style, length.out = ncolx)
       for (i in 1:ncolx) {
-        charac.x[,i] <- beauty.sphinx(charac.x[,i], style[i])
+        charac.x[,i] <- beauty.rest(charac.x[,i], style[i])
       }
     }
 
@@ -273,11 +273,11 @@ asciiDataFrame <- proto(expr = {
     rgroup <- .$rgroup
     
     if (.$tstyle != "")
-      tgroup <- beauty.sphinx(tgroup, .$tstyle)
+      tgroup <- beauty.rest(tgroup, .$tstyle)
     if (.$bstyle != "")
-      bgroup <- beauty.sphinx(bgroup, .$bstyle)
+      bgroup <- beauty.rest(bgroup, .$bstyle)
     if (.$lstyle != "")
-      lgroup <- beauty.sphinx(lgroup, .$lstyle)
+      lgroup <- beauty.rest(lgroup, .$lstyle)
 
     
     ncharcell <- nchar(charac.x[1,]) + 2
@@ -437,7 +437,7 @@ asciiDataFrame <- proto(expr = {
     if (.$header)
       interrows[2] <- gsub("-", "=", interrows[2])
 
-    cat(header.sphinx(caption = .$caption, caption.level = .$caption.level))    
+    cat(header.rest(caption = .$caption, caption.level = .$caption.level))    
     cat(c(rbind(interrows[-length(interrows)], rows), interrows[length(interrows)]), sep = "\n")
   }
 
@@ -635,7 +635,7 @@ asciiList <- proto(expr = {
     cat(charac.x, sep = "\n")
   }
 
-  show.sphinx <- function(.) {
+  show.rest <- function(.) {
     if (.$list.type == "bullet") mark <- rep("*", length(.$x))
     if (.$list.type == "number") mark <- rep("#.", length(.$x))
     if (.$list.type == "none")  mark <- rep("", length(.$x))
@@ -652,7 +652,7 @@ asciiList <- proto(expr = {
     for (i in 2:length(y))
       z <- c(z, ifelse(y[i] != y[i-1], i-1, NA))
 
-    cat(header.sphinx(caption = .$caption, caption.level = .$caption.level), sep = "\n")
+    cat(header.rest(caption = .$caption, caption.level = .$caption.level), sep = "\n")
 
     for (i in 1:length(.$x)) {
       tmp <- .$x[[i]]
@@ -736,11 +736,11 @@ asciiMixed <- proto(expr = {
     }
   }
   
-  show.sphinx <- function(.) {
+  show.rest <- function(.) {
     args <- rev(as.list(.))
     for (i in seq_along(args)) {
       if (is.null(args[[i]])) next
-      print(args[[i]], type = "sphinx") 
+      print(args[[i]], type = "rest") 
       if (i != length(args)) cat("\n") 
     }
   }

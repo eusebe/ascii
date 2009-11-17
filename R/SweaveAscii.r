@@ -4,8 +4,8 @@ formals(Asciidoc) <-  alist(file=, driver=RweaveAsciidoc, syntax=SweaveSyntaxNow
 T2t <- Sweave
 formals(T2t) <-  alist(file=, driver=RweaveT2t, syntax=SweaveSyntaxNoweb, ...=)
 
-Sphinx <- Sweave
-formals(Sphinx) <-  alist(file=, driver=RweaveSphinx, syntax=SweaveSyntaxNoweb, ...=)
+ReST <- Sweave
+formals(ReST) <-  alist(file=, driver=RweaveReST, syntax=SweaveSyntaxNoweb, ...=)
 
 Org <- Sweave
 formals(Org) <-  alist(file=, driver=RweaveOrg, syntax=SweaveSyntaxNoweb, ...=)

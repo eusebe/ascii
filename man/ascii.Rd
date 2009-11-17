@@ -6,10 +6,12 @@
 \alias{ascii.cast_df}
 \alias{ascii.character}
 \alias{ascii.coxph}
+\alias{ascii.CrossTable}
 \alias{ascii.data.frame}
 \alias{ascii.default}
 \alias{ascii.density}
 \alias{ascii.factor}
+\alias{ascii.freqtable}
 \alias{ascii.glm}
 \alias{ascii.describe.single}
 \alias{ascii.describe}
@@ -19,6 +21,7 @@
 \alias{ascii.list}
 \alias{ascii.lm}
 \alias{ascii.matrix}
+\alias{ascii.meanscomp}
 \alias{ascii.packageDescription}
 \alias{ascii.numeric}
 \alias{ascii.prcomp}
@@ -55,12 +58,18 @@
     lvalign = "", lstyle = "", rgroup = NULL, n.rgroup = NULL,
     ralign = "", rvalign = "", rstyle = "", \dots)
   \method{ascii}{ftable}(x, digits = getOption("digits"), header = TRUE, \dots)
-  \method{ascii}{describe}(x, condense = TRUE, \dots)
   \method{ascii}{summary.table}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
   \method{ascii}{list}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
   \method{ascii}{sessionInfo}(x, locale = TRUE, ...)
   \method{ascii}{smooth.spline}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
-}
+  \method{ascii}{describe}(x, condense = TRUE, \dots)
+  \method{ascii}{meanscomp}(x, caption = "", caption.level = "s",
+    include.rownames = TRUE, include.colnames = TRUE, \dots)
+  \method{ascii}{CrossTable}(x, \dots)
+  \method{ascii}{freqtable}(x, digits = c(0, 4), format = "fg", na.print = "",
+    include.rownames = TRUE, include.colnames = TRUE, caption = x$label,
+    caption.level = "s", ...)
+ }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
   \item{include.rownames}{logical. If \code{TRUE} the rows names are printed. Default value depends of class of \code{x}.}

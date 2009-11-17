@@ -1,4 +1,4 @@
-export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "RweaveSphinx", "RweaveOrg", "Asciidoc", "T2t", "Sphinx", "Org")
+export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "RweaveReST", "RweaveOrg", "Asciidoc", "T2t", "ReST", "Org")
 import(utils)
 
 S3method("ascii", "anova")

@@ -132,12 +132,12 @@ beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
-##########
-# Sphinx #
-##########
+########
+# ReST #
+########
 
-# generate headers for sphinx
-header.sphinx <- function(caption = "", caption.level = "") {
+# generate headers for rest
+header.rest <- function(caption = "", caption.level = "") {
   niv <- c("=", "-", "~", "^", "+")
   ncharcap <- nchar(caption)
   res <- ""
@@ -146,11 +146,11 @@ header.sphinx <- function(caption = "", caption.level = "") {
       res <- paste(caption, paste(paste(rep(niv[caption.level], ncharcap), collapse = ""), "\n", sep = ""), sep = "\n")
     } else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
       if (caption.level == "s")
-        res <- paste(beauty.sphinx(caption, "s"), "\n\n", sep = "")
+        res <- paste(beauty.rest(caption, "s"), "\n\n", sep = "")
       else if (caption.level == "e")
-        res <- paste(beauty.sphinx(caption, "e"), "\n\n", sep = "")
+        res <- paste(beauty.rest(caption, "e"), "\n\n", sep = "")
       else if (caption.level == "m")
-        res <- paste(beauty.sphinx(caption, "m"), "\n\n", sep = "")
+        res <- paste(beauty.rest(caption, "m"), "\n\n", sep = "")
     } else if (is.character(caption.level) & caption.level != "" & caption.level != "none") {
       res <- paste(caption, paste(paste(rep(caption.level, ncharcap), collapse = ""), "\n", sep = ""), sep = "\n")
     } else if (caption.level == "" | caption.level == "none") {
@@ -160,8 +160,8 @@ header.sphinx <- function(caption = "", caption.level = "") {
   return(res)
 }
   
-# beautify for sphinx
-beauty.sphinx <- function(x, beauti = c("e", "m", "s")) {
+# beautify for rest
+beauty.rest <- function(x, beauti = c("e", "m", "s")) {
   if (beauti == "s") {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*\\*.*\\*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
     if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\*\\2", x[!y]))
