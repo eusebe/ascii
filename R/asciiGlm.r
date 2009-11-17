@@ -14,7 +14,7 @@ ascii.glm <- function (x, include.rownames = TRUE, include.colnames = TRUE, rown
           lvalign = lvalign, lstyle = lstyle,
           rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
           rvalign = rvalign, rstyle = rstyle)
-w    class(obj) <- c("ascii", "proto", "environment")
+    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
