@@ -188,7 +188,7 @@ ascii.CrossTable <- function (x, ...) {
     mcolnames <- colnames(m)                                                                        
     rnames <- c("", rnames)
     n.rnames <- c(1, n.rnames)
-    res.m <- ascii(m, include.colnames = T, header = T, lgroup = rnames, n.lgroup = n.rnames)
+    res.m <- ascii(m, include.colnames = T, header = T, lgroup = rnames, n.lgroup = n.rnames, lstyle = "s")
     res.t <- NULL
     if (chisq) {                                                                                    
       res.t <- list("Pearson's Chi-squared test" = paste(gettext("Chi^2 =", domain = "R-descr"), CST$statistic,                                  
