@@ -42,7 +42,7 @@
 \title{Export R objects to several markup languages}
 \description{
   Function converting an R object to an \code{ascii} object, which can
-  then be printed with asciidoc, txt2tags, sphinx or org syntax.
+  then be printed with asciidoc, txt2tags, reStructuredText or org syntax.
 }
 \usage{
   \method{ascii}{default}(x, 
@@ -214,7 +214,7 @@ ascii(esoph[1:10,])
 tab <- table(esoph$agegp, esoph$alcgp)
 ascii(tab)
 print(ascii(tab), type = "t2t")
-print(ascii(tab), type = "sphinx")
+print(ascii(tab), type = "rest")
 print(ascii(tab), type = "org")
 ascii(summary(tab))
 }

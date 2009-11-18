@@ -3,7 +3,7 @@
 \title{Print ascii object}
 \description{Function displaying the asciiDoc, txt2tags, reStructuredText or org code associated with the supplied object of class \code{ascii}.}
 \usage{
-print.ascii(x, type = getOption("asciiType"), file = NULL, append = FALSE, ...)
+print.ascii(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\\\_", "\\\\^"), ...)
 }
 \arguments{
   \item{x}{An object of class \code{"ascii"}}
@@ -12,6 +12,9 @@ print.ascii(x, type = getOption("asciiType"), file = NULL, append = FALSE, ...)
               Default value produce asciiDoc syntax.}
   \item{file}{A character string naming the file to print to. Default is \code{NULL} (print to the console).}
   \item{append}{If \code{TRUE}, code will be appended to \code{file} instead of overwriting it. Default value is \code{FALSE}}.
+  \item{escape}{If \code{TRUE}, characters in \code{list.escape} will be
+    be printed with a \code{\\}. Default value is \code{FALSE}}.
+  \item{list.escape}{Character vector. Default value is \code{c("\\\\_", "\\\\^")}}.
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
 \details{
