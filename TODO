@@ -1,4 +1,1 @@
-* color syntax (source-highlight?)
-* replace cgroup and rgroup by tgroup (top) and lgroup (left)
-* add bgroup (bottom), rgroup (right)
-* add methods for descr package
+* color syntax in asciidoc (source-highlight?)
