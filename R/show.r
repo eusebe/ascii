@@ -278,6 +278,8 @@ asciiDataFrame <- proto(expr = {
       bgroup <- beauty.rest(bgroup, .$bstyle)
     if (.$lstyle != "")
       lgroup <- beauty.rest(lgroup, .$lstyle)
+    if (.$rstyle != "")
+      rgroup <- beauty.rest(rgroup, .$rstyle)
 
     
     ncharcell <- nchar(charac.x[1,]) + 2
@@ -286,7 +288,7 @@ asciiDataFrame <- proto(expr = {
       n.tgroup <- .$n.tgroup
       if (is.null(n.tgroup))
         tgroup <- tgroup[1]
-      n.tgroup <- rep(n.tgroup, length.out = length(tgroup))
+      ## n.tgroup <- rep(n.tgroup, length.out = length(tgroup))
       if (sum(n.tgroup) != ncol(charac.x)) {
         if (is.null(n.tgroup)) {
           n.tgroup <- ncol(charac.x)# + !is.null(lgroup)
@@ -319,7 +321,7 @@ asciiDataFrame <- proto(expr = {
       n.bgroup <- .$n.bgroup
       if (is.null(n.bgroup))
         bgroup <- bgroup[1]
-      n.bgroup <- rep(n.bgroup, length.out = length(bgroup))
+      ## n.bgroup <- rep(n.bgroup, length.out = length(bgroup))
       if (sum(n.bgroup) != ncol(charac.x)) {
         if (is.null(n.bgroup)) {
           n.bgroup <- ncol(charac.x)# + !is.null(lgroup)
@@ -332,7 +334,7 @@ asciiDataFrame <- proto(expr = {
         newbgroup <- c(newbgroup, bgroup[i], rep("", n.bgroup[i] - 1))
 
       names(newbgroup) <- names(charac.x) # for following rbind
-      charac.x <- rbind(charac.x, data.frame(as.list(newbgroup), stringsAsFactors = FALSE, check.names = FALSE))
+      charac.x <- rbind(apply(charac.x, 2, as.character), data.frame(as.list(newbgroup), stringsAsFactors = FALSE, check.names = FALSE))
       charac.x <- format(charac.x, justify = "left")
       newbgroup <- as.character(charac.x[nrow(charac.x),])
       charac.x <- charac.x[-nrow(charac.x),]
@@ -351,6 +353,7 @@ asciiDataFrame <- proto(expr = {
     rows <- apply(charac.x, 1, function(x) paste("|", paste(paste(x, " |", sep = ""), collapse = " ")))
     
     interrows <- rep(paste("+", paste(sapply(ncharcell, function(x) paste(rep("-", x), collapse = "")), collapse = "+"), "+", sep = ""), nrowx+1)
+    
     if (!is.null(tgroup)) {
       interrows <- c(tinterrows, interrows)
       rows <- c(trows, rows)
@@ -368,7 +371,7 @@ asciiDataFrame <- proto(expr = {
       if (is.null(n.lgroup))
         n.lgroup <- 0
       if (sum(n.lgroup) != nrow(charac.x)) {
-        n.lgroup[length(n.lgroup)] <- n.lgroup[length(n.lgroup)] + nrow(charac.x) - sum(n.lgroup) + !is.null(tgroup) + !is.null(bgroup)
+        n.lgroup[length(n.lgroup)] <- n.lgroup[length(n.lgroup)] + nrow(charac.x) - sum(n.lgroup)# + !is.null(tgroup) + !is.null(bgroup)
       }
       if (!is.null(tgroup)) {
         lgroup <- c("", lgroup)
@@ -405,7 +408,7 @@ asciiDataFrame <- proto(expr = {
       if (is.null(n.rgroup))
         n.rgroup <- 0
       if (sum(n.rgroup) != nrow(charac.x)) {
-        n.rgroup[length(n.rgroup)] <- n.rgroup[length(n.rgroup)] + nrow(charac.x) - sum(n.rgroup) + !is.null(tgroup) + !is.null(bgroup)
+        n.rgroup[length(n.rgroup)] <- n.rgroup[length(n.rgroup)] + nrow(charac.x) - sum(n.rgroup)# + !is.null(tgroup) + !is.null(bgroup)
       }
       if (!is.null(tgroup)) {
         rgroup <- c("", rgroup)

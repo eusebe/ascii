@@ -191,41 +191,42 @@ ascii.CrossTable <- function (x, ...) {
     res.m <- ascii(m, include.colnames = T, header = T, lgroup = rnames, n.lgroup = n.rnames, lstyle = "s")
     res.t <- NULL
     if (chisq) {                                                                                    
-      res.t <- list("Pearson's Chi-squared test" = paste(gettext("Chi^2 =", domain = "R-descr"), CST$statistic,                                  
-                      "    ", gettext("d.f. =", domain = "R-descr"), CST$parameter,                           
-                      "    ", gettext("p =", domain = "R-descr"), CST$p.value))
+      res.t <- list("Pearson's Chi-squared test" = paste(gettext("Chi^2 =", domain = "R-descr"), format(CST$statistic),
+                      "    ", gettext("d.f. =", domain = "R-descr"), format(CST$parameter),                           
+                      "    ", gettext("p =", domain = "R-descr"), format(CST$p.value)))
         if (all(dim(t) == 2)) {                                                                     
-          res.t <- c(res.t, "Pearson's Chi-squared test with Yates' continuity correction" = paste(gettext("Chi^2 =", domain = "R-descr"), CSTc$statistic,                             
+          res.t <- c(res.t, "Pearson's Chi-squared test with Yates' continuity correction" = paste(gettext("Chi^2 =", domain = "R-descr"),
+                       format(CSTc$statistic),                             
                        "    ", gettext("d.f. =", domain = "R-descr"),                                      
-                       CSTc$parameter, "    ", gettext("p =", domain = "R-descr"),                         
-                       CSTc$p.value))
+                       format(CSTc$parameter), "    ", gettext("p =", domain = "R-descr"),                         
+                       format(CSTc$p.value)))
         }
     }                                                                                               
     if (is.na(McN[1]) == FALSE) {                                                                   
-        res.t <- c(res.t, "McNemar's Chi-squared test" = paste(gettext("Chi^2 =", domain = "R-descr"), McN$statistic,                                  
-            "    ", gettext("d.f. =", domain = "R-descr"), McN$parameter,                           
-            "    ", gettext("p =", domain = "R-descr"), McN$p.value))                                                                       
+        res.t <- c(res.t, "McNemar's Chi-squared test" = paste(gettext("Chi^2 =", domain = "R-descr"), format(McN$statistic),                        
+            "    ", gettext("d.f. =", domain = "R-descr"), format(McN$parameter),
+            "    ", gettext("p =", domain = "R-descr"), format(McN$p.value)))                                                            
         if (is.na(McNc[1]) == FALSE) {                                                              
-            res.t <- c(res.t, "McNemar's Chi-squared test with continuity correction" = paste(gettext("Chi^2 =", domain = "R-descr"), McNc$statistic,                             
+            res.t <- c(res.t, "McNemar's Chi-squared test with continuity correction" = paste(gettext("Chi^2 =", domain = "R-descr"), format(McNc$statistic),
                 "    ", gettext("d.f. =", domain = "R-descr"),                                      
-                McNc$parameter, "    ", gettext("p =", domain = "R-descr"),                         
-                McNc$p.value))                                                                 
+                format(McNc$parameter), "    ", gettext("p =", domain = "R-descr"),                         
+                format(McNc$p.value)))                                                                 
         }                                                                                           
     }                                                                                               
     if (fisher) {                                                                                   
       res.t <- c(res.t, "Fisher's Exact Test for Count Data" = paste(gettext("Alternative hypothesis: two.sided",
-                          domain = "R-descr"), gettext("    p =", domain = "R-descr"), FTt$p.value))
+                          domain = "R-descr"), gettext("    p =", domain = "R-descr"), format(FTt$p.value)))
     }
     if (format == "SPSS") {
       if (any(dim(t) >= 2) & any(chisq, mcnemar, fisher)) {
             MinExpF = min(CST$expected)
-            res.t <- c(res.t, list("Minimum expected frequency" = MinExpF))
+            res.t <- c(res.t, list("Minimum expected frequency" = format(MinExpF)))
             NMinExpF = length(CST$expected[which(CST$expected <
                 5)])
             if (NMinExpF > 0) {
                 NCells = length(CST$expected)
-                res.t <- c(res.t, "Cells with Expected Frequency < 5" = paste(NMinExpF, " ", "of ",
-                  NCells, " (", 100 * NMinExpF/NCells,
+                res.t <- c(res.t, "Cells with Expected Frequency < 5" = paste(format(NMinExpF), " ", "of ",
+                  NCells, " (", format(100 * NMinExpF/NCells),
                   "%)", sep = ""))
             }
             ## cat("\n")
