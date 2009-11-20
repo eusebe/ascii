@@ -288,7 +288,7 @@ asciiDataFrame <- proto(expr = {
       n.tgroup <- .$n.tgroup
       if (is.null(n.tgroup))
         tgroup <- tgroup[1]
-      ## n.tgroup <- rep(n.tgroup, length.out = length(tgroup))
+      n.tgroup <- rep(n.tgroup, length.out = length(tgroup))
       if (sum(n.tgroup) != ncol(charac.x)) {
         if (is.null(n.tgroup)) {
           n.tgroup <- ncol(charac.x)# + !is.null(lgroup)
@@ -321,7 +321,7 @@ asciiDataFrame <- proto(expr = {
       n.bgroup <- .$n.bgroup
       if (is.null(n.bgroup))
         bgroup <- bgroup[1]
-      ## n.bgroup <- rep(n.bgroup, length.out = length(bgroup))
+      n.bgroup <- rep(n.bgroup, length.out = length(bgroup))
       if (sum(n.bgroup) != ncol(charac.x)) {
         if (is.null(n.bgroup)) {
           n.bgroup <- ncol(charac.x)# + !is.null(lgroup)
