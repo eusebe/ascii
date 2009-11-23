@@ -16,6 +16,46 @@
 <simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing <ulink url="http://www.methods.co.nz/asciidoc/">asciidoc</ulink>, <ulink url="http://txt2tags.sourceforge.net/">txt2tags</ulink>, <ulink url="http://docutils.sourceforge.net/rest.html">reStructuredText</ulink> or <ulink url="http://orgmode.org/">org</ulink> documents with embeded R code.</simpara>
 <section id="_news">
 <title>news</title>
+<section id="_2009_xx_xx">
+<title>2009/xx/xx</title>
+<itemizedlist>
+<listitem>
+<simpara>
+version 0.4
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+remove extra <literal>\n</literal> when there is no R output
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+change the name of Sphinx related functions to ReST
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+add methods for <literal>freq()</literal>, <literal>compmeans()</literal> and <literal>CrossTable()</literal> in package <literal>descr</literal>
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+remove <literal>cgroup</literal> and <literal>rgroup</literal> arguments in <literal>ascii()</literal> function
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+four new arguments : <literal>tgroup</literal> (top), <literal>bgroup</literal> (bottom), <literal>lgroup</literal> (left) and <literal>rgroup</literal> (right)
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+new arguments <literal>escape</literal> and <literal>list.escape</literal> in <literal>print.ascii()</literal> function
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
 <section id="_2009_10_28">
 <title>2009/10/28</title>
 <itemizedlist>
