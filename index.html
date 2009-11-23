@@ -1,0 +1,3013 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="generator" content="AsciiDoc 8.5.1" />
+<title>ascii</title>
+<style type="text/css">
+/* Debug borders */
+p, li, dt, dd, div, pre, h1, h2, h3, h4, h5, h6 {
+/*
+  border: 1px solid red;
+*/
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+tt {
+  color: navy;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  font-family: sans-serif;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+
+div.sectionbody {
+  font-family: serif;
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+
+pre {
+  padding: 0;
+  margin: 0;
+}
+
+span#author {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+span#email {
+}
+span#revnumber, span#revdate, span#revremark {
+  font-family: sans-serif;
+}
+
+div#footer {
+  font-family: sans-serif;
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+div#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+div#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+div#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 0.25em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock {
+  padding-left: 2.0em;
+  margin-right: 10%;
+}
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock {
+  padding-left: 2.0em;
+  margin-right: 10%;
+}
+div.verseblock > div.content {
+  white-space: pre;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 2px solid silver;
+}
+
+div.exampleblock > div.content {
+  border-left: 2px solid silver;
+  padding: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead {
+  font-family: sans-serif;
+  font-weight: bold;
+}
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+
+@media print {
+  div#footer-badges { display: none; }
+}
+
+div#toctitle {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+/* Workarounds for IE6's broken and incomplete CSS2. */
+
+div.sidebar-content {
+  background: #ffffee;
+  border: 1px solid silver;
+  padding: 0.5em;
+}
+div.sidebar-title, div.image-title {
+  color: #527bbd;
+  font-family: sans-serif;
+  font-weight: bold;
+  margin-top: 0.0em;
+  margin-bottom: 0.5em;
+}
+
+div.listingblock div.content {
+  border: 1px solid silver;
+  background: #f4f4f4;
+  padding: 0.5em;
+}
+
+div.quoteblock-attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock-content {
+  white-space: pre;
+}
+div.verseblock-attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+
+div.exampleblock-content {
+  border-left: 2px solid silver;
+  padding-left: 0.5em;
+}
+
+/* IE6 sets dynamically generated links as visited. */
+div#toc a:visited { color: blue; }
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+window.onload = function(){asciidoc.footnotes(); asciidoc.toc(2);}
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([2-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo)
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  var cont = document.getElementById("content");
+  var noteholder = document.getElementById("footnotes");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      // Use [\s\S] in place of . so multi-line matches work.
+      // Because JavaScript has no s (dotall) regex flag.
+      note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      spans[i].innerHTML =
+        "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+        "' title='View footnote' class='footnote'>" + n + "</a>]";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+}
+
+}
+/*]]>*/
+</script>
+</head>
+<body>
+<div id="header">
+<h1>ascii</h1>
+<span id="author">David Hajage</span><br />
+<span id="email"><tt>&lt;<a href="mailto:dhajage[at]gmail[dot]com">dhajage[at]gmail[dot]com</a>&gt;</tt></span><br />
+<div id="toc">
+  <div id="toctitle">Table of Contents</div>
+  <noscript><p><b>JavaScript must be enabled in your browser to display the table of contents.</b></p></noscript>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing <a href="http://www.methods.co.nz/asciidoc/">asciidoc</a>, <a href="http://txt2tags.sourceforge.net/">txt2tags</a>, <a href="http://docutils.sourceforge.net/rest.html">reStructuredText</a> or <a href="http://orgmode.org/">org</a> documents with embeded R code.</p></div>
+</div>
+</div>
+<h2 id="_news">news</h2>
+<div class="sectionbody">
+<h3 id="_2009_10_28">2009/10/28</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+"results=ascii" for all drivers
+</p>
+</li>
+<li>
+<p>
+method for <tt>ftable</tt> objects
+</p>
+</li>
+<li>
+<p>
+method for <tt>packageDescription</tt> objects
+</p>
+</li>
+<li>
+<p>
+method for <tt>sessionInfo</tt> objects
+</p>
+</li>
+<li>
+<p>
+fix warning with asciidoc list output
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_10_24">2009/10/24</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+small bug fix
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_10_24_2">2009/10/24</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+version 0.3
+</p>
+</li>
+<li>
+<p>
+<tt>list.type</tt> can be <tt>"label"</tt>
+</p>
+</li>
+<li>
+<p>
+<tt>ascii.simple.list</tt> method
+</p>
+</li>
+<li>
+<p>
+<tt>rownames</tt> and <tt>colnames</tt> arguments
+</p>
+</li>
+<li>
+<p>
+<tt>cgroup</tt> for txt2tags output
+</p>
+</li>
+<li>
+<p>
+improve col alignment in txt2tags output
+</p>
+</li>
+<li>
+<p>
+<a href="http://sphinx.pocoo.org/">sphinx</a> driver and output
+</p>
+</li>
+<li>
+<p>
+<a href="http://orgmode.org/">org</a> driver and output
+</p>
+</li>
+<li>
+<p>
+improve row and col span (cgroup and rgroup)
+</p>
+</li>
+<li>
+<p>
+remove <tt>SweaveAscii()</tt> function
+</p>
+</li>
+<li>
+<p>
+<tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>Sphinx()</tt> and <tt>Org()</tt> (wrapper for <tt>Sweave("file.Rnw", RweaveXxx)</tt>)
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_07_16">2009/07/16</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+version 0.2
+</p>
+</li>
+<li>
+<p>
+digit and format accept matrix, (each cell can have its own number of digits a
+nd format)
+</p>
+</li>
+<li>
+<p>
+new arguments (<tt>cgroup</tt>, <tt>rgroup</tt>, &#8230;) to define major column and row heading
+s like in Hmisc::latex() (only for asciidoc output)
+</p>
+</li>
+<li>
+<p>
+column style and alignment use cell specifiers
+</p>
+</li>
+<li>
+<p>
+remove SweaveSyntaxAscii (bug when <tt>]</tt> is used inside <tt>Sexpr:[]</tt>)
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_05_11">2009/05/11</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<tt>\SweaveOpts{}</tt> now works
+</p>
+</li>
+<li>
+<p>
+add <tt>SweaveSyntaxAscii</tt> (<tt>SweaveOpts:[]</tt>, <tt>Sexpr:[]</tt>)
+</p>
+</li>
+<li>
+<p>
+add a simple wrapper for <tt>Sweave()</tt> (<tt>SweaveAscii()</tt>) that use <tt>RweaveAsciidoc</tt> and <tt>SweaveSyntaxAscii</tt> as default
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_04_27">2009/04/27</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+add a <tt>caption.level</tt> argument
+</p>
+</li>
+<li>
+<p>
+improve <tt>ascii.describe</tt> output (package <tt>Hmisc</tt>)
+</p>
+</li>
+</ul></div>
+<h3 id="_2009_04_08">2009/04/08</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+update DESCRIPTION (with homepage)
+</p>
+</li>
+<li>
+<p>
+support for <tt>describe</tt> function in package <tt>Hmisc</tt>
+</p>
+</li>
+</ul></div>
+</div>
+<h2 id="_short_example">short example</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;&lt;&gt;&gt;=
+x &lt;- matrix(1:4, 2, 2)
+x
+@</tt></pre>
+</div></div>
+<div class="paragraph"><p>gives :</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; x &lt;- matrix(1:4, 2, 2)
+&gt; x
+     [,1] [,2]
+[1,]    1    3
+[2,]    2    4</tt></pre>
+</div></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>&lt;&lt;results=ascii,echo=FALSE&gt;&gt;=
+ascii(x, caption = "A simple matrix", width = 30)
+@</tt></pre>
+</div></div>
+<div class="paragraph"><p>gives :</p></div>
+<div class="tableblock">
+<table rules="all"
+width="30%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 1: A simple matrix</caption>
+<col width="50%" />
+<col width="50%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">1.00</p></td>
+<td align="left" valign="top"><p class="table">3.00</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">2.00</p></td>
+<td align="left" valign="top"><p class="table">4.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="_what_ascii_provides">what ascii provides</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>ascii provided :</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+a generic method for common R objects: <tt>ascii()</tt>. Default argument depends of R object,
+</p>
+</li>
+<li>
+<p>
+several Sweave drivers: <tt>RweaveAsciidoc()</tt>, <tt>RweaveT2t()</tt>, <tt>RweaveReST()</tt> and <tt>RweaveOrg()</tt>.
+</p>
+</li>
+<li>
+<p>
+some simple wrappers for <tt>Sweave("yourfile.Rnw", RweaveXxx)</tt> named <tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>ReST()</tt> and <tt>Org()</tt>.
+</p>
+</li>
+</ul></div>
+</div>
+<h2 id="_features_options">features/options</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>See <tt>?ascii</tt> for a complete description of all arguments.</p></div>
+<div class="tableblock">
+<table rules="none"
+width="100%"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+<thead>
+<tr>
+<th align="left" valign="top">                                                                                                                                                                                           </th>
+<th align="left" valign="top"> asciidoc                        </th>
+<th align="left" valign="top"> txt2tags                          </th>
+<th align="left" valign="top"> rest                                                </th>
+<th align="left" valign="top"> org          </th>
+<th align="left" valign="top"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><strong>Arguments</strong></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">include.rownames</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">include.colnames</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">rownames</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">colnames</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">format</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">digits</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">decimal.mark</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">na.print</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">caption</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">caption.level</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">width</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">frame</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span> (all or none)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">grid</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">valign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">header</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">footer</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">align</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">col.width</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">style</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">tgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">n.tgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">talign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">tvalign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">tstyle</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">bgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">n.bgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">balign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">bvalign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">bstyle</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">lgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">n.lgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">lalign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">lvalign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">lstyle</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">rgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">n.rgroup</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">ralign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">rvalign</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">rstyle</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">list.type</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">condense</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><strong>Output</strong></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">html</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">docbook</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">latex</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span> (experimental)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span> (col and row spans not implemented yet)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><strong>Feature</strong></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">syntax color</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span> (but not for R&#8230;)</p></td>
+<td align="left" valign="top"><p class="table"><span style="color:red;">no</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"><span style="color:green;">yes</span></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<h2 id="_ascii_examples">ascii examples</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>ascii provides methods for:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; methods(ascii)
+ [1] ascii.anova*              ascii.aov*
+ [3] ascii.aovlist*            ascii.cast_df*
+ [5] ascii.character*          ascii.coxph*
+ [7] ascii.CrossTable*         ascii.data.frame*
+ [9] ascii.default*            ascii.density*
+[11] ascii.describe*           ascii.describe.single*
+[13] ascii.factor*             ascii.ftable*
+[15] ascii.glm*                ascii.htest*
+[17] ascii.integer*            ascii.list*
+[19] ascii.lm*                 ascii.matrix*
+[21] ascii.numeric*            ascii.packageDescription*
+[23] ascii.prcomp*             ascii.sessionInfo*
+[25] ascii.simple.list*        ascii.smooth.spline*
+[27] ascii.summary.aov*        ascii.summary.aovlist*
+[29] ascii.summary.glm*        ascii.summary.lm*
+[31] ascii.summary.prcomp*     ascii.summary.table*
+[33] ascii.survdiff*           ascii.table*
+[35] ascii.ts*                 ascii.zoo*
+
+   Non-visible functions are asterisked</tt></pre>
+</div></div>
+<h3 id="_sessioninfo">sessionInfo</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; ascii(sessionInfo())
+R version::
+   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+locale::
+   LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
+attached base packages::
+  stats, graphics, grDevices, utils, datasets, methods, base
+other attached packages::
+   ascii_0.4, proto_0.3-8
+loaded via a namespace (and not attached)::
+  tools_2.10.0</tt></pre>
+</div></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+R version
+</dt>
+<dd>
+<p>
+   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+</p>
+</dd>
+<dt class="hdlist1">
+locale
+</dt>
+<dd>
+<p>
+   LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
+</p>
+</dd>
+<dt class="hdlist1">
+attached base packages
+</dt>
+<dd>
+<p>
+  stats, graphics, grDevices, utils, datasets, methods, base
+</p>
+</dd>
+<dt class="hdlist1">
+other attached packages
+</dt>
+<dd>
+<p>
+   ascii_0.4, proto_0.3-8
+</p>
+</dd>
+<dt class="hdlist1">
+loaded via a namespace (and not attached)
+</dt>
+<dd>
+<p>
+  tools_2.10.0
+</p>
+</dd>
+</dl></div>
+<h3 id="_vector">vector</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; ascii(1:4)
+|==========================
+| 1.00 | 2.00 | 3.00 | 4.00
+|==========================</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">1.00</p></td>
+<td align="left" valign="top"><p class="table">2.00</p></td>
+<td align="left" valign="top"><p class="table">3.00</p></td>
+<td align="left" valign="top"><p class="table">4.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_matrix">matrix</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
++     header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle",
++     align = "lrrrr", frame = "topbot")
+.VADeaths
+[frame="topbot",valign="middle",options="header",cols="1,2,2,2,2"]
+|=============================================================================
+&lt;.^|       &gt;.^| Rural Male &gt;.^| Rural Female &gt;.^| Urban Male &gt;.^| Urban Female
+&lt;.^| 50-54 &gt;.^| 11.70      &gt;.^| 8.70         &gt;.^| 15.40      &gt;.^| 8.40
+&lt;.^| 55-59 &gt;.^| 18.10      &gt;.^| 11.70        &gt;.^| 24.30      &gt;.^| 13.60
+&lt;.^| 60-64 &gt;.^| 26.90      &gt;.^| 20.30        &gt;.^| 37.00      &gt;.^| 19.30
+&lt;.^| 65-69 &gt;.^| 41.00      &gt;.^| 30.90        &gt;.^| 54.60      &gt;.^| 35.10
+&lt;.^| 70-74 &gt;.^| 66.00      &gt;.^| 54.30        &gt;.^| 71.10      &gt;.^| 50.00
+|=============================================================================</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 2: VADeaths</caption>
+<col width="11%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
+<col width="22%" />
+<thead>
+<tr>
+<th align="left" valign="middle">       </th>
+<th align="right" valign="middle"> Rural Male </th>
+<th align="right" valign="middle"> Rural Female </th>
+<th align="right" valign="middle"> Urban Male </th>
+<th align="right" valign="middle"> Urban Female</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="middle"><p class="table">50-54</p></td>
+<td align="right" valign="middle"><p class="table">11.70</p></td>
+<td align="right" valign="middle"><p class="table">8.70</p></td>
+<td align="right" valign="middle"><p class="table">15.40</p></td>
+<td align="right" valign="middle"><p class="table">8.40</p></td>
+</tr>
+<tr>
+<td align="left" valign="middle"><p class="table">55-59</p></td>
+<td align="right" valign="middle"><p class="table">18.10</p></td>
+<td align="right" valign="middle"><p class="table">11.70</p></td>
+<td align="right" valign="middle"><p class="table">24.30</p></td>
+<td align="right" valign="middle"><p class="table">13.60</p></td>
+</tr>
+<tr>
+<td align="left" valign="middle"><p class="table">60-64</p></td>
+<td align="right" valign="middle"><p class="table">26.90</p></td>
+<td align="right" valign="middle"><p class="table">20.30</p></td>
+<td align="right" valign="middle"><p class="table">37.00</p></td>
+<td align="right" valign="middle"><p class="table">19.30</p></td>
+</tr>
+<tr>
+<td align="left" valign="middle"><p class="table">65-69</p></td>
+<td align="right" valign="middle"><p class="table">41.00</p></td>
+<td align="right" valign="middle"><p class="table">30.90</p></td>
+<td align="right" valign="middle"><p class="table">54.60</p></td>
+<td align="right" valign="middle"><p class="table">35.10</p></td>
+</tr>
+<tr>
+<td align="left" valign="middle"><p class="table">70-74</p></td>
+<td align="right" valign="middle"><p class="table">66.00</p></td>
+<td align="right" valign="middle"><p class="table">54.30</p></td>
+<td align="right" valign="middle"><p class="table">71.10</p></td>
+<td align="right" valign="middle"><p class="table">50.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_data_frame">data.frame</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; ascii(iris[1:10, ], include.rownames = F, caption = "iris", width = 75,
++     align = "c", valign = "bottom", frame = "topbot", grid = "none")
+.iris
+[frame="topbot",grid="none",valign="bottom",options="header",width="75%"]
+|=================================================================================
+^.&gt;| Sepal.Length ^.&gt;| Sepal.Width ^.&gt;| Petal.Length ^.&gt;| Petal.Width ^.&gt;| Species
+^.&gt;| 5.10         ^.&gt;| 3.50        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.90         ^.&gt;| 3.00        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.70         ^.&gt;| 3.20        ^.&gt;| 1.30         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.60         ^.&gt;| 3.10        ^.&gt;| 1.50         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 5.00         ^.&gt;| 3.60        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 5.40         ^.&gt;| 3.90        ^.&gt;| 1.70         ^.&gt;| 0.40        ^.&gt;| setosa
+^.&gt;| 4.60         ^.&gt;| 3.40        ^.&gt;| 1.40         ^.&gt;| 0.30        ^.&gt;| setosa
+^.&gt;| 5.00         ^.&gt;| 3.40        ^.&gt;| 1.50         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.40         ^.&gt;| 2.90        ^.&gt;| 1.40         ^.&gt;| 0.20        ^.&gt;| setosa
+^.&gt;| 4.90         ^.&gt;| 3.10        ^.&gt;| 1.50         ^.&gt;| 0.10        ^.&gt;| setosa
+|=================================================================================</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="none"
+width="75%"
+frame="hsides"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 3: iris</caption>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<thead>
+<tr>
+<th align="center" valign="bottom"> Sepal.Length </th>
+<th align="center" valign="bottom"> Sepal.Width </th>
+<th align="center" valign="bottom"> Petal.Length </th>
+<th align="center" valign="bottom"> Petal.Width </th>
+<th align="center" valign="bottom"> Species</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="bottom"><p class="table">5.10</p></td>
+<td align="center" valign="bottom"><p class="table">3.50</p></td>
+<td align="center" valign="bottom"><p class="table">1.40</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">4.90</p></td>
+<td align="center" valign="bottom"><p class="table">3.00</p></td>
+<td align="center" valign="bottom"><p class="table">1.40</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">4.70</p></td>
+<td align="center" valign="bottom"><p class="table">3.20</p></td>
+<td align="center" valign="bottom"><p class="table">1.30</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">4.60</p></td>
+<td align="center" valign="bottom"><p class="table">3.10</p></td>
+<td align="center" valign="bottom"><p class="table">1.50</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">5.00</p></td>
+<td align="center" valign="bottom"><p class="table">3.60</p></td>
+<td align="center" valign="bottom"><p class="table">1.40</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">5.40</p></td>
+<td align="center" valign="bottom"><p class="table">3.90</p></td>
+<td align="center" valign="bottom"><p class="table">1.70</p></td>
+<td align="center" valign="bottom"><p class="table">0.40</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">4.60</p></td>
+<td align="center" valign="bottom"><p class="table">3.40</p></td>
+<td align="center" valign="bottom"><p class="table">1.40</p></td>
+<td align="center" valign="bottom"><p class="table">0.30</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">5.00</p></td>
+<td align="center" valign="bottom"><p class="table">3.40</p></td>
+<td align="center" valign="bottom"><p class="table">1.50</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">4.40</p></td>
+<td align="center" valign="bottom"><p class="table">2.90</p></td>
+<td align="center" valign="bottom"><p class="table">1.40</p></td>
+<td align="center" valign="bottom"><p class="table">0.20</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+<tr>
+<td align="center" valign="bottom"><p class="table">4.90</p></td>
+<td align="center" valign="bottom"><p class="table">3.10</p></td>
+<td align="center" valign="bottom"><p class="table">1.50</p></td>
+<td align="center" valign="bottom"><p class="table">0.10</p></td>
+<td align="center" valign="bottom"><p class="table">setosa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_row_and_col_headings">row (and col) headings</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(reshape)
+&gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)
+&gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")
+&gt; ascii(toto[, -1], lgroup = c("Treatment", paste("Treatment:",
++     as.character(unique(toto[, 1])))), n.lgroup = c(1, table(toto[,
++     1])), rstyle = "s", lvalign = "middle")
+[options="header"]
+|===========================================================================
+.1+.^| Treatment | subject | potato | buttery | grassy | rancid | painty
+.13+.^| Treatment: 1 | 3       | 6.22   | 0.37    | 0.19   | 2.11   | 3.11
+| 10      | 9.96   | 6.75    | 0.58   | 4.02   | 1.38
+| 15      | 3.36   | 0.72    | 0.42   | 3.96   | 3.26
+| 16      | 6.50   | 3.26    | 0.76   | 4.12   | 1.23
+| 19      | 9.38   | 3.06    | 2.02   | 5.36   | 2.77
+| 31      | 8.84   | 0.44    | 0.09   | 5.94   | 3.21
+| 51      | 10.68  | 2.64    | 1.05   | 5.15   | 1.96
+| 52      | 5.06   | 0.81    | 0.88   | 4.29   | 2.65
+| 63      | 6.78   | 0.03    | 0.00   | 6.05   | 3.85
+| 78      | 3.62   | 0.73    | 0.54   | 1.50   | 3.49
+| 79      | 8.06   | 0.28    | 0.34   | 0.57   | 0.00
+| 86      | 4.18   | 1.77    | 0.81   | 5.49   | 4.11
+| (all)   | 6.89   | 1.78    | 0.65   | 4.07   | 2.58
+.13+.^| Treatment: 2 | 3       | 6.74   | 0.59    | 0.11   | 3.14   | 2.48
+| 10      | 9.99   | 6.98    | 0.47   | 2.15   | 0.82
+| 15      | 4.41   | 1.31    | 0.34   | 2.29   | 2.06
+| 16      | 6.45   | 3.37    | 1.05   | 3.40   | 0.46
+| 19      | 8.64   | 2.45    | 1.14   | 5.41   | 4.16
+| 31      | 8.03   | 0.62    | 0.16   | 6.05   | 5.06
+| 51      | 9.98   | 3.79    | 1.57   | 4.67   | 2.25
+| 52      | 5.51   | 1.02    | 1.18   | 4.22   | 2.19
+| 63      | 8.41   | 0.10    | 0.01   | 5.09   | 4.36
+| 78      | 3.78   | 0.29    | 0.76   | 1.55   | 2.73
+| 79      | 7.94   | 0.69    | 0.26   | 1.03   | 0.00
+| 86      | 3.99   | 2.06    | 0.78   | 4.52   | 2.84
+| (all)   | 7.00   | 1.97    | 0.66   | 3.62   | 2.46
+.13+.^| Treatment: 3 | 3       | 5.29   | 0.77    | 0.09   | 2.86   | 2.87
+| 10      | 10.03  | 6.45    | 0.14   | 3.11   | 0.69
+| 15      | 3.96   | 0.99    | 0.44   | 2.55   | 2.37
+| 16      | 6.86   | 2.70    | 1.12   | 3.20   | 0.56
+| 19      | 8.74   | 1.73    | 2.07   | 7.24   | 3.90
+| 31      | 9.03   | 0.65    | 0.17   | 6.58   | 5.13
+| 51      | 10.22  | 3.13    | 1.35   | 4.92   | 2.54
+| 52      | 5.47   | 0.86    | 0.77   | 3.16   | 2.66
+| 63      | 8.06   | 0.07    | 0.12   | 6.18   | 3.10
+| 78      | 4.00   | 0.70    | 0.67   | 1.19   | 3.52
+| 79      | 7.73   | 0.57    | 0.12   | 1.18   | 0.03
+| 86      | 3.87   | 1.63    | 0.94   | 4.11   | 3.03
+| (all)   | 6.97   | 1.72    | 0.68   | 3.87   | 2.53
+|===========================================================================</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<thead>
+<tr>
+<th align="left" valign="middle"> Treatment </th>
+<th align="left" valign="top"> subject </th>
+<th align="left" valign="top"> potato </th>
+<th align="left" valign="top"> buttery </th>
+<th align="left" valign="top"> grassy </th>
+<th align="left" valign="top"> rancid </th>
+<th align="left" valign="top"> painty</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="13" align="left" valign="middle"><p class="table"><strong>Treatment: 1</strong></p></td>
+<td align="left" valign="top"><p class="table">3</p></td>
+<td align="left" valign="top"><p class="table">6.22</p></td>
+<td align="left" valign="top"><p class="table">0.37</p></td>
+<td align="left" valign="top"><p class="table">0.19</p></td>
+<td align="left" valign="top"><p class="table">2.11</p></td>
+<td align="left" valign="top"><p class="table">3.11</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">10</p></td>
+<td align="left" valign="top"><p class="table">9.96</p></td>
+<td align="left" valign="top"><p class="table">6.75</p></td>
+<td align="left" valign="top"><p class="table">0.58</p></td>
+<td align="left" valign="top"><p class="table">4.02</p></td>
+<td align="left" valign="top"><p class="table">1.38</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">3.36</p></td>
+<td align="left" valign="top"><p class="table">0.72</p></td>
+<td align="left" valign="top"><p class="table">0.42</p></td>
+<td align="left" valign="top"><p class="table">3.96</p></td>
+<td align="left" valign="top"><p class="table">3.26</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">6.50</p></td>
+<td align="left" valign="top"><p class="table">3.26</p></td>
+<td align="left" valign="top"><p class="table">0.76</p></td>
+<td align="left" valign="top"><p class="table">4.12</p></td>
+<td align="left" valign="top"><p class="table">1.23</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">19</p></td>
+<td align="left" valign="top"><p class="table">9.38</p></td>
+<td align="left" valign="top"><p class="table">3.06</p></td>
+<td align="left" valign="top"><p class="table">2.02</p></td>
+<td align="left" valign="top"><p class="table">5.36</p></td>
+<td align="left" valign="top"><p class="table">2.77</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">31</p></td>
+<td align="left" valign="top"><p class="table">8.84</p></td>
+<td align="left" valign="top"><p class="table">0.44</p></td>
+<td align="left" valign="top"><p class="table">0.09</p></td>
+<td align="left" valign="top"><p class="table">5.94</p></td>
+<td align="left" valign="top"><p class="table">3.21</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">51</p></td>
+<td align="left" valign="top"><p class="table">10.68</p></td>
+<td align="left" valign="top"><p class="table">2.64</p></td>
+<td align="left" valign="top"><p class="table">1.05</p></td>
+<td align="left" valign="top"><p class="table">5.15</p></td>
+<td align="left" valign="top"><p class="table">1.96</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">52</p></td>
+<td align="left" valign="top"><p class="table">5.06</p></td>
+<td align="left" valign="top"><p class="table">0.81</p></td>
+<td align="left" valign="top"><p class="table">0.88</p></td>
+<td align="left" valign="top"><p class="table">4.29</p></td>
+<td align="left" valign="top"><p class="table">2.65</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">63</p></td>
+<td align="left" valign="top"><p class="table">6.78</p></td>
+<td align="left" valign="top"><p class="table">0.03</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">6.05</p></td>
+<td align="left" valign="top"><p class="table">3.85</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">78</p></td>
+<td align="left" valign="top"><p class="table">3.62</p></td>
+<td align="left" valign="top"><p class="table">0.73</p></td>
+<td align="left" valign="top"><p class="table">0.54</p></td>
+<td align="left" valign="top"><p class="table">1.50</p></td>
+<td align="left" valign="top"><p class="table">3.49</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">79</p></td>
+<td align="left" valign="top"><p class="table">8.06</p></td>
+<td align="left" valign="top"><p class="table">0.28</p></td>
+<td align="left" valign="top"><p class="table">0.34</p></td>
+<td align="left" valign="top"><p class="table">0.57</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">86</p></td>
+<td align="left" valign="top"><p class="table">4.18</p></td>
+<td align="left" valign="top"><p class="table">1.77</p></td>
+<td align="left" valign="top"><p class="table">0.81</p></td>
+<td align="left" valign="top"><p class="table">5.49</p></td>
+<td align="left" valign="top"><p class="table">4.11</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">(all)</p></td>
+<td align="left" valign="top"><p class="table">6.89</p></td>
+<td align="left" valign="top"><p class="table">1.78</p></td>
+<td align="left" valign="top"><p class="table">0.65</p></td>
+<td align="left" valign="top"><p class="table">4.07</p></td>
+<td align="left" valign="top"><p class="table">2.58</p></td>
+</tr>
+<tr>
+<td rowspan="13" align="left" valign="middle"><p class="table"><strong>Treatment: 2</strong></p></td>
+<td align="left" valign="top"><p class="table">3</p></td>
+<td align="left" valign="top"><p class="table">6.74</p></td>
+<td align="left" valign="top"><p class="table">0.59</p></td>
+<td align="left" valign="top"><p class="table">0.11</p></td>
+<td align="left" valign="top"><p class="table">3.14</p></td>
+<td align="left" valign="top"><p class="table">2.48</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">10</p></td>
+<td align="left" valign="top"><p class="table">9.99</p></td>
+<td align="left" valign="top"><p class="table">6.98</p></td>
+<td align="left" valign="top"><p class="table">0.47</p></td>
+<td align="left" valign="top"><p class="table">2.15</p></td>
+<td align="left" valign="top"><p class="table">0.82</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">4.41</p></td>
+<td align="left" valign="top"><p class="table">1.31</p></td>
+<td align="left" valign="top"><p class="table">0.34</p></td>
+<td align="left" valign="top"><p class="table">2.29</p></td>
+<td align="left" valign="top"><p class="table">2.06</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">6.45</p></td>
+<td align="left" valign="top"><p class="table">3.37</p></td>
+<td align="left" valign="top"><p class="table">1.05</p></td>
+<td align="left" valign="top"><p class="table">3.40</p></td>
+<td align="left" valign="top"><p class="table">0.46</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">19</p></td>
+<td align="left" valign="top"><p class="table">8.64</p></td>
+<td align="left" valign="top"><p class="table">2.45</p></td>
+<td align="left" valign="top"><p class="table">1.14</p></td>
+<td align="left" valign="top"><p class="table">5.41</p></td>
+<td align="left" valign="top"><p class="table">4.16</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">31</p></td>
+<td align="left" valign="top"><p class="table">8.03</p></td>
+<td align="left" valign="top"><p class="table">0.62</p></td>
+<td align="left" valign="top"><p class="table">0.16</p></td>
+<td align="left" valign="top"><p class="table">6.05</p></td>
+<td align="left" valign="top"><p class="table">5.06</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">51</p></td>
+<td align="left" valign="top"><p class="table">9.98</p></td>
+<td align="left" valign="top"><p class="table">3.79</p></td>
+<td align="left" valign="top"><p class="table">1.57</p></td>
+<td align="left" valign="top"><p class="table">4.67</p></td>
+<td align="left" valign="top"><p class="table">2.25</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">52</p></td>
+<td align="left" valign="top"><p class="table">5.51</p></td>
+<td align="left" valign="top"><p class="table">1.02</p></td>
+<td align="left" valign="top"><p class="table">1.18</p></td>
+<td align="left" valign="top"><p class="table">4.22</p></td>
+<td align="left" valign="top"><p class="table">2.19</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">63</p></td>
+<td align="left" valign="top"><p class="table">8.41</p></td>
+<td align="left" valign="top"><p class="table">0.10</p></td>
+<td align="left" valign="top"><p class="table">0.01</p></td>
+<td align="left" valign="top"><p class="table">5.09</p></td>
+<td align="left" valign="top"><p class="table">4.36</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">78</p></td>
+<td align="left" valign="top"><p class="table">3.78</p></td>
+<td align="left" valign="top"><p class="table">0.29</p></td>
+<td align="left" valign="top"><p class="table">0.76</p></td>
+<td align="left" valign="top"><p class="table">1.55</p></td>
+<td align="left" valign="top"><p class="table">2.73</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">79</p></td>
+<td align="left" valign="top"><p class="table">7.94</p></td>
+<td align="left" valign="top"><p class="table">0.69</p></td>
+<td align="left" valign="top"><p class="table">0.26</p></td>
+<td align="left" valign="top"><p class="table">1.03</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">86</p></td>
+<td align="left" valign="top"><p class="table">3.99</p></td>
+<td align="left" valign="top"><p class="table">2.06</p></td>
+<td align="left" valign="top"><p class="table">0.78</p></td>
+<td align="left" valign="top"><p class="table">4.52</p></td>
+<td align="left" valign="top"><p class="table">2.84</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">(all)</p></td>
+<td align="left" valign="top"><p class="table">7.00</p></td>
+<td align="left" valign="top"><p class="table">1.97</p></td>
+<td align="left" valign="top"><p class="table">0.66</p></td>
+<td align="left" valign="top"><p class="table">3.62</p></td>
+<td align="left" valign="top"><p class="table">2.46</p></td>
+</tr>
+<tr>
+<td rowspan="13" align="left" valign="middle"><p class="table"><strong>Treatment: 3</strong></p></td>
+<td align="left" valign="top"><p class="table">3</p></td>
+<td align="left" valign="top"><p class="table">5.29</p></td>
+<td align="left" valign="top"><p class="table">0.77</p></td>
+<td align="left" valign="top"><p class="table">0.09</p></td>
+<td align="left" valign="top"><p class="table">2.86</p></td>
+<td align="left" valign="top"><p class="table">2.87</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">10</p></td>
+<td align="left" valign="top"><p class="table">10.03</p></td>
+<td align="left" valign="top"><p class="table">6.45</p></td>
+<td align="left" valign="top"><p class="table">0.14</p></td>
+<td align="left" valign="top"><p class="table">3.11</p></td>
+<td align="left" valign="top"><p class="table">0.69</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">3.96</p></td>
+<td align="left" valign="top"><p class="table">0.99</p></td>
+<td align="left" valign="top"><p class="table">0.44</p></td>
+<td align="left" valign="top"><p class="table">2.55</p></td>
+<td align="left" valign="top"><p class="table">2.37</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">6.86</p></td>
+<td align="left" valign="top"><p class="table">2.70</p></td>
+<td align="left" valign="top"><p class="table">1.12</p></td>
+<td align="left" valign="top"><p class="table">3.20</p></td>
+<td align="left" valign="top"><p class="table">0.56</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">19</p></td>
+<td align="left" valign="top"><p class="table">8.74</p></td>
+<td align="left" valign="top"><p class="table">1.73</p></td>
+<td align="left" valign="top"><p class="table">2.07</p></td>
+<td align="left" valign="top"><p class="table">7.24</p></td>
+<td align="left" valign="top"><p class="table">3.90</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">31</p></td>
+<td align="left" valign="top"><p class="table">9.03</p></td>
+<td align="left" valign="top"><p class="table">0.65</p></td>
+<td align="left" valign="top"><p class="table">0.17</p></td>
+<td align="left" valign="top"><p class="table">6.58</p></td>
+<td align="left" valign="top"><p class="table">5.13</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">51</p></td>
+<td align="left" valign="top"><p class="table">10.22</p></td>
+<td align="left" valign="top"><p class="table">3.13</p></td>
+<td align="left" valign="top"><p class="table">1.35</p></td>
+<td align="left" valign="top"><p class="table">4.92</p></td>
+<td align="left" valign="top"><p class="table">2.54</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">52</p></td>
+<td align="left" valign="top"><p class="table">5.47</p></td>
+<td align="left" valign="top"><p class="table">0.86</p></td>
+<td align="left" valign="top"><p class="table">0.77</p></td>
+<td align="left" valign="top"><p class="table">3.16</p></td>
+<td align="left" valign="top"><p class="table">2.66</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">63</p></td>
+<td align="left" valign="top"><p class="table">8.06</p></td>
+<td align="left" valign="top"><p class="table">0.07</p></td>
+<td align="left" valign="top"><p class="table">0.12</p></td>
+<td align="left" valign="top"><p class="table">6.18</p></td>
+<td align="left" valign="top"><p class="table">3.10</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">78</p></td>
+<td align="left" valign="top"><p class="table">4.00</p></td>
+<td align="left" valign="top"><p class="table">0.70</p></td>
+<td align="left" valign="top"><p class="table">0.67</p></td>
+<td align="left" valign="top"><p class="table">1.19</p></td>
+<td align="left" valign="top"><p class="table">3.52</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">79</p></td>
+<td align="left" valign="top"><p class="table">7.73</p></td>
+<td align="left" valign="top"><p class="table">0.57</p></td>
+<td align="left" valign="top"><p class="table">0.12</p></td>
+<td align="left" valign="top"><p class="table">1.18</p></td>
+<td align="left" valign="top"><p class="table">0.03</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">86</p></td>
+<td align="left" valign="top"><p class="table">3.87</p></td>
+<td align="left" valign="top"><p class="table">1.63</p></td>
+<td align="left" valign="top"><p class="table">0.94</p></td>
+<td align="left" valign="top"><p class="table">4.11</p></td>
+<td align="left" valign="top"><p class="table">3.03</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">(all)</p></td>
+<td align="left" valign="top"><p class="table">6.97</p></td>
+<td align="left" valign="top"><p class="table">1.72</p></td>
+<td align="left" valign="top"><p class="table">0.68</p></td>
+<td align="left" valign="top"><p class="table">3.87</p></td>
+<td align="left" valign="top"><p class="table">2.53</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_summary_table">summary.table</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; ascii(summary(table(1:4, 1:4)))
+* Number of cases in table: 4
+* Number of factors: 2
+* Test for independence of all factors:
+** Chisq = 12, df = 9, p-value = 0.2133
+** Chi-squared approximation may be incorrect</tt></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Number of cases in table: 4
+</p>
+</li>
+<li>
+<p>
+Number of factors: 2
+</p>
+</li>
+<li>
+<p>
+Test for independence of all factors:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Chisq = 12, df = 9, p-value = 0.2133
+</p>
+</li>
+<li>
+<p>
+Chi-squared approximation may be incorrect
+</p>
+</li>
+</ul></div>
+</li>
+</ul></div>
+<h3 id="_labeled_list">labeled list</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; ascii(version)
+platform::
+   i486-pc-linux-gnu
+arch::
+  i486
+os::
+   linux-gnu
+system::
+  i486, linux-gnu
+status::
+
+major::
+   2
+minor::
+   10.0
+year::
+   2009
+month::
+   10
+day::
+  26
+svn rev::
+  50208
+language::
+   R
+version.string::
+   R version 2.10.0 (2009-10-26)</tt></pre>
+</div></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+platform
+</dt>
+<dd>
+<p>
+   i486-pc-linux-gnu
+</p>
+</dd>
+<dt class="hdlist1">
+arch
+</dt>
+<dd>
+<p>
+  i486
+</p>
+</dd>
+<dt class="hdlist1">
+os
+</dt>
+<dd>
+<p>
+   linux-gnu
+</p>
+</dd>
+<dt class="hdlist1">
+system
+</dt>
+<dd>
+<p>
+  i486, linux-gnu
+</p>
+</dd>
+<dt class="hdlist1">
+status
+</dt>
+<dt class="hdlist1">
+major
+</dt>
+<dd>
+<p>
+   2
+</p>
+</dd>
+<dt class="hdlist1">
+minor
+</dt>
+<dd>
+<p>
+   10.0
+</p>
+</dd>
+<dt class="hdlist1">
+year
+</dt>
+<dd>
+<p>
+   2009
+</p>
+</dd>
+<dt class="hdlist1">
+month
+</dt>
+<dd>
+<p>
+   10
+</p>
+</dd>
+<dt class="hdlist1">
+day
+</dt>
+<dd>
+<p>
+  26
+</p>
+</dd>
+<dt class="hdlist1">
+svn rev
+</dt>
+<dd>
+<p>
+  50208
+</p>
+</dd>
+<dt class="hdlist1">
+language
+</dt>
+<dd>
+<p>
+   R
+</p>
+</dd>
+<dt class="hdlist1">
+version.string
+</dt>
+<dd>
+<p>
+   R version 2.10.0 (2009-10-26)
+</p>
+</dd>
+</dl></div>
+<h3 id="_glm">glm</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; counts &lt;- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+&gt; outcome &lt;- gl(3, 1, 9)
+&gt; treatment &lt;- gl(3, 3)
+&gt; d.AD &lt;- data.frame(treatment, outcome, counts)
+&gt; glm.D93 &lt;- glm(counts ~ outcome + treatment, family = poisson())
+&gt; glm.D93
+Call:  glm(formula = counts ~ outcome + treatment, family = poisson())
+
+Coefficients:
+(Intercept)     outcome2     outcome3   treatment2   treatment3
+  3.045e+00   -4.543e-01   -2.930e-01    8.717e-16    4.557e-16
+
+Degrees of Freedom: 8 Total (i.e. Null);  4 Residual
+Null Deviance:      10.58
+Residual Deviance: 5.129        AIC: 56.76
+&gt; ascii(glm.D93, caption = "glm.D93")
+.glm.D93
+[options="header"]
+|===========================================================
+|             | Estimate | Std. Error | z value | Pr(&gt;\|z\|)
+| (Intercept) | 3.04     | 0.17       | 17.81   | 0.00
+| outcome2    | -0.45    | 0.20       | -2.25   | 0.02
+| outcome3    | -0.29    | 0.19       | -1.52   | 0.13
+| treatment2  | 0.00     | 0.20       | 0.00    | 1.00
+| treatment3  | 0.00     | 0.20       | 0.00    | 1.00
+|===========================================================
+&gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
+.anova glm.D93
+[options="header"]
+|=====================================================
+|           | Df   | Deviance | Resid. Df | Resid. Dev
+| NULL      |      |          | 8.00      | 10.58
+| outcome   | 2.00 | 5.45     | 6.00      | 5.13
+| treatment | 2.00 | 0.00     | 4.00      | 5.13
+|=====================================================</tt></pre>
+</div></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 4: glm.D93</caption>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<thead>
+<tr>
+<th align="left" valign="top">             </th>
+<th align="left" valign="top"> Estimate </th>
+<th align="left" valign="top"> Std. Error </th>
+<th align="left" valign="top"> z value </th>
+<th align="left" valign="top"> Pr(&gt;|z|)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">(Intercept)</p></td>
+<td align="left" valign="top"><p class="table">3.04</p></td>
+<td align="left" valign="top"><p class="table">0.17</p></td>
+<td align="left" valign="top"><p class="table">17.81</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">outcome2</p></td>
+<td align="left" valign="top"><p class="table">-0.45</p></td>
+<td align="left" valign="top"><p class="table">0.20</p></td>
+<td align="left" valign="top"><p class="table">-2.25</p></td>
+<td align="left" valign="top"><p class="table">0.02</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">outcome3</p></td>
+<td align="left" valign="top"><p class="table">-0.29</p></td>
+<td align="left" valign="top"><p class="table">0.19</p></td>
+<td align="left" valign="top"><p class="table">-1.52</p></td>
+<td align="left" valign="top"><p class="table">0.13</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">treatment2</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">0.20</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">1.00</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">treatment3</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">0.20</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">1.00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<caption class="title">Table 5: anova glm.D93</caption>
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<thead>
+<tr>
+<th align="left" valign="top">           </th>
+<th align="left" valign="top"> Df   </th>
+<th align="left" valign="top"> Deviance </th>
+<th align="left" valign="top"> Resid. Df </th>
+<th align="left" valign="top"> Resid. Dev</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">NULL</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table">8.00</p></td>
+<td align="left" valign="top"><p class="table">10.58</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">outcome</p></td>
+<td align="left" valign="top"><p class="table">2.00</p></td>
+<td align="left" valign="top"><p class="table">5.45</p></td>
+<td align="left" valign="top"><p class="table">6.00</p></td>
+<td align="left" valign="top"><p class="table">5.13</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">treatment</p></td>
+<td align="left" valign="top"><p class="table">2.00</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">4.00</p></td>
+<td align="left" valign="top"><p class="table">5.13</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_describe">describe</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(Hmisc)
+&gt; label(esoph$agegp) &lt;- "Age group"
+&gt; label(esoph$alcgp) &lt;- "Alcohol group"
+&gt; label(esoph$tobgp) &lt;- "Tobacco group"
+&gt; label(esoph$ncontrols) &lt;- "Number of control"
+&gt; label(esoph$age) &lt;- "Age"
+&gt; units(esoph$age) &lt;- "Years"
+&gt; ascii(describe(esoph))
+.esoph
+* 6 Variable
+* 88 Observations
+
+*agegp : Age group*
+
+|======================
+| n  | missing | unique
+| 88 | 0       | 6
+|======================
+
+|========================================================
+|           | 25-34 | 35-44 | 45-54 | 55-64 | 65-74 | 75+
+| Frequency | 15    | 15    | 16    | 16    | 15    | 11
+| %         | 17    | 17    | 18    | 18    | 17    | 12
+|========================================================
+
+*alcgp : Alcohol group*
+
+|======================
+| n  | missing | unique
+| 88 | 0       | 4
+|======================
+
+0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+
+*tobgp : Tobacco group*
+
+|======================
+| n  | missing | unique
+| 88 | 0       | 4
+|======================
+
+0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+
+*ncases*
+
+|========================================================================
+| n  | missing | unique | Mean  | .05 | .10 | .25 | .50 | .75 | .90 | .95
+| 88 | 0       | 10     | 2.273 | 0.0 | 0.0 | 0.0 | 1.0 | 4.0 | 5.3 | 6.0
+|========================================================================
+
+|=======================================================
+|           | 0  | 1  | 2  | 3  | 4 | 5 | 6 | 8 | 9 | 17
+| Frequency | 29 | 16 | 11 | 9  | 8 | 6 | 5 | 1 | 2 | 1
+| %         | 33 | 18 | 12 | 10 | 9 | 7 | 6 | 1 | 2 | 1
+|=======================================================
+
+*ncontrols : Number of control*
+
+|===============================================================================
+| n  | missing | unique | Mean  | .05  | .10  | .25  | .50  | .75  | .90  | .95
+| 88 | 0       | 30     | 11.08 |  1.0 |  1.0 |  3.0 |  6.0 | 14.0 | 29.1 | 40.0
+|===============================================================================
+
+lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+
+*age : Age [Years]*
+
+|======================
+| n  | missing | unique
+| 88 | 0       | 6
+|======================
+
+|========================================================
+|           | 25-34 | 35-44 | 45-54 | 55-64 | 65-74 | 75+
+| Frequency | 15    | 15    | 16    | 16    | 15    | 11
+| %         | 17    | 17    | 18    | 18    | 17    | 12
+|========================================================</tt></pre>
+</div></div>
+<div class="ulist"><div class="title">esoph</div><ul>
+<li>
+<p>
+6 Variable
+</p>
+</li>
+<li>
+<p>
+88 Observations
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><strong>agegp : Age group</strong></p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">n</p></td>
+<td align="left" valign="top"><p class="table">missing</p></td>
+<td align="left" valign="top"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">88</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table">25-34</p></td>
+<td align="left" valign="top"><p class="table">35-44</p></td>
+<td align="left" valign="top"><p class="table">45-54</p></td>
+<td align="left" valign="top"><p class="table">55-64</p></td>
+<td align="left" valign="top"><p class="table">65-74</p></td>
+<td align="left" valign="top"><p class="table">75+</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Frequency</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">11</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">%</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+<td align="left" valign="top"><p class="table">12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p><strong>alcgp : Alcohol group</strong></p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">n</p></td>
+<td align="left" valign="top"><p class="table">missing</p></td>
+<td align="left" valign="top"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">88</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</p></div>
+<div class="paragraph"><p><strong>tobgp : Tobacco group</strong></p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">n</p></td>
+<td align="left" valign="top"><p class="table">missing</p></td>
+<td align="left" valign="top"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">88</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">4</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</p></div>
+<div class="paragraph"><p><strong>ncases</strong></p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">n</p></td>
+<td align="left" valign="top"><p class="table">missing</p></td>
+<td align="left" valign="top"><p class="table">unique</p></td>
+<td align="left" valign="top"><p class="table">Mean</p></td>
+<td align="left" valign="top"><p class="table">.05</p></td>
+<td align="left" valign="top"><p class="table">.10</p></td>
+<td align="left" valign="top"><p class="table">.25</p></td>
+<td align="left" valign="top"><p class="table">.50</p></td>
+<td align="left" valign="top"><p class="table">.75</p></td>
+<td align="left" valign="top"><p class="table">.90</p></td>
+<td align="left" valign="top"><p class="table">.95</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">88</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">10</p></td>
+<td align="left" valign="top"><p class="table">2.273</p></td>
+<td align="left" valign="top"><p class="table">0.0</p></td>
+<td align="left" valign="top"><p class="table">0.0</p></td>
+<td align="left" valign="top"><p class="table">0.0</p></td>
+<td align="left" valign="top"><p class="table">1.0</p></td>
+<td align="left" valign="top"><p class="table">4.0</p></td>
+<td align="left" valign="top"><p class="table">5.3</p></td>
+<td align="left" valign="top"><p class="table">6.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+<td align="left" valign="top"><p class="table">2</p></td>
+<td align="left" valign="top"><p class="table">3</p></td>
+<td align="left" valign="top"><p class="table">4</p></td>
+<td align="left" valign="top"><p class="table">5</p></td>
+<td align="left" valign="top"><p class="table">6</p></td>
+<td align="left" valign="top"><p class="table">8</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Frequency</p></td>
+<td align="left" valign="top"><p class="table">29</p></td>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">11</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">8</p></td>
+<td align="left" valign="top"><p class="table">6</p></td>
+<td align="left" valign="top"><p class="table">5</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+<td align="left" valign="top"><p class="table">2</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">%</p></td>
+<td align="left" valign="top"><p class="table">33</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">12</p></td>
+<td align="left" valign="top"><p class="table">10</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">7</p></td>
+<td align="left" valign="top"><p class="table">6</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+<td align="left" valign="top"><p class="table">2</p></td>
+<td align="left" valign="top"><p class="table">1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p><strong>ncontrols : Number of control</strong></p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">n</p></td>
+<td align="left" valign="top"><p class="table">missing</p></td>
+<td align="left" valign="top"><p class="table">unique</p></td>
+<td align="left" valign="top"><p class="table">Mean</p></td>
+<td align="left" valign="top"><p class="table">.05</p></td>
+<td align="left" valign="top"><p class="table">.10</p></td>
+<td align="left" valign="top"><p class="table">.25</p></td>
+<td align="left" valign="top"><p class="table">.50</p></td>
+<td align="left" valign="top"><p class="table">.75</p></td>
+<td align="left" valign="top"><p class="table">.90</p></td>
+<td align="left" valign="top"><p class="table">.95</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">88</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">30</p></td>
+<td align="left" valign="top"><p class="table">11.08</p></td>
+<td align="left" valign="top"><p class="table">1.0</p></td>
+<td align="left" valign="top"><p class="table">1.0</p></td>
+<td align="left" valign="top"><p class="table">3.0</p></td>
+<td align="left" valign="top"><p class="table">6.0</p></td>
+<td align="left" valign="top"><p class="table">14.0</p></td>
+<td align="left" valign="top"><p class="table">29.1</p></td>
+<td align="left" valign="top"><p class="table">40.0</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</p></div>
+<div class="paragraph"><p><strong>age : Age [Years]</strong></p></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table">n</p></td>
+<td align="left" valign="top"><p class="table">missing</p></td>
+<td align="left" valign="top"><p class="table">unique</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">88</p></td>
+<td align="left" valign="top"><p class="table">0</p></td>
+<td align="left" valign="top"><p class="table">6</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table">25-34</p></td>
+<td align="left" valign="top"><p class="table">35-44</p></td>
+<td align="left" valign="top"><p class="table">45-54</p></td>
+<td align="left" valign="top"><p class="table">55-64</p></td>
+<td align="left" valign="top"><p class="table">65-74</p></td>
+<td align="left" valign="top"><p class="table">75+</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">Frequency</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">16</p></td>
+<td align="left" valign="top"><p class="table">15</p></td>
+<td align="left" valign="top"><p class="table">11</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">%</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">17</p></td>
+<td align="left" valign="top"><p class="table">12</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="_crosstable">CrossTable</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(descr)
+&gt; ascii(CrossTable(warpbreaks$wool, warpbreaks$tension, dnn = c("Wool",
++     "Tension")))
+*Cell Contents*
+
+* N
+* Expected N
+* Chi-square contribution
+* N / Row Total
+* N / Col Total
+* N / Table Total
+
+[options="header"]
+|==========================================
+.1+s|  | L     | M     | H     | Total
+.6+s| A | 9     | 9     | 9     | 27
+| 9.0   | 9.0   | 9.0   |
+| 0.000 | 0.000 | 0.000 |
+| 0.333 | 0.333 | 0.333 | 0.500
+| 0.500 | 0.500 | 0.500 |
+| 0.167 | 0.167 | 0.167 |
+.6+s| B | 9     | 9     | 9     | 27
+| 9.0   | 9.0   | 9.0   |
+| 0.000 | 0.000 | 0.000 |
+| 0.333 | 0.333 | 0.333 | 0.500
+| 0.500 | 0.500 | 0.500 |
+| 0.167 | 0.167 | 0.167 |
+.2+s| Total | 18    | 18    | 18    | 54
+| 0.333 | 0.333 | 0.333 |
+|==========================================
+
+*Statistics for All Table Factors*
+
+Pearson's Chi-squared test::
+   Chi^2 = 0      d.f. = 2      p = 1</tt></pre>
+</div></div>
+<div class="paragraph"><p><strong>Cell Contents</strong></p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+N
+</p>
+</li>
+<li>
+<p>
+Expected N
+</p>
+</li>
+<li>
+<p>
+Chi-square contribution
+</p>
+</li>
+<li>
+<p>
+N / Row Total
+</p>
+</li>
+<li>
+<p>
+N / Col Total
+</p>
+</li>
+<li>
+<p>
+N / Table Total
+</p>
+</li>
+</ul></div>
+<div class="tableblock">
+<table rules="all"
+width="100%"
+frame="border"
+cellspacing="0" cellpadding="4">
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<thead>
+<tr>
+<th align="left" valign="top">  </th>
+<th align="left" valign="top"> L     </th>
+<th align="left" valign="top"> M     </th>
+<th align="left" valign="top"> H     </th>
+<th align="left" valign="top"> Total</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="6" align="left" valign="top"><p class="table"><strong>A</strong></p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">27</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">9.0</p></td>
+<td align="left" valign="top"><p class="table">9.0</p></td>
+<td align="left" valign="top"><p class="table">9.0</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.000</p></td>
+<td align="left" valign="top"><p class="table">0.000</p></td>
+<td align="left" valign="top"><p class="table">0.000</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.167</p></td>
+<td align="left" valign="top"><p class="table">0.167</p></td>
+<td align="left" valign="top"><p class="table">0.167</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td rowspan="6" align="left" valign="top"><p class="table"><strong>B</strong></p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">9</p></td>
+<td align="left" valign="top"><p class="table">27</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">9.0</p></td>
+<td align="left" valign="top"><p class="table">9.0</p></td>
+<td align="left" valign="top"><p class="table">9.0</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.000</p></td>
+<td align="left" valign="top"><p class="table">0.000</p></td>
+<td align="left" valign="top"><p class="table">0.000</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+<td align="left" valign="top"><p class="table">0.500</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.167</p></td>
+<td align="left" valign="top"><p class="table">0.167</p></td>
+<td align="left" valign="top"><p class="table">0.167</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+<tr>
+<td rowspan="2" align="left" valign="top"><p class="table"><strong>Total</strong></p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">18</p></td>
+<td align="left" valign="top"><p class="table">54</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table">0.333</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p><strong>Statistics for All Table Factors</strong></p></div>
+<div class="dlist"><dl>
+<dt class="hdlist1">
+Pearson&#8217;s Chi-squared test
+</dt>
+<dd>
+<p>
+   Chi^2 = 0      d.f. = 2      p = 1
+</p>
+</dd>
+</dl></div>
+<h3 id="_plot">plot</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(ggplot2)
+&gt; p &lt;- qplot(price, ..density.., data = diamonds, geom = "freqpoly",
++     binwidth = 1000, colour = color)
+&gt; print(p)</tt></pre>
+</div></div>
+<div class="imageblock">
+<div class="content">
+<img src="index-ggplot2.jpg" alt="index-ggplot2.jpg" />
+</div>
+</div>
+<h3 id="_other_outputs">other outputs</h3><div style="clear:left"></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>&gt; library(reshape)
+&gt; names(airquality) &lt;- tolower(names(airquality))
+&gt; aqm &lt;- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+&gt; res &lt;- cast(aqm, month ~ variable, mean, margins = "grand_row")
+&gt; res
+  month    ozone  solar.r      wind     temp
+1     5 23.61538 181.2963 11.622581 65.54839
+2     6 29.44444 190.1667 10.266667 79.10000
+3     7 59.11538 216.4839  8.941935 83.90323
+4     8 59.96154 171.8571  8.793548 83.96774
+5     9 31.44828 167.4333 10.180000 76.90000
+6 (all) 42.12931 185.9315  9.957516 77.88235
+&gt; print(ascii(res), "t2t")
+|| month | ozone | solar.r | wind  | temp  |
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+&gt; print(ascii(res), "rest")
++-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
++=======+=======+=========+=======+=======+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
++-------+-------+---------+-------+-------+
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
++-------+-------+---------+-------+-------+
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
++-------+-------+---------+-------+-------+
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
++-------+-------+---------+-------+-------+
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
++-------+-------+---------+-------+-------+
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
++-------+-------+---------+-------+-------+
+&gt; print(ascii(res), "org")
+|-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
+|-------+-------+---------+-------+-------+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+|-------+-------+---------+-------+-------+</tt></pre>
+</div></div>
+<div class="paragraph"><p>Follow those links to see real examples:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://eusebe.github.com/ascii/t2t.html">with text2tags</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://eusebe.github.com/ascii/rest.html">with reStructuredText</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://eusebe.github.com/ascii/org.html">with org</a>
+</p>
+</li>
+</ul></div>
+</div>
+<h2 id="_convert">convert</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><tt>Sweave</tt> process creates a <tt>yourdocument.xxx</tt> file from <tt>yourdocument.Rnw</tt>.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>Sweave("youdocument.Rnw", RweaveXxx)</tt></pre>
+</div></div>
+<div class="paragraph"><p>You can convert it to html format with the following command:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><tt>asciidoc yourdocument.txt
+or
+txt2tags -t html yourdocument.t2t
+or
+rst2html-highlight --stylesheet-path=pygments-default.css -s rest.rst rest.html
+or
+Alt-X org-export-as-html</tt></pre>
+</div></div>
+<div class="paragraph"><p>or to other formats&#8230;</p></div>
+<div class="paragraph"><p>For example, you can see the source of <a href="http://eusebe.github.com/ascii/index.Rnw">this documentation</a>, the file <a href="http://eusebe.github.com/ascii/index.txt">generated by <tt>Sweave</tt></a>, the same file in <a href="http://eusebe.github.com/ascii/index.xml">docbook format</a>, the same file <a href="http://eusebe.github.com/ascii/index.pdf">converted to pdf</a> with dblatex, and the same file <a href="http://eusebe.github.com/ascii/index.odt">converted to odt</a> with docbook2odf.</p></div>
+</div>
+<h2 id="_more_informations">more informations</h2>
+<div class="sectionbody">
+<div class="dlist"><dl>
+<dt class="hdlist1">
+asciidoc
+</dt>
+<dd>
+<p>
+<a href="http://www.methods.co.nz/asciidoc">http://www.methods.co.nz/asciidoc</a>
+</p>
+</dd>
+<dt class="hdlist1">
+txt2tags
+</dt>
+<dd>
+<p>
+<a href="http://txt2tags.sourceforge.net">http://txt2tags.sourceforge.net</a>
+</p>
+</dd>
+<dt class="hdlist1">
+docutils and reStructuredText
+</dt>
+<dd>
+<p>
+<a href="http://docutils.sourceforge.net/">http://docutils.sourceforge.net/</a>
+</p>
+</dd>
+<dt class="hdlist1">
+org-mode
+</dt>
+<dd>
+<p>
+<a href="http://orgmode.org/">http://orgmode.org/</a>
+</p>
+</dd>
+</dl></div>
+<div class="paragraph"><p>There is another way to create org documents with embedded R code : <a href="http://orgmode.org/worg/org-contrib/babel/org-babel.php">org-babel</a>. Thanks to <a href="http://blogisticreflections.wordpress.com/">Erik Iverson</a> for informing me about org-mode and org-babel.</p></div>
+</div>
+<h2 id="_ascii_for_real">ascii for real</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html">some vignettes</a> for the book &#8216;Analysis and Interpretation of Freshwater Fisheries Data&#8217; using <a href="http://eusebe.github.com/ascii"><tt>ascii</tt></a>.
+</p>
+</li>
+<li>
+<p>
+<a href="http://learnr.wordpress.com/">This blog</a> uses <a href="http://eusebe.github.com/ascii"><tt>ascii</tt></a> and <a href="http://srackham.wordpress.com/blogpost1/">blogpost</a> to generate and publish post.
+</p>
+</li>
+<li>
+<p>
+<a href="http://blogisticreflections.wordpress.com/">This blog</a> too but with <a href="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">another method</a>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div id="footnotes"><hr /></div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2009-11-23 21:13:11 CEST
+</div>
+</div>
+</body>
+</html>
