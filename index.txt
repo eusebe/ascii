@@ -118,21 +118,21 @@ ascii provides methods for:
  [1] ascii.anova*              ascii.aov*               
  [3] ascii.aovlist*            ascii.cast_df*           
  [5] ascii.character*          ascii.coxph*             
- [7] ascii.data.frame*         ascii.default*           
- [9] ascii.density*            ascii.describe*          
-[11] ascii.describe.single*    ascii.factor*            
-[13] ascii.ftable*             ascii.glm*               
-[15] ascii.htest*              ascii.integer*           
-[17] ascii.list*               ascii.lm*                
-[19] ascii.matrix*             ascii.numeric*           
-[21] ascii.packageDescription* ascii.prcomp*            
-[23] ascii.sessionInfo*        ascii.simple.list*       
-[25] ascii.smooth.spline*      ascii.summary.aov*       
-[27] ascii.summary.aovlist*    ascii.summary.glm*       
-[29] ascii.summary.lm*         ascii.summary.prcomp*    
-[31] ascii.summary.table*      ascii.survdiff*          
-[33] ascii.table*              ascii.ts*                
-[35] ascii.zoo*               
+ [7] ascii.CrossTable*         ascii.data.frame*        
+ [9] ascii.default*            ascii.density*           
+[11] ascii.describe*           ascii.describe.single*   
+[13] ascii.factor*             ascii.ftable*            
+[15] ascii.glm*                ascii.htest*             
+[17] ascii.integer*            ascii.list*              
+[19] ascii.lm*                 ascii.matrix*            
+[21] ascii.numeric*            ascii.packageDescription*
+[23] ascii.prcomp*             ascii.sessionInfo*       
+[25] ascii.simple.list*        ascii.smooth.spline*     
+[27] ascii.summary.aov*        ascii.summary.aovlist*   
+[29] ascii.summary.glm*        ascii.summary.lm*        
+[31] ascii.summary.prcomp*     ascii.summary.table*     
+[33] ascii.survdiff*           ascii.table*             
+[35] ascii.ts*                 ascii.zoo*               
 
    Non-visible functions are asterisked 
 ----
@@ -649,3 +649,182 @@ CrossTable
 > library(descr)
 > ascii(CrossTable(warpbreaks$wool, warpbreaks$tension, dnn = c("Wool", 
 +     "Tension")))
+*Cell Contents*
+
+* N
+* Expected N
+* Chi-square contribution
+* N / Row Total
+* N / Col Total
+* N / Table Total
+
+[options="header"]
+|========================================== 
+.1+s|  | L     | M     | H     | Total
+.6+s| A | 9     | 9     | 9     | 27   
+| 9.0   | 9.0   | 9.0   |      
+| 0.000 | 0.000 | 0.000 |      
+| 0.333 | 0.333 | 0.333 | 0.500
+| 0.500 | 0.500 | 0.500 |      
+| 0.167 | 0.167 | 0.167 |      
+.6+s| B | 9     | 9     | 9     | 27   
+| 9.0   | 9.0   | 9.0   |      
+| 0.000 | 0.000 | 0.000 |      
+| 0.333 | 0.333 | 0.333 | 0.500
+| 0.500 | 0.500 | 0.500 |      
+| 0.167 | 0.167 | 0.167 |      
+.2+s| Total | 18    | 18    | 18    | 54   
+| 0.333 | 0.333 | 0.333 |      
+|========================================== 
+
+*Statistics for All Table Factors*
+
+Pearson's Chi-squared test::
+   Chi^2 = 0      d.f. = 2      p = 1 
+----
+
+
+*Cell Contents*
+
+* N
+* Expected N
+* Chi-square contribution
+* N / Row Total
+* N / Col Total
+* N / Table Total
+
+[options="header"]
+|========================================== 
+.1+s|  | L     | M     | H     | Total
+.6+s| A | 9     | 9     | 9     | 27   
+| 9.0   | 9.0   | 9.0   |      
+| 0.000 | 0.000 | 0.000 |      
+| 0.333 | 0.333 | 0.333 | 0.500
+| 0.500 | 0.500 | 0.500 |      
+| 0.167 | 0.167 | 0.167 |      
+.6+s| B | 9     | 9     | 9     | 27   
+| 9.0   | 9.0   | 9.0   |      
+| 0.000 | 0.000 | 0.000 |      
+| 0.333 | 0.333 | 0.333 | 0.500
+| 0.500 | 0.500 | 0.500 |      
+| 0.167 | 0.167 | 0.167 |      
+.2+s| Total | 18    | 18    | 18    | 54   
+| 0.333 | 0.333 | 0.333 |      
+|========================================== 
+
+*Statistics for All Table Factors*
+
+Pearson's Chi-squared test::
+   Chi^2 = 0      d.f. = 2      p = 1 
+
+plot
+~~~~
+
+----
+> library(ggplot2)
+> p <- qplot(price, ..density.., data = diamonds, geom = "freqpoly", 
++     binwidth = 1000, colour = color)
+> print(p)
+----
+image::index-ggplot2.jpg[]
+
+other outputs
+~~~~~~~~~~~~~
+
+----
+> library(reshape)
+> names(airquality) <- tolower(names(airquality))
+> aqm <- melt(airquality, id = c("month", "day"), na.rm = TRUE)
+> res <- cast(aqm, month ~ variable, mean, margins = "grand_row")
+> res
+  month    ozone  solar.r      wind     temp
+1     5 23.61538 181.2963 11.622581 65.54839
+2     6 29.44444 190.1667 10.266667 79.10000
+3     7 59.11538 216.4839  8.941935 83.90323
+4     8 59.96154 171.8571  8.793548 83.96774
+5     9 31.44828 167.4333 10.180000 76.90000
+6 (all) 42.12931 185.9315  9.957516 77.88235 
+> print(ascii(res), "t2t")
+|| month | ozone | solar.r | wind  | temp  |
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 | 
+> print(ascii(res), "rest")
++-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
++=======+=======+=========+=======+=======+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
++-------+-------+---------+-------+-------+
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
++-------+-------+---------+-------+-------+
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
++-------+-------+---------+-------+-------+
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
++-------+-------+---------+-------+-------+
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
++-------+-------+---------+-------+-------+
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
++-------+-------+---------+-------+-------+ 
+> print(ascii(res), "org")
+|-------+-------+---------+-------+-------+
+| month | ozone | solar.r | wind  | temp  |
+|-------+-------+---------+-------+-------+
+| 5     | 23.62 | 181.30  | 11.62 | 65.55 |
+| 6     | 29.44 | 190.17  | 10.27 | 79.10 |
+| 7     | 59.12 | 216.48  | 8.94  | 83.90 |
+| 8     | 59.96 | 171.86  | 8.79  | 83.97 |
+| 9     | 31.45 | 167.43  | 10.18 | 76.90 |
+| (all) | 42.13 | 185.93  | 9.96  | 77.88 |
+|-------+-------+---------+-------+-------+ 
+----
+
+Follow those links to see real examples:
+
+* http://eusebe.github.com/ascii/t2t.html[with text2tags]
+* http://eusebe.github.com/ascii/rest.html[with reStructuredText]
+* http://eusebe.github.com/ascii/org.html[with org]
+
+convert
+-------
+
++Sweave+ process creates a +yourdocument.xxx+ file from +yourdocument.Rnw+.
+
+----
+Sweave("youdocument.Rnw", RweaveXxx)
+----
+
+You can convert it to html format with the following command:
+
+----
+asciidoc yourdocument.txt
+or
+txt2tags -t html yourdocument.t2t
+or
+rst2html-highlight --stylesheet-path=pygments-default.css -s rest.rst rest.html
+or
+Alt-X org-export-as-html
+----
+
+or to other formats...
+
+For example, you can see the source of http://eusebe.github.com/ascii/index.Rnw[this documentation], the file http://eusebe.github.com/ascii/index.txt[generated by +Sweave+], the same file in http://eusebe.github.com/ascii/index.xml[docbook format], the same file http://eusebe.github.com/ascii/index.pdf[converted to pdf] with dblatex, and the same file http://eusebe.github.com/ascii/index.odt[converted to odt] with docbook2odf.
+
+more informations
+-----------------
+
+asciidoc:: http://www.methods.co.nz/asciidoc
+txt2tags:: http://txt2tags.sourceforge.net
+docutils and reStructuredText:: http://docutils.sourceforge.net/
+org-mode:: http://orgmode.org/
+
+There is another way to create org documents with embedded R code : http://orgmode.org/worg/org-contrib/babel/org-babel.php[org-babel]. Thanks to http://blogisticreflections.wordpress.com/[Erik Iverson] for informing me about org-mode and org-babel.
+  
+ascii for real
+--------------
+
+- Derek H. Ogle has written http://www.ncfaculty.net/dogle/fishR/bookex/AIFFD/AIFFD.html[some vignettes] for the book `Analysis and Interpretation of Freshwater Fisheries Data' using http://eusebe.github.com/ascii[+ascii+].
+- http://learnr.wordpress.com/[This blog] uses http://eusebe.github.com/ascii[+ascii+] and http://srackham.wordpress.com/blogpost1/[blogpost] to generate and publish post.
+  - http://blogisticreflections.wordpress.com/[This blog] too but with http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/[another method].

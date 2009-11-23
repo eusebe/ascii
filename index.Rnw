@@ -291,7 +291,7 @@ asciidoc yourdocument.txt
 or
 txt2tags -t html yourdocument.t2t
 or
-sphinx-build -b html . yourdocument # need a conf.py file
+rst2html-highlight --stylesheet-path=pygments-default.css -s rest.rst rest.html
 or
 Alt-X org-export-as-html
 ----
@@ -303,10 +303,10 @@ For example, you can see the source of http://eusebe.github.com/ascii/index.Rnw[
 more informations
 -----------------
 
-- asciidoc: http://www.methods.co.nz/asciidoc
-- txt2tags: http://txt2tags.sourceforge.net
-- sphinx: http://sphinx.pocoo.org/
-- org-mode: http://orgmode.org/
+asciidoc:: http://www.methods.co.nz/asciidoc
+txt2tags:: http://txt2tags.sourceforge.net
+docutils and reStructuredText:: http://docutils.sourceforge.net/
+org-mode:: http://orgmode.org/
 
 There is another way to create org documents with embedded R code : http://orgmode.org/worg/org-contrib/babel/org-babel.php[org-babel]. Thanks to http://blogisticreflections.wordpress.com/[Erik Iverson] for informing me about org-mode and org-babel.
   
