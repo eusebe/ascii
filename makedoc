@@ -1,10 +1,7 @@
 #!/bin/sh
 
-echo "library(ascii); Asciidoc(\"index.Rnw\") ; T2t(\"t2t.Rnw\") ; Org(\"org.Rnw\") ; Sphinx(\"sphinx.Rnw\")" | R --no-save --no-restore || { echo "Probleme dans Sweave() | R..." >&2; exit 1; }
-sphinx-build -b html . sphinx/html
-cd sphinx/html
-sphinx-to-github
-cd ../..
+echo "library(ascii); Asciidoc(\"index.Rnw\") ; T2t(\"t2t.Rnw\") ; Org(\"org.Rnw\") ; ReST(\"rest.Rnw\")" | R --no-save --no-restore || { echo "Probleme dans Sweave() | R..." >&2; exit 1; }
+./rst2html-highlight --stylesheet-path=pygments-default.css -s rest.rst rest.html
 txt2tags -t html t2t.t2t
 # Comment faire pour org ?
 #asciidoc -a toc -a linkcss -a stylesheet=latex.css -a stylesdir=. index.txt 

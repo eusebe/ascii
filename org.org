@@ -9,7 +9,6 @@
 
 #+BEGIN_SRC R-transcript
 > options(asciiType = "org")
-
 #+END_SRC
 
 * some code
@@ -53,7 +52,6 @@
 
 #+BEGIN_SRC R-transcript
 > plot(1)
-
 #+END_SRC
 [[file:org-005.jpg]]
 

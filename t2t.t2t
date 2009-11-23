@@ -6,7 +6,6 @@ David Hajage, dhajage[at]gmail[dot]com
 
 ```
 > options(asciiType = "t2t")
-
 ```
 
 = some code =
@@ -49,7 +48,6 @@ David Hajage, dhajage[at]gmail[dot]com
 
 ```
 > plot(1)
-
 ```
 [t2t-005.jpg]
 
