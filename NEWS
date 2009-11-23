@@ -1,3 +1,14 @@
+2009/xx/xx
+~~~~~~~~~~
+
+* version 0.4
+* remove extra +\n+ when there is no R output
+* change the name of Sphinx related functions to ReST
+* add methods for +freq()+, +compmeans()+ and +CrossTable()+ in package +descr+
+* remove +cgroup+ and +rgroup+ arguments in +ascii()+ function
+* four new arguments : +tgroup+ (top), +bgroup+ (bottom), +lgroup+ (left) and +rgroup+ (right)
+* new arguments +escape+ and +list.escape+ in +print.ascii()+ function
+
 2009/10/28
 ~~~~~~~~~~
 
