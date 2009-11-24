@@ -2210,7 +2210,7 @@ rowsep="1" colsep="1"
 *Statistics for All Table Factors*
 
 Pearson's Chi-squared test::
-   Chi^2 = 0      d.f. = 2      p = 1</screen>
+   Chi^2 = 0, d.f. = 2, p = 1</screen>
 <simpara><emphasis role="strong">Cell Contents</emphasis></simpara>
 <itemizedlist>
 <listitem>
@@ -2362,7 +2362,7 @@ Pearson&#8217;s Chi-squared test
 </term>
 <listitem>
 <simpara>
-   Chi^2 = 0      d.f. = 2      p = 1
+   Chi^2 = 0, d.f. = 2, p = 1
 </simpara>
 </listitem>
 </varlistentry>

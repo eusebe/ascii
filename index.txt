@@ -680,7 +680,7 @@ CrossTable
 *Statistics for All Table Factors*
 
 Pearson's Chi-squared test::
-   Chi^2 = 0      d.f. = 2      p = 1 
+   Chi^2 = 0, d.f. = 2, p = 1 
 ----
 
 
@@ -715,7 +715,7 @@ Pearson's Chi-squared test::
 *Statistics for All Table Factors*
 
 Pearson's Chi-squared test::
-   Chi^2 = 0      d.f. = 2      p = 1 
+   Chi^2 = 0, d.f. = 2, p = 1 
 
 plot
 ~~~~
