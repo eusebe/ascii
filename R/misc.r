@@ -68,14 +68,13 @@ header.asciidoc <- function(caption = "", caption.level = "", frame = "", grid =
 
   if (length(listarg) != 0) {
     res <- paste("[", paste(listarg, collapse = ","), "]\n", sep = "")
-  }
-  else res <- ""
+  } else res <- ""
   if (caption != "") {
     if (caption.level == "." | caption.level == "") res <- paste(".", caption, "\n", res, sep = "") 
-    else if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n\n", res, sep = "") } 
-    else if (caption.level == "s") res <- paste(beauty.asciidoc(caption, "s"), "\n\n", sep = "")
-    else if (caption.level == "e") res <- paste(beauty.asciidoc(caption, "e"), "\n\n", sep = "")
-    else if (caption.level == "m") res <- paste(beauty.asciidoc(caption, "m"), "\n\n", sep = "")
+    else if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", "\n\n", res, sep = "") } 
+    else if (caption.level == "s") res <- paste(beauty.asciidoc(caption, "s"), "\n\n", res, sep = "")
+    else if (caption.level == "e") res <- paste(beauty.asciidoc(caption, "e"), "\n\n", res, sep = "")
+    else if (caption.level == "m") res <- paste(beauty.asciidoc(caption, "m"), "\n\n", res, sep = "")
     else if (caption.level == "none") res <- paste(caption, "\n\n", res, sep = "") 
   }
   return(res)
