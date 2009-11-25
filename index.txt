@@ -121,18 +121,19 @@ ascii provides methods for:
  [7] ascii.CrossTable*         ascii.data.frame*        
  [9] ascii.default*            ascii.density*           
 [11] ascii.describe*           ascii.describe.single*   
-[13] ascii.factor*             ascii.ftable*            
-[15] ascii.glm*                ascii.htest*             
-[17] ascii.integer*            ascii.list*              
-[19] ascii.lm*                 ascii.matrix*            
-[21] ascii.numeric*            ascii.packageDescription*
-[23] ascii.prcomp*             ascii.sessionInfo*       
-[25] ascii.simple.list*        ascii.smooth.spline*     
-[27] ascii.summary.aov*        ascii.summary.aovlist*   
-[29] ascii.summary.glm*        ascii.summary.lm*        
-[31] ascii.summary.prcomp*     ascii.summary.table*     
-[33] ascii.survdiff*           ascii.table*             
-[35] ascii.ts*                 ascii.zoo*               
+[13] ascii.factor*             ascii.freqtable*         
+[15] ascii.ftable*             ascii.glm*               
+[17] ascii.htest*              ascii.integer*           
+[19] ascii.list*               ascii.lm*                
+[21] ascii.matrix*             ascii.meanscomp*         
+[23] ascii.numeric*            ascii.packageDescription*
+[25] ascii.prcomp*             ascii.sessionInfo*       
+[27] ascii.simple.list*        ascii.smooth.spline*     
+[29] ascii.summary.aov*        ascii.summary.aovlist*   
+[31] ascii.summary.glm*        ascii.summary.lm*        
+[33] ascii.summary.prcomp*     ascii.summary.table*     
+[35] ascii.survdiff*           ascii.table*             
+[37] ascii.ts*                 ascii.zoo*               
 
    Non-visible functions are asterisked 
 ----
@@ -149,7 +150,7 @@ locale::
 attached base packages::
   stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.4, proto_0.3-8
+   ascii_0.4-1, proto_0.3-8
 loaded via a namespace (and not attached)::
   tools_2.10.0 
 ----
@@ -161,7 +162,7 @@ locale::
 attached base packages::
   stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.4, proto_0.3-8
+   ascii_0.4-1, proto_0.3-8
 loaded via a namespace (and not attached)::
   tools_2.10.0 
 

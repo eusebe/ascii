@@ -1,3 +1,9 @@
+2009/11/25
+~~~~~~~~~~
+
+* fix several bugs in ascii.freqtable and ascii.meanscomp
+* fix several bugs in asciidoc table header
+
 2009/11/24
 ~~~~~~~~~~
 
