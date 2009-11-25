@@ -3,6 +3,7 @@
 
 * add ascii.freqtable and ascii.meanscomp in NAMESPACE...
 * header = TRUE for ascii.freqtable and ascii.meanscomp
+* footer = TRUE for ascii.freqtable
 * fix several bugs in asciidoc table header
 
 2009/11/24

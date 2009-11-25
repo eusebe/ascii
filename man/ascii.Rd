@@ -66,7 +66,7 @@
   \method{ascii}{meanscomp}(x, header = TRUE, caption = "", caption.level = "s",
     include.rownames = TRUE, include.colnames = TRUE, \dots)
   \method{ascii}{CrossTable}(x, \dots)
-  \method{ascii}{freqtable}(x, header = TRUE, digits = c(0, 4), format = "fg", na.print = "",
+  \method{ascii}{freqtable}(x, header = TRUE, footer = TRUE, digits = c(0, 4), format = "fg", na.print = "",
     include.rownames = TRUE, include.colnames = TRUE, caption = x$label,
     caption.level = "s", ...)
  }
