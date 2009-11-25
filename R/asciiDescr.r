@@ -1,10 +1,10 @@
-ascii.meanscomp <- function (x, caption = "", caption.level = "s", include.rownames = TRUE, include.colnames = TRUE, ...) {                 
+ascii.meanscomp <- function (x, header = TRUE, caption = "", caption.level = "s", include.rownames = TRUE, include.colnames = TRUE, ...) {                 
     rlab <- ifelse(is.null(x$row.label), x$row, x$row.label)
     clab <- ifelse(is.null(x$column.label), x$column, x$column.label)
     msg1 <- gettext("Mean value of", domain = "R-descr")             
     msg2 <- gettext("according to", domain = "R-descr")              
     msg <- switch(1 + (caption == ""), caption, paste(msg1, " \"", clab, "\" ", msg2, " \"", rlab, "\"", sep = ""))
-    ascii(x$table, caption = msg, caption.level = caption.level, include.rownames = include.rownames, include.colnames = include.colnames, ...)
+    ascii(x$table, caption = msg, caption.level = caption.level, include.rownames = include.rownames, include.colnames = include.colnames, header = header, ...)
 }
 
 ascii.CrossTable <- function (x, ...) {                 
@@ -239,7 +239,7 @@ ascii.CrossTable <- function (x, ...) {
     return(res)
   }
 
-ascii.freqtable <- function (x, digits = c(0, 4), format = "fg", na.print = "", include.rownames = TRUE, include.colnames = TRUE, caption = x$label, caption.level = "s", ...) {
+ascii.freqtable <- function (x, header = TRUE, digits = c(0, 4), format = "fg", na.print = "", include.rownames = TRUE, include.colnames = TRUE, caption = x$label, caption.level = "s", ...) {
   res <- x$freqtable
-  ascii(res, include.rownames = include.rownames, include.colnames = include.colnames, caption = caption, caption.level = caption.level, digits = digits, format = format, na.print = na.print, ...)
+  ascii(res, header = header, include.rownames = include.rownames, include.colnames = include.colnames, caption = caption, caption.level = caption.level, digits = digits, format = format, na.print = na.print, ...)
 }
