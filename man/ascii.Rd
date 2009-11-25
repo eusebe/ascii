@@ -66,8 +66,9 @@
   \method{ascii}{meanscomp}(x, header = TRUE, caption = "", include.rownames = TRUE,
     include.colnames = TRUE, \dots)
   \method{ascii}{CrossTable}(x, \dots)
-  \method{ascii}{freqtable}(x, header = TRUE, footer = TRUE, digits = c(0, 4), format = "fg", na.print = "",
-    include.rownames = TRUE, include.colnames = TRUE, caption = x$label, ...)
+  \method{ascii}{freqtable}(x, header = TRUE, footer = TRUE, digits =
+    c(0, 4, 4), format = "fg", na.print = "", include.rownames = TRUE,
+    include.colnames = TRUE, caption = x$label, ...)
  }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
