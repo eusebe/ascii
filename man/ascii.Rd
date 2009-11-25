@@ -63,12 +63,11 @@
   \method{ascii}{sessionInfo}(x, locale = TRUE, ...)
   \method{ascii}{smooth.spline}(x, caption = "", caption.level = "", list.type = "bullet", \dots)
   \method{ascii}{describe}(x, condense = TRUE, \dots)
-  \method{ascii}{meanscomp}(x, header = TRUE, caption = "", caption.level = "s",
-    include.rownames = TRUE, include.colnames = TRUE, \dots)
+  \method{ascii}{meanscomp}(x, header = TRUE, caption = "", include.rownames = TRUE,
+    include.colnames = TRUE, \dots)
   \method{ascii}{CrossTable}(x, \dots)
   \method{ascii}{freqtable}(x, header = TRUE, footer = TRUE, digits = c(0, 4), format = "fg", na.print = "",
-    include.rownames = TRUE, include.colnames = TRUE, caption = x$label,
-    caption.level = "s", ...)
+    include.rownames = TRUE, include.colnames = TRUE, caption = x$label, ...)
  }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
