@@ -43,6 +43,52 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
   return(obj)
 }
 
+ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.rmean"), rmean = getOption("survfit.rmean"), include.rownames = T, include.colnames = T, header = T, ...) {
+    omit <- x$na.action
+    na <- NULL
+    if (length(omit))
+         na <- ascii(list(naprint(omit)), list.type = "none")
+    if (!missing(print.rmean) && is.logical(print.rmean) && missing(rmean)) {
+        if (print.rmean)
+            rmean <- "common"
+        else rmean <- "none"
+    }
+    if (is.null(rmean)) {
+        if (is.logical(print.rmean)) {
+            if (print.rmean)
+                rmean <- "common"
+            else rmean <- "none"
+        }
+        else rmean <- "none"
+    }
+    if (is.numeric(rmean)) {
+        if (is.null(x$start.time)) {
+            if (rmean < min(x$time))
+                stop("Truncation point for the mean is < smallest survival")
+        }
+        else if (rmean < x$start.time)
+            stop("Truncation point for the mean is < smallest survival")
+    }
+    else {
+        rmean <- match.arg(rmean, c("none", "common", "individual"))
+        if (length(rmean) == 0)
+            stop("Invalid value for rmean option")
+    }
+    temp <- survival:::survmean(x, scale = scale, rmean)
+    mat <- ascii(temp$matrix, include.rownames = include.rownames, include.colnames = include.colnames, header = header, ...)
+
+    restrm <- NULL
+    if (rmean != "none") {
+        if (rmean == "individual")
+            restrm <- ascii(list("* restricted mean with variable upper limit"))
+        else restrm <- ascii(list(paste("* restricted mean with upper limit = ",
+            format(temp$end.time[1]))))
+    }
+    obj <- asciiMixed$new(na, mat, restrm)
+    class(obj) <- c("ascii", "proto", "environment")
+    obj
+}
+
 # from xtable package
 ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", tgroup = NULL, n.tgroup = NULL, talign = "", tvalign = "", tstyle = "", bgroup = NULL, n.bgroup = NULL, balign = "", bvalign = "", bstyle = "", lgroup = NULL, n.lgroup = NULL, lalign = "", lvalign = "", lstyle = "", rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "", rstyle = "", ...){
 
