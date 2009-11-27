@@ -33,8 +33,10 @@
 \alias{ascii.summary.glm}
 \alias{ascii.summary.lm}
 \alias{ascii.summary.prcomp}
+\alias{ascii.summary.survfit}
 \alias{ascii.summary.table}
 \alias{ascii.survdiff}
+\alias{ascii.survfit}
 \alias{ascii.table}
 \alias{ascii.ts}
 \alias{ascii.zoo}
@@ -69,6 +71,14 @@
   \method{ascii}{freqtable}(x, header = TRUE, footer = TRUE, digits =
     c(0, 2, 2), format = "f", na.print = "", include.rownames = TRUE,
     include.colnames = TRUE, caption = x$label, ...)
+  \method{ascii}{survfit}(x, scale = 1,
+    print.rmean = getOption("survfit.print.rmean"), rmean =
+    getOption("survfit.rmean"), include.rownames = TRUE, include.colnames = TRUE,
+    header = TRUE, \dots)
+  \method{ascii}{summary.survfit}(x, include.colnames = TRUE, header =
+    TRUE, digits = c(0, 0, 0, 3, 3, 3, 3), \dots)
+
+
  }
 \arguments{
   \item{x}{An R object of class found among \code{methods(ascii)}.}
@@ -189,6 +199,11 @@
                   lowest and highest values and the frequency table
 		  (\code{describe()} in package \code{Hmisc}).}
   \item{locale}{default is TRUE to show locale information (\code{sessionInfo()}).}
+  \item{scale}{A numeric value to rescale the survival time, e.g., if the
+          input data to survfit were in days, \code{scale=365} would scale
+          the printout to years (see \code{print.survfit()} in package \code{survival}).}
+  \item{print.rmean, rmean}{Options for computation and display of the restricted
+               mean (see \code{print.survfit()} in package \code{survival}).}
   \item{...}{Additional arguments.  (Currently ignored.)}
 }
 \details{

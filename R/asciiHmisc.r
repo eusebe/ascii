@@ -76,8 +76,6 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
   return(res)
 }
 
-
-
 ascii.describe <- function (x, condense = TRUE, ...)
 {
   at <- attributes(x)
