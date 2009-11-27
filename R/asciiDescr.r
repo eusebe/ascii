@@ -233,7 +233,8 @@ ascii.CrossTable <- function (x, ...) {
         }
     }
     content <- ascii(content, caption = "Cell Contents", caption.level = "s")
-    res.t <- ascii(res.t, caption = "Statistics for All Table Factors", caption.level = "s", list.type = "label")
+    if (!is.null(res.t))
+      res.t <- ascii(res.t, caption = "Statistics for All Table Factors", caption.level = "s", list.type = "label")
     res <- asciiMixed$new(content, res.m, res.t)
     class(res) <- c("ascii", "proto", "environment")
     return(res)
