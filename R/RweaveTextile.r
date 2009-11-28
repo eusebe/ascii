@@ -176,7 +176,7 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 if(object$debug)
                   cat(paste(output, collapse="\n"))
                   
-                if (length(output) == 0 | options$results == "hide") cat("", file=chunkout, append=TRUE)
+                if (length(output) == 0 | options$results == "hide") cat("\n", file=chunkout, append=TRUE)
 
                 if(length(output) & (options$results != "hide")){
                     addabreak <- ""
@@ -242,7 +242,7 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             }
 
           if(openSinput){
-              cat("\n", file=chunkout, append=TRUE)
+              cat("", file=chunkout, append=TRUE)
               linesout[thisline + 1L:2L] <- srcline
               thisline <- thisline + 2L
           }
@@ -254,10 +254,10 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           }
 
           if(is.null(options$label) & options$split)
-            close(chunkout)
+             close(chunkout)
 
           if(options$split & options$include){
-              cat("include::", chunkprefix, "\n", sep="",
+              cat("{{include(", chunkprefix, ")}}\n", sep="",
                 file=object$output, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
@@ -303,7 +303,7 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat(":", chunkprefix, ".", options$ext, "!\n", sep="",
+                  cat("!", chunkprefix, ".", options$ext, "!\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L
@@ -595,6 +595,5 @@ RtangleTextileFinish <- function(object, error=FALSE)
         for(con in object$chunkout) close(con)
     }
 }
-
 
 

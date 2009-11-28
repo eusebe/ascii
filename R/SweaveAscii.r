@@ -9,3 +9,6 @@ formals(ReST) <-  alist(file=, driver=RweaveReST, syntax=SweaveSyntaxNoweb, ...=
 
 Org <- Sweave
 formals(Org) <-  alist(file=, driver=RweaveOrg, syntax=SweaveSyntaxNoweb, ...=)
+
+Textile <- Sweave
+formals(Textile) <-  alist(file=, driver=RweaveTextile, syntax=SweaveSyntaxNoweb, ...=)
