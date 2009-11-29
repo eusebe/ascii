@@ -718,6 +718,31 @@ asciiList <- proto(expr = {
     cat(header.t2t(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
   }
+
+  show.textile <- function(.) {
+    if (.$list.type == "bullet") mark <- rep("*", length(.$x))
+    if (.$list.type == "number") mark <- rep("#", length(.$x))
+    if (.$list.type == "none")   mark <- rep("", length(.$x))
+    if (.$list.type == "label") {
+      if (is.null(names(.$x))) {
+        namesx <- paste("[[ ", 1:length(.$x), " ]]", sep = "")
+      } else {
+        namesx <- names(.$x)
+      }
+      mark <- paste("- ", namesx, " := ", sep = "")
+    }
+    
+    charac.x <- vector("character", length(.$x))
+    for (i in 1:length(.$x)) {
+      if (is.null(.$x[[i]])) next
+      tmp <- .$x[[i]]
+      if (.$list.type == "label") tmp <- sub("^\t*", "", tmp)
+      tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark[i], tmp, perl = TRUE))
+      charac.x[i] <- sub(paste('(^\\', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
+    }
+    cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level))
+    cat(charac.x, sep = "\n")
+  }
 })
 
 asciiMixed <- proto(expr = {
@@ -762,6 +787,14 @@ asciiMixed <- proto(expr = {
     for (i in seq_along(args)) {
       if (is.null(args[[i]])) next
       print(args[[i]], type = "t2t")
+      if (i != length(args)) cat("\n") 
+    }
+  }
+  show.textile <- function(.) {
+    args <- rev(as.list(.))
+    for (i in seq_along(args)) {
+      if (is.null(args[[i]])) next
+      print(args[[i]], type = "textile")
       if (i != length(args)) cat("\n") 
     }
   }

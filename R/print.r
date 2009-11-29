@@ -5,6 +5,7 @@ print.ascii <- function(x, type = getOption("asciiType"), file = NULL, append = 
   if (type == "rest") res <- capture.output(x$show.rest())
   if (type == "org") res <- capture.output(x$show.org())
   if (type == "t2t") res <- capture.output(x$show.t2t())
+  if (type == "textile") res <- capture.output(x$show.textile())
 
   if (escape) {
     for (i in list.escape)
