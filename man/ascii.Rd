@@ -44,7 +44,7 @@
 \title{Export R objects to several markup languages}
 \description{
   Function converting an R object to an \code{ascii} object, which can
-  then be printed with asciidoc, txt2tags, reStructuredText or org syntax.
+  then be printed with asciidoc, txt2tags, reStructuredText, org or textile syntax.
 }
 \usage{
   \method{ascii}{default}(x, 
