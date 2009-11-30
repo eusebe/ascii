@@ -25,7 +25,7 @@ cols <- function(ncol, align = "", col.width = 1, style = "") {
   return(res)
 }
 
-cells <- function(span = "", align = "", valign = "", style = "") {
+cells.asciidoc <- function(span = "", align = "", valign = "", style = "") {
   
   if (align != "") {  
     align[align == "l"] <- "<"
@@ -229,11 +229,19 @@ beauty.org <- function(x, beauti = c("e", "m", "s")) {
 # TEXTILE #
 ###########
 # generate headers for textile
-header.textile <- function(frame = "") {
+header.textile <- function(frame = "", width = 0) {
 
-  if (frame != "") frame <- switch(frame, topbot = "border-top:1px solid black;border-bottom:1px solid black", sides = "border-left:1px solid black;border-right:1px solid black", all = "border:1px solid black", none = "")
+  if (frame != "") {
+    frame <- switch(frame, topbot = "border-top:1px solid black;border-bottom:1px solid black", sides = "border-left:1px solid black;border-right:1px solid black", all = "border:1px solid black", none = "")
+  }
 
-  listarg <- frame
+  if (width != 0) {
+    width <- paste("width:", width, "%", sep = "")
+  } else {
+    width <- ""
+  }
+
+  listarg <- c(frame, width)
   listarg <- listarg[listarg != ""]
 
   if (length(listarg) != 0) {
@@ -257,23 +265,44 @@ beauty.textile <- function(x, beauti = c("e", "m", "s", "header", "r", "c")) {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("<code>.*</code>", x)+1)/2) # it seulement si != de "" et si pas de mono
     if (length(x[!y]) != 0) x[!y] <-sub("(^ *)([:alpha]*)", "\\1<code>\\2", sub("([:alpha:]*)( *$)", "\\1</code>\\2", x[!y])) 
   }
-  if (beauti == "header") {
-    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("_\\..*", x)+1)/2) # it seulement si != de "" et si pas de titre
-    if (length(x[!y]) != 0) x[!y] <- paste("_. ", x[!y], sep = "") 
-  }
-  if (beauti == "r") {
-    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr(">\\..*", x)+1)/2) # it seulement si != de "" et si pas de r
-    if (length(x[!y]) != 0) x[!y] <- paste(">. ", x[!y], sep = "") 
-  }
-  if (beauti == "c") {
-    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("=\\..*", x)+1)/2) # it seulement si != de "" et si pas de r
-    if (length(x[!y]) != 0) x[!y] <- paste("=. ", x[!y], sep = "") 
-  }
-  if (beauti == "l") {
-    y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("<\\..*", x)+1)/2) # it seulement si != de "" et si pas de r
-    if (length(x[!y]) != 0) x[!y] <- paste("<. ", x[!y], sep = "") 
-  }
+  ## if (beauti == "header") {
+  ##   y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("_\\..*", x)+1)/2) # it seulement si != de "" et si pas de titre
+  ##   if (length(x[!y]) != 0) x[!y] <- paste("_. ", x[!y], sep = "") 
+  ## }
+  ## if (beauti == "r") {
+  ##   y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr(">\\..*", x)+1)/2) # it seulement si != de "" et si pas de r
+  ##   if (length(x[!y]) != 0) x[!y] <- paste(">. ", x[!y], sep = "") 
+  ## }
+  ## if (beauti == "c") {
+  ##   y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("=\\..*", x)+1)/2) # it seulement si != de "" et si pas de r
+  ##   if (length(x[!y]) != 0) x[!y] <- paste("=. ", x[!y], sep = "") 
+  ## }
+  ## if (beauti == "l") {
+  ##   y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("<\\..*", x)+1)/2) # it seulement si != de "" et si pas de r
+  ##   if (length(x[!y]) != 0) x[!y] <- paste("<. ", x[!y], sep = "") 
+  ## }
   return(x)
 }
 
+cells.textile <- function(span = "", align = "", valign = "", style = "") {
 
+  if (align != "") {  
+    align[align == "l"] <- "<"
+    align[align == "c"] <- "="
+    align[align == "r"] <- ">"
+  }
+
+  if (valign != "") {  
+    valign[valign == "top"]    <- "^"
+    valign[valign == "middle"] <- "-"
+    valign[valign == "bottom"] <- "~"
+  }
+
+  if (style != "") {  
+    style[style == "s"] <- "{font-weight:bold}"
+    style[style == "e"] <- "{font-style:italic}"
+    style[style == "m"] <- "{font-family:Monospace}"
+  }
+  res <- paste(span, align, valign, style, sep = "")
+  return(res)
+}
