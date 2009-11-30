@@ -229,8 +229,8 @@ beauty.org <- function(x, beauti = c("e", "m", "s")) {
 # TEXTILE #
 ###########
 # generate headers for textile
-header.textile <- function(frame = "", width = 0) {
-
+header.textile <- function(caption = "", caption.level = "", frame = "", width = 0) {
+  
   if (frame != "") {
     frame <- switch(frame, topbot = "border-top:1px solid black;border-bottom:1px solid black", sides = "border-left:1px solid black;border-right:1px solid black", all = "border:1px solid black", none = "")
   }
@@ -248,6 +248,15 @@ header.textile <- function(frame = "", width = 0) {
     res <- paste("table{", paste(listarg, collapse = ";"), "}\n", sep = "")
   }
   else res <- ""
+
+    if (caption != "") {
+    if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n\n", sep = "") }
+    else if (caption.level == "s") res <- paste(beauty.t2t(caption, "s"), "\n\n", sep = "")
+    else if (caption.level == "e") res <- paste(beauty.t2t(caption, "e"), "\n\n", sep = "")
+    else if (caption.level == "m") res <- paste(beauty.t2t(caption, "m"), "\n\n", sep = "")
+    else res <- paste(caption, "\n", res, sep = "") 
+  }
+
   return(res)
 }
 
