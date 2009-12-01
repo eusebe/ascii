@@ -250,10 +250,10 @@ header.textile <- function(caption = "", caption.level = "", frame = "", width =
   else res <- ""
 
     if (caption != "") {
-    if (is.numeric(caption.level) & caption.level > 0) { lev <- paste(rep("=", caption.level), collapse = "") ; res <- paste(lev, " ", caption, " ", lev, "\n\n", sep = "") }
-    else if (caption.level == "s") res <- paste(beauty.t2t(caption, "s"), "\n\n", sep = "")
-    else if (caption.level == "e") res <- paste(beauty.t2t(caption, "e"), "\n\n", sep = "")
-    else if (caption.level == "m") res <- paste(beauty.t2t(caption, "m"), "\n\n", sep = "")
+    if (is.numeric(caption.level) & caption.level > 0) { lev <- paste("h", caption.level, ".", sep = "") ; res <- paste(lev, " ", caption, " ", lev, "\n\n", sep = "") }
+    else if (caption.level == "s") res <- paste(beauty.t2t(caption, "s"), "\n", sep = "")
+    else if (caption.level == "e") res <- paste(beauty.t2t(caption, "e"), "\n", sep = "")
+    else if (caption.level == "m") res <- paste(beauty.t2t(caption, "m"), "\n", sep = "")
     else res <- paste(caption, "\n", res, sep = "") 
   }
 

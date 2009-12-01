@@ -643,7 +643,7 @@ asciiDataFrame <- proto(expr = {
     
     maxchars <- max(nchar(rows)) - 1
 
-    cat(header.textile(frame = .$frame, width = .$width))
+    cat(header.textile(caption = .$caption, caption.level = .$caption.level, frame = .$frame, width = .$width))
 
     if (!is.null(.$tgroup)) {
       tgroup <- .$tgroup
