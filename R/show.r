@@ -705,8 +705,8 @@ asciiList <- proto(expr = {
     list.type = list.type)
 
   show.asciidoc <- function(.) {
-    if (.$list.type == "bullet") mark <- rep("*", length(.$x))
-    if (.$list.type == "number") mark <- rep(".", length(.$x))
+    if (.$list.type == "bullet") mark <- rep("\\*", length(.$x))
+    if (.$list.type == "number") mark <- rep("\\.", length(.$x))
     if (.$list.type == "none")   mark <- rep("", length(.$x))
     if (.$list.type == "label") {
       if (is.null(names(.$x))) {
@@ -723,7 +723,7 @@ asciiList <- proto(expr = {
       tmp <- .$x[[i]]
       if (.$list.type == "label") tmp <- sub("^\t*", "", tmp)
       tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark[i], tmp, perl = TRUE))
-      charac.x[i] <- sub(paste('(^\\', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
+      charac.x[i] <- sub(paste('(^', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
     }
     cat(header.asciidoc(caption = .$caption, caption.level = .$caption.level))
     cat(charac.x, sep = "\n")
