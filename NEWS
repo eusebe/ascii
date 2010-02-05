@@ -1,12 +1,9 @@
-2009/xx/xx
+2009/02/05
 ~~~~~~~~~~
 
 * textile support
 * fix a bug in asciidoc labeled list, when labels begin with a number
 * fix bug with RweaveDrivers when split = TRUE
-
-
-
 
 2009/11/28
 ~~~~~~~~~~
