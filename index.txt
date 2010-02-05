@@ -2,7 +2,7 @@ ascii
 =====
 David Hajage <dhajage[at]gmail[dot]com>
 
-http://eusebe.github.com/ascii[ascii] is a R package for writing http://www.methods.co.nz/asciidoc/[asciidoc], http://txt2tags.sourceforge.net/[txt2tags], http://docutils.sourceforge.net/rest.html[reStructuredText] or http://orgmode.org/[org] documents with embeded R code.
+http://eusebe.github.com/ascii[ascii] is a R package for writing http://www.methods.co.nz/asciidoc/[asciidoc], http://txt2tags.sourceforge.net/[txt2tags], http://docutils.sourceforge.net/rest.html[reStructuredText], http://orgmode.org/[org] or http://textile.thresholdstate.com/[textile] documents with embeded R code.
 
 news
 ----
@@ -46,8 +46,8 @@ what ascii provides
 ascii provided :
 
 * a generic method for common R objects: +ascii()+. Default argument depends of R object,
-* several Sweave drivers: +RweaveAsciidoc()+, +RweaveT2t()+, +RweaveReST()+ and +RweaveOrg()+. 
-* some simple wrappers for +Sweave("yourfile.Rnw", RweaveXxx)+ named +Asciidoc()+, +T2t()+, +ReST()+ and +Org()+.
+* several Sweave drivers: +RweaveAsciidoc()+, +RweaveT2t()+, +RweaveReST()+, +RweaveOrg()+ and +RweaveTextile()+. 
+* some simple wrappers for +Sweave("yourfile.Rnw", RweaveXxx)+ named +Asciidoc()+, +T2t()+, +ReST()+, +Org()+ and +Textile()+.
 
 features/options
 ----------------
@@ -131,9 +131,10 @@ ascii provides methods for:
 [27] ascii.simple.list*        ascii.smooth.spline*     
 [29] ascii.summary.aov*        ascii.summary.aovlist*   
 [31] ascii.summary.glm*        ascii.summary.lm*        
-[33] ascii.summary.prcomp*     ascii.summary.table*     
-[35] ascii.survdiff*           ascii.table*             
-[37] ascii.ts*                 ascii.zoo*               
+[33] ascii.summary.prcomp*     ascii.summary.survfit*   
+[35] ascii.summary.table*      ascii.survdiff*          
+[37] ascii.survfit*            ascii.table*             
+[39] ascii.ts*                 ascii.zoo*               
 
    Non-visible functions are asterisked 
 ----
@@ -144,27 +145,27 @@ sessionInfo
 ----
 > ascii(sessionInfo())
 R version::
-   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+   R version 2.10.1 (2009-12-14), i686-pc-linux-gnu
 locale::
    LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
 attached base packages::
-  stats, graphics, grDevices, utils, datasets, methods, base
+   stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.4-1, proto_0.3-8
+   ascii_0.5, proto_0.3-8
 loaded via a namespace (and not attached)::
-  tools_2.10.0 
+  tools_2.10.1 
 ----
 
 R version::
-   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+   R version 2.10.1 (2009-12-14), i686-pc-linux-gnu
 locale::
    LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
 attached base packages::
-  stats, graphics, grDevices, utils, datasets, methods, base
+   stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.4-1, proto_0.3-8
+   ascii_0.5, proto_0.3-8
 loaded via a namespace (and not attached)::
-  tools_2.10.0 
+  tools_2.10.1 
 
 vector
 ~~~~~~
@@ -375,59 +376,59 @@ labeled list
 ----
 > ascii(version)
 platform::
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 arch::
-  i486
+   i686
 os::
    linux-gnu
 system::
-  i486, linux-gnu
+   i686, linux-gnu
 status::
-  
+   
 major::
    2
 minor::
-   10.0
+   10.1
 year::
    2009
 month::
-   10
+   12
 day::
-  26
+   14
 svn rev::
-  50208
+   50720
 language::
    R
 version.string::
-   R version 2.10.0 (2009-10-26) 
+   R version 2.10.1 (2009-12-14) 
 ----
 
 platform::
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 arch::
-  i486
+   i686
 os::
    linux-gnu
 system::
-  i486, linux-gnu
+   i686, linux-gnu
 status::
-  
+   
 major::
    2
 minor::
-   10.0
+   10.1
 year::
    2009
 month::
-   10
+   12
 day::
-  26
+   14
 svn rev::
-  50208
+   50720
 language::
    R
 version.string::
-   R version 2.10.0 (2009-10-26) 
+   R version 2.10.1 (2009-12-14) 
 
 glm
 ~~~
@@ -525,7 +526,7 @@ describe
 | 88 | 0       | 4     
 |====================== 
 
-0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+ 0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
 
 *tobgp : Tobacco group*
 
@@ -534,7 +535,7 @@ describe
 | 88 | 0       | 4     
 |====================== 
 
-0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+ 0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
 
 *ncases*
 
@@ -556,7 +557,7 @@ describe
 | 88 | 0       | 30     | 11.08 |  1.0 |  1.0 |  3.0 |  6.0 | 14.0 | 29.1 | 40.0
 |=============================================================================== 
 
-lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
 *age : Age [Years]*
 
@@ -597,7 +598,7 @@ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 | 88 | 0       | 4     
 |====================== 
 
-0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+ 0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
 
 *tobgp : Tobacco group*
 
@@ -606,7 +607,7 @@ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 | 88 | 0       | 4     
 |====================== 
 
-0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+ 0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
 
 *ncases*
 
@@ -628,7 +629,7 @@ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 | 88 | 0       | 30     | 11.08 |  1.0 |  1.0 |  3.0 |  6.0 | 14.0 | 29.1 | 40.0
 |=============================================================================== 
 
-lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
 *age : Age [Years]*
 
@@ -820,6 +821,7 @@ asciidoc:: http://www.methods.co.nz/asciidoc
 txt2tags:: http://txt2tags.sourceforge.net
 docutils and reStructuredText:: http://docutils.sourceforge.net/
 org-mode:: http://orgmode.org/
+textile:: http://textile.thresholdstate.com/
 
 There is another way to create org documents with embedded R code : http://orgmode.org/worg/org-contrib/babel/org-babel.php[org-babel]. Thanks to http://blogisticreflections.wordpress.com/[Erik Iverson] for informing me about org-mode and org-babel.
   

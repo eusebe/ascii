@@ -13,9 +13,29 @@
     </author>
     <authorinitials>DH</authorinitials>
 </articleinfo>
-<simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing <ulink url="http://www.methods.co.nz/asciidoc/">asciidoc</ulink>, <ulink url="http://txt2tags.sourceforge.net/">txt2tags</ulink>, <ulink url="http://docutils.sourceforge.net/rest.html">reStructuredText</ulink> or <ulink url="http://orgmode.org/">org</ulink> documents with embeded R code.</simpara>
+<simpara><ulink url="http://eusebe.github.com/ascii">ascii</ulink> is a R package for writing <ulink url="http://www.methods.co.nz/asciidoc/">asciidoc</ulink>, <ulink url="http://txt2tags.sourceforge.net/">txt2tags</ulink>, <ulink url="http://docutils.sourceforge.net/rest.html">reStructuredText</ulink>, <ulink url="http://orgmode.org/">org</ulink> or <ulink url="http://textile.thresholdstate.com/">textile</ulink> documents with embeded R code.</simpara>
 <section id="_news">
 <title>news</title>
+<section id="_2009_02_05">
+<title>2009/02/05</title>
+<itemizedlist>
+<listitem>
+<simpara>
+textile support
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+fix a bug in asciidoc labeled list, when labels begin with a number
+</simpara>
+</listitem>
+<listitem>
+<simpara>
+fix bug with RweaveDrivers when split = TRUE
+</simpara>
+</listitem>
+</itemizedlist>
+</section>
 <section id="_2009_11_25">
 <title>2009/11/25</title>
 <itemizedlist>
@@ -304,12 +324,12 @@ a generic method for common R objects: <literal>ascii()</literal>. Default argum
 </listitem>
 <listitem>
 <simpara>
-several Sweave drivers: <literal>RweaveAsciidoc()</literal>, <literal>RweaveT2t()</literal>, <literal>RweaveReST()</literal> and <literal>RweaveOrg()</literal>.
+several Sweave drivers: <literal>RweaveAsciidoc()</literal>, <literal>RweaveT2t()</literal>, <literal>RweaveReST()</literal>, <literal>RweaveOrg()</literal> and <literal>RweaveTextile()</literal>.
 </simpara>
 </listitem>
 <listitem>
 <simpara>
-some simple wrappers for <literal>Sweave("yourfile.Rnw", RweaveXxx)</literal> named <literal>Asciidoc()</literal>, <literal>T2t()</literal>, <literal>ReST()</literal> and <literal>Org()</literal>.
+some simple wrappers for <literal>Sweave("yourfile.Rnw", RweaveXxx)</literal> named <literal>Asciidoc()</literal>, <literal>T2t()</literal>, <literal>ReST()</literal>, <literal>Org()</literal> and <literal>Textile()</literal>.
 </simpara>
 </listitem>
 </itemizedlist>
@@ -747,24 +767,25 @@ rowsep="0" colsep="0"
 [27] ascii.simple.list*        ascii.smooth.spline*
 [29] ascii.summary.aov*        ascii.summary.aovlist*
 [31] ascii.summary.glm*        ascii.summary.lm*
-[33] ascii.summary.prcomp*     ascii.summary.table*
-[35] ascii.survdiff*           ascii.table*
-[37] ascii.ts*                 ascii.zoo*
+[33] ascii.summary.prcomp*     ascii.summary.survfit*
+[35] ascii.summary.table*      ascii.survdiff*
+[37] ascii.survfit*            ascii.table*
+[39] ascii.ts*                 ascii.zoo*
 
    Non-visible functions are asterisked</screen>
 <section id="_sessioninfo">
 <title>sessionInfo</title>
 <screen>&gt; ascii(sessionInfo())
 R version::
-   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+   R version 2.10.1 (2009-12-14), i686-pc-linux-gnu
 locale::
    LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
 attached base packages::
-  stats, graphics, grDevices, utils, datasets, methods, base
+   stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.4-1, proto_0.3-8
+   ascii_0.5, proto_0.3-8
 loaded via a namespace (and not attached)::
-  tools_2.10.0</screen>
+  tools_2.10.1</screen>
 <variablelist>
 <varlistentry>
 <term>
@@ -772,7 +793,7 @@ R version
 </term>
 <listitem>
 <simpara>
-   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+   R version 2.10.1 (2009-12-14), i686-pc-linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -792,7 +813,7 @@ attached base packages
 </term>
 <listitem>
 <simpara>
-  stats, graphics, grDevices, utils, datasets, methods, base
+   stats, graphics, grDevices, utils, datasets, methods, base
 </simpara>
 </listitem>
 </varlistentry>
@@ -802,7 +823,7 @@ other attached packages
 </term>
 <listitem>
 <simpara>
-   ascii_0.4-1, proto_0.3-8
+   ascii_0.5, proto_0.3-8
 </simpara>
 </listitem>
 </varlistentry>
@@ -812,7 +833,7 @@ loaded via a namespace (and not attached)
 </term>
 <listitem>
 <simpara>
-  tools_2.10.0
+  tools_2.10.1
 </simpara>
 </listitem>
 </varlistentry>
@@ -1471,31 +1492,31 @@ Chi-squared approximation may be incorrect
 <title>labeled list</title>
 <screen>&gt; ascii(version)
 platform::
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 arch::
-  i486
+   i686
 os::
    linux-gnu
 system::
-  i486, linux-gnu
+   i686, linux-gnu
 status::
 
 major::
    2
 minor::
-   10.0
+   10.1
 year::
    2009
 month::
-   10
+   12
 day::
-  26
+   14
 svn rev::
-  50208
+   50720
 language::
    R
 version.string::
-   R version 2.10.0 (2009-10-26)</screen>
+   R version 2.10.1 (2009-12-14)</screen>
 <variablelist>
 <varlistentry>
 <term>
@@ -1503,7 +1524,7 @@ platform
 </term>
 <listitem>
 <simpara>
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -1513,7 +1534,7 @@ arch
 </term>
 <listitem>
 <simpara>
-  i486
+   i686
 </simpara>
 </listitem>
 </varlistentry>
@@ -1533,7 +1554,7 @@ system
 </term>
 <listitem>
 <simpara>
-  i486, linux-gnu
+   i686, linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -1556,7 +1577,7 @@ minor
 </term>
 <listitem>
 <simpara>
-   10.0
+   10.1
 </simpara>
 </listitem>
 </varlistentry>
@@ -1576,7 +1597,7 @@ month
 </term>
 <listitem>
 <simpara>
-   10
+   12
 </simpara>
 </listitem>
 </varlistentry>
@@ -1586,7 +1607,7 @@ day
 </term>
 <listitem>
 <simpara>
-  26
+   14
 </simpara>
 </listitem>
 </varlistentry>
@@ -1596,7 +1617,7 @@ svn rev
 </term>
 <listitem>
 <simpara>
-  50208
+   50720
 </simpara>
 </listitem>
 </varlistentry>
@@ -1616,7 +1637,7 @@ version.string
 </term>
 <listitem>
 <simpara>
-   R version 2.10.0 (2009-10-26)
+   R version 2.10.1 (2009-12-14)
 </simpara>
 </listitem>
 </varlistentry>
@@ -1798,7 +1819,7 @@ rowsep="1" colsep="1"
 | 88 | 0       | 4
 |======================
 
-0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+ 0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
 
 *tobgp : Tobacco group*
 
@@ -1807,7 +1828,7 @@ rowsep="1" colsep="1"
 | 88 | 0       | 4
 |======================
 
-0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+ 0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
 
 *ncases*
 
@@ -1829,7 +1850,7 @@ rowsep="1" colsep="1"
 | 88 | 0       | 30     | 11.08 |  1.0 |  1.0 |  3.0 |  6.0 | 14.0 | 29.1 | 40.0
 |===============================================================================
 
-lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
 *age : Age [Years]*
 
@@ -1944,7 +1965,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </informaltable>
-<simpara>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</simpara>
+<literallayout class="monospaced">0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</literallayout>
 <simpara><emphasis role="strong">tobgp : Tobacco group</emphasis></simpara>
 <informaltable
 frame="all"
@@ -1968,7 +1989,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </informaltable>
-<simpara>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</simpara>
+<literallayout class="monospaced">0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</literallayout>
 <simpara><emphasis role="strong">ncases</emphasis></simpara>
 <informaltable
 frame="all"
@@ -2122,7 +2143,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </informaltable>
-<simpara>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</simpara>
+<literallayout class="monospaced">lowest:  1  2  3  4  5, highest: 40 46 48 49 60</literallayout>
 <simpara><emphasis role="strong">age : Age [Years]</emphasis></simpara>
 <informaltable
 frame="all"
@@ -2523,6 +2544,16 @@ org-mode
 <listitem>
 <simpara>
 <ulink url="http://orgmode.org/">http://orgmode.org/</ulink>
+</simpara>
+</listitem>
+</varlistentry>
+<varlistentry>
+<term>
+textile
+</term>
+<listitem>
+<simpara>
+<ulink url="http://textile.thresholdstate.com/">http://textile.thresholdstate.com/</ulink>
 </simpara>
 </listitem>
 </varlistentry>

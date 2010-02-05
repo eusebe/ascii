@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<meta name="generator" content="AsciiDoc 8.5.1" />
+<meta name="generator" content="AsciiDoc 8.5.3" />
 <title>ascii</title>
 <style type="text/css">
 /* Debug borders */
@@ -118,12 +118,14 @@ div#preamble {
 div.tableblock, div.imageblock, div.exampleblock, div.verseblock,
 div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
 div.admonitionblock {
-  margin-top: 0.25em;
+  margin-top: 1.0em;
   margin-bottom: 1.5em;
 }
 div.admonitionblock {
-  margin-top: 2.5em;
-  margin-bottom: 2.5em;
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
 }
 
 div.content { /* Block element content. */
@@ -165,21 +167,21 @@ div.listingblock > div.content {
   padding: 0.5em;
 }
 
-div.quoteblock {
-  padding-left: 2.0em;
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
   margin-right: 10%;
+  border-left: 5px solid #dddddd;
+  color: #777777;
 }
+
 div.quoteblock > div.attribution {
   padding-top: 0.5em;
   text-align: right;
 }
 
-div.verseblock {
-  padding-left: 2.0em;
-  margin-right: 10%;
-}
-div.verseblock > div.content {
-  white-space: pre;
+div.verseblock > pre.content {
+  font-family: inherit;
 }
 div.verseblock > div.attribution {
   padding-top: 0.75em;
@@ -200,12 +202,12 @@ div.admonitionblock .icon {
 }
 div.admonitionblock td.content {
   padding-left: 0.5em;
-  border-left: 2px solid silver;
+  border-left: 3px solid #dddddd;
 }
 
 div.exampleblock > div.content {
-  border-left: 2px solid silver;
-  padding: 0.5em;
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
 }
 
 div.imageblock div.content { padding-left: 0; }
@@ -255,7 +257,7 @@ div.compact div, div.compact div {
 div.tableblock > table {
   border: 3px solid #527bbd;
 }
-thead {
+thead, p.table.header {
   font-family: sans-serif;
   font-weight: bold;
 }
@@ -342,6 +344,10 @@ span.footnote, span.footnoteref {
   div#footer-badges { display: none; }
 }
 
+div#toc {
+  margin-bottom: 2.5em;
+}
+
 div#toctitle {
   color: #527bbd;
   font-family: sans-serif;
@@ -393,8 +399,8 @@ div.quoteblock-attribution {
   text-align: right;
 }
 
-div.verseblock-content {
-  white-space: pre;
+pre.verseblock-content {
+  font-family: inherit;
 }
 div.verseblock-attribution {
   padding-top: 0.75em;
@@ -402,7 +408,7 @@ div.verseblock-attribution {
 }
 
 div.exampleblock-content {
-  border-left: 2px solid silver;
+  border-left: 3px solid #dddddd;
   padding-left: 0.5em;
 }
 
@@ -461,8 +467,9 @@ toc: function (toclevels) {
       for (var i = el.firstChild; i != null; i = i.nextSibling) {
         if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
           var mo = re.exec(i.tagName);
-          if (mo)
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
             result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
           iterate(i);
         }
       }
@@ -555,11 +562,29 @@ footnotes: function () {
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing <a href="http://www.methods.co.nz/asciidoc/">asciidoc</a>, <a href="http://txt2tags.sourceforge.net/">txt2tags</a>, <a href="http://docutils.sourceforge.net/rest.html">reStructuredText</a> or <a href="http://orgmode.org/">org</a> documents with embeded R code.</p></div>
+<div class="paragraph"><p><a href="http://eusebe.github.com/ascii">ascii</a> is a R package for writing <a href="http://www.methods.co.nz/asciidoc/">asciidoc</a>, <a href="http://txt2tags.sourceforge.net/">txt2tags</a>, <a href="http://docutils.sourceforge.net/rest.html">reStructuredText</a>, <a href="http://orgmode.org/">org</a> or <a href="http://textile.thresholdstate.com/">textile</a> documents with embeded R code.</p></div>
 </div>
 </div>
 <h2 id="_news">news</h2>
 <div class="sectionbody">
+<h3 id="_2009_02_05">2009/02/05</h3><div style="clear:left"></div>
+<div class="ulist"><ul>
+<li>
+<p>
+textile support
+</p>
+</li>
+<li>
+<p>
+fix a bug in asciidoc labeled list, when labels begin with a number
+</p>
+</li>
+<li>
+<p>
+fix bug with RweaveDrivers when split = TRUE
+</p>
+</li>
+</ul></div>
 <h3 id="_2009_11_25">2009/11/25</h3><div style="clear:left"></div>
 <div class="ulist"><ul>
 <li>
@@ -810,7 +835,7 @@ ascii(x, caption = "A simple matrix", width = 30)
 width="30%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 1: A simple matrix</caption>
+<caption class="title">Table 1. A simple matrix</caption>
 <col width="50%" />
 <col width="50%" />
 <tbody>
@@ -837,12 +862,12 @@ a generic method for common R objects: <tt>ascii()</tt>. Default argument depend
 </li>
 <li>
 <p>
-several Sweave drivers: <tt>RweaveAsciidoc()</tt>, <tt>RweaveT2t()</tt>, <tt>RweaveReST()</tt> and <tt>RweaveOrg()</tt>.
+several Sweave drivers: <tt>RweaveAsciidoc()</tt>, <tt>RweaveT2t()</tt>, <tt>RweaveReST()</tt>, <tt>RweaveOrg()</tt> and <tt>RweaveTextile()</tt>.
 </p>
 </li>
 <li>
 <p>
-some simple wrappers for <tt>Sweave("yourfile.Rnw", RweaveXxx)</tt> named <tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>ReST()</tt> and <tt>Org()</tt>.
+some simple wrappers for <tt>Sweave("yourfile.Rnw", RweaveXxx)</tt> named <tt>Asciidoc()</tt>, <tt>T2t()</tt>, <tt>ReST()</tt>, <tt>Org()</tt> and <tt>Textile()</tt>.
 </p>
 </li>
 </ul></div>
@@ -1282,9 +1307,10 @@ cellspacing="0" cellpadding="4">
 [27] ascii.simple.list*        ascii.smooth.spline*
 [29] ascii.summary.aov*        ascii.summary.aovlist*
 [31] ascii.summary.glm*        ascii.summary.lm*
-[33] ascii.summary.prcomp*     ascii.summary.table*
-[35] ascii.survdiff*           ascii.table*
-[37] ascii.ts*                 ascii.zoo*
+[33] ascii.summary.prcomp*     ascii.summary.survfit*
+[35] ascii.summary.table*      ascii.survdiff*
+[37] ascii.survfit*            ascii.table*
+[39] ascii.ts*                 ascii.zoo*
 
    Non-visible functions are asterisked</tt></pre>
 </div></div>
@@ -1293,15 +1319,15 @@ cellspacing="0" cellpadding="4">
 <div class="content">
 <pre><tt>&gt; ascii(sessionInfo())
 R version::
-   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+   R version 2.10.1 (2009-12-14), i686-pc-linux-gnu
 locale::
    LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
 attached base packages::
-  stats, graphics, grDevices, utils, datasets, methods, base
+   stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.4-1, proto_0.3-8
+   ascii_0.5, proto_0.3-8
 loaded via a namespace (and not attached)::
-  tools_2.10.0</tt></pre>
+  tools_2.10.1</tt></pre>
 </div></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -1309,7 +1335,7 @@ R version
 </dt>
 <dd>
 <p>
-   R version 2.10.0 (2009-10-26), i486-pc-linux-gnu
+   R version 2.10.1 (2009-12-14), i686-pc-linux-gnu
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1325,7 +1351,7 @@ attached base packages
 </dt>
 <dd>
 <p>
-  stats, graphics, grDevices, utils, datasets, methods, base
+   stats, graphics, grDevices, utils, datasets, methods, base
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1333,7 +1359,7 @@ other attached packages
 </dt>
 <dd>
 <p>
-   ascii_0.4-1, proto_0.3-8
+   ascii_0.5, proto_0.3-8
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1341,7 +1367,7 @@ loaded via a namespace (and not attached)
 </dt>
 <dd>
 <p>
-  tools_2.10.0
+  tools_2.10.1
 </p>
 </dd>
 </dl></div>
@@ -1394,7 +1420,7 @@ cellspacing="0" cellpadding="4">
 width="100%"
 frame="hsides"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 2: VADeaths</caption>
+<caption class="title">Table 2. VADeaths</caption>
 <col width="11%" />
 <col width="22%" />
 <col width="22%" />
@@ -1474,7 +1500,7 @@ cellspacing="0" cellpadding="4">
 width="75%"
 frame="hsides"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 3: iris</caption>
+<caption class="title">Table 3. iris</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -2002,31 +2028,31 @@ Chi-squared approximation may be incorrect
 <div class="content">
 <pre><tt>&gt; ascii(version)
 platform::
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 arch::
-  i486
+   i686
 os::
    linux-gnu
 system::
-  i486, linux-gnu
+   i686, linux-gnu
 status::
 
 major::
    2
 minor::
-   10.0
+   10.1
 year::
    2009
 month::
-   10
+   12
 day::
-  26
+   14
 svn rev::
-  50208
+   50720
 language::
    R
 version.string::
-   R version 2.10.0 (2009-10-26)</tt></pre>
+   R version 2.10.1 (2009-12-14)</tt></pre>
 </div></div>
 <div class="dlist"><dl>
 <dt class="hdlist1">
@@ -2034,7 +2060,7 @@ platform
 </dt>
 <dd>
 <p>
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2042,7 +2068,7 @@ arch
 </dt>
 <dd>
 <p>
-  i486
+   i686
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2058,7 +2084,7 @@ system
 </dt>
 <dd>
 <p>
-  i486, linux-gnu
+   i686, linux-gnu
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2077,7 +2103,7 @@ minor
 </dt>
 <dd>
 <p>
-   10.0
+   10.1
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2093,7 +2119,7 @@ month
 </dt>
 <dd>
 <p>
-   10
+   12
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2101,7 +2127,7 @@ day
 </dt>
 <dd>
 <p>
-  26
+   14
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2109,7 +2135,7 @@ svn rev
 </dt>
 <dd>
 <p>
-  50208
+   50720
 </p>
 </dd>
 <dt class="hdlist1">
@@ -2125,7 +2151,7 @@ version.string
 </dt>
 <dd>
 <p>
-   R version 2.10.0 (2009-10-26)
+   R version 2.10.1 (2009-12-14)
 </p>
 </dd>
 </dl></div>
@@ -2173,7 +2199,7 @@ Residual Deviance: 5.129        AIC: 56.76
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 4: glm.D93</caption>
+<caption class="title">Table 4. glm.D93</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -2232,7 +2258,7 @@ cellspacing="0" cellpadding="4">
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<caption class="title">Table 5: anova glm.D93</caption>
+<caption class="title">Table 5. anova glm.D93</caption>
 <col width="20%" />
 <col width="20%" />
 <col width="20%" />
@@ -2307,7 +2333,7 @@ cellspacing="0" cellpadding="4">
 | 88 | 0       | 4
 |======================
 
-0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+ 0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
 
 *tobgp : Tobacco group*
 
@@ -2316,7 +2342,7 @@ cellspacing="0" cellpadding="4">
 | 88 | 0       | 4
 |======================
 
-0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+ 0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
 
 *ncases*
 
@@ -2338,7 +2364,7 @@ cellspacing="0" cellpadding="4">
 | 88 | 0       | 30     | 11.08 |  1.0 |  1.0 |  3.0 |  6.0 | 14.0 | 29.1 | 40.0
 |===============================================================================
 
-lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+ lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
 *age : Age [Years]*
 
@@ -2454,7 +2480,10 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<div class="paragraph"><p>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</tt></pre>
+</div></div>
 <div class="paragraph"><p><strong>tobgp : Tobacco group</strong></p></div>
 <div class="tableblock">
 <table rules="all"
@@ -2478,7 +2507,10 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<div class="paragraph"><p>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</tt></pre>
+</div></div>
 <div class="paragraph"><p><strong>ncases</strong></p></div>
 <div class="tableblock">
 <table rules="all"
@@ -2632,7 +2664,10 @@ cellspacing="0" cellpadding="4">
 </tbody>
 </table>
 </div>
-<div class="paragraph"><p>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</p></div>
+<div class="literalblock">
+<div class="content">
+<pre><tt>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</tt></pre>
+</div></div>
 <div class="paragraph"><p><strong>age : Age [Years]</strong></p></div>
 <div class="tableblock">
 <table rules="all"
@@ -3031,6 +3066,14 @@ org-mode
 <a href="http://orgmode.org/">http://orgmode.org/</a>
 </p>
 </dd>
+<dt class="hdlist1">
+textile
+</dt>
+<dd>
+<p>
+<a href="http://textile.thresholdstate.com/">http://textile.thresholdstate.com/</a>
+</p>
+</dd>
 </dl></div>
 <div class="paragraph"><p>There is another way to create org documents with embedded R code : <a href="http://orgmode.org/worg/org-contrib/babel/org-babel.php">org-babel</a>. Thanks to <a href="http://blogisticreflections.wordpress.com/">Erik Iverson</a> for informing me about org-mode and org-babel.</p></div>
 </div>
@@ -3058,7 +3101,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2009-11-25 20:57:10 CEST
+Last updated 2010-02-05 22:59:25 CEST
 </div>
 </div>
 </body>

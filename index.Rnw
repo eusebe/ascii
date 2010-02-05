@@ -2,7 +2,7 @@ ascii
 =====
 David Hajage <dhajage[at]gmail[dot]com>
 
-http://eusebe.github.com/ascii[ascii] is a R package for writing http://www.methods.co.nz/asciidoc/[asciidoc], http://txt2tags.sourceforge.net/[txt2tags], http://docutils.sourceforge.net/rest.html[reStructuredText] or http://orgmode.org/[org] documents with embeded R code.
+http://eusebe.github.com/ascii[ascii] is a R package for writing http://www.methods.co.nz/asciidoc/[asciidoc], http://txt2tags.sourceforge.net/[txt2tags], http://docutils.sourceforge.net/rest.html[reStructuredText], http://orgmode.org/[org] or http://textile.thresholdstate.com/[textile] documents with embeded R code.
 
 news
 ----
@@ -40,8 +40,8 @@ what ascii provides
 ascii provided :
 
 * a generic method for common R objects: +ascii()+. Default argument depends of R object,
-* several Sweave drivers: +RweaveAsciidoc()+, +RweaveT2t()+, +RweaveReST()+ and +RweaveOrg()+. 
-* some simple wrappers for +Sweave("yourfile.Rnw", RweaveXxx)+ named +Asciidoc()+, +T2t()+, +ReST()+ and +Org()+.
+* several Sweave drivers: +RweaveAsciidoc()+, +RweaveT2t()+, +RweaveReST()+, +RweaveOrg()+ and +RweaveTextile()+. 
+* some simple wrappers for +Sweave("yourfile.Rnw", RweaveXxx)+ named +Asciidoc()+, +T2t()+, +ReST()+, +Org()+ and +Textile()+.
 
 features/options
 ----------------
@@ -307,6 +307,7 @@ asciidoc:: http://www.methods.co.nz/asciidoc
 txt2tags:: http://txt2tags.sourceforge.net
 docutils and reStructuredText:: http://docutils.sourceforge.net/
 org-mode:: http://orgmode.org/
+textile:: http://textile.thresholdstate.com/
 
 There is another way to create org documents with embedded R code : http://orgmode.org/worg/org-contrib/babel/org-babel.php[org-babel]. Thanks to http://blogisticreflections.wordpress.com/[Erik Iverson] for informing me about org-mode and org-babel.
   
