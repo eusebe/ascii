@@ -260,7 +260,7 @@ makeRweaveReSTCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             close(chunkout)
 
           if(options$split & options$include){
-              cat(".. include::", chunkprefix, "\n", sep="",
+              cat(".. include::", chunkprefix, ".rst\n", sep="",
                 file=object$output, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
