@@ -78,7 +78,7 @@ makeRweaveOrgCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               ## [x][[1L]] avoids partial matching of x
               chunkout <- object$chunkout[chunkprefix][[1L]]
               if(is.null(chunkout)){
-                  chunkout <- file(paste(chunkprefix, "txt", sep="."), "w")
+                  chunkout <- file(paste(chunkprefix, "org", sep="."), "w")
                   if(!is.null(options$label))
                     object$chunkout[[chunkprefix]] <- chunkout
               }
@@ -257,7 +257,7 @@ makeRweaveOrgCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             close(chunkout)
 
           if(options$split & options$include){
-              cat("#+INCLUDE: \"", chunkprefix, "\"\n", sep="",
+              cat("#+INCLUDE: \"", chunkprefix, ".org\"\n", sep="",
                 file=object$output, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
