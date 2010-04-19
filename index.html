@@ -1325,7 +1325,7 @@ locale::
 attached base packages::
    stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.6, proto_0.3-8, reshape_0.8.3, plyr_0.1.9
+   ascii_0.6, proto_0.3-8
 loaded via a namespace (and not attached)::
   tools_2.10.1</tt></pre>
 </div></div>
@@ -1359,7 +1359,7 @@ other attached packages
 </dt>
 <dd>
 <p>
-   ascii_0.6, proto_0.3-8, reshape_0.8.3, plyr_0.1.9
+   ascii_0.6, proto_0.3-8
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1406,14 +1406,14 @@ cellspacing="0" cellpadding="4">
 +     align = c("l", "r", "r", "r", "r"), frame = "topbot")
 .VADeaths
 [frame="topbot"]
-|======================================================================================
-1.1+| |       &gt;.^h| Rural Male &gt;.^h| Rural Female &gt;.^h| Urban Male &gt;.^h| Urban Female
+|===================================================================================
+1.1+| &gt;.^h| Rural Male &gt;.^h| Rural Female &gt;.^h| Urban Male &gt;.^h| Urban Female
 &lt;.^| 50-54  &gt;.^| 11.70       &gt;.^| 8.70          &gt;.^| 15.40       &gt;.^| 8.40
 &lt;.^| 55-59  &gt;.^| 18.10       &gt;.^| 11.70         &gt;.^| 24.30       &gt;.^| 13.60
 &lt;.^| 60-64  &gt;.^| 26.90       &gt;.^| 20.30         &gt;.^| 37.00       &gt;.^| 19.30
 &lt;.^| 65-69  &gt;.^| 41.00       &gt;.^| 30.90         &gt;.^| 54.60       &gt;.^| 35.10
 &lt;.^| 70-74  &gt;.^| 66.00       &gt;.^| 54.30         &gt;.^| 71.10       &gt;.^| 50.00
-|======================================================================================</tt></pre>
+|===================================================================================</tt></pre>
 </div></div>
 <div class="tableblock">
 <table rules="all"
@@ -1421,15 +1421,13 @@ width="100%"
 frame="hsides"
 cellspacing="0" cellpadding="4">
 <caption class="title">Table 2. VADeaths</caption>
-<col width="16%" />
-<col width="16%" />
-<col width="16%" />
-<col width="16%" />
-<col width="16%" />
-<col width="16%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="right" valign="middle"><p class="table header">Rural Male</p></td>
 <td align="right" valign="middle"><p class="table header">Rural Female</p></td>
@@ -1442,31 +1440,34 @@ cellspacing="0" cellpadding="4">
 <td align="right" valign="middle"><p class="table">8.70</p></td>
 <td align="right" valign="middle"><p class="table">15.40</p></td>
 <td align="right" valign="middle"><p class="table">8.40</p></td>
-<td align="left" valign="middle"><p class="table">55-59</p></td>
 </tr>
 <tr>
+<td align="left" valign="middle"><p class="table">55-59</p></td>
 <td align="right" valign="middle"><p class="table">18.10</p></td>
 <td align="right" valign="middle"><p class="table">11.70</p></td>
 <td align="right" valign="middle"><p class="table">24.30</p></td>
 <td align="right" valign="middle"><p class="table">13.60</p></td>
-<td align="left" valign="middle"><p class="table">60-64</p></td>
-<td align="right" valign="middle"><p class="table">26.90</p></td>
 </tr>
 <tr>
+<td align="left" valign="middle"><p class="table">60-64</p></td>
+<td align="right" valign="middle"><p class="table">26.90</p></td>
 <td align="right" valign="middle"><p class="table">20.30</p></td>
 <td align="right" valign="middle"><p class="table">37.00</p></td>
 <td align="right" valign="middle"><p class="table">19.30</p></td>
+</tr>
+<tr>
 <td align="left" valign="middle"><p class="table">65-69</p></td>
 <td align="right" valign="middle"><p class="table">41.00</p></td>
 <td align="right" valign="middle"><p class="table">30.90</p></td>
-</tr>
-<tr>
 <td align="right" valign="middle"><p class="table">54.60</p></td>
 <td align="right" valign="middle"><p class="table">35.10</p></td>
+</tr>
+<tr>
 <td align="left" valign="middle"><p class="table">70-74</p></td>
 <td align="right" valign="middle"><p class="table">66.00</p></td>
 <td align="right" valign="middle"><p class="table">54.30</p></td>
 <td align="right" valign="middle"><p class="table">71.10</p></td>
+<td align="right" valign="middle"><p class="table">50.00</p></td>
 </tr>
 </tbody>
 </table>
@@ -2167,22 +2168,22 @@ Null Deviance:      10.58
 Residual Deviance: 5.129        AIC: 56.76
 &gt; ascii(glm.D93, caption = "glm.D93")
 .glm.D93
-|======================================================================
-1.1+|            h| Estimate h| Std. Error h| z value h| Pr(&gt;\|z\|)
+|===================================================================
+1.1+| h| Estimate h| Std. Error h| z value h| Pr(&gt;\|z\|)
 | (Intercept)  | 3.04      | 0.17        | 17.81    | 0.00
 | outcome2     | -0.45     | 0.20        | -2.25    | 0.02
 | outcome3     | -0.29     | 0.19        | -1.52    | 0.13
 | treatment2   | 0.00      | 0.20        | 0.00     | 1.00
 | treatment3   | 0.00      | 0.20        | 0.00     | 1.00
-|======================================================================
+|===================================================================
 &gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
 .anova glm.D93
-|==============================================================
-1.1+|          h| Df   h| Deviance h| Resid. Df h| Resid. Dev
+|===========================================================
+1.1+| h| Df   h| Deviance h| Resid. Df h| Resid. Dev
 | NULL       |       |           | 8.00       | 10.58
 | outcome    | 2.00  | 5.45      | 6.00       | 5.13
 | treatment  | 2.00  | 0.00      | 4.00       | 5.13
-|==============================================================</tt></pre>
+|===========================================================</tt></pre>
 </div></div>
 <div class="tableblock">
 <table rules="all"
@@ -2306,11 +2307,11 @@ cellspacing="0" cellpadding="4">
 | 88 | 0       | 6
 |========================
 
-|============================================================
-1.1+|         | 25-34 | 35-44 | 45-54 | 55-64 | 65-74 | 75+
+|==========================================================
+1.1+| | 25-34 | 35-44 | 45-54 | 55-64 | 65-74 | 75+
 | Frequency | 15    | 15    | 16    | 16    | 15    | 11
 | %         | 17    | 17    | 18    | 18    | 17    | 12
-|============================================================
+|==========================================================
 
 *alcgp : Alcohol group*
 
@@ -2337,11 +2338,11 @@ cellspacing="0" cellpadding="4">
 | 88 | 0       | 10     | 2.273 | 0.0 | 0.0 | 0.0 | 1.0 | 4.0 | 5.3 | 6.0
 |==========================================================================
 
-|===========================================================
-1.1+|         | 0  | 1  | 2  | 3  | 4 | 5 | 6 | 8 | 9 | 17
+|=========================================================
+1.1+| | 0  | 1  | 2  | 3  | 4 | 5 | 6 | 8 | 9 | 17
 | Frequency | 29 | 16 | 11 | 9  | 8 | 6 | 5 | 1 | 2 | 1
 | %         | 33 | 18 | 12 | 10 | 9 | 7 | 6 | 1 | 2 | 1
-|===========================================================
+|=========================================================
 
 *ncontrols : Number of control*
 
@@ -2359,11 +2360,11 @@ cellspacing="0" cellpadding="4">
 | 88 | 0       | 6
 |========================
 
-|============================================================
-1.1+|         | 25-34 | 35-44 | 45-54 | 55-64 | 65-74 | 75+
+|==========================================================
+1.1+| | 25-34 | 35-44 | 45-54 | 55-64 | 65-74 | 75+
 | Frequency | 15    | 15    | 16    | 16    | 15    | 11
 | %         | 17    | 17    | 18    | 18    | 17    | 12
-|============================================================</tt></pre>
+|==========================================================</tt></pre>
 </div></div>
 <div class="ulist"><div class="title">esoph</div><ul>
 <li>
@@ -3082,7 +3083,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-04-19 17:16:05 CEST
+Last updated 2010-04-19 17:41:49 CEST
 </div>
 </div>
 </body>
