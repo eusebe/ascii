@@ -19,6 +19,8 @@ trim <- function (x) {
 }
 
 tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "") {
+  if (is.factor(x))
+    x <- as.character(x)
   if (is.vector(x))
     x <- t(x)
 
@@ -31,9 +33,6 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
   cn <- rep(colnames, length = ncol(x))
   if (include.rownames & is.null(rn)) {
     rn <- rownames(x, do.NULL = F, prefix = "")
-    format <- cbind("f", format)
-    digits <- cbind(0, digits)
-    numerics <- c(FALSE, numerics)
   }
   if (include.colnames & is.null(cn)) {
     cn <- colnames(x, do.NULL = F, prefix = "")

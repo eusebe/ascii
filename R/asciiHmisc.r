@@ -91,7 +91,7 @@ ascii.describe <- function (x, condense = TRUE, ...)
     observation <- paste(at$dimensions[1], "Observations")
   }
   if (!is.null(variable) | !is.null(observation) | descrip != "") {
-    des <- ascii(list(variable, observation), caption = descrip, caption.level = "")
+    des <- ascii(list(variable, observation), caption = descrip, caption.level = NULL)
   } else {des <- NULL}
     if (length(at$dimensions)) {
       xx <- lapply(x, ascii.describe.single, condense = condense)

@@ -1,19 +1,18 @@
-ascii.list <- function(x, caption = "", caption.level = "", list.type = "bullet", ...) {
+ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
     class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
-ascii.simple.list <- function(x, caption = "", caption.level = "", list.type = "label", ...) {
+ascii.simple.list <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
     x <- unlist(x)
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
     class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
-ascii.packageDescription <- function(x, caption = "", caption.level = "", list.type = "label", ...) {
+ascii.packageDescription <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
   x <- unclass(x)
-#  x$File <- attributes(x)$file
   x <- lapply(x, function(x) gsub("\n", " ", x))
   obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
   class(obj) <- c("ascii", "proto", "environment")
@@ -36,8 +35,7 @@ ascii.sessionInfo <- function (x, locale = TRUE, ...) {
   if (!is.null(x$loadedOnly))
   res$"loaded via a namespace (and not attached)" <- paste(mkLabel(x, "loadedOnly"), collapse = ", ")
 
-  res <- asciiList$new(x = res, caption = "", caption.level = "", list.type = "label")
+  res <- asciiList$new(x = res, caption = NULL, caption.level = NULL, list.type = "label")
   class(res) <- c("ascii", "proto", "environment")
   return(res)
 }
-

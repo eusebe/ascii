@@ -1,4 +1,4 @@
-ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", tgroup = NULL, n.tgroup = NULL, talign = "", tvalign = "", tstyle = "", bgroup = NULL, n.bgroup = NULL, balign = "", bvalign = "", bstyle = "", lgroup = NULL, n.lgroup = NULL, lalign = "", lvalign = "", lstyle = "", rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "", rstyle = "", ...){
+ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     # From print.survdiff
     if (length(x$n) == 1) {
         z <- sign(x$exp - x$obs) * sqrt(x$chisq)
@@ -25,7 +25,7 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
 
   temp <- as.data.frame(temp, checknames = FALSE)
 
-  obj <- asciiDataFrame$new(x = temp, include.rownames = include.rownames,
+  obj <- asciiTable$new(x = temp, include.rownames = include.rownames,
       include.colnames = include.colnames, rownames = rownames, colnames = colnames,
       format = format, digits = digits, decimal.mark = decimal.mark, na.print = na.print,
       caption = caption, caption.level = caption.level, width = width, frame = frame,
@@ -152,7 +152,7 @@ ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, di
 }
 
 # from xtable package
-ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = "", caption.level = "", width = 0, frame = "", grid = "", valign = "", header = TRUE, footer = FALSE, align = "", col.width = 1, style = "", tgroup = NULL, n.tgroup = NULL, talign = "", tvalign = "", tstyle = "", bgroup = NULL, n.bgroup = NULL, balign = "", bvalign = "", bstyle = "", lgroup = NULL, n.lgroup = NULL, lalign = "", lvalign = "", lstyle = "", rgroup = NULL, n.rgroup = NULL, ralign = "", rvalign = "", rstyle = "", ...){
+ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
 
     cox <- x
     beta <- cox$coef
@@ -160,7 +160,7 @@ ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, ro
     tmp <- cbind(beta, exp(beta), se, beta/se, 1 - pchisq((beta/se)^2, 1))
     dimnames(tmp) <- list(names(beta), c("coef", "exp(coef)", "se(coef)", "z", "p"))
 
-    obj <- asciiDataFrame$new(x = as.data.frame(tmp), include.rownames = include.rownames,
+    obj <- asciiTable$new(x = as.data.frame(tmp), include.rownames = include.rownames,
       include.colnames = include.colnames, rownames = rownames, colnames = colnames,
       format = format, digits = digits, decimal.mark = decimal.mark, na.print = na.print,
       caption = caption, caption.level = caption.level, width = width, frame = frame,

@@ -86,7 +86,7 @@ header.asciidoc <- function (caption = NULL, caption.level = NULL, frame = NULL,
   return(res)
 }
 
-show.asciidoc <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", ...) {
+show.asciidoc.table <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", ...) {
 
   x <- tocharac(x, include.rownames, include.colnames, rownames, colnames, format, digits, decimal.mark, na.print)
   nrowx <- nrow(x)
@@ -209,4 +209,30 @@ show.asciidoc <- function(x, include.rownames = FALSE, include.colnames = FALSE,
   cat(topbot, "\n")
   cat(results, sep = "\n")
   cat(topbot, "\n")
+}
+
+show.asciidoc.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
+  
+  if (list.type == "bullet") mark <- rep("\\*", length(x))
+  if (list.type == "number") mark <- rep("\\.", length(x))
+  if (list.type == "none")   mark <- rep("", length(x))
+  if (list.type == "label") {
+    if (is.null(names(x))) {
+      namesx <- paste("[[", 1:length(x), "]]", sep = "")
+    } else {
+      namesx <- names(x)
+    }
+    mark <- paste(namesx, "::\n  ", sep = "")
+  }
+  
+  charac.x <- vector("character", length(x))
+  for (i in 1:length(x)) {
+    if (is.null(x[[i]])) next
+    tmp <- x[[i]]
+    if (list.type == "label") tmp <- sub("^\t*", "", tmp)
+    tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark[i], tmp, perl = TRUE))
+    charac.x[i] <- sub(paste('(^', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
+  }
+  cat(header.asciidoc(caption = caption, caption.level = caption.level))
+  cat(charac.x, sep = "\n")
 }

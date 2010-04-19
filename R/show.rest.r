@@ -43,7 +43,7 @@ beauty.rest <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
-show.rest <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", ...) {
+show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", ...) {
 
   x <- tocharac(x, include.rownames, include.colnames, rownames, colnames, format, digits, decimal.mark, na.print)
   nrowx <- nrow(x)
@@ -232,4 +232,34 @@ show.rest <- function(x, include.rownames = FALSE, include.colnames = FALSE, row
   results <- print.character.matrix(x, vsep = vsep, csep = csep, hsep = hsep, print = FALSE)
   cat(header.rest(caption = caption, caption.level = caption.level), sep = "\n")
   cat(results, sep = "\n")
+}
+
+show.rest.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
+  if (list.type == "bullet") mark <- rep("*", length(x))
+  if (list.type == "number") mark <- rep("#.", length(x))
+  if (list.type == "none")  mark <- rep("", length(x))
+  if (list.type == "label") {
+    if (is.null(names(x))) {
+      namesx <- paste("[[", 1:length(x), "]]", sep = "")
+    } else {
+      namesx <- names(x)
+    }
+    mark <- paste(namesx, "\n ", sep = "")
+  }
+  y <- gsub("(^\t*)(.*)", "\\1", x)
+  z <- NULL
+  for (i in 2:length(y))
+    z <- c(z, ifelse(y[i] != y[i-1], i-1, NA))
+  
+  cat(header.rest(caption = caption, caption.level = caption.level), sep = "\n")
+  
+  for (i in 1:length(x)) {
+    tmp <- x[[i]]
+    if (list.type == "label") tmp <- sub("^\t*", "", tmp)
+    tmp <- gsub('\t|(*COMMIT)(*FAIL)', "  ", tmp, perl = TRUE)
+    tmp <- sub("(^ *)", paste("\\1", mark[i], " ", sep = ""), tmp)
+    cat(tmp, "\n")
+    if (i %in% z)
+      cat("\n")
+  }
 }

@@ -1,6 +1,6 @@
 # apply that preserves all dim of x...
 safe.apply <- function(X, MARGIN, FUN, ...) {
-  dimx <- dim(x)
+  dimx <- dim(X)
   results <- apply(X, MARGIN, FUN, ...)
   if (!is.null(dimx))
     dim(results) <- dimx

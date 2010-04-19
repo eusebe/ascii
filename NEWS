@@ -1,7 +1,13 @@
-2009/xx/xx
+2009/04/20
 ~~~~~~~~~~
 
+* main functions rewritten: it should be easier to add new markup
 * add dimnames in +ascii.table()+
+* +style+, +align+ and +valign+ accept matrix
+* +t/b/l/rgroup+ accept several groups (in a list)
+* +header+ and +footer+ accept an integer (number of lines for the header)
+* +t/b/l/rstyle+ can be "h" (for "header")
+* +caption+, +caption.level+, +align+, +valign+, +style+, +frame+, +grid+ have +NULL+ default value
 
 2009/02/05
 ~~~~~~~~~~

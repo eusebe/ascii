@@ -1,4 +1,4 @@
-ascii.meanscomp <- function (x, header = TRUE, caption = "", include.rownames = TRUE, include.colnames = TRUE, ...) {                 
+ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames = TRUE, include.colnames = TRUE, ...) {                 
     rlab <- ifelse(is.null(x$row.label), x$row, x$row.label)
     clab <- ifelse(is.null(x$column.label), x$column, x$column.label)
     msg1 <- gettext("Mean value of", domain = "R-descr")             
@@ -186,8 +186,6 @@ ascii.CrossTable <- function (x, ...) {
     colnames(m) <- c(colnames(t), ColTotal)                                                         
     nc <- nc + 1                                                                                    
     mcolnames <- colnames(m)                                                                        
-    rnames <- c("", rnames)
-    n.rnames <- c(1, n.rnames)
     res.m <- ascii(m, include.colnames = T, header = T, lgroup = rnames, n.lgroup = n.rnames, lstyle = "s")
     res.t <- NULL
     if (chisq) {                                                                                    
