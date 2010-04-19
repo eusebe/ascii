@@ -121,9 +121,12 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   }
   after_vsep <- vsep.textile(align, valign)
 
+  if (include.rownames & include.colnames)
+    after_vsep[1, 1] <- ""
+
   results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, after_vsep = after_vsep, before_cell_content = before_cell_content, after_cell_content = after_cell_content, print = FALSE)
   if (include.rownames & include.colnames)
-    results[1] <- substr(results[1], 5, nchar(results[1]))
+    results[1] <- sub("^ +", "", substr(results[1], 5, nchar(results[1])))
   
   # groups
   if (!is.null(lgroup)) {

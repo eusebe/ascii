@@ -120,10 +120,13 @@ show.asciidoc.table <- function(x, include.rownames = FALSE, include.colnames = 
   }
   before_vsep <- vsep.asciidoc(align, valign, style)
 
+  if (include.rownames & include.colnames)
+    before_vsep[1, 1] <- ""
+  
   head <- header.asciidoc(caption, caption.level, frame, grid, col.width, width)
   results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, before_vsep = before_vsep, print = FALSE)
   if (include.rownames & include.colnames)
-    results[1] <- substr(results[1], 5, nchar(results[1]))
+    results[1] <- sub("^ +", "", substr(results[1], 5, nchar(results[1])))
   
   # groups
   if (!is.null(lgroup)) {
@@ -236,3 +239,6 @@ show.asciidoc.list <- function(x, caption = NULL, caption.level = NULL, list.typ
   cat(header.asciidoc(caption = caption, caption.level = caption.level))
   cat(charac.x, sep = "\n")
 }
+
+include.rownames = FALSE; include.colnames = FALSE; rownames = NULL; colnames = NULL; format = "f"; digits = 2; decimal.mark = "."; na.print = ""; caption = NULL; caption.level = NULL; width = 0; frame = NULL; grid = NULL; valign = NULL; header = FALSE; footer = FALSE; align = NULL; col.width = 1; style = NULL; lgroup = NULL; n.lgroup = NULL; lalign = "c"; lvalign = "middle"; lstyle = "h"; rgroup = NULL; n.rgroup = NULL; ralign = "c"; rvalign = "middle"; rstyle = "h"; tgroup = NULL; n.tgroup = NULL; talign = "c"; tvalign = "middle"; tstyle = "h"; bgroup = NULL; n.bgroup = NULL; balign = "c"; bvalign = "middle"; bstyle = "h"
+x = VADeaths; include.rownames = T; include.colnames = T; header = T; align = c("l", "r", "r", "r", "r"); valign = "middle"
