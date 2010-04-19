@@ -137,11 +137,11 @@ matrix
 ~~~~~~
 
 <<matrix>>=
-ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle", align = c("l", "r", "r", "r", "r", frame = "topbot")
+ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle", align = c("l", "r", "r", "r", "r"), frame = "topbot")
 @
 
 <<matrix2,echo=FALSE,results=ascii>>=
-ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle", align = "l", "r", "r", "r", "r", frame = "topbot")
+ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths", header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle", align = c("l", "r", "r", "r", "r"), frame = "topbot")
 @
 
 data.frame

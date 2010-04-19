@@ -567,7 +567,7 @@ footnotes: function () {
 </div>
 <h2 id="_news">news</h2>
 <div class="sectionbody">
-<h3 id="_2009_02_05">2009/02/05</h3><div style="clear:left"></div>
+<h3 id="_2010_02_05">2010/02/05</h3><div style="clear:left"></div>
 <div class="ulist"><ul>
 <li>
 <p>
@@ -1325,7 +1325,7 @@ locale::
 attached base packages::
    stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.6, proto_0.3-8
+   ascii_0.6, proto_0.3-8, reshape_0.8.3, plyr_0.1.9
 loaded via a namespace (and not attached)::
   tools_2.10.1</tt></pre>
 </div></div>
@@ -1359,7 +1359,7 @@ other attached packages
 </dt>
 <dd>
 <p>
-   ascii_0.6, proto_0.3-8
+   ascii_0.6, proto_0.3-8, reshape_0.8.3, plyr_0.1.9
 </p>
 </dd>
 <dt class="hdlist1">
@@ -1403,17 +1403,17 @@ cellspacing="0" cellpadding="4">
 <div class="content">
 <pre><tt>&gt; ascii(VADeaths, include.rownames = T, include.colnames = T, caption = "VADeaths",
 +     header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle",
-+     align = "lrrrr", frame = "topbot")
++     align = c("l", "r", "r", "r", "r"), frame = "topbot")
 .VADeaths
 [frame="topbot"]
-|==========================================================================================================
-1.1+| r.^h|       lrrrr.^h| Rural Male lrrrr.^h| Rural Female lrrrr.^h| Urban Male lrrrr.^h| Urban Female
-lrrrr.^| 50-54  lrrrr.^| 11.70       lrrrr.^| 8.70          lrrrr.^| 15.40       lrrrr.^| 8.40
-lrrrr.^| 55-59  lrrrr.^| 18.10       lrrrr.^| 11.70         lrrrr.^| 24.30       lrrrr.^| 13.60
-lrrrr.^| 60-64  lrrrr.^| 26.90       lrrrr.^| 20.30         lrrrr.^| 37.00       lrrrr.^| 19.30
-lrrrr.^| 65-69  lrrrr.^| 41.00       lrrrr.^| 30.90         lrrrr.^| 54.60       lrrrr.^| 35.10
-lrrrr.^| 70-74  lrrrr.^| 66.00       lrrrr.^| 54.30         lrrrr.^| 71.10       lrrrr.^| 50.00
-|==========================================================================================================</tt></pre>
+|======================================================================================
+1.1+| |       &gt;.^h| Rural Male &gt;.^h| Rural Female &gt;.^h| Urban Male &gt;.^h| Urban Female
+&lt;.^| 50-54  &gt;.^| 11.70       &gt;.^| 8.70          &gt;.^| 15.40       &gt;.^| 8.40
+&lt;.^| 55-59  &gt;.^| 18.10       &gt;.^| 11.70         &gt;.^| 24.30       &gt;.^| 13.60
+&lt;.^| 60-64  &gt;.^| 26.90       &gt;.^| 20.30         &gt;.^| 37.00       &gt;.^| 19.30
+&lt;.^| 65-69  &gt;.^| 41.00       &gt;.^| 30.90         &gt;.^| 54.60       &gt;.^| 35.10
+&lt;.^| 70-74  &gt;.^| 66.00       &gt;.^| 54.30         &gt;.^| 71.10       &gt;.^| 50.00
+|======================================================================================</tt></pre>
 </div></div>
 <div class="tableblock">
 <table rules="all"
@@ -1429,49 +1429,44 @@ cellspacing="0" cellpadding="4">
 <col width="16%" />
 <tbody>
 <tr>
-<td align="left" valign="top"><p class="table">r.^h</p></td>
-<td align="left" valign="top"><p class="table">lrrrr.^h</p></td>
-<td align="left" valign="top"><p class="table">Rural Male lrrrr.^h</p></td>
-<td align="left" valign="top"><p class="table">Rural Female lrrrr.^h</p></td>
-<td align="left" valign="top"><p class="table">Urban Male lrrrr.^h</p></td>
-<td align="left" valign="top"><p class="table">Urban Female
-lrrrr.^</p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
+<td align="right" valign="middle"><p class="table header">Rural Male</p></td>
+<td align="right" valign="middle"><p class="table header">Rural Female</p></td>
+<td align="right" valign="middle"><p class="table header">Urban Male</p></td>
+<td align="right" valign="middle"><p class="table header">Urban Female</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">50-54  lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">11.70       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">8.70          lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">15.40       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">8.40
-lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">55-59  lrrrr.^</p></td>
+<td align="left" valign="middle"><p class="table">50-54</p></td>
+<td align="right" valign="middle"><p class="table">11.70</p></td>
+<td align="right" valign="middle"><p class="table">8.70</p></td>
+<td align="right" valign="middle"><p class="table">15.40</p></td>
+<td align="right" valign="middle"><p class="table">8.40</p></td>
+<td align="left" valign="middle"><p class="table">55-59</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">18.10       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">11.70         lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">24.30       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">13.60
-lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">60-64  lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">26.90       lrrrr.^</p></td>
+<td align="right" valign="middle"><p class="table">18.10</p></td>
+<td align="right" valign="middle"><p class="table">11.70</p></td>
+<td align="right" valign="middle"><p class="table">24.30</p></td>
+<td align="right" valign="middle"><p class="table">13.60</p></td>
+<td align="left" valign="middle"><p class="table">60-64</p></td>
+<td align="right" valign="middle"><p class="table">26.90</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">20.30         lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">37.00       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">19.30
-lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">65-69  lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">41.00       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">30.90         lrrrr.^</p></td>
+<td align="right" valign="middle"><p class="table">20.30</p></td>
+<td align="right" valign="middle"><p class="table">37.00</p></td>
+<td align="right" valign="middle"><p class="table">19.30</p></td>
+<td align="left" valign="middle"><p class="table">65-69</p></td>
+<td align="right" valign="middle"><p class="table">41.00</p></td>
+<td align="right" valign="middle"><p class="table">30.90</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">54.60       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">35.10
-lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">70-74  lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">66.00       lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">54.30         lrrrr.^</p></td>
-<td align="left" valign="top"><p class="table">71.10       lrrrr.^</p></td>
+<td align="right" valign="middle"><p class="table">54.60</p></td>
+<td align="right" valign="middle"><p class="table">35.10</p></td>
+<td align="left" valign="middle"><p class="table">70-74</p></td>
+<td align="right" valign="middle"><p class="table">66.00</p></td>
+<td align="right" valign="middle"><p class="table">54.30</p></td>
+<td align="right" valign="middle"><p class="table">71.10</p></td>
 </tr>
 </tbody>
 </table>
@@ -1595,68 +1590,67 @@ cellspacing="0" cellpadding="4">
 <pre><tt>&gt; library(reshape)
 &gt; ff_d &lt;- melt(french_fries, id = 1:4, na.rm = TRUE)
 &gt; toto &lt;- cast(ff_d, treatment + subject ~ variable, mean, margins = "treatment")
-&gt; ascii(toto[, -1], lgroup = c("Treatment", paste("Treatment:",
-+     as.character(unique(toto[, 1])))), n.lgroup = c(1, table(toto[,
-+     1])), rstyle = "s", lvalign = "middle")
-|==========================================================================================
-2.1+|   h| subject h| potato h| buttery h| grassy h| rancid h| painty
-.1+^.^h| Treatment | 1   | 3        | 6.22    | 0.37     | 0.19    | 2.11    | 3.11
-.13+^.^h| Treatment: 1 | 2   | 10       | 9.96    | 6.75     | 0.58    | 4.02    | 1.38
-| 3   | 15       | 3.36    | 0.72     | 0.42    | 3.96    | 3.26
-| 4   | 16       | 6.50    | 3.26     | 0.76    | 4.12    | 1.23
-| 5   | 19       | 9.38    | 3.06     | 2.02    | 5.36    | 2.77
-| 6   | 31       | 8.84    | 0.44     | 0.09    | 5.94    | 3.21
-| 7   | 51       | 10.68   | 2.64     | 1.05    | 5.15    | 1.96
-| 8   | 52       | 5.06    | 0.81     | 0.88    | 4.29    | 2.65
-| 9   | 63       | 6.78    | 0.03     | 0.00    | 6.05    | 3.85
-| 10  | 78       | 3.62    | 0.73     | 0.54    | 1.50    | 3.49
-| 11  | 79       | 8.06    | 0.28     | 0.34    | 0.57    | 0.00
-| 12  | 86       | 4.18    | 1.77     | 0.81    | 5.49    | 4.11
-| 13  | (all)    | 6.89    | 1.78     | 0.65    | 4.07    | 2.58
-| 14  | 3        | 6.74    | 0.59     | 0.11    | 3.14    | 2.48
-.13+^.^h| Treatment: 2 | 15  | 10       | 9.99    | 6.98     | 0.47    | 2.15    | 0.82
-| 16  | 15       | 4.41    | 1.31     | 0.34    | 2.29    | 2.06
-| 17  | 16       | 6.45    | 3.37     | 1.05    | 3.40    | 0.46
-| 18  | 19       | 8.64    | 2.45     | 1.14    | 5.41    | 4.16
-| 19  | 31       | 8.03    | 0.62     | 0.16    | 6.05    | 5.06
-| 20  | 51       | 9.98    | 3.79     | 1.57    | 4.67    | 2.25
-| 21  | 52       | 5.51    | 1.02     | 1.18    | 4.22    | 2.19
-| 22  | 63       | 8.41    | 0.10     | 0.01    | 5.09    | 4.36
-| 23  | 78       | 3.78    | 0.29     | 0.76    | 1.55    | 2.73
-| 24  | 79       | 7.94    | 0.69     | 0.26    | 1.03    | 0.00
-| 25  | 86       | 3.99    | 2.06     | 0.78    | 4.52    | 2.84
-| 26  | (all)    | 7.00    | 1.97     | 0.66    | 3.62    | 2.46
-| 27  | 3        | 5.29    | 0.77     | 0.09    | 2.86    | 2.87
-.12+^.^h| Treatment: 3 | 28  | 10       | 10.03   | 6.45     | 0.14    | 3.11    | 0.69
-| 29  | 15       | 3.96    | 0.99     | 0.44    | 2.55    | 2.37
-| 30  | 16       | 6.86    | 2.70     | 1.12    | 3.20    | 0.56
-| 31  | 19       | 8.74    | 1.73     | 2.07    | 7.24    | 3.90
-| 32  | 31       | 9.03    | 0.65     | 0.17    | 6.58    | 5.13
-| 33  | 51       | 10.22   | 3.13     | 1.35    | 4.92    | 2.54
-| 34  | 52       | 5.47    | 0.86     | 0.77    | 3.16    | 2.66
-| 35  | 63       | 8.06    | 0.07     | 0.12    | 6.18    | 3.10
-| 36  | 78       | 4.00    | 0.70     | 0.67    | 1.19    | 3.52
-| 37  | 79       | 7.73    | 0.57     | 0.12    | 1.18    | 0.03
-| 38  | 86       | 3.87    | 1.63     | 0.94    | 4.11    | 3.03
-| 39  | (all)    | 6.97    | 1.72     | 0.68    | 3.87    | 2.53
-|==========================================================================================</tt></pre>
+&gt; ascii(toto[, -1], lgroup = paste("Treatment:", as.character(unique(toto[,
++     1]))), n.lgroup = c(table(toto[, 1])), rstyle = "s", lvalign = "middle",
++     include.rownames = F)
+|====================================================================================
+1.1+| h| subject h| potato h| buttery h| grassy h| rancid h| painty
+.13+^.^h| Treatment: 1 | 3        | 6.22    | 0.37     | 0.19    | 2.11    | 3.11
+| 10       | 9.96    | 6.75     | 0.58    | 4.02    | 1.38
+| 15       | 3.36    | 0.72     | 0.42    | 3.96    | 3.26
+| 16       | 6.50    | 3.26     | 0.76    | 4.12    | 1.23
+| 19       | 9.38    | 3.06     | 2.02    | 5.36    | 2.77
+| 31       | 8.84    | 0.44     | 0.09    | 5.94    | 3.21
+| 51       | 10.68   | 2.64     | 1.05    | 5.15    | 1.96
+| 52       | 5.06    | 0.81     | 0.88    | 4.29    | 2.65
+| 63       | 6.78    | 0.03     | 0.00    | 6.05    | 3.85
+| 78       | 3.62    | 0.73     | 0.54    | 1.50    | 3.49
+| 79       | 8.06    | 0.28     | 0.34    | 0.57    | 0.00
+| 86       | 4.18    | 1.77     | 0.81    | 5.49    | 4.11
+| (all)    | 6.89    | 1.78     | 0.65    | 4.07    | 2.58
+.13+^.^h| Treatment: 2 | 3        | 6.74    | 0.59     | 0.11    | 3.14    | 2.48
+| 10       | 9.99    | 6.98     | 0.47    | 2.15    | 0.82
+| 15       | 4.41    | 1.31     | 0.34    | 2.29    | 2.06
+| 16       | 6.45    | 3.37     | 1.05    | 3.40    | 0.46
+| 19       | 8.64    | 2.45     | 1.14    | 5.41    | 4.16
+| 31       | 8.03    | 0.62     | 0.16    | 6.05    | 5.06
+| 51       | 9.98    | 3.79     | 1.57    | 4.67    | 2.25
+| 52       | 5.51    | 1.02     | 1.18    | 4.22    | 2.19
+| 63       | 8.41    | 0.10     | 0.01    | 5.09    | 4.36
+| 78       | 3.78    | 0.29     | 0.76    | 1.55    | 2.73
+| 79       | 7.94    | 0.69     | 0.26    | 1.03    | 0.00
+| 86       | 3.99    | 2.06     | 0.78    | 4.52    | 2.84
+| (all)    | 7.00    | 1.97     | 0.66    | 3.62    | 2.46
+.13+^.^h| Treatment: 3 | 3        | 5.29    | 0.77     | 0.09    | 2.86    | 2.87
+| 10       | 10.03   | 6.45     | 0.14    | 3.11    | 0.69
+| 15       | 3.96    | 0.99     | 0.44    | 2.55    | 2.37
+| 16       | 6.86    | 2.70     | 1.12    | 3.20    | 0.56
+| 19       | 8.74    | 1.73     | 2.07    | 7.24    | 3.90
+| 31       | 9.03    | 0.65     | 0.17    | 6.58    | 5.13
+| 51       | 10.22   | 3.13     | 1.35    | 4.92    | 2.54
+| 52       | 5.47    | 0.86     | 0.77    | 3.16    | 2.66
+| 63       | 8.06    | 0.07     | 0.12    | 6.18    | 3.10
+| 78       | 4.00    | 0.70     | 0.67    | 1.19    | 3.52
+| 79       | 7.73    | 0.57     | 0.12    | 1.18    | 0.03
+| 86       | 3.87    | 1.63     | 0.94    | 4.11    | 3.03
+| (all)    | 6.97    | 1.72     | 0.68    | 3.87    | 2.53
+|====================================================================================</tt></pre>
 </div></div>
 <div class="tableblock">
 <table rules="all"
 width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
-<col width="12%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
 <tbody>
 <tr>
-<td colspan="2" align="left" valign="top"><p class="table"></p></td>
+<td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table header">subject</p></td>
 <td align="left" valign="top"><p class="table header">potato</p></td>
 <td align="left" valign="top"><p class="table header">buttery</p></td>
@@ -1665,8 +1659,7 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table header">painty</p></td>
 </tr>
 <tr>
-<td align="center" valign="middle"><p class="table"><strong>Treatment</strong></p></td>
-<td align="left" valign="top"><p class="table">1</p></td>
+<td rowspan="13" align="center" valign="middle"><p class="table"><strong>Treatment: 1</strong></p></td>
 <td align="left" valign="top"><p class="table">3</p></td>
 <td align="left" valign="top"><p class="table">6.22</p></td>
 <td align="left" valign="top"><p class="table">0.37</p></td>
@@ -1675,8 +1668,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.11</p></td>
 </tr>
 <tr>
-<td rowspan="13" align="center" valign="middle"><p class="table"><strong>Treatment: 1</strong></p></td>
-<td align="left" valign="top"><p class="table">2</p></td>
 <td align="left" valign="top"><p class="table">10</p></td>
 <td align="left" valign="top"><p class="table">9.96</p></td>
 <td align="left" valign="top"><p class="table">6.75</p></td>
@@ -1685,7 +1676,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">1.38</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">3</p></td>
 <td align="left" valign="top"><p class="table">15</p></td>
 <td align="left" valign="top"><p class="table">3.36</p></td>
 <td align="left" valign="top"><p class="table">0.72</p></td>
@@ -1694,7 +1684,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.26</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">4</p></td>
 <td align="left" valign="top"><p class="table">16</p></td>
 <td align="left" valign="top"><p class="table">6.50</p></td>
 <td align="left" valign="top"><p class="table">3.26</p></td>
@@ -1703,7 +1692,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">1.23</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">5</p></td>
 <td align="left" valign="top"><p class="table">19</p></td>
 <td align="left" valign="top"><p class="table">9.38</p></td>
 <td align="left" valign="top"><p class="table">3.06</p></td>
@@ -1712,7 +1700,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.77</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">6</p></td>
 <td align="left" valign="top"><p class="table">31</p></td>
 <td align="left" valign="top"><p class="table">8.84</p></td>
 <td align="left" valign="top"><p class="table">0.44</p></td>
@@ -1721,7 +1708,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.21</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">7</p></td>
 <td align="left" valign="top"><p class="table">51</p></td>
 <td align="left" valign="top"><p class="table">10.68</p></td>
 <td align="left" valign="top"><p class="table">2.64</p></td>
@@ -1730,7 +1716,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">1.96</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">8</p></td>
 <td align="left" valign="top"><p class="table">52</p></td>
 <td align="left" valign="top"><p class="table">5.06</p></td>
 <td align="left" valign="top"><p class="table">0.81</p></td>
@@ -1739,7 +1724,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.65</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">9</p></td>
 <td align="left" valign="top"><p class="table">63</p></td>
 <td align="left" valign="top"><p class="table">6.78</p></td>
 <td align="left" valign="top"><p class="table">0.03</p></td>
@@ -1748,7 +1732,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.85</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">10</p></td>
 <td align="left" valign="top"><p class="table">78</p></td>
 <td align="left" valign="top"><p class="table">3.62</p></td>
 <td align="left" valign="top"><p class="table">0.73</p></td>
@@ -1757,7 +1740,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.49</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">11</p></td>
 <td align="left" valign="top"><p class="table">79</p></td>
 <td align="left" valign="top"><p class="table">8.06</p></td>
 <td align="left" valign="top"><p class="table">0.28</p></td>
@@ -1766,7 +1748,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.00</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">12</p></td>
 <td align="left" valign="top"><p class="table">86</p></td>
 <td align="left" valign="top"><p class="table">4.18</p></td>
 <td align="left" valign="top"><p class="table">1.77</p></td>
@@ -1775,7 +1756,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">4.11</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">13</p></td>
 <td align="left" valign="top"><p class="table">(all)</p></td>
 <td align="left" valign="top"><p class="table">6.89</p></td>
 <td align="left" valign="top"><p class="table">1.78</p></td>
@@ -1784,7 +1764,7 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.58</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">14</p></td>
+<td rowspan="13" align="center" valign="middle"><p class="table"><strong>Treatment: 2</strong></p></td>
 <td align="left" valign="top"><p class="table">3</p></td>
 <td align="left" valign="top"><p class="table">6.74</p></td>
 <td align="left" valign="top"><p class="table">0.59</p></td>
@@ -1793,8 +1773,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.48</p></td>
 </tr>
 <tr>
-<td rowspan="13" align="center" valign="middle"><p class="table"><strong>Treatment: 2</strong></p></td>
-<td align="left" valign="top"><p class="table">15</p></td>
 <td align="left" valign="top"><p class="table">10</p></td>
 <td align="left" valign="top"><p class="table">9.99</p></td>
 <td align="left" valign="top"><p class="table">6.98</p></td>
@@ -1803,7 +1781,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.82</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">16</p></td>
 <td align="left" valign="top"><p class="table">15</p></td>
 <td align="left" valign="top"><p class="table">4.41</p></td>
 <td align="left" valign="top"><p class="table">1.31</p></td>
@@ -1812,7 +1789,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.06</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">17</p></td>
 <td align="left" valign="top"><p class="table">16</p></td>
 <td align="left" valign="top"><p class="table">6.45</p></td>
 <td align="left" valign="top"><p class="table">3.37</p></td>
@@ -1821,7 +1797,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.46</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">18</p></td>
 <td align="left" valign="top"><p class="table">19</p></td>
 <td align="left" valign="top"><p class="table">8.64</p></td>
 <td align="left" valign="top"><p class="table">2.45</p></td>
@@ -1830,7 +1805,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">4.16</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">19</p></td>
 <td align="left" valign="top"><p class="table">31</p></td>
 <td align="left" valign="top"><p class="table">8.03</p></td>
 <td align="left" valign="top"><p class="table">0.62</p></td>
@@ -1839,7 +1813,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">5.06</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">20</p></td>
 <td align="left" valign="top"><p class="table">51</p></td>
 <td align="left" valign="top"><p class="table">9.98</p></td>
 <td align="left" valign="top"><p class="table">3.79</p></td>
@@ -1848,7 +1821,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.25</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">21</p></td>
 <td align="left" valign="top"><p class="table">52</p></td>
 <td align="left" valign="top"><p class="table">5.51</p></td>
 <td align="left" valign="top"><p class="table">1.02</p></td>
@@ -1857,7 +1829,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.19</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">22</p></td>
 <td align="left" valign="top"><p class="table">63</p></td>
 <td align="left" valign="top"><p class="table">8.41</p></td>
 <td align="left" valign="top"><p class="table">0.10</p></td>
@@ -1866,7 +1837,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">4.36</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">23</p></td>
 <td align="left" valign="top"><p class="table">78</p></td>
 <td align="left" valign="top"><p class="table">3.78</p></td>
 <td align="left" valign="top"><p class="table">0.29</p></td>
@@ -1875,7 +1845,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.73</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">24</p></td>
 <td align="left" valign="top"><p class="table">79</p></td>
 <td align="left" valign="top"><p class="table">7.94</p></td>
 <td align="left" valign="top"><p class="table">0.69</p></td>
@@ -1884,7 +1853,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.00</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">25</p></td>
 <td align="left" valign="top"><p class="table">86</p></td>
 <td align="left" valign="top"><p class="table">3.99</p></td>
 <td align="left" valign="top"><p class="table">2.06</p></td>
@@ -1893,7 +1861,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.84</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">26</p></td>
 <td align="left" valign="top"><p class="table">(all)</p></td>
 <td align="left" valign="top"><p class="table">7.00</p></td>
 <td align="left" valign="top"><p class="table">1.97</p></td>
@@ -1902,7 +1869,7 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.46</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">27</p></td>
+<td rowspan="13" align="center" valign="middle"><p class="table"><strong>Treatment: 3</strong></p></td>
 <td align="left" valign="top"><p class="table">3</p></td>
 <td align="left" valign="top"><p class="table">5.29</p></td>
 <td align="left" valign="top"><p class="table">0.77</p></td>
@@ -1911,8 +1878,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.87</p></td>
 </tr>
 <tr>
-<td rowspan="12" align="center" valign="middle"><p class="table"><strong>Treatment: 3</strong></p></td>
-<td align="left" valign="top"><p class="table">28</p></td>
 <td align="left" valign="top"><p class="table">10</p></td>
 <td align="left" valign="top"><p class="table">10.03</p></td>
 <td align="left" valign="top"><p class="table">6.45</p></td>
@@ -1921,7 +1886,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.69</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">29</p></td>
 <td align="left" valign="top"><p class="table">15</p></td>
 <td align="left" valign="top"><p class="table">3.96</p></td>
 <td align="left" valign="top"><p class="table">0.99</p></td>
@@ -1930,7 +1894,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.37</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">30</p></td>
 <td align="left" valign="top"><p class="table">16</p></td>
 <td align="left" valign="top"><p class="table">6.86</p></td>
 <td align="left" valign="top"><p class="table">2.70</p></td>
@@ -1939,7 +1902,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.56</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">31</p></td>
 <td align="left" valign="top"><p class="table">19</p></td>
 <td align="left" valign="top"><p class="table">8.74</p></td>
 <td align="left" valign="top"><p class="table">1.73</p></td>
@@ -1948,7 +1910,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.90</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">32</p></td>
 <td align="left" valign="top"><p class="table">31</p></td>
 <td align="left" valign="top"><p class="table">9.03</p></td>
 <td align="left" valign="top"><p class="table">0.65</p></td>
@@ -1957,7 +1918,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">5.13</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">33</p></td>
 <td align="left" valign="top"><p class="table">51</p></td>
 <td align="left" valign="top"><p class="table">10.22</p></td>
 <td align="left" valign="top"><p class="table">3.13</p></td>
@@ -1966,7 +1926,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.54</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">34</p></td>
 <td align="left" valign="top"><p class="table">52</p></td>
 <td align="left" valign="top"><p class="table">5.47</p></td>
 <td align="left" valign="top"><p class="table">0.86</p></td>
@@ -1975,7 +1934,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">2.66</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">35</p></td>
 <td align="left" valign="top"><p class="table">63</p></td>
 <td align="left" valign="top"><p class="table">8.06</p></td>
 <td align="left" valign="top"><p class="table">0.07</p></td>
@@ -1984,7 +1942,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.10</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">36</p></td>
 <td align="left" valign="top"><p class="table">78</p></td>
 <td align="left" valign="top"><p class="table">4.00</p></td>
 <td align="left" valign="top"><p class="table">0.70</p></td>
@@ -1993,7 +1950,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.52</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">37</p></td>
 <td align="left" valign="top"><p class="table">79</p></td>
 <td align="left" valign="top"><p class="table">7.73</p></td>
 <td align="left" valign="top"><p class="table">0.57</p></td>
@@ -2002,7 +1958,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.03</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">38</p></td>
 <td align="left" valign="top"><p class="table">86</p></td>
 <td align="left" valign="top"><p class="table">3.87</p></td>
 <td align="left" valign="top"><p class="table">1.63</p></td>
@@ -2011,7 +1966,6 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">3.03</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">39</p></td>
 <td align="left" valign="top"><p class="table">(all)</p></td>
 <td align="left" valign="top"><p class="table">6.97</p></td>
 <td align="left" valign="top"><p class="table">1.72</p></td>
@@ -2213,14 +2167,14 @@ Null Deviance:      10.58
 Residual Deviance: 5.129        AIC: 56.76
 &gt; ascii(glm.D93, caption = "glm.D93")
 .glm.D93
-|==================================================================
-1.1+|            h| Estimate h| Std. Error h| z value h| Pr(&gt;|z|)
+|======================================================================
+1.1+|            h| Estimate h| Std. Error h| z value h| Pr(&gt;\|z\|)
 | (Intercept)  | 3.04      | 0.17        | 17.81    | 0.00
 | outcome2     | -0.45     | 0.20        | -2.25    | 0.02
 | outcome3     | -0.29     | 0.19        | -1.52    | 0.13
 | treatment2   | 0.00      | 0.20        | 0.00     | 1.00
 | treatment3   | 0.00      | 0.20        | 0.00     | 1.00
-|==================================================================
+|======================================================================
 &gt; ascii(anova(glm.D93), caption = "anova glm.D93", include.rownames = T)
 .anova glm.D93
 |==============================================================
@@ -2236,22 +2190,18 @@ width="100%"
 frame="border"
 cellspacing="0" cellpadding="4">
 <caption class="title">Table 4. glm.D93</caption>
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
+<col width="20%" />
 <tbody>
 <tr>
 <td align="left" valign="top"><p class="table"></p></td>
 <td align="left" valign="top"><p class="table header">Estimate</p></td>
 <td align="left" valign="top"><p class="table header">Std. Error</p></td>
 <td align="left" valign="top"><p class="table header">z value</p></td>
-<td align="left" valign="top"><p class="table header">Pr(&gt;</p></td>
-<td align="left" valign="top"><p class="table">z</p></td>
-<td align="left" valign="top"><p class="table">)</p></td>
+<td align="left" valign="top"><p class="table header">Pr(&gt;|z|)</p></td>
 </tr>
 <tr>
 <td align="left" valign="top"><p class="table">(Intercept)</p></td>
@@ -2259,26 +2209,34 @@ cellspacing="0" cellpadding="4">
 <td align="left" valign="top"><p class="table">0.17</p></td>
 <td align="left" valign="top"><p class="table">17.81</p></td>
 <td align="left" valign="top"><p class="table">0.00</p></td>
-<td align="left" valign="top"><p class="table">outcome2</p></td>
-<td align="left" valign="top"><p class="table">-0.45</p></td>
 </tr>
 <tr>
+<td align="left" valign="top"><p class="table">outcome2</p></td>
+<td align="left" valign="top"><p class="table">-0.45</p></td>
 <td align="left" valign="top"><p class="table">0.20</p></td>
 <td align="left" valign="top"><p class="table">-2.25</p></td>
 <td align="left" valign="top"><p class="table">0.02</p></td>
+</tr>
+<tr>
 <td align="left" valign="top"><p class="table">outcome3</p></td>
 <td align="left" valign="top"><p class="table">-0.29</p></td>
 <td align="left" valign="top"><p class="table">0.19</p></td>
 <td align="left" valign="top"><p class="table">-1.52</p></td>
+<td align="left" valign="top"><p class="table">0.13</p></td>
 </tr>
 <tr>
-<td align="left" valign="top"><p class="table">0.13</p></td>
 <td align="left" valign="top"><p class="table">treatment2</p></td>
 <td align="left" valign="top"><p class="table">0.00</p></td>
 <td align="left" valign="top"><p class="table">0.20</p></td>
 <td align="left" valign="top"><p class="table">0.00</p></td>
 <td align="left" valign="top"><p class="table">1.00</p></td>
+</tr>
+<tr>
 <td align="left" valign="top"><p class="table">treatment3</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">0.20</p></td>
+<td align="left" valign="top"><p class="table">0.00</p></td>
+<td align="left" valign="top"><p class="table">1.00</p></td>
 </tr>
 </tbody>
 </table>
@@ -3124,7 +3082,7 @@ Derek H. Ogle has written <a href="http://www.ncfaculty.net/dogle/fishR/bookex/A
 <div id="footnotes"><hr /></div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2010-04-19 16:59:57 CEST
+Last updated 2010-04-19 17:16:05 CEST
 </div>
 </div>
 </body>
