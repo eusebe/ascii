@@ -9,7 +9,7 @@
 * +t/b/l/rstyle+ can be "h" (for "header")
 * +caption+, +caption.level+, +align+, +valign+, +style+, +frame+, +grid+ have +NULL+ default value
 
-2009/02/05
+2010/02/05
 ~~~~~~~~~~
 
 * textile support
