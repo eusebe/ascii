@@ -23,7 +23,7 @@ David Hajage, dhajage[at]gmail[dot]com
 ```
 > ascii(head(esoph))
 ```
-|| | agegp | alcgp     | tobgp    | ncases | ncontrols | age   
+||  | agegp | alcgp     | tobgp    | ncases | ncontrols | age   
 | 1 | 25-34 | 0-39g/day | 0-9g/day | 0.00   | 40.00     | 25-34 
 | 2 | 25-34 | 0-39g/day | 10-19    | 0.00   | 10.00     | 25-34 
 | 3 | 25-34 | 0-39g/day | 20-29    | 0.00   | 6.00      | 25-34 
