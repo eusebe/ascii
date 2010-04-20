@@ -109,13 +109,13 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   topleftcol <- 0 + include.rownames
   topleft <- ""
   if (topleftrow > 0 & topleftcol > 0)
-    topleft <- rep(paste(rep("| ", topleftcol), collapse = ""), topleftrow)
+    topleft <- rep(paste(rep("|  ", topleftcol), collapse = ""), topleftrow)
 
   bottomleftrow <- 0 + length(bgroup)
   bottomleftcol <- 0 + include.rownames
   bottomleft <- ""
   if (bottomleftrow > 0 & bottomleftcol > 0)
-    bottomleft <- rep(paste(rep("| ", bottomleftcol), collapse = ""), bottomleftrow)
+    bottomleft <- rep(paste(rep("|  ", bottomleftcol), collapse = ""), bottomleftrow)
   
   results[1:topleftrow] <- paste(topleft, results[1:topleftrow], sep = "")
   results[length(results):(min(c(length(results), length(results)-bottomleftrow+1)))] <- paste(bottomleft, results[length(results):(min(c(length(results), length(results)-bottomleftrow+1)))], sep = "")
