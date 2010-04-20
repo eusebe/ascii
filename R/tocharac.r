@@ -39,6 +39,7 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
   }
 
   xx <- safe.as.character(x)
+  xx[is.na(xx)] <- "NA"
   
   for (i in 1:ncol(xx)) {
     if (numerics[i]) {
