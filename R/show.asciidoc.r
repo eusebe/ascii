@@ -234,11 +234,10 @@ show.asciidoc.list <- function(x, caption = NULL, caption.level = NULL, list.typ
     tmp <- x[[i]]
     if (list.type == "label") tmp <- sub("^\t*", "", tmp)
     tmp <- sub("(^.*)", paste(mark[i], "\\1", sep = ""), gsub('\t|(*COMMIT)(*FAIL)', mark[i], tmp, perl = TRUE))
-    charac.x[i] <- sub(paste('(^', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
+    if (list.type != "none")
+      tmp <- sub(paste('(^', mark[i], '+)(.*)', sep = ""), '\\1 \\2', tmp)
+    charac.x[i] <- tmp
   }
   cat(header.asciidoc(caption = caption, caption.level = caption.level))
   cat(charac.x, sep = "\n")
 }
-
-include.rownames = FALSE; include.colnames = FALSE; rownames = NULL; colnames = NULL; format = "f"; digits = 2; decimal.mark = "."; na.print = ""; caption = NULL; caption.level = NULL; width = 0; frame = NULL; grid = NULL; valign = NULL; header = FALSE; footer = FALSE; align = NULL; col.width = 1; style = NULL; lgroup = NULL; n.lgroup = NULL; lalign = "c"; lvalign = "middle"; lstyle = "h"; rgroup = NULL; n.rgroup = NULL; ralign = "c"; rvalign = "middle"; rstyle = "h"; tgroup = NULL; n.tgroup = NULL; talign = "c"; tvalign = "middle"; tstyle = "h"; bgroup = NULL; n.bgroup = NULL; balign = "c"; bvalign = "middle"; bstyle = "h"
-x = VADeaths; include.rownames = T; include.colnames = T; header = T; align = c("l", "r", "r", "r", "r"); valign = "middle"
