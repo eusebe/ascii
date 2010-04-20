@@ -1846,7 +1846,7 @@ rowsep="1" colsep="1"
 | 88 | 0       | 4
 |========================
 
- 0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
+0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)
 
 *tobgp : Tobacco group*
 
@@ -1855,7 +1855,7 @@ rowsep="1" colsep="1"
 | 88 | 0       | 4
 |========================
 
- 0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
+0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)
 
 *ncases*
 
@@ -1877,7 +1877,7 @@ rowsep="1" colsep="1"
 | 88 | 0       | 30     | 11.08 | 1.0 | 1.0 | 3.0 | 6.0 | 14.0 | 29.1 | 40.0
 |=============================================================================
 
- lowest:  1  2  3  4  5, highest: 40 46 48 49 60
+lowest:  1  2  3  4  5, highest: 40 46 48 49 60
 
 *age : Age [Years]*
 
@@ -1992,7 +1992,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </informaltable>
-<literallayout class="monospaced">0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</literallayout>
+<simpara>0-39g/day (23, 26%), 40-79 (23, 26%), 80-119 (21, 24%), 120+ (21, 24%)</simpara>
 <simpara><emphasis role="strong">tobgp : Tobacco group</emphasis></simpara>
 <informaltable
 frame="all"
@@ -2016,7 +2016,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </informaltable>
-<literallayout class="monospaced">0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</literallayout>
+<simpara>0-9g/day (24, 27%), 10-19 (24, 27%), 20-29 (20, 23%), 30+ (20, 23%)</simpara>
 <simpara><emphasis role="strong">ncases</emphasis></simpara>
 <informaltable
 frame="all"
@@ -2170,7 +2170,7 @@ rowsep="1" colsep="1"
 </tbody>
 </tgroup>
 </informaltable>
-<literallayout class="monospaced">lowest:  1  2  3  4  5, highest: 40 46 48 49 60</literallayout>
+<simpara>lowest:  1  2  3  4  5, highest: 40 46 48 49 60</simpara>
 <simpara><emphasis role="strong">age : Age [Years]</emphasis></simpara>
 <informaltable
 frame="all"
