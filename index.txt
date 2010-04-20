@@ -189,7 +189,7 @@ matrix
 +     header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle", 
 +     align = c("l", "r", "r", "r", "r"), frame = "topbot")
 .VADeaths
-[frame="topbot"]
+[frame="topbot",cols="1,2,2,2,2"]
 |=================================================================================== 
 1.1+| >.^h| Rural Male >.^h| Rural Female >.^h| Urban Male >.^h| Urban Female 
 <.^| 50-54  >.^| 11.70       >.^| 8.70          >.^| 15.40       >.^| 8.40         
@@ -201,7 +201,7 @@ matrix
 ----
 
 .VADeaths
-[frame="topbot"]
+[frame="topbot",cols="1,2,2,2,2"]
 |=================================================================================== 
 1.1+| >.^h| Rural Male >.^h| Rural Female >.^h| Urban Male >.^h| Urban Female 
 <.^| 50-54  >.^| 11.70       >.^| 8.70          >.^| 15.40       >.^| 8.40         

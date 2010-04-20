@@ -911,7 +911,7 @@ rowsep="1" colsep="1"
 +     header = T, col.width = c(1, 2, 2, 2, 2, 2), valign = "middle",
 +     align = c("l", "r", "r", "r", "r"), frame = "topbot")
 .VADeaths
-[frame="topbot"]
+[frame="topbot",cols="1,2,2,2,2"]
 |===================================================================================
 1.1+| &gt;.^h| Rural Male &gt;.^h| Rural Female &gt;.^h| Urban Male &gt;.^h| Urban Female
 &lt;.^| 50-54  &gt;.^| 11.70       &gt;.^| 8.70          &gt;.^| 15.40       &gt;.^| 8.40
@@ -926,11 +926,11 @@ rowsep="1" colsep="1"
 >
 <title>VADeaths</title>
 <tgroup cols="5">
-<colspec colname="col_1" colwidth="20*"/>
-<colspec colname="col_2" colwidth="20*"/>
-<colspec colname="col_3" colwidth="20*"/>
-<colspec colname="col_4" colwidth="20*"/>
-<colspec colname="col_5" colwidth="20*"/>
+<colspec colname="col_1" colwidth="11*"/>
+<colspec colname="col_2" colwidth="22*"/>
+<colspec colname="col_3" colwidth="22*"/>
+<colspec colname="col_4" colwidth="22*"/>
+<colspec colname="col_5" colwidth="22*"/>
 <tbody>
 <row>
 <entry align="left" valign="top"><simpara></simpara></entry>
