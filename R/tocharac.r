@@ -47,7 +47,6 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
     }
     xx[,i] <- trim(xx[, i]) 
     xx[,i] <- sub("^NA$", na.print, xx[,i])
-    xx[,i] <- gsub("\\|", "\\\\|", xx[,i])
   }
   
   if (include.colnames) {
@@ -59,6 +58,8 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
     if (!include.colnames)
       xx <- cbind(rn, xx)
   }
+
+  xx <- gsub("\\|", "\\\\|", xx)
 
   names(xx) <- NULL
   rownames(xx) <- NULL
