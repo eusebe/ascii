@@ -105,12 +105,12 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   if (is.logical(header) & header)
     header <- 1
   if (header > 0) {
-    vsep[1:min(c(header, nrowx)),] <- "|_"
+    vsep[1:min(c(header, nrowx)), -ncol(vsep)] <- "|_."
   }
   if (is.logical(footer) & footer)
     footer <- 1
   if (footer > 0) {
-    vsep[nrow(x):(nrow(x)+1-min(c(footer, nrowx))),] <- "|_"
+    vsep[nrow(x):(nrow(x)+1-min(c(footer, nrowx))), -ncol(vsep)] <- "|_."
   }
   
   if (!is.null(align)) {
@@ -202,25 +202,25 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   topleftcol <- 0 + include.rownames + length(lgroup)
   topleft <- ""
   if (topleftrow > 0 & topleftcol > 0)
-    topleft <- paste("|/", topleftrow, "\\", topleftcol, ". |", sep = "")
+    topleft <- paste("|/", topleftrow, "\\", topleftcol, ". ", sep = "")
 
   bottomleftrow <- 0 + length(bgroup)
   bottomleftcol <- 0 + include.rownames + length(lgroup)
   bottomleft <- ""
   if (bottomleftrow > 0 & bottomleftcol > 0)
-    bottomleft <- paste("|/", bottomleftrow, "\\", bottomleftcol, ". |", sep = "")
+    bottomleft <- paste("|/", bottomleftrow, "\\", bottomleftcol, ". ", sep = "")
 
   toprightrow <- 0 + include.colnames + length(tgroup)
   toprightcol <- 0 + length(rgroup)
   topright <- ""
   if (toprightrow > 0 & toprightcol > 0)
-    topleft <- paste("|/", topleftrow, "\\", topleftcol, ". |", sep = "")
+    topright <- paste("/", toprightrow, "\\", toprightcol, ". |", sep = "")
 
   bottomrightrow <- 0 + length(bgroup)
   bottomrightcol <- 0 + length(rgroup)
   bottomright <- ""
   if (bottomrightrow > 0 & bottomrightcol > 0)
-    bottomright <- paste("|/", bottomrightrow, "\\", bottomrightcol, ". |", sep = "")
+    bottomright <- paste("/", bottomrightrow, "\\", bottomrightcol, ". |", sep = "")
 
   results[1] <- paste(topleft, results[1], sep = "")
   results[1] <- paste(results[1], topright, sep = "")
