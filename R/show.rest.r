@@ -264,8 +264,3 @@ show.rest.list <- function(x, caption = NULL, caption.level = NULL, list.type = 
   }
 }
 
-x; include.rownames = FALSE; include.colnames = FALSE; rownames = NULL; colnames = NULL; format = "f"; digits = 2; decimal.mark = "."; na.print = ""; caption = NULL; caption.level = NULL; width = 0; frame = NULL; grid = NULL; valign = NULL; header = FALSE; footer = FALSE; align = NULL; col.width = 1; style = NULL; lgroup = NULL; n.lgroup = NULL; lalign = "c"; lvalign = "middle"; lstyle = "h"; rgroup = NULL; n.rgroup = NULL; ralign = "c"; rvalign = "middle"; rstyle = "h"; tgroup = NULL; n.tgroup = NULL; talign = "c"; tvalign = "middle"; tstyle = "h"; bgroup = NULL; n.bgroup = NULL; balign = "c"; bvalign = "middle"; bstyle = "h"
-
-x = head(esoph)
-lgroup = list("toto", "tata")
-
