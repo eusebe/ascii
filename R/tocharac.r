@@ -12,6 +12,10 @@ safe.as.character <- function(x) {
   x
 }
 
+safe.as.numeric <- function(x) {
+  
+}
+
 trim <- function (x) {
   x <- sub("^ +", "", x)
   x <- sub(" +$", "", x)
@@ -39,15 +43,15 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
   }
 
   xx <- safe.as.character(x)
-  xx[is.na(xx)] <- "NA"
   
   for (i in 1:ncol(xx)) {
     if (numerics[i]) {
       xx[,i] <- apply(as.matrix(as.numeric(xx[,i])), 2, Vectorize(formatC), digits = digits[,i], format = format[,i], decimal.mark = decimal.mark)
     }
     xx[,i] <- trim(xx[, i]) 
-    xx[,i] <- sub("^NA$", na.print, xx[,i])
   }
+  xx[is.na(xx)] <- na.print
+  xx[xx == "NA"] <- na.print
   
   if (include.colnames) {
     xx <- rbind(cn, xx)
