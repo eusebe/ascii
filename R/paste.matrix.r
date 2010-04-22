@@ -2,8 +2,11 @@
 safe.apply <- function(X, MARGIN, FUN, ...) {
   dimx <- dim(X)
   results <- apply(X, MARGIN, FUN, ...)
-  if (!is.null(dimx))
+  if (!is.null(dimx)) {
+    if (is.vector(x))
+      x <- t(x)
     dim(results) <- dimx
+  }
   results
 }
 
@@ -16,9 +19,9 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
   } else if (nrow(x) == 0 | ncol(x) == 0) {
     if (!is.null(what)) {
       xx <- matrix(what, nrow, ncol)
-  } else {
-    xx <- matrix(nrow = nrow, ncol = ncol)
-  }
+    } else {
+      xx <- matrix(nrow = nrow, ncol = ncol)
+    }
   } else if (nrow(x) > nrow & ncol(x) > ncol) {
     xx <- x[1:nrow, 1:ncol]
   } else if (!is.null(what)) {
@@ -26,9 +29,11 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
     minncol <- min(c(ncol(x), ncol))
     xx <- matrix(nrow = nrow, ncol = ncol)
     xx[1:minnrow, 1:minncol] <- x[1:minnrow, 1:minncol]
-    xx[is.na(xx)] <- what
+    xx[is.na(xx)] <- what  
   } else {
     xx <- apply(t(apply(x, 1, rep, length = ncol)), 2, rep, length = nrow)
+    if (nrow(x) > 1 & ncol(x) == 1 & ncol == 1)
+      xx <- xx[1, ]
   }
   if (!drop) {
     dim(xx) <- c(nrow, ncol)
