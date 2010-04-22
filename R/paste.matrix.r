@@ -1,15 +1,3 @@
-# apply that preserves all dim of x...
-safe.apply <- function(X, MARGIN, FUN, ...) {
-  dimx <- dim(X)
-  results <- apply(X, MARGIN, FUN, ...)
-  if (!is.null(dimx)) {
-    if (is.vector(x))
-      x <- t(x)
-    dim(results) <- dimx
-  }
-  results
-}
-
 expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
   if (is.vector(x))
     x <- t(x)

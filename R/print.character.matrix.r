@@ -66,6 +66,8 @@ print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep =
   if (line_separator) {
     hseps <- expand(hsep, nrowx+1, ncolx)
     hseps <- t(apply(hseps, 1, function(x) Vectorize(rep.char, c("x", "times"))(x, nchartotmax)))
+    if (ncolx == 1)
+      hseps <- t(hseps)
     cseps <- expand(csep, nrowx+1, ncolx+1)
     row_lines <- paste.matrix(interleave.matrix(cseps, hseps, byrow = FALSE), collapse = "", byrow = FALSE)
     
