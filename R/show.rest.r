@@ -155,17 +155,17 @@ show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALS
     topleft[, 1] <- "|"
     vsep[1:nrow(topleft), 1:ncol(topleft)] <- topleft
   }
-  if (length(lgroup)+length(bgroup) > 1) {
+  if ((length(lgroup)+include.rownames >=1) & (length(bgroup) >= 1)) {
     bottomleft <- matrix(" ", length(bgroup), length(lgroup)+include.rownames)
     bottomleft[, 1] <- "|"
     vsep[(nrow(vsep)-length(bgroup)+1):(nrow(vsep)), 1:ncol(bottomleft)] <- bottomleft
   }
-  if ((length(rgroup)>=1)&(include.colnames+length(tgroup)>= 1)) {
+  if ((length(rgroup) >= 1) & (include.colnames+length(tgroup) >= 1)) {
     topright <- matrix(" ", length(tgroup)+include.colnames, length(rgroup))
     topright[, ncol(topright)] <- "|"
     vsep[1:nrow(topright), (ncol(vsep)-length(rgroup)+1):ncol(vsep)] <- topright
   }
-  if (length(rgroup)+length(bgroup) > 1) {
+  if ((length(rgroup) >=1 ) & (length(bgroup) >= 1)) {
     bottomright <- matrix(" ", length(bgroup), length(rgroup))
     bottomright[, ncol(bottomright)] <- "|"
     vsep[(nrow(vsep)-nrow(bottomright)+1):nrow(vsep), (ncol(vsep)-length(rgroup)+1):ncol(vsep)] <- bottomright
@@ -183,17 +183,17 @@ show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALS
     topleft[1, ] <- "-"
     hsep[1:nrow(topleft), 1:ncol(topleft)] <- topleft
   }
-  if (length(lgroup)+length(bgroup) > 1) {
+  if ((length(lgroup)+include.rownames >= 1)&(length(bgroup) >= 1)) {
     bottomleft <- matrix(" ", length(bgroup), length(lgroup)+include.rownames)
     bottomleft[nrow(bottomleft), ] <- "-"
     hsep[(nrow(hsep)-length(bgroup)+1):(nrow(hsep)), 1:ncol(bottomleft)] <- bottomleft
   }
-  if ((length(rgroup)>=1)&(include.colnames+length(tgroup)>= 1)) {
+  if ((length(rgroup) >= 1) & (include.colnames+length(tgroup) >= 1)) {
     topright <- matrix(" ", length(tgroup)+include.colnames, length(rgroup))
     topright[1, ] <- "-"
     hsep[1:nrow(topright), (ncol(hsep)-length(rgroup)+1):ncol(hsep)] <- topright
   }
-  if (length(rgroup)+length(bgroup) > 1) {
+  if ((length(rgroup) >= 1) & (length(bgroup) >= 1)) {
     bottomright <- matrix(" ", length(bgroup), length(rgroup))
     bottomright[nrow(bottomright), ] <- "-"
     hsep[(nrow(hsep)-nrow(bottomright)+1):nrow(hsep), (ncol(hsep)-length(rgroup)+1):ncol(hsep)] <- bottomright
@@ -206,19 +206,19 @@ show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALS
     topleft[, 1] <- "+"
     csep[1:nrow(topleft), 1:ncol(topleft)] <- topleft
   }
-  if (length(lgroup)+length(bgroup) > 1) {
+  if ((length(lgroup)+include.rownames >=1) & (length(bgroup) >= 1)) {
     bottomleft <- matrix(" ", length(bgroup), length(lgroup)+include.rownames)
     bottomleft[nrow(bottomleft), ] <- "+"
     bottomleft[, 1] <- "+"
     csep[(nrow(csep)-length(bgroup)+1):(nrow(csep)), 1:ncol(bottomleft)] <- bottomleft
   }
-  if ((length(rgroup)>=1)&(include.colnames+length(tgroup)>= 1)) {
+  if ((length(rgroup) >= 1) & (include.colnames+length(tgroup) >= 1)) {
     topright <- matrix(" ", length(tgroup)+include.colnames, length(rgroup))
     topright[1, ] <- "+"
     topright[, ncol(topright)] <- "+"
     csep[1:nrow(topright), (ncol(csep)-length(rgroup)+1):ncol(csep)] <- topright
   }
-  if (length(rgroup)+length(bgroup) > 1) {
+  if ((length(rgroup) >= 1) & (length(bgroup) >= 1)) {
     bottomright <- matrix(" ", length(bgroup), length(rgroup))
     bottomright[nrow(bottomright), ] <- "+"
     bottomright[, ncol(bottomright)] <- "+"
@@ -263,3 +263,9 @@ show.rest.list <- function(x, caption = NULL, caption.level = NULL, list.type = 
       cat("\n")
   }
 }
+
+x; include.rownames = FALSE; include.colnames = FALSE; rownames = NULL; colnames = NULL; format = "f"; digits = 2; decimal.mark = "."; na.print = ""; caption = NULL; caption.level = NULL; width = 0; frame = NULL; grid = NULL; valign = NULL; header = FALSE; footer = FALSE; align = NULL; col.width = 1; style = NULL; lgroup = NULL; n.lgroup = NULL; lalign = "c"; lvalign = "middle"; lstyle = "h"; rgroup = NULL; n.rgroup = NULL; ralign = "c"; rvalign = "middle"; rstyle = "h"; tgroup = NULL; n.tgroup = NULL; talign = "c"; tvalign = "middle"; tstyle = "h"; bgroup = NULL; n.bgroup = NULL; balign = "c"; bvalign = "middle"; bstyle = "h"
+
+x = head(esoph)
+lgroup = list("toto", "tata")
+
