@@ -22,6 +22,18 @@ trim <- function (x) {
   x
 }
 
+formatCustom <- function(x, format = "nice", digits = 2, ...) {
+  if (format != "nice") {
+    formatC(x, format = format, ...)
+  } else {
+    if (as.integer(x) != x) {
+      formatC(x, format = "f", digits = digits, ...)
+    } else {
+      formatC(x, format = "f", digits = 0, ...)
+    }
+  }
+}
+
 tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "") {
   if (is.factor(x))
     x <- as.character(x)
@@ -46,7 +58,7 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
   
   for (i in 1:ncol(xx)) {
     if (numerics[i]) {
-      xx[,i] <- apply(as.matrix(as.numeric(xx[,i])), 2, Vectorize(formatC), digits = digits[,i], format = format[,i], decimal.mark = decimal.mark)
+      xx[,i] <- apply(as.matrix(as.numeric(xx[,i])), 2, Vectorize(formatCustom), digits = digits[,i], format = format[,i], decimal.mark = decimal.mark)
     }
     xx[,i] <- trim(xx[, i]) 
   }
