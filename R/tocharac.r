@@ -66,6 +66,7 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
   }
   xx[is.na(xx)] <- na.print
   xx[xx == "NA"] <- na.print
+  xx[xx == "NaN"] <- na.print
   
   if (include.colnames) {
     xx <- rbind(cn, xx)
