@@ -23,15 +23,17 @@ trim <- function (x) {
 }
 
 formatCustom <- function(x, format = "nice", digits = 2, ...) {
-  if (format != "nice") {
-    formatC(x, format = format, ...)
-  } else {
-    if (as.integer(x) != x) {
-      formatC(x, format = "f", digits = digits, ...)
+  sapply(x, function(x) {
+    if (format != "nice") {
+      formatC(x, format = format, ...)
     } else {
-      formatC(x, format = "f", digits = 0, ...)
+      if (as.integer(x) != x | is.na(x)) {
+        formatC(x, format = "f", digits = digits, ...)
+      } else {
+        formatC(x, format = "f", digits = 0, ...)
+      }
     }
-  }
+  })
 }
 
 tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "") {

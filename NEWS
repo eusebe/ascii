@@ -8,6 +8,7 @@
 * +header+ and +footer+ accept an integer (number of lines for the header)
 * +t/b/l/rstyle+ can be "h" (for "header")
 * +caption+, +caption.level+, +align+, +valign+, +style+, +frame+, +grid+ have +NULL+ default value
+* +'nice'+ format: 0 digits if integer
 
 2010/02/05
 ~~~~~~~~~~

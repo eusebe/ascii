@@ -101,7 +101,9 @@
                 \code{"g"} and \code{"G"} put \code{x[i]} into scientific format only if it saves
                 space to do so.  \code{"fg"} uses fixed format as \code{"f"}, but \code{digits} as
                 number of \emph{significant} digits.  Note that this can lead to
-                quite long result strings.  Default depends on the class of \code{x}.}
+                quite long result strings. Finaly, \code{"nice"} is like
+		\code{"f"}, but with 0 digits if \code{x} is an
+		integer. Default depends on the class of \code{x}.}
   \item{digits}{Numeric vector of length equal to the number of columns of the resulting table 
                 (otherwise it will be replicated or truncated as necessary)
                 indicating the number of digits to display in the corresponding columns.
