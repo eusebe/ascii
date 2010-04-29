@@ -60,14 +60,56 @@ asciiCbind <- proto(expr = {
   }
 
   show.org <- function(.) {
+    xx <- .$x
+    yy <- .$y
+    
+    xx$caption <- NULL
+    yy$caption <- NULL
+    xx$caption.level <- NULL
+    yy$caption.level <- NULL
 
+    xxx <- capture.output(xx$show.org())
+    yyy <- capture.output(yy$show.org())
+    xxx <- sub("\\|$", "", xxx)
+    yyy <- sub("^(\\|)(-+)", "\\+\\2", yyy)
+    
+    cat(header.org(caption = .$caption, caption.level = .$caption.level), sep = "\n")
+    cat(paste(xxx, yyy, sep = ""), sep = "\n")    
   }
 
   show.t2t <- function(.) {
+    xx <- .$x
+    yy <- .$y
+    
+    xx$caption <- NULL
+    yy$caption <- NULL
+    xx$caption.level <- NULL
+    yy$caption.level <- NULL
+    xx$frame <- TRUE
+    
+    xxx <- capture.output(xx$show.t2t())
+    yyy <- capture.output(yy$show.t2t())
 
+    yyy <- sub("^\\|+", "", yyy)
+    cat(header.t2t(caption = .$caption, caption.level = .$caption.level))
+    cat(paste(xxx, yyy, sep = ""), sep = "\n")
   }
 
   show.textile <- function(.) {
+    xx <- .$x
+    yy <- .$y
+    
+    xx$caption <- NULL
+    yy$caption <- NULL
+    xx$frame <- NULL
+    yy$frame <- NULL
+    xx$width <- 0
+    yy$width <- 0
 
+    xxx <- capture.output(xx$show.textile())
+    yyy <- capture.output(yy$show.textile())
+    xxx <- sub("\\|$", "", xxx)
+    cat(header.textile(caption = .$caption, caption.level = .$caption.level, frame = .$frame, width = .$width))
+    cat(paste(xxx, yyy, sep = ""), sep = "\n")
   }
 })
