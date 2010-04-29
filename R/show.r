@@ -182,6 +182,7 @@ asciiMixed <- proto(expr = {
       if (i != length(args)) cat("\n") 
     }
   }
+
   show.textile <- function(.) {
     args <- rev(as.list(.))
     for (i in seq_along(args)) {
