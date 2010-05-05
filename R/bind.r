@@ -1,3 +1,5 @@
+require(proto)
+
 asciiCbind <- proto(expr = {
   new <- function(.,
     x,
