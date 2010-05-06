@@ -15,6 +15,7 @@ header.t2t <- function(caption = NULL, caption.level = "") {
 
 # beautify for t2t
 beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
+  x[is.na(x)] <- "NA"
   if (beauti == "s") {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*\\*.*\\*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
     if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\*\\2", x[!y]))

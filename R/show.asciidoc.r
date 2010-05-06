@@ -22,6 +22,7 @@ vsep.asciidoc <- function (align = NULL, valign = NULL, style = NULL) {
 }
 
 beauty.asciidoc <- function(x, beauti = c("e", "m", "s")) {
+  x[is.na(x)] <- "NA"
   if (beauti == "s") {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*.*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
     if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\2", x[!y]))
