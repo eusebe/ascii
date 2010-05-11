@@ -78,8 +78,6 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
       xx <- cbind(rn, xx)
   }
 
-  xx <- gsub("\\|", "\\\\|", xx)
-
   names(xx) <- NULL
   rownames(xx) <- NULL
   colnames(xx) <- NULL

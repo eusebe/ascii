@@ -90,8 +90,7 @@
   \item{colnames}{Character vector (replicated or truncated as
     necessary) indicating colnames of the corresponding columns. If
     \code{NULL} (default) the column names are not modified}
-  \item{format}{Character vector of length equal to the number of columns of the resulting table 
-                (otherwise it will be replicated or truncated as necessary)
+  \item{format}{Character vector or matrix
                 indicating the format for the corresponding columns.
                 These values are passed to the \code{formatC} function.  Use \code{"d"} (for integers),
                 \code{"f"}, \code{"e"}, \code{"E"}, \code{"g"}, \code{"G"}, \code{"fg"} (for
@@ -118,7 +117,6 @@
                        in asciidoc markup), \code{"s"} (strong), \code{"e"} (emphasis), \code{"m"} (monospaced)
                        or \code{""} (no markup).
                        Default is NULL.}
-
   \item{width}{Numeric vector of length one containing the table width
                relative to the available width (expressed as a percentage value, \code{1}\dots \code{99}).
                Default is \code{0} (all available width).}
