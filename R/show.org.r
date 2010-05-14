@@ -41,7 +41,7 @@ header.org <- function(caption = NULL, caption.level = NULL) {
 }
 
 escape.org <- function(x) {
-  xx <- gsub("\\|", " \\vert ", x)
+  xx <- gsub("\\|", " \\\\vert ", x)
   xx
 }
 
