@@ -12,10 +12,6 @@ safe.as.character <- function(x) {
   x
 }
 
-safe.as.numeric <- function(x) {
-  
-}
-
 trim <- function (x) {
   x <- sub("^ +", "", x)
   x <- sub(" +$", "", x)
@@ -25,7 +21,7 @@ trim <- function (x) {
 formatCustom <- function(x, format = "nice", digits = 2, ...) {
   sapply(x, function(x) {
     if (format != "nice") {
-      formatC(x, format = format, ...)
+      formatC(x, format = format, digits = digits, ...)
     } else {
       if (as.integer(x) != x | is.na(x)) {
         formatC(x, format = "f", digits = digits, ...)
