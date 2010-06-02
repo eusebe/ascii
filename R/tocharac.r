@@ -1,15 +1,14 @@
 safe.as.character <- function(x) {
   # preserves dim of x
+  xx <-  sapply(as.data.frame(x, stringAsFactor = FALSE, check.names = FALSE), as.character)
   if (is.null(dim(x))) {
-    x <- as.character(x)
+    dim(xx) <- NULL
   } else if (nrow(x) == 1) {
-    x <- t(as.character(x))
+    xx <- t(xx)
   } else if (ncol(x) == 1) {
-    x <- t(t(as.character(x)))
-  } else {
-    x <-  sapply(as.data.frame(x, stringAsFactor = FALSE, check.names = FALSE), as.character)
+    x <- t(t(xx))
   }
-  x
+  xx
 }
 
 trim <- function (x) {

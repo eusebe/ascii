@@ -1,14 +1,19 @@
-2009/05/19
+2010/06/02
+~~~~~~~~~~
+
+* Fix bug with one row table and factors
+
+2010/05/19
 ~~~~~~~~~~
 
 * Fix digits
 
-2009/05/14
+2010/05/14
 ~~~~~~~~~~
 
 * Fix bug in org export: +\vert+ replace +\|+
 
-2009/04/20
+2010/04/20
 ~~~~~~~~~~
 
 * main functions rewritten: it should be easier to add new markup
