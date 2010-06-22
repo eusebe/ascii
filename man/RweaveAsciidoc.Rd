@@ -26,11 +26,15 @@
   \code{res} for the resolution of jpg or png figure (if produced),  
   \code{ext} (extension) for the format of figure that will be inserted, and
   \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png and jpg figures.
-  
+
+  In addition, \code{cache} option from \code{cacheSweave} package is
+  also available.
+
+  A wrapper for \code{Sweave} can be used, named \code{Asciidoc}.
 }
 
 
-\seealso{ \code{\link[utils]{Sweave}}}
+\seealso{ \code{\link[utils]{Sweave}}, \code{\link[ascii]{Asciidoc}}}
 \examples{
 
   \dontrun{
