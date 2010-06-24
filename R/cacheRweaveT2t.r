@@ -1,21 +1,22 @@
-RweaveAsciidoc <- function()
+cacheRweaveT2t <- function()
 {
-    list(setup = RweaveAsciidocSetup,
-         runcode = RweaveAsciidocRuncode,
-         writedoc = RweaveAsciidocWritedoc,
-         finish = RweaveAsciidocFinish,
-         checkopts = RweaveAsciidocOptions)
+    require(cacheSweave)
+    list(setup = cacheRweaveT2tSetup,
+         runcode = cacheRweaveT2tRuncode,
+         writedoc = RweaveT2tWritedoc,
+         finish = RweaveT2tFinish,
+         checkopts = RweaveT2tOptions)
 }
 
-RweaveAsciidocSetup <-
+cacheRweaveT2tSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
 {
     dots <- list(...)
     if(is.null(output)) {
         prefix.string <- basename(sub(syntax$extension, "", file))
-        output <- paste(prefix.string, "txt", sep=".")
-    } else prefix.string <- basename(sub("\\.txt$", "", output))
+        output <- paste(prefix.string, "t2t", sep=".")
+    } else prefix.string <- basename(sub("\\.t2t$", "", output))
 
     if(!quiet) cat("Writing to file ", output, "\n",
                    "Processing code chunks ...\n", sep="")
@@ -29,11 +30,11 @@ RweaveAsciidocSetup <-
                     split=FALSE, strip.white="true", include=TRUE,
                     pdf.version=grDevices::pdf.options()$version,
                     pdf.encoding=grDevices::pdf.options()$encoding,
-                    concordance=FALSE, expand=TRUE)
+                    concordance=FALSE, expand=TRUE, cache = FALSE)
     options[names(dots)] <- dots
 
     ## to be on the safe side: see if defaults pass the check
-    options <- RweaveAsciidocOptions(options)
+    options <- RweaveT2tOptions(options)
 
     list(output=output, 
          debug=debug, quiet=quiet, syntax = syntax,
@@ -41,12 +42,12 @@ RweaveAsciidocSetup <-
          srcfile=srcfile(file))
 }
 
-makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
+makeCacheRweaveT2tCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
     ## of an Sweave driver.  evalFunc will be used for the
     ## actual evaluation of chunk code.
-    RweaveAsciidocRuncode <- function(object, chunk, options)
+    RweaveT2tRuncode <- function(object, chunk, options)
       {
           if(!(options$engine %in% c("R", "S"))){
               return(object)
@@ -78,7 +79,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               ## [x][[1L]] avoids partial matching of x
               chunkout <- object$chunkout[chunkprefix][[1L]]
               if(is.null(chunkout)){
-                  chunkout <- file(paste(chunkprefix, "txt", sep="."), "w")
+                  chunkout <- file(paste(chunkprefix, "t2t", sep="."), "w")
                   if(!is.null(options$label))
                     object$chunkout[[chunkprefix]] <- chunkout
               }
@@ -93,7 +94,9 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 
           chunkexps <- try(parse(text=chunk), silent=TRUE)
           RweaveTryStop(chunkexps, options)
-
+          ## Additions here [RDP] (from cacheSweave package)
+          options$chunkDigest <- cacheSweave:::hashExpr(parse(text = chunk, srcfile = NULL))
+          
           openSinput <- FALSE
           openSchunk <- FALSE
 
@@ -140,7 +143,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 if(options$echo && length(dce)){
                     if(!openSinput){
                         if(!openSchunk){
-                            cat("----\n",
+                            cat("```\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1] <- srcline
                             thisline <- thisline + 1
@@ -164,7 +167,11 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 tmpcon <- file()
                 sink(file=tmpcon)
                 err <- NULL
-                if(options$eval) err <- evalFunc(ce, options)
+                ## if(options$eval) err <- evalFunc(ce, options)
+
+                ## [RDP] change this line to use my EvalWithOpt function (from cacheSweave package)
+                if(options$eval) err <- cacheSweave:::cacheSweaveEvalWithOpt(ce, options)
+                ## [RDP] end change
 
                 cat("") # make sure final line is complete
                 sink()
@@ -191,7 +198,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                     }
                     if(options$results=="verbatim"){
                         if(!openSchunk){
-                            cat("----\n",
+                            cat("```\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1L] <- srcline
                             thisline <- thisline + 1L
@@ -211,7 +218,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                             openSchunk <- TRUE
                         }
                         if(openSchunk){
-                            cat("----\n",
+                            cat("```\n",
                                 file=chunkout, append=TRUE)
                             linesout[thisline + 1L] <- srcline
                             thisline <- thisline + 1L
@@ -226,7 +233,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                         if(options$strip.white=="all")
                           output <- sub("\n[[:space:]]*\n", "\n", output)
                     }
-                    cat(output,addabreak, file=chunkout, append=TRUE)
+                    cat(output,addabreak, addabreak, file=chunkout, append=TRUE)
                     count <- sum(strsplit(output, NULL)[[1L]] == "\n")
                     if (count > 0L) {
                         linesout[thisline + 1L:count] <- srcline
@@ -250,16 +257,16 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           }
 
           if(openSchunk){
-              cat("----\n", file=chunkout, append=TRUE)
+              cat("```\n", file=chunkout, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
           }
 
           if(is.null(options$label) & options$split)
-             close(chunkout)
+            close(chunkout)
 
           if(options$split & options$include){
-              cat("include::", chunkprefix, ".txt[]\n", sep="",
+              cat("%!include: ", chunkprefix, ".t2t\n", sep="",
                 file=object$output, append=TRUE)
               linesout[thisline + 1L] <- srcline
               thisline <- thisline + 1L
@@ -305,7 +312,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat("image::", chunkprefix, ".", options$ext, "[]\n", sep="",
+                  cat("[", chunkprefix, ".", options$ext, "]\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L
@@ -314,286 +321,7 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
           object$linesout <- c(object$linesout, linesout)
           return(object)
       }
-    RweaveAsciidocRuncode
+    RweaveT2tRuncode
 }
 
-RweaveAsciidocRuncode <- makeRweaveAsciidocCodeRunner()
-
-RweaveAsciidocWritedoc <- function(object, chunk)
-{
-    linesout <- attr(chunk, "srclines")
-
-    while(length(pos <- grep(object$syntax$docexpr, chunk)))
-    {
-        cmdloc <- regexpr(object$syntax$docexpr, chunk[pos[1L]])
-        cmd <- substr(chunk[pos[1L]], cmdloc,
-                      cmdloc+attr(cmdloc, "match.length")-1L)
-        cmd <- sub(object$syntax$docexpr, "\\1", cmd)
-        if(object$options$eval){
-            val <- as.character(eval(parse(text=cmd), envir=.GlobalEnv))
-            ## protect against character(0L), because sub() will fail
-            if(length(val) == 0L) val <- ""
-        }
-        else
-            val <- paste("\\\\verb{<<", cmd, ">>{", sep="") # Mais qu'est-ce ??
-
-        chunk[pos[1L]] <- sub(object$syntax$docexpr, val, chunk[pos[1L]])
-    }
-    while(length(pos <- grep(object$syntax$docopt, chunk)))
-    {
-        opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
-                    "\\1", chunk[pos[1L]])
-        object$options <- utils:::SweaveParseOptions(opts, object$options,
-                                             RweaveAsciidocOptions)
-            chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
-    }
-
-    cat(chunk, sep="\n", file=object$output, append=TRUE)
-    object$linesout <- c(object$linesout, linesout)
-
-    return(object)
-}
-
-RweaveAsciidocFinish <- function(object, error=FALSE)
-{
-    outputname <- summary(object$output)$description
-    inputname <- object$srcfile$filename
-    if(!object$quiet && !error)
-        cat("\n",
-            gettextf("You can now run asciidoc on '%s'", outputname),
-            "\n", sep = "")
-    close(object$output)
-    if(length(object$chunkout))
-        for(con in object$chunkout) close(con)
-#    if (object$haveconcordance) {
-        # This output format is subject to change.  Currently it contains
-        # three parts, separated by colons:
-        # 1.  The output .tex filename
-        # 2.  The input .Rnw filename
-        # 3.  The input line numbers corresponding to each output line.
-        #     This are compressed using the following simple scheme:
-        #     The first line number, followed by
-        #     a run-length encoded diff of the rest of the line numbers.
-#        linesout <- object$linesout
-#        vals <- rle(diff(linesout))
-#        vals <- c(linesout[1L], as.numeric(rbind(vals$lengths, vals$values)))
-#        concordance <- paste(strwrap(paste(vals, collapse=" ")), collapse=" %\n")
-#        special <- paste("\\Sconcordance{concordance:", outputname, ":", inputname, ":%\n",
-#                 concordance,"}\n", sep="")
-#        cat(special, file=object$concordfile)
-#    }
-    invisible(outputname)
-}
-
-RweaveAsciidocOptions <- function(options)
-{
-
-    ## ATTENTION: Changes in this function have to be reflected in the
-    ## defaults in the init function!
-
-    ## convert a character string to logical
-    c2l <- function(x){
-        if(is.null(x)) return(FALSE)
-        else return(as.logical(toupper(as.character(x))))
-    }
-
-    NUMOPTS <- c("width", "height", "res")
-    NOLOGOPTS <- c(NUMOPTS, "ext", "results", "prefix.string",
-                   "engine", "label", "strip.white",
-                   "pdf.version", "pdf.encoding", "pointsize")
-
-    for(opt in names(options)){
-        if(! (opt %in% NOLOGOPTS)){
-            oldval <- options[[opt]]
-            if(!is.logical(options[[opt]])){
-                options[[opt]] <- c2l(options[[opt]])
-            }
-            if(is.na(options[[opt]]))
-                stop(gettextf("invalid value for '%s' : %s", opt, oldval),
-                     domain = NA)
-        }
-        else if(opt %in% NUMOPTS){
-            options[[opt]] <- as.numeric(options[[opt]])
-        }
-    }
-
-    if(!is.null(options$results))
-        options$results <- tolower(as.character(options$results))
-    options$results <- match.arg(options$results,
-                                 c("verbatim", "ascii", "hide"))
-
-    if(!is.null(options$strip.white))
-        options$strip.white <- tolower(as.character(options$strip.white))
-    options$strip.white <- match.arg(options$strip.white,
-                                     c("true", "false", "all"))
-
-    options
-}
-
-
-RweaveChunkPrefix <- function(options)
-{
-    if(!is.null(options$label)){
-        if(options$prefix)
-            chunkprefix <- paste(options$prefix.string, "-",
-                                 options$label, sep="")
-        else
-            chunkprefix <- options$label
-    }
-    else
-        chunkprefix <- paste(options$prefix.string, "-",
-                             formatC(options$chunknr, flag="0", width=3),
-                             sep="")
-
-    return(chunkprefix)
-}
-
-RweaveEvalWithOpt <- function (expr, options){
-    if(options$eval){
-        res <- try(.Internal(eval.with.vis(expr, .GlobalEnv, baseenv())),
-                   silent=TRUE)
-        if(inherits(res, "try-error")) return(res)
-        if(options$print | (options$term & res$visible))
-            print(res$value)
-    }
-    return(res)
-}
-
-
-RweaveTryStop <- function(err, options){
-
-    if(inherits(err, "try-error")){
-        cat("\n")
-        msg <- paste(" chunk", options$chunknr)
-        if(!is.null(options$label))
-            msg <- paste(msg, " (label=", options$label, ")", sep="")
-        msg <- paste(msg, "\n")
-        stop(msg, err, call.=FALSE)
-    }
-}
-
-
-
-
-
-###**********************************************************
-
-Stangle <- function(file, driver=Rtangle(),
-                    syntax=getOption("SweaveSyntax"), ...)
-{
-    Sweave(file=file, driver=driver, ...)
-}
-
-RtangleAsciidoc <-  function()
-{
-    list(setup = RtangleAsciidocSetup,
-         runcode = RtangleAsciidocRuncode,
-         writedoc = RtangleAsciidocWritedoc,
-         finish = RtangleAsciidocFinish,
-         checkopts = RweaveAsciidocOptions)
-}
-
-
-RtangleAsciidocSetup <- function(file, syntax,
-                         output=NULL, annotate=TRUE, split=FALSE,
-                         prefix=TRUE, quiet=FALSE)
-{
-    if(is.null(output)){
-        prefix.string <- basename(sub(syntax$extension, "", file))
-        output <- paste(prefix.string, "R", sep=".")
-    }
-    else{
-        prefix.string <- basename(sub("\\.[rsRS]$", "", output))
-    }
-
-    if(!split){
-        if(!quiet)
-            cat("Writing to file", output, "\n")
-        output <- file(output, open="w")
-    }
-    else{
-        if(!quiet)
-            cat("Writing chunks to files ...\n")
-        output <- NULL
-    }
-
-    options <- list(split=split, prefix=prefix,
-                    prefix.string=prefix.string,
-                    engine="R", eval=TRUE)
-
-    list(output=output, annotate=annotate, options=options,
-         chunkout=list(), quiet=quiet, syntax=syntax)
-}
-
-
-RtangleAsciidocRuncode <-  function(object, chunk, options)
-{
-    if(!(options$engine %in% c("R", "S"))){
-        return(object)
-    }
-
-    chunkprefix <- RweaveChunkPrefix(options)
-
-    if(options$split){
-        outfile <- paste(chunkprefix, options$engine, sep=".")
-        if(!object$quiet)
-            cat(options$chunknr, ":", outfile,"\n")
-        ## [x][[1L]] avoids partial matching of x
-        chunkout <- object$chunkout[chunkprefix][[1L]]
-        if(is.null(chunkout)){
-            chunkout <- file(outfile, "w")
-            if(!is.null(options$label))
-                object$chunkout[[chunkprefix]] <- chunkout
-        }
-    }
-    else
-        chunkout <- object$output
-
-    if(object$annotate){
-        cat("###################################################\n",
-            "### chunk number ", options$chunknr,
-            ": ", options$label,
-            ifelse(options$eval, "", " eval=FALSE"), "\n",
-            "###################################################\n",
-            file=chunkout, append=TRUE, sep="")
-    }
-
-    hooks <- SweaveHooks(options, run=FALSE)
-    for(k in hooks)
-        cat("getOption(\"SweaveHooks\")[[\"", k, "\"]]()\n",
-            file=chunkout, append=TRUE, sep="")
-
-    if(!options$eval)
-        chunk <- paste("##", chunk)
-
-    cat(chunk,"\n", file=chunkout, append=TRUE, sep="\n")
-
-    if(is.null(options$label) & options$split)
-        close(chunkout)
-
-    return(object)
-}
-
-RtangleAsciidocWritedoc <- function(object, chunk)
-{
-    while(length(pos <- grep(object$syntax$docopt, chunk)))
-    {
-        opts <- sub(paste(".*", object$syntax$docopt, ".*", sep=""),
-                    "\\1", chunk[pos[1L]])
-        object$options <- utils:::SweaveParseOptions(opts, object$options,
-                                             RweaveAsciidocOptions)
-        chunk[pos[1L]] <- sub(object$syntax$docopt, "", chunk[pos[1L]])
-    }
-    return(object)
-}
-
-
-RtangleAsciidocFinish <- function(object, error=FALSE)
-{
-    if(!is.null(object$output))
-        close(object$output)
-
-    if(length(object$chunkout)) {
-        for(con in object$chunkout) close(con)
-    }
-}
+cacheRweaveT2tRuncode <- makeCacheRweaveT2tCodeRunner()

@@ -29,7 +29,7 @@ RweaveTextileSetup <-
                     split=FALSE, strip.white="true", include=TRUE,
                     pdf.version=grDevices::pdf.options()$version,
                     pdf.encoding=grDevices::pdf.options()$encoding,
-                    concordance=FALSE, expand=TRUE, cache = FALSE)
+                    concordance=FALSE, expand=TRUE)
     options[names(dots)] <- dots
 
     ## to be on the safe side: see if defaults pass the check
@@ -93,8 +93,6 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 
           chunkexps <- try(parse(text=chunk), silent=TRUE)
           RweaveTryStop(chunkexps, options)
-          ## Additions here [RDP] (from cacheSweave package)
-          options$chunkDigest <- cacheSweave:::hashExpr(parse(text = chunk, srcfile = NULL))
           
           openSinput <- FALSE
           openSchunk <- FALSE
@@ -166,11 +164,7 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
                 tmpcon <- file()
                 sink(file=tmpcon)
                 err <- NULL
-                ## if(options$eval) err <- evalFunc(ce, options)
-
-                ## [RDP] change this line to use my EvalWithOpt function (from cacheSweave package)
-                if(options$eval) err <- cacheSweave:::cacheSweaveEvalWithOpt(ce, options)
-                ## [RDP] end change
+                if(options$eval) err <- evalFunc(ce, options)
                 
                 cat("") # make sure final line is complete
                 sink()
@@ -406,7 +400,7 @@ RweaveTextileOptions <- function(options)
     NUMOPTS <- c("width", "height", "res")
     NOLOGOPTS <- c(NUMOPTS, "ext", "results", "prefix.string",
                    "engine", "label", "strip.white",
-                   "pdf.version", "pdf.encoding", "pointsize", "cache")
+                   "pdf.version", "pdf.encoding", "pointsize")
 
     for(opt in names(options)){
         if(! (opt %in% NOLOGOPTS)){
