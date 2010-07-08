@@ -21,7 +21,7 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
   } else {
     xx <- apply(t(apply(x, 1, rep, length = ncol)), 2, rep, length = nrow)
     if (nrow(x) > 1 & ncol(x) == 1 & ncol == 1)
-      xx <- xx[1, ]
+      xx <- xx[1, , drop = FALSE]
   }
   if (!drop) {
     dim(xx) <- c(nrow, ncol)
