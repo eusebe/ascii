@@ -1,4 +1,4 @@
-export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "RweaveReST", "RweaveOrg", "RweaveTextile", "Asciidoc", "T2t", "ReST", "Org", "Textile")
+export("ascii", "print.ascii", "RweaveAsciidoc", "RweaveT2t", "RweaveReST", "RweaveOrg", "RweaveTextile", "RtangleAsciidoc", "RtangleT2t", "RtangleOrg", "RtangleReST", "RtangleTextile", "cacheSweaveAsciidoc", "cacheSweaveT2t", "cacheSweaveReST", "cacheSweaveOrg", "cacheSweaveTextile", "weaverAsciidoc", "weaverT2t", "weaverReST", "weaverOrg", "weaverTextile", "Asciidoc", "T2t", "ReST", "Org", "Textile")
 import(utils)
 
 S3method("ascii", "anova")

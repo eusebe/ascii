@@ -1,11 +1,13 @@
 \name{RweaveAsciidoc}
 \alias{RweaveAsciidoc}
+\alias{RtangleAsciidoc}
 \alias{RweaveAsciidocOptions}
 \alias{RweaveAsciidocFinish}
 \alias{RweaveAsciidocWritedoc}
 \alias{RweaveAsciidocSetup}
 \alias{RweaveAsciidocRuncode}
-\alias{SweaveSyntaxAsciidoc}
+\alias{cacheSweaveAsciidoc}
+\alias{weaverAsciidoc}
 
 \title{ A driver to parse asciidoc noweb files with Sweave tool}
 \description{
@@ -13,6 +15,8 @@
 }
 \usage{
   RweaveAsciidoc()
+  cacheSweaveAsciidoc()
+  weaverAsciidoc()
 }
 \value{
     None value is returned. From a .Rnw noweb file, the corresponding .txt is produced (as eventuals files for graphs).
@@ -27,8 +31,9 @@
   \code{ext} (extension) for the format of figure that will be inserted, and
   \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png and jpg figures.
 
-  In addition, \code{cache} option from \code{cacheSweave} package is
-  also available.
+  In addition, \code{cache} option from \code{cacheSweave} or
+  \code{weaver} package is also available with
+  \code{cacheSweaveAsciidoc} driver and \code{weaverAsciidoc} driver.
 
   A wrapper for \code{Sweave} can be used, named \code{Asciidoc}.
 }
@@ -38,8 +43,8 @@
 \examples{
 
   \dontrun{
-library(tools)
-Sweave("file.Rnw", driver=RweaveAsciidoc)
+library(ascii)
+Asciidoc("file.Rnw")
   }
 }
 \keyword{ IO}

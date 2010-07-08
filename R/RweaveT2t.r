@@ -478,12 +478,6 @@ RweaveTryStop <- function(err, options){
 
 ###**********************************************************
 
-Stangle <- function(file, driver=Rtangle(),
-                    syntax=getOption("SweaveSyntax"), ...)
-{
-    Sweave(file=file, driver=driver, ...)
-}
-
 RtangleT2t <-  function()
 {
     list(setup = RtangleT2tSetup,

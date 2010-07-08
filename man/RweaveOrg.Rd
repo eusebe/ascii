@@ -1,11 +1,13 @@
 \name{RweaveOrg}
 \alias{RweaveOrg}
+\alias{RtangleOrg}
 \alias{RweaveOrgOptions}
 \alias{RweaveOrgFinish}
 \alias{RweaveOrgWritedoc}
 \alias{RweaveOrgSetup}
 \alias{RweaveOrgRuncode}
-\alias{SweaveSyntaxOrg}
+\alias{cacheSweaveOrg}
+\alias{weaverOrg}
 
 \title{ A driver to parse org noweb files with Sweave tool}
 \description{
@@ -13,6 +15,8 @@
 }
 \usage{
   RweaveOrg()
+  cacheSweaveOrg()
+  weaverOrg()
 }
 \value{
     None value is returned. From a .Rnw noweb file, the corresponding .org is produced (as eventuals files for graphs).
@@ -27,8 +31,9 @@
   \code{ext} (extension) for the format of figure that will be inserted, and
   \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png and jpg figures.
 
-  In addition, \code{cache} option from \code{cacheSweave} package is
-  also available.
+  In addition, \code{cache} option from \code{cacheSweave} or
+  \code{weaver} package is also available with
+  \code{cacheSweaveOrg} driver and \code{weaverOrg} driver.
 
   A wrapper for \code{Sweave} can be used, named \code{Org}.
 }
@@ -38,8 +43,8 @@
 \examples{
 
   \dontrun{
-library(tools)
-Sweave("file.Rnw", driver=RweaveOrg)
+library(ascii)
+Org("file.Rnw")
   }
 }
 \keyword{ IO}

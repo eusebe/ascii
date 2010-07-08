@@ -1,5 +1,8 @@
 .git
 .git/*
+essai*
+head.tex
+weaver_debug_log.txt
 help.r
 load.r
 tmp.r
