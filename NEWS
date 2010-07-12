@@ -1,6 +1,13 @@
 2010/07/08
 ~~~~~~~~~~
 
+* fix two bugs in textile support:
+** add a extra +\n+ after captions
+** add a extra +.+ after table attributes
+
+2010/07/08
+~~~~~~~~~~
+
 * add +weaver+ and +cacheSweave+ based drivers for all markups.
 
 2010/06/02

@@ -14,7 +14,7 @@ header.textile <- function(caption = NULL, caption.level = NULL, frame = NULL, w
   listarg <- listarg[listarg != ""]
 
   if (length(listarg) != 0) {
-    res <- paste("table{", paste(listarg, collapse = ";"), "}\n", sep = "")
+    res <- paste("table{", paste(listarg, collapse = ";"), "}.\n", sep = "")
   }
   else res <- ""
 
@@ -25,7 +25,7 @@ header.textile <- function(caption = NULL, caption.level = NULL, frame = NULL, w
       else if (caption.level == "e") res <- paste(beauty.textile(caption, "e"), "\n", sep = "")
       else if (caption.level == "m") res <- paste(beauty.textile(caption, "m"), "\n", sep = "")
     } else {
-      res <- paste(caption, "\n", res, sep = "")
+      res <- paste(caption, "\n\n", res, sep = "")
     }
   }
   return(res)
