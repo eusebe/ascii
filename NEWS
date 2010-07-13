@@ -4,6 +4,7 @@
 * fix two bugs in textile support:
 ** add a extra +\n+ after captions
 ** add a extra +.+ after table attributes
+* add <code> to textile export
 
 2010/07/08
 ~~~~~~~~~~
