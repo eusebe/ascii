@@ -96,7 +96,7 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
     vsep[style == "h"] <- "|_"
     style[!(style %in% c("s", "e", "m"))] <- ""
     style[style == "s"] <- "*"
-    style[style == "e"] <- "/"
+    style[style == "e"] <- "_"
     style[style == "m"] <- "<code>"
   } else {
     style <- ""
@@ -125,7 +125,7 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   if (!is.null(valign)) {
     valign <- expand(valign, nrow(x), ncolx)
   }
-  after_vsep <- vsep.textile(align, valign)
+  after_vsep <- paste.matrix(vsep.textile(align, valign), ".", sep = "")
 
   if (include.rownames & include.colnames)
     after_vsep[1, 1] <- ""
