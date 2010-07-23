@@ -29,7 +29,7 @@ RweaveTextileSetup <-
                     split=FALSE, strip.white="true", include=TRUE,
                     pdf.version=grDevices::pdf.options()$version,
                     pdf.encoding=grDevices::pdf.options()$encoding,
-                    concordance=FALSE, expand=TRUE, begin = "<pre><code>", end = "</code></pre>\n")
+                    concordance=FALSE, expand=TRUE, begin = "\nbc.. ", end = "\np. \n")
     options[names(dots)] <- dots
 
     ## to be on the safe side: see if defaults pass the check
@@ -153,7 +153,7 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             cat("", paste(getOption("prompt"), dce[1L:leading], sep="", collapse="\n"),
                 file=chunkout, append=TRUE, sep="")
                     if (length(dce) > leading)
-                        cat("\n", paste(getOption("continue"), dce[-(1L:leading)], sep="", collapse="\n"),
+                        cat("\n", paste("<code>", getOption("continue"), dce[-(1L:leading)], "</code>", sep="", collapse="\n"),
                             file=chunkout, append=TRUE, sep="")
             linesout[thisline + 1L:length(dce)] <- srcline
             thisline <- thisline + length(dce)
