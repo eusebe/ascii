@@ -153,7 +153,7 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
             cat("", paste(getOption("prompt"), dce[1L:leading], sep="", collapse="\n"),
                 file=chunkout, append=TRUE, sep="")
                     if (length(dce) > leading)
-                        cat("\n", paste("<code>", getOption("continue"), dce[-(1L:leading)], "</code>", sep="", collapse="\n"),
+                        cat("\n", paste(getOption("continue"), dce[-(1L:leading)], sep="", collapse="\n"),
                             file=chunkout, append=TRUE, sep="")
             linesout[thisline + 1L:length(dce)] <- srcline
             thisline <- thisline + length(dce)
