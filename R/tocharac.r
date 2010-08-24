@@ -22,11 +22,7 @@ formatCustom <- function(x, format = "nice", digits = 2, ...) {
     if (format != "nice") {
       formatC(x, format = format, digits = digits, ...)
     } else {
-      if (as.integer(x) != x | is.na(x)) {
-        formatC(x, format = "f", digits = digits, ...)
-      } else {
-        formatC(x, format = "f", digits = 0, ...)
-      }
+      formatC(x, format = "f", digits = digits, drop0trailing = TRUE, ...)
     }
   })
 }
