@@ -60,14 +60,14 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
       destination <- "."
     }
     if (format != "xhtml") {
-      cmd <- paste("a2x -a encoding=", encoding, " -D ", destination, " --dblatex-opts=\"-T simple\"", " -f ", format, sep = "")
+      cmd <- paste("a2x -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
     } else {
       destfile <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
       cmd <- paste("asciidoc -a encoding=", encoding, " -o ", destfile, sep = "")
     }
     
   }
-  finalcmd <- paste(cmd, input, closecmd)
+  finalcmd <- paste(opencmd, cmd, input, closecmd)
   err <- system(finalcmd, wait = TRUE)
   invisible(err)
 }
@@ -75,7 +75,7 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
 export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, cmd = NULL, encoding = NULL) {
 
   format <- format[1]
-  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "dvi", "ps", "tex", "docbook")
+  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "dvi", "ps", "tex", "docbook", "asciidoc")
   if (!(format %in% available)) {
     stop(paste("Please choose an available format:", paste(available, collapse = ", ")))
   }
@@ -90,11 +90,19 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
       open <- FALSE
     }
   }
+
+  if (grepl("mingw", version$os)) {
+    cygfile <- gsub("\\\\", "/", file)
+    if (grepl("^[A-Z]:", cygfile)) {
+      cygfile <- sub("^[A-Z]", tolower(substr(cygfile, 1, 1)), cygfile)
+    }
+    cygfile <- sub("^([a-z])(:)", "/cygdrive/\\1", cygfile)
+  }
   
   wd <- dirname(file)
   
   if (is.null(main)) {
-    main <- paste(wd, basename(file), sep = "/")
+    main <- paste("+", paste(wd, basename(file), sep = "/"), "+", sep = "")
   }
 
   args <- list(...)
@@ -132,6 +140,10 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   writeLines(lines, f)
   close(f)
 
+  if (format == "asciidoc") {
+    asciidocfile <- paste(basename(file), "txt", sep = ".")
+    finalfile <- paste(wd, asciidocfile, sep = "/")
+  }
   if (format == "xhtml") {
     htmlfile <- paste(basename(file), "html", sep = ".")
     finalfile <- paste(wd, htmlfile, sep = "/")
@@ -172,7 +184,15 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   }
 
   cat("Writing ", finalfile, "...\n", sep = "")
-  err <- convert(textfile, destination = wd, format = format, cmd = cmd, encoding = encoding)
+  if (format != "asciidoc") {
+    if (grepl("mingw", version$os)) {
+      err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, cmd = cmd, encoding = encoding)
+    } else {
+      err <- convert(textfile, destination = wd, format = format, cmd = cmd, encoding = encoding)
+    }
+  } else {
+    err <- 0
+  }
   if (err != 0 ) {
     stop("Error during conversion.")
   }
@@ -188,4 +208,5 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
       system(paste(shQuote("/usr/bin/xdg-open"), shQuote(finalfile)), wait = FALSE, ignore.stderr = TRUE)
     }
   }
+  invisible(args)
 }

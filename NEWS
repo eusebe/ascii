@@ -1,11 +1,12 @@
-2010/08/19
+2010/xx/xx
 ~~~~~~~~~~
 
+* export function: combined with asciidoc, ascii is now a report tool for R
+* add ability to change opening and closing text of chunk (Sweave option +begin+ and +end+)
 * fix bugs in textile support:
 ** add a extra +\n+ after captions
 ** add a extra +.+ after table attributes
 ** change +<code>+ to +bc..+
-* add ability to change opening and closing text of chunk (option +begin+ and +end+)
 
 2010/07/08
 ~~~~~~~~~~

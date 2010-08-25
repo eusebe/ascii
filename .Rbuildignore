@@ -21,6 +21,9 @@ Rplot*
 pygments*
 rs2*
 .*~
+.*.html
+.*.txt
+.*.xml
 
 R/asciiEpicalc.r
 R/SweaveSyntaxAscii.r
