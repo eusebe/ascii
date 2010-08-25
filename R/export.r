@@ -72,7 +72,7 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
   invisible(err)
 }
 
-export <- function(..., file = NULL, destination = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, cmd = NULL, encoding = NULL) {
+export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, cmd = NULL, encoding = NULL) {
 
   format <- format[1]
   available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "dvi", "ps", "tex", "docbook")
@@ -91,12 +91,8 @@ export <- function(..., file = NULL, destination = NULL, format = "xhtml", open 
     }
   }
   
-  if (is.null(destination)) {
-    wd <- dirname(file)
-  } else {
-    wd <- destination
-  }
-
+  wd <- dirname(file)
+  
   if (is.null(main)) {
     main <- paste(wd, basename(file), sep = "/")
   }
