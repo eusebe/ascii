@@ -37,14 +37,14 @@ print.sexpr <- function(x, ...) {
   cat(x, "\n")
 }
 
-convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, cmd = NULL) {
+convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, cmd = NULL, cygwin = TRUE) {
 
   windows <- grepl("mingw", version$os)
   
   opencmd <- ""
   closecmd <- ""
   # for cygwin users...
-  if (windows) {
+  if (windows & cygwin) {
     opencmd <- "bash -c \""
     closecmd <- "\""
   }
@@ -72,8 +72,10 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
   invisible(err)
 }
 
-export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, cmd = NULL, encoding = NULL) {
+export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = TRUE) {
 
+  windows <- grepl("mingw", version$os)
+  
   format <- format[1]
   available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "dvi", "ps", "tex", "docbook", "asciidoc")
   if (!(format %in% available)) {
@@ -91,7 +93,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
     }
   }
 
-  if (grepl("mingw", version$os)) {
+  if (windows & cygwin) {
     cygfile <- gsub("\\\\", "/", file)
     if (grepl("^[A-Z]:", cygfile)) {
       cygfile <- sub("^[A-Z]", tolower(substr(cygfile, 1, 1)), cygfile)
@@ -185,7 +187,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
 
   cat("Writing ", finalfile, "...\n", sep = "")
   if (format != "asciidoc") {
-    if (grepl("mingw", version$os)) {
+    if (windows & cygwin) {
       err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, cmd = cmd, encoding = encoding)
     } else {
       err <- convert(textfile, destination = wd, format = format, cmd = cmd, encoding = encoding)
@@ -200,7 +202,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
 
   if (open) {
     cat("Trying to open ", finalfile, sep = "")
-    if (grepl("mingw", version$os)) {
+    if (windows) {
       cat(" with shell.exec...\n")
       shell.exec(finalfile)
     } else {
