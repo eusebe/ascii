@@ -37,6 +37,14 @@ print.sexpr <- function(x, ...) {
   cat(x, "\n")
 }
 
+verbatim <- function(x) {
+  results <- x
+  class(results) <- c(class(results), "verbatim")
+  results
+}
+
+## faire un figure (à partir du package evaluate plot_snapshot)?
+
 convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, cmd = NULL, cygwin = TRUE) {
 
   windows <- grepl("mingw", version$os)
@@ -125,14 +133,18 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
                           cat("\n")
                           for (i in seq_along(args)) {
                             arg <- args[[i]]
+                            if (!is.null(names(args))) {
+                              if (names(args)[i] != "") {
+                                cat(".", names(args)[i], "\n", sep = "")
+                              }
+                            }                            
                             if ("ascii" %in% class(arg)) {
-                              if (!is.null(names(args))) {
-                                 if (names(args)[i] != "") {
-                                   cat(".", names(args)[i], "\n", sep = "")
-                                 }
-                               }
                               arg$show.asciidoc()
                               cat("\n")
+                            } else if ("verbatim" %in% class(arg)) {
+                              cat("----\n")
+                              print(arg)
+                              cat("----\n")
                             } else {
                               print(arg)
                             }
