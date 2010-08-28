@@ -46,16 +46,24 @@ print.sexpr <- function(x, ...) {
   cat(x, " ", sep = "")
 }
 
-verbatim <- function(x) {
-  results <- x
-  class(results) <- c(class(results), "verbatim")
+out <- function(x, results = "verbatim") {
+  results <- list(x, results)
+  class(results) <- "out"
   results
 }
 
-tex <- function(x) {
-  results <- x
-  class(results) <- c(class(results), "tex")
-  results
+print.out <- function(x, ...) {
+  results <- x[[2]]
+  if (results == "latex") {
+    cat("[latex]\n")
+  }
+  if (results == "verbatim") {
+    cat("----\n")
+  }
+  print(x[[1]], ...)
+  if (results == "verbatim") {
+    cat("----\n")
+  }
 }
 
 ## faire un figure (à partir du package evaluate plot_snapshot)?
@@ -138,48 +146,41 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
 
   args <- list(...)
   lines <- capture.output({
-                          cat(paste("= ", main, "\n", sep = ""))
-                          if (!is.null(author)) {
-                            cat(":author:", author, "\n")
-                          }
-                          if (!is.null(email)) {
-                            cat(":email:", email, "\n")
-                          }
-                          if (!is.null(revdate)) {
-                            cat(":revdate:", revdate, "\n")
-                          }
-                          if (!is.null(revnumber)) {
-                            cat(":revnumber:", revnumber, "\n")
-                          }
-                          cat("\n")
-                          for (i in seq_along(args)) {
-                            arg <- args[[i]]
-                            if (!is.null(names(args))) {
-                              if (names(args)[i] != "") {
-                                cat(".", names(args)[i], "\n", sep = "")
-                              }
-                            }                            
-                            if ("ascii" %in% class(arg)) {
-                              arg$show.asciidoc()
-                              cat("\n")
-                            } else if ("verbatim" %in% class(arg)) {
-                              cat("----\n")
-                              print(arg)
-                              cat("----\n")
-                            } else if ("tex" %in% class(arg)) {
-                              cat("[latex]\n")
-                              cat("----\n")
-                              print(arg)
-                              cat("----\n")
-                            } else {
-                              print(arg)
-                            }
-                          }})
+    cat(paste("= ", main, "\n", sep = ""))
+    if (!is.null(author)) {
+      cat(":author:", author, "\n")
+    }
+    if (!is.null(email)) {
+      cat(":email:", email, "\n")
+    }
+    if (!is.null(revdate)) {
+      cat(":revdate:", revdate, "\n")
+    }
+    if (!is.null(revnumber)) {
+      cat(":revnumber:", revnumber, "\n")
+    }
+    cat("\n")
+    for (i in seq_along(args)) {
+      arg <- args[[i]]
+      if (!is.null(names(args))) {
+        if (names(args)[i] != "") {
+          cat(".", names(args)[i], "\n", sep = "")
+        }
+      }
+      if ("ascii" %in% class(arg)) {
+        arg$show.asciidoc()
+        cat("\n")
+      } else if ("out" %in% class(arg)) {
+        print(arg)
+      } else {
+        print(out(arg, "verbatim"))
+      }
+    }})
   textfile <- paste(file, "txt", sep = ".")
   f <- file(textfile, "w")
   writeLines(lines, f)
   close(f)
-
+  
   if (format == "asciidoc") {
     asciidocfile <- paste(basename(file), "txt", sep = ".")
     finalfile <- paste(wd, asciidocfile, sep = "/")
@@ -222,7 +223,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
     xmlfile <- paste(basename(file), "xml", sep = ".")
     finalfile <- paste(wd, xmlfile, sep = "/")
   }
-
+  
   cat("Writing ", finalfile, "...\n", sep = "")
   if (format != "asciidoc") {
     if (windows & cygwin) {
