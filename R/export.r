@@ -11,8 +11,8 @@ print.section <- function(x, type = "asciidoc", ...) {
   cat("\n", results, sep = "")
 }
 
-paragraph <- function(text, new = TRUE) {
-  results <- list(text = text, new = new)
+paragraph <- function(..., new = TRUE) {
+  results <- list(text = list(...), new = new)
   class(results) <- "paragraph"
   results
 }
@@ -21,10 +21,19 @@ print.paragraph <- function(x, type = "asciidoc", ...) {
   newline <- "\n"
   text <- x$text
   new <- x$new
-  
-  if (new)
+
+  if (new) {
     cat(newline)
-  cat(text, "\n")
+  }
+  for (i in 1:length(text)) {
+    if (class(text[[i]]) == "sexpr") {
+      print(text[[i]])
+    }
+    else {
+      cat(text[[i]], " ", sep = "")
+    }
+  }
+  cat("\n")
 }
 
 sexpr <- function(x) {
@@ -34,7 +43,7 @@ sexpr <- function(x) {
 }
 
 print.sexpr <- function(x, ...) {
-  cat(x, "\n")
+  cat(x, " ", sep = "")
 }
 
 verbatim <- function(x) {
@@ -43,9 +52,15 @@ verbatim <- function(x) {
   results
 }
 
+tex <- function(x) {
+  results <- x
+  class(results) <- c(class(results), "tex")
+  results
+}
+
 ## faire un figure (à partir du package evaluate plot_snapshot)?
 
-convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, cmd = NULL, cygwin = TRUE) {
+convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, cmd = NULL, cygwin = FALSE) {
 
   windows <- grepl("mingw", version$os)
   
@@ -55,6 +70,12 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
   if (windows & cygwin) {
     opencmd <- "bash -c \""
     closecmd <- "\""
+  }
+  a2x <- "a2x"
+  asciidoc <- "asciidoc"
+  if (windows & !cygwin) {
+    a2x <- paste(Sys.getenv("COMSPEC"), "/c", "a2x.py")
+    asciidoc <- paste(Sys.getenv("COMSPEC"), "/c", "asciidoc.py")
   }
   
   if (is.null(cmd)) {
@@ -68,10 +89,10 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
       destination <- "."
     }
     if (format != "xhtml") {
-      cmd <- paste("a2x -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
+      cmd <- paste(a2x, " -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
     } else {
       destfile <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
-      cmd <- paste("asciidoc -a encoding=", encoding, " -o ", destfile, sep = "")
+      cmd <- paste(asciidoc, " -a encoding=", encoding, " -o ", destfile, sep = "")
     }
     
   }
@@ -80,7 +101,7 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
   invisible(err)
 }
 
-export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = TRUE) {
+export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = FALSE) {
 
   windows <- grepl("mingw", version$os)
   
@@ -112,7 +133,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   wd <- dirname(file)
   
   if (is.null(main)) {
-    main <- paste("+", paste(wd, basename(file), sep = "/"), "+", sep = "")
+    main <- paste("+", sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/")), "+", sep = "")
   }
 
   args <- list(...)
@@ -142,6 +163,11 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
                               arg$show.asciidoc()
                               cat("\n")
                             } else if ("verbatim" %in% class(arg)) {
+                              cat("----\n")
+                              print(arg)
+                              cat("----\n")
+                            } else if ("tex" %in% class(arg)) {
+                              cat("[latex]\n")
                               cat("----\n")
                               print(arg)
                               cat("----\n")
@@ -200,9 +226,9 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   cat("Writing ", finalfile, "...\n", sep = "")
   if (format != "asciidoc") {
     if (windows & cygwin) {
-      err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, cmd = cmd, encoding = encoding)
+      err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, cmd = cmd, encoding = encoding, cygwin = cygwin)
     } else {
-      err <- convert(textfile, destination = wd, format = format, cmd = cmd, encoding = encoding)
+      err <- convert(textfile, destination = wd, format = format, cmd = cmd, encoding = encoding, cygwin = cygwin)
     }
   } else {
     err <- 0
@@ -216,6 +242,9 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
     cat("Trying to open ", finalfile, sep = "")
     if (windows) {
       cat(" with shell.exec...\n")
+      if (!grepl(":", finalfile)) {
+        finalfile <- paste("\"", sub("(^.+)(/$)", "\\", getwd()), "/", finalfile, "\"", sep = "")
+      }
       shell.exec(finalfile)
     } else {
       cat(" with xdg-open...\n")
