@@ -26,7 +26,7 @@ print.paragraph <- function(x, type = "asciidoc", ...) {
     cat(newline)
   }
   for (i in 1:length(text)) {
-    if (class(text[[i]]) == "sexpr") {
+    if (class(text[[i]]) == "sexpr" | class(text[[i]]) == "math") {
       print(text[[i]])
     }
     else {
@@ -54,6 +54,7 @@ out <- function(x, results = "verbatim") {
 
 print.out <- function(x, ...) {
   results <- x[[2]]
+  cat("\n")
   if (results == "latex") {
     cat("[latex]\n")
   }
@@ -66,9 +67,25 @@ print.out <- function(x, ...) {
   }
 }
 
+math <- function(x, notation = "latexmath") {
+  results <- list(x, notation)
+  class(results) <- "math"
+  results
+}
+
+print.math <- function(x, ...) {
+  notation <- x[[2]]
+  if (notation == "latexmath") {
+    cat("latexmath:[$", x[[1]], "$]\n", sep = "")
+  }
+  if (notation == "asciimath") {
+    cat("asciimath:[", x[[1]], "]\n", sep = "")
+  }  
+}
+
 ## faire un figure (à partir du package evaluate plot_snapshot)?
 
-convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, cmd = NULL, cygwin = FALSE) {
+convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, latexmath = FALSE, asciimath = FALSE, cmd = NULL, cygwin = FALSE) {
 
   windows <- grepl("mingw", version$os)
   
@@ -85,6 +102,14 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
     a2x <- paste(Sys.getenv("COMSPEC"), "/c", "a2x.py")
     asciidoc <- paste(Sys.getenv("COMSPEC"), "/c", "asciidoc.py")
   }
+
+  amath <- lmath <- ""
+  if (asciimath) {
+    amath <- " -a asciimath "
+  }
+  if (latexmath) {
+    lmath <- " -a latexmath "
+  }
   
   if (is.null(cmd)) {
     if (is.null(encoding)) {
@@ -97,10 +122,10 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
       destination <- "."
     }
     if (format != "xhtml") {
-      cmd <- paste(a2x, " -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
+      cmd <- paste(a2x, amath, lmath, " -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
     } else {
       destfile <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
-      cmd <- paste(asciidoc, " -a encoding=", encoding, " -o ", destfile, sep = "")
+      cmd <- paste(asciidoc, amath, lmath, " -a encoding=", encoding, " -o ", destfile, sep = "")
     }
     
   }
@@ -119,6 +144,9 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
     stop(paste("Please choose an available format:", paste(available, collapse = ", ")))
   }
 
+  asciimath <- FALSE
+  latexmath <- FALSE
+  
   if (is.null(file)) {
     file <- tempfile("R-report")
     if (is.null(open)) {
@@ -172,7 +200,17 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
         cat("\n")
       } else if ("out" %in% class(arg)) {
         print(arg)
-      } else {
+      } else if ("paragraph" %in% class(arg)) {
+        print(arg)
+        parclass <- sapply(arg[[1]], class)
+        if ("math" %in% parclass) {
+          asciimath <- TRUE
+        }
+      } else if ("math" %in% class(arg)) {
+        print(arg)
+        asciimath <- TRUE
+      }
+      else {
         print(out(arg, "verbatim"))
       }
     }})
@@ -227,9 +265,9 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   cat("Writing ", finalfile, "...\n", sep = "")
   if (format != "asciidoc") {
     if (windows & cygwin) {
-      err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, cmd = cmd, encoding = encoding, cygwin = cygwin)
+      err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, latexmath = latexmath, asciimath = asciimath, cmd = cmd, encoding = encoding, cygwin = cygwin)
     } else {
-      err <- convert(textfile, destination = wd, format = format, cmd = cmd, encoding = encoding, cygwin = cygwin)
+      err <- convert(textfile, destination = wd, format = format, latexmath = latexmath, asciimath = asciimath, cmd = cmd, encoding = encoding, cygwin = cygwin)
     }
   } else {
     err <- 0
