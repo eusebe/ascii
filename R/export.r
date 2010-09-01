@@ -1,5 +1,5 @@
-section <- function(caption, caption.level = 2) {
-  results <- list(caption = caption, caption.level = caption.level)
+section <- function(caption, caption.level = 1) {
+  results <- list(caption = caption, caption.level = caption.level + 1)
   class(results) <- "section"
   results
 }
@@ -43,7 +43,7 @@ sexpr <- function(x) {
 }
 
 print.sexpr <- function(x, ...) {
-  cat(x, " ", sep = "")
+  cat(x, sep = "")
 }
 
 out <- function(x, results = "verbatim") {
@@ -121,15 +121,21 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
     if (is.null(destination)) {
       destination <- "."
     }
-    if (format != "xhtml") {
+    if (format != "xhtml" & format != "odt") {
       cmd <- paste(a2x, amath, lmath, " -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
     } else {
-      destfile <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
-      cmd <- paste(asciidoc, amath, lmath, " -a encoding=", encoding, " -o ", destfile, sep = "")
+      htmldest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
+      cmd <- paste(asciidoc, amath, lmath, " -a encoding=", encoding, " -o ", htmldest, sep = "")
+      if (format == "odt") {
+        odtdest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "odt", sep = ".")        
+        odtcmd <- paste("xhtml2odt -i", htmldest, "-o", odtdest)
+      }
     }
-    
   }
   finalcmd <- paste(opencmd, cmd, input, closecmd)
+  if (format == "odt") {
+    finalcmd <- paste(finalcmd, odtcmd, sep = " && ")
+  }
   err <- system(finalcmd, wait = TRUE)
   invisible(err)
 }
@@ -139,7 +145,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   windows <- grepl("mingw", version$os)
   
   format <- format[1]
-  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "dvi", "ps", "tex", "docbook", "asciidoc")
+  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "odt", "dvi", "ps", "tex", "docbook", "asciidoc")
   if (!(format %in% available)) {
     stop(paste("Please choose an available format:", paste(available, collapse = ", ")))
   }
@@ -198,7 +204,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
       if ("ascii" %in% class(arg)) {
         arg$show.asciidoc()
         cat("\n")
-      } else if ("out" %in% class(arg)) {
+      } else if ("out" %in% class(arg) | "section" %in% class(arg)) {
         print(arg)
       } else if ("paragraph" %in% class(arg)) {
         print(arg)
@@ -226,6 +232,10 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
   if (format == "xhtml") {
     htmlfile <- paste(basename(file), "html", sep = ".")
     finalfile <- paste(wd, htmlfile, sep = "/")
+  }
+  if (format == "odt") {
+    odtfile <- paste(basename(file), "odt", sep = ".")
+    finalfile <- paste(wd, odtfile, sep = "/")
   }
   if (format == "chunked") {
     finalfile <- paste(wd, paste(basename(file), "chunked", sep = "."), "index.html", sep = "/")
