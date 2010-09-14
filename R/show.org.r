@@ -64,12 +64,68 @@ show.org.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
   after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
 
+  if (tstyle == "h")
+    tstyle <- "s"
+  if (bstyle == "h")
+    bstyle <- "s"
+  if (rstyle == "h")
+    rstyle <- "s"
+  if (lstyle == "h")
+    lstyle <- "s"
+
+  # groups
+  if (!is.null(lgroup)) {
+    if (!is.list(lgroup))
+      lgroup <- list(lgroup)
+    n.lgroup <- groups(lgroup, n.lgroup, nrowx-include.colnames)[[2]]
+    linelgroup <- linegroup(lgroup, n.lgroup)
+  }
+  if (!is.null(rgroup)) {
+    if (!is.list(rgroup))
+      rgroup <- list(rgroup)
+    n.rgroup <- groups(rgroup, n.rgroup, nrowx-include.colnames)[[2]]
+    linergroup <- linegroup(rgroup, n.rgroup)
+  }
+  if (!is.null(tgroup)) {
+    if (!is.list(tgroup))
+      tgroup <- list(tgroup)
+    n.tgroup <- groups(tgroup, n.tgroup, ncolx-include.rownames)[[2]]
+    linetgroup <- linegroup(tgroup, n.tgroup)
+  }
+  if (!is.null(bgroup)) {
+    if (!is.list(bgroup))
+      bgroup <- list(bgroup)
+    n.bgroup <- groups(bgroup, n.bgroup, ncolx-include.rownames)[[2]]
+    linebgroup <- linegroup(bgroup, n.bgroup)
+  }
+
+  if (!is.null(lgroup)) {
+    for (i in 1:length(lgroup)) {
+      x <- cbind(c(rep("", include.colnames), beauty.org(linelgroup[[i]], lstyle)), x)
+    }
+  }
+  if (!is.null(rgroup)) {
+    for (i in 1:length(rgroup)) {
+      x <- cbind(x, c(rep("", include.colnames), beauty.org(linergroup[[i]], rstyle)))
+    }
+  }
+  if (!is.null(tgroup)) {
+    for (i in 1:length(tgroup)) {
+      x <- rbind(c(rep("", include.rownames + length(lgroup)), beauty.org(linetgroup[[i]], tstyle), rep("", length(rgroup))), x)
+    }
+  }
+  if (!is.null(bgroup)) {
+    for (i in 1:length(bgroup)) {
+      x <- rbind(x, c(rep("", include.rownames + length(lgroup)), beauty.org(linebgroup[[i]], bstyle), rep("", length(rgroup))))
+    }
+  }
+  
   line_separator <- FALSE
   line_separator_pos <- NULL
   if (is.logical(header) & header)
     header <- 1
   if (header > 0) {
-    line_separator_pos <- min(c(header, nrowx))
+    line_separator_pos <- min(c(header, nrowx)) + length(tgroup)
     line_separator <- TRUE
   }
 

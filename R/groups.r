@@ -25,3 +25,15 @@ ngroups <- function(group, n.group = NULL, n) {
   pos.group <- c(1, 1 + cumsum(n.group))[1:ng]
   data.frame(group, pos.group, n.group, stringsAsFactors = FALSE)
 }
+
+linegroup <- function(group, n.group) {
+  res <- list()
+  for (i in 1:length(group)) {
+    tmp <- NULL
+    for (j in 1:length(group[[i]])) {
+      tmp <- c(tmp, expand(group[[i]][j], 1, n.group[[i]][j], what = ""))
+    }
+    res <- c(res, list(tmp))
+  }
+  res
+}
