@@ -1,13 +1,10 @@
 2010/xx/xx
 ~~~~~~~~~~
 
-* export function: combined with asciidoc, ascii is now a report tool for R
+* export function: use asciidoc to export R objects to files
 * add ability to change opening and closing text of chunk (Sweave option +begin+ and +end+)
-* fix bugs in textile support:
-** add a extra +\n+ after captions
-** add a extra +.+ after table attributes
-** change +<code>+ to +bc..+
 * l/r/t/bgroup in org export
+* fix several bugs in textile support:
 
 2010/07/08
 ~~~~~~~~~~
