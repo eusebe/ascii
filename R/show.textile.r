@@ -111,19 +111,23 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   if (is.logical(header) & header)
     header <- 1
   if (header > 0) {
-    vsep[1:min(c(header, nrowx)), -ncol(vsep)] <- "|_."
+    vsep[1:min(c(header, nrowx)), -ncol(vsep)] <- "|_"
   }
   if (is.logical(footer) & footer)
     footer <- 1
   if (footer > 0) {
-    vsep[nrow(x):(nrow(x)+1-min(c(footer, nrowx))), -ncol(vsep)] <- "|_."
+    vsep[nrow(x):(nrow(x)+1-min(c(footer, nrowx))), -ncol(vsep)] <- "|_"
   }
   
   if (!is.null(align)) {
     align <- expand(align, nrow(x), ncolx)
+  } else {
+    align <- expand("", nrow(x), ncolx)
   }
   if (!is.null(valign)) {
     valign <- expand(valign, nrow(x), ncolx)
+  } else {
+    valign <- expand("", nrow(x), ncolx)
   }
   after_vsep <- paste.matrix(vsep.textile(align, valign), ".", sep = "")
 
