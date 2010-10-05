@@ -1,3 +1,6 @@
+##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
 cacheSweaveReST <- function()
 {
     require(cacheSweave)
@@ -8,6 +11,10 @@ cacheSweaveReST <- function()
          checkopts = RweaveReSTOptions)
 }
 
+##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveReSTSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
@@ -42,6 +49,10 @@ cacheSweaveReSTSetup <-
          srcfile=srcfile(file))
 }
 
+##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 makeCacheRweaveReSTCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -327,4 +338,8 @@ makeCacheRweaveReSTCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
     RweaveReSTRuncode
 }
 
+##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveReSTRuncode <- makeCacheRweaveReSTCodeRunner()

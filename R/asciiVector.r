@@ -1,3 +1,48 @@
+##' ascii method for class integer
+##'
+##' @param x 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param rownames 
+##' @param colnames 
+##' @param format 
+##' @param digits 
+##' @param decimal.mark 
+##' @param na.print 
+##' @param caption 
+##' @param caption.level 
+##' @param width 
+##' @param frame 
+##' @param grid 
+##' @param valign 
+##' @param header 
+##' @param footer 
+##' @param align 
+##' @param col.width 
+##' @param style 
+##' @param tgroup 
+##' @param n.tgroup 
+##' @param talign 
+##' @param tvalign 
+##' @param tstyle 
+##' @param bgroup 
+##' @param n.bgroup 
+##' @param balign 
+##' @param bvalign 
+##' @param bstyle 
+##' @param lgroup 
+##' @param n.lgroup 
+##' @param lalign 
+##' @param lvalign 
+##' @param lstyle 
+##' @param rgroup 
+##' @param n.rgroup 
+##' @param ralign 
+##' @param rvalign 
+##' @param rstyle 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,
@@ -17,6 +62,51 @@ ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE
     return(obj)
 }
 
+##' ascii method for class numeric
+##'
+##' @param x 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param rownames 
+##' @param colnames 
+##' @param format 
+##' @param digits 
+##' @param decimal.mark 
+##' @param na.print 
+##' @param caption 
+##' @param caption.level 
+##' @param width 
+##' @param frame 
+##' @param grid 
+##' @param valign 
+##' @param header 
+##' @param footer 
+##' @param align 
+##' @param col.width 
+##' @param style 
+##' @param tgroup 
+##' @param n.tgroup 
+##' @param talign 
+##' @param tvalign 
+##' @param tstyle 
+##' @param bgroup 
+##' @param n.bgroup 
+##' @param balign 
+##' @param bvalign 
+##' @param bstyle 
+##' @param lgroup 
+##' @param n.lgroup 
+##' @param lalign 
+##' @param lvalign 
+##' @param lstyle 
+##' @param rgroup 
+##' @param n.rgroup 
+##' @param ralign 
+##' @param rvalign 
+##' @param rstyle 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,
@@ -36,6 +126,52 @@ ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE
     return(obj)
 }
 
+
+##' ascii method for class character
+##'
+##' @param x 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param rownames 
+##' @param colnames 
+##' @param format 
+##' @param digits 
+##' @param decimal.mark 
+##' @param na.print 
+##' @param caption 
+##' @param caption.level 
+##' @param width 
+##' @param frame 
+##' @param grid 
+##' @param valign 
+##' @param header 
+##' @param footer 
+##' @param align 
+##' @param col.width 
+##' @param style 
+##' @param tgroup 
+##' @param n.tgroup 
+##' @param talign 
+##' @param tvalign 
+##' @param tstyle 
+##' @param bgroup 
+##' @param n.bgroup 
+##' @param balign 
+##' @param bvalign 
+##' @param bstyle 
+##' @param lgroup 
+##' @param n.lgroup 
+##' @param lalign 
+##' @param lvalign 
+##' @param lstyle 
+##' @param rgroup 
+##' @param n.rgroup 
+##' @param ralign 
+##' @param rvalign 
+##' @param rstyle 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.character <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,
@@ -55,6 +191,51 @@ ascii.character <- function (x, include.rownames = FALSE, include.colnames = FAL
     return(obj)
 }
 
+##' ascii method for class factor
+##'
+##' @param x 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param rownames 
+##' @param colnames 
+##' @param format 
+##' @param digits 
+##' @param decimal.mark 
+##' @param na.print 
+##' @param caption 
+##' @param caption.level 
+##' @param width 
+##' @param frame 
+##' @param grid 
+##' @param valign 
+##' @param header 
+##' @param footer 
+##' @param align 
+##' @param col.width 
+##' @param style 
+##' @param tgroup 
+##' @param n.tgroup 
+##' @param talign 
+##' @param tvalign 
+##' @param tstyle 
+##' @param bgroup 
+##' @param n.bgroup 
+##' @param balign 
+##' @param bvalign 
+##' @param bstyle 
+##' @param lgroup 
+##' @param n.lgroup 
+##' @param lalign 
+##' @param lvalign 
+##' @param lstyle 
+##' @param rgroup 
+##' @param n.rgroup 
+##' @param ralign 
+##' @param rvalign 
+##' @param rstyle 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,

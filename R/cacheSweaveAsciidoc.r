@@ -1,3 +1,6 @@
+##' A driver to parse asciidoc noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
 cacheSweaveAsciidoc <- function()
 {
     require(cacheSweave)
@@ -8,6 +11,10 @@ cacheSweaveAsciidoc <- function()
          checkopts = RweaveAsciidocOptions)
 }
 
+##' A driver to parse asciidoc noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveAsciidocSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
@@ -41,7 +48,10 @@ cacheSweaveAsciidocSetup <-
          options=options, chunkout=list(), srclines=integer(0L),
          srcfile=srcfile(file))
 }
-
+##' A driver to parse asciidoc noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal 
+##' @author David Hajage
 makeCacheRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -324,4 +334,7 @@ makeCacheRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
     RweaveAsciidocRuncode
 }
 
+##' A driver to parse asciidoc noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
 cacheSweaveAsciidocRuncode <- makeCacheRweaveAsciidocCodeRunner()

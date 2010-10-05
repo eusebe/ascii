@@ -1,3 +1,6 @@
+##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
 cacheSweaveTextile <- function()
 {
     require(cacheSweave)
@@ -8,6 +11,10 @@ cacheSweaveTextile <- function()
          checkopts = RweaveTextileOptions)
 }
 
+##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveTextileSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
@@ -42,6 +49,10 @@ cacheSweaveTextileSetup <-
          srcfile=srcfile(file))
 }
 
+##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 makeCacheRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -324,4 +335,8 @@ makeCacheRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
     RweaveTextileRuncode
 }
 
+##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveTextileRuncode <- makeCacheRweaveTextileCodeRunner()

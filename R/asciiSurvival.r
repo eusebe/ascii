@@ -1,3 +1,49 @@
+##' ascii method for class survdiff
+##'
+##' \code{survival} package
+##' @param x 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param rownames 
+##' @param colnames 
+##' @param format 
+##' @param digits 
+##' @param decimal.mark 
+##' @param na.print 
+##' @param caption 
+##' @param caption.level 
+##' @param width 
+##' @param frame 
+##' @param grid 
+##' @param valign 
+##' @param header 
+##' @param footer 
+##' @param align 
+##' @param col.width 
+##' @param style 
+##' @param tgroup 
+##' @param n.tgroup 
+##' @param talign 
+##' @param tvalign 
+##' @param tstyle 
+##' @param bgroup 
+##' @param n.bgroup 
+##' @param balign 
+##' @param bvalign 
+##' @param bstyle 
+##' @param lgroup 
+##' @param n.lgroup 
+##' @param lalign 
+##' @param lvalign 
+##' @param lstyle 
+##' @param rgroup 
+##' @param n.rgroup 
+##' @param ralign 
+##' @param rvalign 
+##' @param rstyle 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     # From print.survdiff
     if (length(x$n) == 1) {
@@ -43,6 +89,19 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
   return(obj)
 }
 
+##' ascii method for class survfit
+##'
+##' \code{survival} package
+##' @param x 
+##' @param scale 
+##' @param print.rmean 
+##' @param rmean 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param header 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.rmean"), rmean = getOption("survfit.rmean"), include.rownames = TRUE, include.colnames = TRUE, header = TRUE, ...) {
     omit <- x$na.action
     na <- NULL
@@ -88,7 +147,16 @@ ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.
     class(obj) <- c("ascii", "proto", "environment")
     obj
 }
-
+##' ascii method for class summary.survfit
+##'
+##' \code{survival} package
+##' @param x 
+##' @param include.colnames 
+##' @param header 
+##' @param digits 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, digits = c(0, 0, 0, 3, 3, 3, 3), ...) {
   omit <- x$na.action
   na <- NULL
@@ -151,7 +219,54 @@ ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, di
   return(obj)
 }
 
-# from xtable package
+# based on xtable package
+
+##' ascii method for class coxph
+##'
+##' \code{survival} package
+##' @param x 
+##' @param include.rownames 
+##' @param include.colnames 
+##' @param rownames 
+##' @param colnames 
+##' @param format 
+##' @param digits 
+##' @param decimal.mark 
+##' @param na.print 
+##' @param caption 
+##' @param caption.level 
+##' @param width 
+##' @param frame 
+##' @param grid 
+##' @param valign 
+##' @param header 
+##' @param footer 
+##' @param align 
+##' @param col.width 
+##' @param style 
+##' @param tgroup 
+##' @param n.tgroup 
+##' @param talign 
+##' @param tvalign 
+##' @param tstyle 
+##' @param bgroup 
+##' @param n.bgroup 
+##' @param balign 
+##' @param bvalign 
+##' @param bstyle 
+##' @param lgroup 
+##' @param n.lgroup 
+##' @param lalign 
+##' @param lvalign 
+##' @param lstyle 
+##' @param rgroup 
+##' @param n.rgroup 
+##' @param ralign 
+##' @param rvalign 
+##' @param rstyle 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
 
     cox <- x

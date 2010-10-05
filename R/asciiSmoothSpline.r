@@ -1,3 +1,12 @@
+##' ascii method for class smooth.spline
+##'
+##' @param x 
+##' @param caption 
+##' @param caption.level 
+##' @param list.type 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
 ascii.smooth.spline <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     x <- as.list(capture.output(x)[-1:-3])
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)

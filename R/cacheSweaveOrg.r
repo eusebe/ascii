@@ -1,3 +1,6 @@
+##' A driver to parse org noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
 cacheSweaveOrg <- function()
 {
     require(cacheSweave)
@@ -8,6 +11,10 @@ cacheSweaveOrg <- function()
          checkopts = RweaveOrgOptions)
 }
 
+##' A driver to parse org noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveOrgSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
@@ -42,6 +49,10 @@ cacheSweaveOrgSetup <-
          srcfile=srcfile(file))
 }
 
+##' A driver to parse org noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 makeCacheRweaveOrgCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -324,4 +335,8 @@ makeCacheRweaveOrgCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
     RweaveOrgRuncode
 }
 
+##' A driver to parse org noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveOrgRuncode <- makeCacheRweaveOrgCodeRunner()

@@ -1,6 +1,14 @@
 # From Hmisc package
-ascii.describe.single <- function (x, condense = TRUE, ...)
-{
+
+##' ascii method for class describe.sing
+##'
+##' \code{Hmisc} package
+##' @param x 
+##' @param condense 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
+ascii.describe.single <- function (x, condense = TRUE, ...) {
    wide <- .Options$width
     # des : le titre
     des <- x$descript
@@ -76,8 +84,15 @@ ascii.describe.single <- function (x, condense = TRUE, ...)
   return(res)
 }
 
-ascii.describe <- function (x, condense = TRUE, ...)
-{
+##' ascii method fo class describe
+##'
+##' \code{Hmisc} package
+##' @param x 
+##' @param condense 
+##' @param ... 
+##' @return An ascii object.
+##' @author David Hajage
+ascii.describe <- function (x, condense = TRUE, ...) {
   at <- attributes(x)
   descrip <- ifelse(is.null(at$descript), "", at$descrip)
   if (is.null(at$dimensions[2])) {

@@ -1,3 +1,6 @@
+##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
 cacheSweaveT2t <- function()
 {
     require(cacheSweave)
@@ -8,6 +11,10 @@ cacheSweaveT2t <- function()
          checkopts = RweaveT2tOptions)
 }
 
+##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveT2tSetup <-
     function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
@@ -42,6 +49,10 @@ cacheSweaveT2tSetup <-
          srcfile=srcfile(file))
 }
 
+##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 makeCacheRweaveT2tCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -324,4 +335,8 @@ makeCacheRweaveT2tCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
     RweaveT2tRuncode
 }
 
+##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal
+##' @author David Hajage
 cacheSweaveT2tRuncode <- makeCacheRweaveT2tCodeRunner()

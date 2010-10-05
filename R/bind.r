@@ -308,12 +308,40 @@ asciiRbind <- proto(expr = {
   }
 })
 
+##' Rbind two ascii objects
+##'
+##' This function binds rows of two ascii table.
+##' @title Rbind two ascii objects
+##' @param x an ascii table
+##' @param y another ascii table
+##' @param caption see \code{?ascii}
+##' @param caption.level see \code{?ascii}
+##' @param frame see \code{?ascii}
+##' @param grid see \code{?ascii}
+##' @param col.width see \code{?ascii}
+##' @param width see \code{?ascii}
+##' @return An ascii object.
+##' @author David Hajage
 rbind.ascii <- function(x, y, caption = NULL, caption.level = NULL, frame = NULL, grid = NULL, col.width = 1, width = 0) {
   results <- asciiRbind$new(x, y, caption = caption, caption.level = caption.level, frame = frame, grid = grid, col.width = col.width, width = width)
   class(results) <- c("ascii", "proto", "environment")
   results
 }
 
+##' Cbind two ascii objects
+##'
+##' This function binds cols of two ascii table.
+##' @title Cbind two ascii objects
+##' @param x an ascii table
+##' @param y another ascii table
+##' @param caption see \code{?ascii}
+##' @param caption.level see \code{?ascii}
+##' @param frame see \code{?ascii}
+##' @param grid see \code{?ascii}
+##' @param col.width see \code{?ascii}
+##' @param width see \code{?ascii}
+##' @return An ascii object.
+##' @author David Hajage
 cbind.ascii <- function(x, y, caption = NULL, caption.level = NULL, frame = NULL, grid = NULL, col.width = 1, width = 0) {
   results <- asciiCbind$new(x, y, caption = caption, caption.level = caption.level, frame = frame, grid = grid, col.width = col.width, width = width)
   class(results) <- c("ascii", "proto", "environment")
