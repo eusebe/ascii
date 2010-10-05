@@ -64,10 +64,10 @@ show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALS
   } else {
     style <- ""
   }
-  x <- paste.matrix(style, x, style, sep = "")
   if (include.rownames & include.colnames) {
-    x[1, 1] <- ""
+    style[1, 1] <- ""
   }
+  x <- paste.matrix(style, x, style, sep = "")
 
   if (tstyle == "h")
     tstyle <- "s"

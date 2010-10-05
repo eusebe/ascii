@@ -60,6 +60,10 @@ show.org.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   } else {
     style <- ""
   }
+  if (include.rownames & include.colnames) {
+    style[1, 1] <- ""
+  }
+  
   before_cell_content <- after_cell_content <- style
   before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
   after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
