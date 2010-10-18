@@ -59,6 +59,7 @@ show.org.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
     style[style == "m"] <- "="
   } else {
     style <- ""
+    style <- expand(style, nrowx, ncolx)
   }
   if (include.rownames & include.colnames) {
     style[1, 1] <- ""
