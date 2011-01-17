@@ -337,6 +337,7 @@ rowsep="1" colsep="1"
 <title>A simple matrix</title>
 <?dbhtml table-width="30%"?>
 <?dbfo table-width="30%"?>
+<?dblatex table-width="30%"?>
 <tgroup cols="2">
 <colspec colname="col_1" colwidth="64*"/>
 <colspec colname="col_2" colwidth="64*"/>
@@ -409,330 +410,330 @@ rowsep="0" colsep="0"
 </row>
 <row>
 <entry align="left" valign="top"><simpara>include.rownames</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>include.colnames</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rownames</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>colnames</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>format</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>digits</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>decimal.mark</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>na.print</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>caption</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>caption.level</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>width</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>frame</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes (all or none)</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase> (all or none)</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>grid</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>valign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>header</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>footer</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>align</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>col.width</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>style</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>tgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>n.tgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>talign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>tvalign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>tstyle</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>bgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>n.bgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>balign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>bvalign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>bstyle</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>lgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>n.lgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>lalign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>lvalign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>lstyle</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>n.rgroup</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>ralign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rvalign</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>rstyle</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>list.type</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>condense</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
@@ -745,26 +746,26 @@ rowsep="0" colsep="0"
 </row>
 <row>
 <entry align="left" valign="top"><simpara>html</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>docbook</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
 <entry align="left" valign="top"><simpara>latex</simpara></entry>
-<entry align="left" valign="top"><simpara>yes (experimental)</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes (col and row spans not implemented yet)</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase> (experimental)</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase> (col and row spans not implemented yet)</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 <row>
@@ -777,10 +778,10 @@ rowsep="0" colsep="0"
 </row>
 <row>
 <entry align="left" valign="top"><simpara>syntax color</simpara></entry>
-<entry align="left" valign="top"><simpara>yes (but not for R&#8230;)</simpara></entry>
-<entry align="left" valign="top"><simpara>no</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
-<entry align="left" valign="top"><simpara>yes</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase> (but not for R&#8230;)</simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="red">no</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
+<entry align="left" valign="top"><simpara><phrase role="green">yes</phrase></simpara></entry>
 <entry align="left" valign="top"><simpara></simpara></entry>
 </row>
 </tbody>
@@ -817,15 +818,15 @@ rowsep="0" colsep="0"
 <title>sessionInfo</title>
 <screen>&gt; ascii(sessionInfo())
 R version::
-   R version 2.10.1 (2009-12-14), i486-pc-linux-gnu
+   R version 2.12.0 (2010-10-15), i686-pc-linux-gnu
 locale::
-   LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
+   LC_CTYPE=fr_FR.utf8, LC_NUMERIC=C, LC_TIME=fr_FR.utf8, LC_COLLATE=fr_FR.utf8, LC_MONETARY=C, LC_MESSAGES=fr_FR.utf8, LC_PAPER=fr_FR.utf8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.utf8, LC_IDENTIFICATION=C
 attached base packages::
    stats, graphics, grDevices, utils, datasets, methods, base
 other attached packages::
-   ascii_0.6, proto_0.3-8
+   ascii_0.7, proto_0.3-8
 loaded via a namespace (and not attached)::
-  tools_2.10.1</screen>
+  tools_2.12.0</screen>
 <variablelist>
 <varlistentry>
 <term>
@@ -833,7 +834,7 @@ R version
 </term>
 <listitem>
 <simpara>
-   R version 2.10.1 (2009-12-14), i486-pc-linux-gnu
+   R version 2.12.0 (2010-10-15), i686-pc-linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -843,7 +844,7 @@ locale
 </term>
 <listitem>
 <simpara>
-   LC_CTYPE=fr_FR.UTF-8, LC_NUMERIC=C, LC_TIME=fr_FR.UTF-8, LC_COLLATE=fr_FR.UTF-8, LC_MONETARY=C, LC_MESSAGES=fr_FR.UTF-8, LC_PAPER=fr_FR.UTF-8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.UTF-8, LC_IDENTIFICATION=C
+   LC_CTYPE=fr_FR.utf8, LC_NUMERIC=C, LC_TIME=fr_FR.utf8, LC_COLLATE=fr_FR.utf8, LC_MONETARY=C, LC_MESSAGES=fr_FR.utf8, LC_PAPER=fr_FR.utf8, LC_NAME=C, LC_ADDRESS=C, LC_TELEPHONE=C, LC_MEASUREMENT=fr_FR.utf8, LC_IDENTIFICATION=C
 </simpara>
 </listitem>
 </varlistentry>
@@ -863,7 +864,7 @@ other attached packages
 </term>
 <listitem>
 <simpara>
-   ascii_0.6, proto_0.3-8
+   ascii_0.7, proto_0.3-8
 </simpara>
 </listitem>
 </varlistentry>
@@ -873,7 +874,7 @@ loaded via a namespace (and not attached)
 </term>
 <listitem>
 <simpara>
-  tools_2.10.1
+  tools_2.12.0
 </simpara>
 </listitem>
 </varlistentry>
@@ -1004,6 +1005,7 @@ rowsep="0" colsep="0"
 <title>iris</title>
 <?dbhtml table-width="75%"?>
 <?dbfo table-width="75%"?>
+<?dblatex table-width="75%"?>
 <tgroup cols="5">
 <colspec colname="col_1" colwidth="64*"/>
 <colspec colname="col_2" colwidth="64*"/>
@@ -1525,31 +1527,31 @@ Chi-squared approximation may be incorrect
 <title>labeled list</title>
 <screen>&gt; ascii(version)
 platform::
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 arch::
-   i486
+   i686
 os::
    linux-gnu
 system::
-   i486, linux-gnu
+   i686, linux-gnu
 status::
 
 major::
    2
 minor::
-   10.1
+   12.0
 year::
-   2009
+   2010
 month::
-   12
+   10
 day::
-   14
+   15
 svn rev::
-   50720
+   53317
 language::
    R
 version.string::
-   R version 2.10.1 (2009-12-14)</screen>
+   R version 2.12.0 (2010-10-15)</screen>
 <variablelist>
 <varlistentry>
 <term>
@@ -1557,7 +1559,7 @@ platform
 </term>
 <listitem>
 <simpara>
-   i486-pc-linux-gnu
+   i686-pc-linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -1567,7 +1569,7 @@ arch
 </term>
 <listitem>
 <simpara>
-   i486
+   i686
 </simpara>
 </listitem>
 </varlistentry>
@@ -1587,7 +1589,7 @@ system
 </term>
 <listitem>
 <simpara>
-   i486, linux-gnu
+   i686, linux-gnu
 </simpara>
 </listitem>
 </varlistentry>
@@ -1610,7 +1612,7 @@ minor
 </term>
 <listitem>
 <simpara>
-   10.1
+   12.0
 </simpara>
 </listitem>
 </varlistentry>
@@ -1620,7 +1622,7 @@ year
 </term>
 <listitem>
 <simpara>
-   2009
+   2010
 </simpara>
 </listitem>
 </varlistentry>
@@ -1630,7 +1632,7 @@ month
 </term>
 <listitem>
 <simpara>
-   12
+   10
 </simpara>
 </listitem>
 </varlistentry>
@@ -1640,7 +1642,7 @@ day
 </term>
 <listitem>
 <simpara>
-   14
+   15
 </simpara>
 </listitem>
 </varlistentry>
@@ -1650,7 +1652,7 @@ svn rev
 </term>
 <listitem>
 <simpara>
-   50720
+   53317
 </simpara>
 </listitem>
 </varlistentry>
@@ -1670,7 +1672,7 @@ version.string
 </term>
 <listitem>
 <simpara>
-   R version 2.10.1 (2009-12-14)
+   R version 2.12.0 (2010-10-15)
 </simpara>
 </listitem>
 </varlistentry>
@@ -2524,7 +2526,7 @@ rst2html-highlight --stylesheet-path=pygments-default.css -s rest.rst rest.html
 or
 Alt-X org-export-as-html</screen>
 <simpara>or to other formats&#8230;</simpara>
-<simpara>For example, you can see the source of <ulink url="http://eusebe.github.com/ascii/index.Rnw">this documentation</ulink>, the file <ulink url="http://eusebe.github.com/ascii/index.txt">generated by <literal>Sweave</literal></ulink>, the same file in <ulink url="http://eusebe.github.com/ascii/index.xml">docbook format</ulink>, the same file <ulink url="http://eusebe.github.com/ascii/index.pdf">converted to pdf</ulink> with dblatex, and the same file <ulink url="http://eusebe.github.com/ascii/index.odt">converted to odt</ulink> with docbook2odf.</simpara>
+<simpara>For example, you can see the source of <ulink url="http://eusebe.github.com/ascii/index.Rnw">this documentation</ulink>, the file <ulink url="http://eusebe.github.com/ascii/index.txt">generated by <literal>Sweave</literal></ulink>, the same file in <ulink url="http://eusebe.github.com/ascii/index.xml">docbook format</ulink>, and the same file <ulink url="http://eusebe.github.com/ascii/index.pdf">converted to pdf</ulink> with dblatex.</simpara>
 </section>
 <section id="_more_informations">
 <title>more informations</title>
@@ -2597,7 +2599,7 @@ Derek H. Ogle has written <ulink url="http://www.ncfaculty.net/dogle/fishR/booke
 </listitem>
 <listitem>
 <simpara>
-<ulink url="http://blogisticreflections.wordpress.com/">This blog</ulink> too but with <ulink url="http://blogisticreflections.wordpress.com/2009/09/20/welcome-to-blogistic-reflections/">another method</ulink>.
+<ulink url="http://www.sigmafield.org/">This blog</ulink> too but with <ulink url="http://www.sigmafield.org/2009/09/20/welcome-to-sigmafield/">another method</ulink>.
 </simpara>
 </listitem>
 </itemizedlist>

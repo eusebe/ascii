@@ -8,4 +8,4 @@ txt2tags -t html t2t.t2t
 asciidoc -a toc index.txt 
 asciidoc -b docbook index.txt
 dblatex -T db2latex index.xml
-docbook2odf -f index.xml
+#docbook2odf -f index.xml
