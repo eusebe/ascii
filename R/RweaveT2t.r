@@ -1,3 +1,39 @@
+
+
+##' A driver to parse txt2tags noweb files with Sweave tool
+##' This driver parses txt2tags files containing R code and replace pieces of
+##' code with their output.
+##' 
+##' 
+##' @aliases RweaveT2t RtangleT2t RweaveT2tOptions RweaveT2tFinish
+##'   RweaveT2tWritedoc RweaveT2tSetup RweaveT2tRuncode cacheSweaveT2t
+##'   weaverT2t
+##' @return None value is returned. From a .Rnw noweb file, the corresponding
+##'   .t2t is produced (as eventuals files for graphs).
+##' @note In order to work properly, noweb codes have to be located at the
+##'   beginning of a line (no indentation).
+##' 
+##' Compare with RweaveLatex driver, RweaveT2t provides four new options :
+##'   \code{res} for the resolution of jpg or png figure (if produced),
+##'   \code{ext} (extension) for the format of figure that will be inserted,
+##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
+##'   and jpg figures.
+##' 
+##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
+##'   package is also available with \code{cacheSweaveT2t} driver and
+##'   \code{weaverT2t} driver.
+##' 
+##' A wrapper for \code{Sweave} can be used, named \code{T2t}.
+##' @author David Hajage \email{dhajage@@gmail.com}
+##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{T2t}}
+##' @keywords IO file
+##' @export
+##' @examples
+##'   \dontrun{
+##' library(ascii)
+##' T2t("file.Rnw")
+##'   }
+##' 
 RweaveT2t <- function()
 {
     list(setup = RweaveT2tSetup,

@@ -1,5 +1,6 @@
 ## Adapted from weaver package code by Seth Falcon
 
+##' @export
 weaverAsciidoc <- function()
 {
     require(weaver)

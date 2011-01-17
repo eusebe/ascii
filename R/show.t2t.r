@@ -1,3 +1,6 @@
+##' @keywords internal
+##' @param caption caption
+##' @param caption.level caption.level
 header.t2t <- function(caption = NULL, caption.level = "") {
   res <- ""
   if (is.null(caption.level))
@@ -13,7 +16,9 @@ header.t2t <- function(caption = NULL, caption.level = "") {
   return(res)
 }
 
-# beautify for t2t
+##' @keywords internal
+##' @param x x
+##' @param beauti beauti
 beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
   x[is.na(x)] <- "NA"
   if (beauti == "s") {
@@ -31,11 +36,55 @@ beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+##' @keywords internal
+##' @param x x
 escape.t2t <- function(x) {
   xx <- gsub("\\|", "\\\\|", x)
   xx
 }
 
+##' @keywords internal
+##' @param x x
+##' @param include.rownames include.rownames 
+##' @param include.colnames include.colnames 
+##' @param rownames rownames 
+##' @param colnames colnames 
+##' @param format format 
+##' @param digits digits 
+##' @param decimal.mark decimal.mark 
+##' @param na.print na.print 
+##' @param caption caption 
+##' @param caption.level 
+##' @param width width 
+##' @param frame frame 
+##' @param grid grid 
+##' @param valign valign 
+##' @param header header 
+##' @param footer footer 
+##' @param align align 
+##' @param col.width col.width 
+##' @param style style 
+##' @param lgroup lgroup 
+##' @param n.lgroup n.lgroup 
+##' @param lalign lalign 
+##' @param lvalign lvalign 
+##' @param lstyle lstyle 
+##' @param rgroup rgroup 
+##' @param n.rgroup n.rgroup 
+##' @param ralign ralign 
+##' @param rvalign rvalign 
+##' @param rstyle rstyle 
+##' @param tgroup tgroup 
+##' @param n.tgroup n.tgroup 
+##' @param talign talign 
+##' @param tvalign tvalign 
+##' @param tstyle tstyle 
+##' @param bgroup bgroup
+##' @param n.bgroup n.bgroup 
+##' @param balign balign 
+##' @param bvalign bvalign 
+##' @param bstyle bstyle 
+##' @param ... ...
 show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", ...) {
 
   x <- escape.t2t(tocharac(x, include.rownames, include.colnames, rownames, colnames, format, digits, decimal.mark, na.print))
@@ -181,6 +230,12 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   cat(results, sep = "\n")
 }
 
+##' @keywords internal
+##' @param x x
+##' @param caption caption
+##' @param caption.level caption.level
+##' @param list.type list.type
+##' @param ... ...
 show.t2t.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
   indent.mark <- " "
   if (list.type == "bullet") mark <- rep("-", length(x))

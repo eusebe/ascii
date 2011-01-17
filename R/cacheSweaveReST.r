@@ -1,5 +1,6 @@
 ##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
 ##'
+##' @export
 ##' @author David Hajage
 cacheSweaveReST <- function()
 {

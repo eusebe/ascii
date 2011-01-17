@@ -1,32 +1,25 @@
 \name{export}
 \alias{export}
-\alias{convert}
-\alias{section}
-\alias{print.section}
-\alias{sexpr}
-\alias{print.sexpr}
-\alias{paragraph}
-\alias{print.paragraph}
-
-\title{Use asciidoc from R}
-\description{
-  These functions allow to use asciidoc and a2x toolchains directly from R.
-}
-\usage{
-  export(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
-         author = NULL, email = NULL, revdate = NULL, revnumber = NULL,
-         encoding = NULL, cmd = NULL, cygwin = TRUE)
- }
-\arguments{
-  \item{...}{\code{ascii}, \code{section}, \code{paragraph}, \code{verbatim} or
-    \code{sexpr} object.}
-  
-}
-\details{
-}
-\value{
-}
+\title{Use asciidoc from R...}
+\usage{export(..., file, format="xhtml", open, main, author, email, revdate,
+    revnumber, encoding, cmd, cygwin=FALSE)}
+\description{Use asciidoc from R
+These functions allow to use asciidoc and a2x toolchains directly from R.}
+\value{a list with all \code{...} arguments.}
 \author{David Hajage \email{dhajage@gmail.com}}
-\examples{
-}
 \keyword{print}
+\arguments{\item{...}{\code{section}, \code{paragraph}, \code{sexpr}, \code{out}, \code{math}, \code{ascii}, or what-you-want (exported as verbatim) objects}
+\item{file}{output file (no extension)}
+\item{format}{format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, odt, dvi, ps, tex, docbook, asciidoc)}
+\item{open}{open or not resulting file}
+\item{main}{main title of the document}
+\item{author}{author of the document}
+\item{email}{email of the document}
+\item{revdate}{revision date of the document}
+\item{revnumber}{revision number of the document}
+\item{encoding}{encoding format of input file}
+\item{cmd}{eventually define the asciidoc command}
+\item{cygwin}{do you use asciidoc through cygwin}}
+\examples{\dontrun{
+export(ascii(head(esoph)))}
+

@@ -1,3 +1,9 @@
+##' @keywords internal
+##' @param x x
+##' @param nrow nrow
+##' @param ncol ncol
+##' @param what what
+##' @param drop drop
 expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
   if (is.vector(x))
     x <- t(x)
@@ -30,6 +36,12 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
 }
 
 # paste for matrix
+##' @keywords internal
+##' @param ... ...
+##' @param sep sep
+##' @param transpose.vector transpose.vector
+##' @param collapse collapse
+##' @param byrow byrow
 paste.matrix <- function(..., sep = " ", transpose.vector = FALSE, collapse = NULL, byrow = FALSE) {
   args <- list(...)
   args <- args[!sapply(args, is.null)]

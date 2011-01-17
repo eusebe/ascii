@@ -1,14 +1,20 @@
 ##' ascii method for class meanscomp
 ##'
 ##' \code{descr} package
-##' @title 
-##' @param x 
-##' @param header 
-##' @param caption 
-##' @param include.rownames 
-##' @param include.colnames 
-##' @param ... 
+##' @param x An R object of class found among \code{methods(ascii)}.
+##' @param header logical or numeric. If \code{TRUE} or \code{1}, \code{2},
+##'   \dots{}, the first line(s) of the table is (are) emphasized. The default
+##'   value depends of class of \code{x}.
+##' @param caption Character vector of length 1 containing the table's caption
+##'   or title.  Set to \code{""} to suppress the caption.  Default value is
+##'   \code{NULL}.
+##' @param include.rownames logical. If \code{TRUE} the rows names are printed.
+##'   Default value depends of class of \code{x}.
+##' @param include.colnames logical. If \code{TRUE} the columns names are
+##'   printed. Default value depends of class of \code{x}.
+##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
+##' @S3method ascii meanscomp
 ##' @author David Hajage
 ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames = TRUE, include.colnames = TRUE, ...) {                 
     rlab <- ifelse(is.null(x$row.label), x$row, x$row.label)
@@ -22,11 +28,11 @@ ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames 
 ##' ascii methodd for class CrossTable
 ##'
 ##' \code{descr} package
-##' @title 
-##' @param x 
-##' @param ... 
 ##' @return An ascii object.
+##' @S3method ascii CrossTable
 ##' @author David Hajage
+##' @param x A crosstable object
+##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ascii.CrossTable <- function (x, ...) {
   t <- x$t      
   CPR <- x$prop.row
@@ -261,19 +267,43 @@ ascii.CrossTable <- function (x, ...) {
 ##' ascii method for class freqtable
 ##'
 ##' \code{descr} package
-##' @title 
-##' @param x 
-##' @param header 
-##' @param footer 
-##' @param digits 
-##' @param format 
-##' @param na.print 
-##' @param include.rownames 
-##' @param include.colnames 
-##' @param caption 
-##' @param ... 
 ##' @return An ascii object.
+##' @S3method ascii freqtable
 ##' @author David Hajage
+##' @param x An R object of class found among \code{methods(ascii)}.
+##' @param header logical or numeric. If \code{TRUE} or \code{1}, \code{2},
+##'   \dots{}, the first line(s) of the table is (are) emphasized. The default
+##'   value depends of class of \code{x}.
+##' @param footer logical or numeric. If \code{TRUE} or \code{1}, the last
+##'   line(s) of the table is (are) emphasized. The default value depends of
+##'   class of \code{x}.
+##' @param digits Numeric vector of length equal to the number of columns of
+##'   the resulting table (otherwise it will be replicated or truncated as
+##'   necessary) indicating the number of digits to display in the
+##'   corresponding columns.  Default is \code{2}.
+##' @param format Character vector or matrix indicating the format for the
+##'   corresponding columns.  These values are passed to the \code{formatC}
+##'   function.  Use \code{"d"} (for integers), \code{"f"}, \code{"e"},
+##'   \code{"E"}, \code{"g"}, \code{"G"}, \code{"fg"} (for reals), or
+##'   \code{"s"} (for strings).  \code{"f"} gives numbers in the usual
+##'   \code{xxx.xxx} format; \code{"e"} and \code{"E"} give \code{n.ddde+nn} or
+##'   \code{n.dddE+nn} (scientific format); \code{"g"} and \code{"G"} put
+##'   \code{x[i]} into scientific format only if it saves space to do so.
+##'   \code{"fg"} uses fixed format as \code{"f"}, but \code{digits} as number
+##'   of \emph{significant} digits.  Note that this can lead to quite long
+##'   result strings. Finaly, \code{"nice"} is like \code{"f"}, but with 0
+##'   digits if \code{x} is an integer. Default depends on the class of
+##'   \code{x}.
+##' @param na.print The character string specifying how \code{NA} should be
+##'   formatted specially. Default is "".
+##' @param include.rownames logical. If \code{TRUE} the rows names are printed.
+##'   Default value depends of class of \code{x}.
+##' @param include.colnames logical. If \code{TRUE} the columns names are
+##'   printed. Default value depends of class of \code{x}.
+##' @param caption Character vector of length 1 containing the table's caption
+##'   or title.  Set to \code{""} to suppress the caption.  Default value is
+##'   \code{NULL}.
+##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ascii.freqtable <- function (x, header = TRUE, footer = TRUE, digits = c(0, 2, 2), format = "f", na.print = "", include.rownames = TRUE, include.colnames = TRUE, caption = x$label, ...) {
   res <- x$freqtable
   ascii(res, header = header, footer = footer, include.rownames = include.rownames, include.colnames = include.colnames, caption = caption, digits = digits, format = format, na.print = na.print, ...)

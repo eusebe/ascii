@@ -5,11 +5,26 @@ Version: 1.0
 Date: 2009-07-20
 Author: David Hajage
 Maintainer: David Hajage <dhajage@gmail.com>
-Description: Coerce R object to asciidoc, txt2tags, restructuredText, org or textile syntax. 
- Package comes with a set of drivers for Sweave.
+Description: Coerce R object to asciidoc, txt2tags, restructuredText,
+    org or textile syntax. Package comes with a set of drivers for
+    Sweave.
 License: GPL (>= 2)
 URL: http://eusebe.github.com/ascii/, http://github.com/eusebe/ascii/
-Depends: R (>= 2.7), proto
+Depends: R (>= 2.7), proto, utils
 Imports: proto
 Suggests: survival, Hmisc, xtable, R2HTML, hwriter, cacheSweave, weaver
 LazyLoad: false
+Collate: 'asciiAnova.r' 'asciiDataFrame.r' 'asciiDefault.r'
+    'asciiDensity.r' 'asciiDescr.r' 'asciiGlm.r' 'asciiHmisc.r'
+    'asciiHtest.r' 'asciiList.r' 'asciiLm.r' 'asciiMatrix.r'
+    'asciiPrcomp.r' 'asciiSmoothSpline.r' 'asciiSummaryTable.r'
+    'asciiSurvival.r' 'asciiTable.r' 'asciiTs.r' 'asciiVector.r'
+    'bind.r' 'cacheSweaveAsciidoc.r' 'cacheSweaveOrg.r'
+    'cacheSweaveReST.r' 'cacheSweaveT2t.r' 'cacheSweaveTextile.r'
+    'export.r' 'generic.r' 'groups.r' 'interleave.r' 'paste.matrix.r'
+    'print.character.matrix.r' 'print.r' 'RweaveAsciidoc.r'
+    'RweaveOrg.r' 'RweaveReST.r' 'RweaveT2t.r' 'RweaveTextile.r'
+    'show.asciidoc.r' 'show.org.r' 'show.r'
+    'show.rest.r' 'show.t2t.r' 'show.textile.r' 'SweaveAscii.r'
+    'tocharac.r' 'weaverAsciidoc.r' 'weaverOrg.r'
+    'weaverReST.r' 'weaverT2t.r' 'weaverTextile.r'

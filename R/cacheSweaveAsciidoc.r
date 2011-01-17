@@ -1,5 +1,6 @@
 ##' A driver to parse asciidoc noweb files with Sweave tool - cacheSweave based
 ##'
+##' @export
 ##' @author David Hajage
 cacheSweaveAsciidoc <- function()
 {

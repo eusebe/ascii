@@ -1,5 +1,6 @@
 ##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
 ##'
+##' @export
 ##' @author David Hajage
 cacheSweaveT2t <- function()
 {

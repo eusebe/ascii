@@ -4,6 +4,7 @@
 ##' @param caption a string
 ##' @param caption.level caption level
 ##' @return A section object.
+##' @export
 ##' @author David Hajage
 section <- function(caption, caption.level = 1) {
   results <- list(caption = caption, caption.level = caption.level + 1)
@@ -16,6 +17,7 @@ section <- function(caption, caption.level = 1) {
 ##' Print a section object
 ##' @param x a section object
 ##' @param ... not used
+##' @export
 ##' @author David Hajage
 print.section <- function(x, ...) {
   caption <- x$caption
@@ -30,6 +32,7 @@ print.section <- function(x, ...) {
 ##' @param ... strings composing the paragraph
 ##' @param new whether to create a new paragraph or to continue a preceding one
 ##' @return A paragraph object.
+##' @export
 ##' @author David Hajage
 paragraph <- function(..., new = TRUE) {
   results <- list(text = list(...), new = new)
@@ -42,6 +45,7 @@ paragraph <- function(..., new = TRUE) {
 ##' Print a paragraph object
 ##' @param x a paragraph object
 ##' @param ... not used
+##' @export
 ##' @author David Hajage
 print.paragraph <- function(x, ...) {
   newline <- "\n"
@@ -67,6 +71,7 @@ print.paragraph <- function(x, ...) {
 ##' \code{sexpr} can be used with \code{export} function to insert an inline R results
 ##' @param x an R results (of length one)
 ##' @return A sexpr object.
+##' @export
 ##' @author David Hajage
 sexpr <- function(x) {
   results <- x
@@ -79,6 +84,7 @@ sexpr <- function(x) {
 ##' Print a sexpr object
 ##' @param x a sexpr object
 ##' @param ... not used
+##' @export
 ##' @author David Hajage
 print.sexpr <- function(x, ...) {
   cat(x, sep = "")
@@ -89,7 +95,8 @@ print.sexpr <- function(x, ...) {
 ##' \code{out} can be used with \code{export} function to insert an R results
 ##' @param x an R object
 ##' @param results if \code{'verbatim'}, the output is included in a verbatim environment. If \code{'latex'}, the output is taken to be already proper latex markup and included as is.
-##' @return 
+##' @return An out object
+##' @export
 ##' @author David Hajage
 out <- function(x, results = "verbatim") {
   results <- list(x, results)
@@ -102,6 +109,7 @@ out <- function(x, results = "verbatim") {
 ##' Print an out object
 ##' @param x an out object
 ##' @param ... not used
+##' @export
 ##' @author David Hajage
 print.out <- function(x, ...) {
   results <- x[[2]]
@@ -123,6 +131,7 @@ print.out <- function(x, ...) {
 ##' \code{math} can be used with \code{export} function to insert some maths
 ##' @param x some maths
 ##' @param notation latexmath or asciimath
+##' @export
 ##' @author David Hajage
 math <- function(x, notation = "latexmath") {
   results <- list(x, notation)
@@ -135,6 +144,7 @@ math <- function(x, notation = "latexmath") {
 ##' Print a math object
 ##' @param x a math object
 ##' @param ... not used
+##' @export
 ##' @author David Hajage
 print.math <- function(x, ...) {
   notation <- x[[2]]
@@ -158,6 +168,7 @@ print.math <- function(x, ...) {
 ##' @param asciimath use asciimath attribute
 ##' @param cmd eventually define the asciidoc command
 ##' @param cygwin do you use asciidoc through cygwin
+##' @export
 ##' @author David Hajage
 convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, latexmath = FALSE, asciimath = FALSE, cmd = NULL, cygwin = FALSE) {
 
@@ -214,9 +225,9 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
   invisible(err)
 }
 
-##' Export R objects into a file
-##'
-##' \code{export} can export R objects into a report.
+##' Use asciidoc from R
+##' These functions allow to use asciidoc and a2x toolchains directly from R.
+##' 
 ##' @param ... \code{section}, \code{paragraph}, \code{sexpr}, \code{out}, \code{math}, \code{ascii}, or what-you-want (exported as verbatim) objects
 ##' @param file output file (no extension)
 ##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, odt, dvi, ps, tex, docbook, asciidoc)
@@ -229,7 +240,14 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
 ##' @param encoding encoding format of input file
 ##' @param cmd eventually define the asciidoc command
 ##' @param cygwin do you use asciidoc through cygwin
-##' @author David Hajage
+##' @keywords print
+##' @examples
+##' \dontrun{
+##'   export(ascii(head(esoph)))
+##'}
+##' @export
+##' @return a list with all \code{...} arguments.
+##' @author David Hajage \email{dhajage@@gmail.com}
 export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = FALSE) {
 
   windows <- grepl("mingw", version$os)

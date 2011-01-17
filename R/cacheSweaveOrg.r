@@ -1,5 +1,6 @@
 ##' A driver to parse org noweb files with Sweave tool - cacheSweave based
 ##'
+##' @export
 ##' @author David Hajage
 cacheSweaveOrg <- function()
 {

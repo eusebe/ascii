@@ -1,5 +1,6 @@
 ## Adapted from weaver package code by Seth Falcon
 
+##' @export
 weaverTextile <- function()
 {
     require(weaver)

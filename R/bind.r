@@ -321,6 +321,7 @@ asciiRbind <- proto(expr = {
 ##' @param col.width see \code{?ascii}
 ##' @param width see \code{?ascii}
 ##' @return An ascii object.
+##' @export
 ##' @author David Hajage
 rbind.ascii <- function(x, y, caption = NULL, caption.level = NULL, frame = NULL, grid = NULL, col.width = 1, width = 0) {
   results <- asciiRbind$new(x, y, caption = caption, caption.level = caption.level, frame = frame, grid = grid, col.width = col.width, width = width)
@@ -341,6 +342,7 @@ rbind.ascii <- function(x, y, caption = NULL, caption.level = NULL, frame = NULL
 ##' @param col.width see \code{?ascii}
 ##' @param width see \code{?ascii}
 ##' @return An ascii object.
+##' @export
 ##' @author David Hajage
 cbind.ascii <- function(x, y, caption = NULL, caption.level = NULL, frame = NULL, grid = NULL, col.width = 1, width = 0) {
   results <- asciiCbind$new(x, y, caption = caption, caption.level = caption.level, frame = frame, grid = grid, col.width = col.width, width = width)

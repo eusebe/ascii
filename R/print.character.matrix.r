@@ -1,12 +1,32 @@
+##' @keywords internal
+##' @param x x
+##' @param n n
 div <- function(x, n = 2) {
   xx <- floor(x/n)
   c(xx, x - xx)
 }
 
+##' @keywords internal
+##' @param x x
+##' @param times times
 rep.char <- function(x, times = 1) {
   paste(rep(x, times), collapse = "")
 }
 
+##' @keywords internal
+##' @param x x
+##' @param vsep vsep
+##' @param before_vsep before_vsep
+##' @param after_vsep after_vsep
+##' @param hsep hsep
+##' @param csep csep
+##' @param before_cell_content before_cell_content
+##' @param after_cell_content after_cell_content
+##' @param line_separator line_separator
+##' @param line_separator_pos line_separator_pos
+##' @param justify justify
+##' @param right_alignment right_alignment
+##' @param print print
 print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep = "", hsep = "-", csep = "+", before_cell_content = " ", after_cell_content = " ", line_separator = TRUE, line_separator_pos = NULL, justify = c("left", "right", "centre", "none"), right_alignment = FALSE, print = TRUE) {
 
   justify <- justify[1]

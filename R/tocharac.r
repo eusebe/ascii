@@ -1,3 +1,5 @@
+##' @keywords internal
+##' @param x x
 safe.as.character <- function(x) {
   # preserves dim of x
   xx <-  sapply(as.data.frame(x, stringAsFactor = FALSE, check.names = FALSE), as.character)
@@ -11,12 +13,19 @@ safe.as.character <- function(x) {
   xx
 }
 
+##' @keywords internal
+##' @param x x
 trim <- function (x) {
   x <- sub("^ +", "", x)
   x <- sub(" +$", "", x)
   x
 }
 
+##' @keywords internal
+##' @param x x
+##' @param format format
+##' @param digits digits
+##' @param ... ...
 formatCustom <- function(x, format = "nice", digits = 2, ...) {
   sapply(x, function(x) {
     if (format != "nice") {
@@ -27,6 +36,16 @@ formatCustom <- function(x, format = "nice", digits = 2, ...) {
   })
 }
 
+##' @keywords internal
+##' @param x x
+##' @param include.rownames include.rownames
+##' @param include.colnames include.colnames
+##' @param rownames rownames
+##' @param colnames colnames
+##' @param format format
+##' @param digits digits
+##' @param decimal.mark decimal.mark
+##' @param na.print na.print
 tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "") {
   if (is.factor(x))
     x <- as.character(x)

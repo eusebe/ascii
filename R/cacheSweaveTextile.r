@@ -1,5 +1,6 @@
 ##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
 ##'
+##' @export
 ##' @author David Hajage
 cacheSweaveTextile <- function()
 {

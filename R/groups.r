@@ -1,3 +1,7 @@
+##' @keywords internal
+##' @param groups groups
+##' @param n.groups n.groups
+##' @param n 
 groups <- function(groups, n.groups = NULL, n) {
   ng <- length(groups)
   if (is.null(n.groups) | !is.list(n.groups)) {
@@ -20,12 +24,19 @@ groups <- function(groups, n.groups = NULL, n) {
   results
 }
 
+##' @keywords internal
+##' @param group group
+##' @param n.group n.group
+##' @param n n
 ngroups <- function(group, n.group = NULL, n) {
   ng <- length(group)
   pos.group <- c(1, 1 + cumsum(n.group))[1:ng]
   data.frame(group, pos.group, n.group, stringsAsFactors = FALSE)
 }
 
+##' @keywords internal
+##' @param group group
+##' @param n.group n.group
 linegroup <- function(group, n.group) {
   res <- list()
   for (i in 1:length(group)) {

@@ -1,5 +1,6 @@
 ## Adapted from weaver package code by Seth Falcon
 
+##' @export
 weaverOrg <- function()
 {
     require(weaver)
