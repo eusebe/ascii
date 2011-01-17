@@ -50,6 +50,7 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
     style[style == "m"] <- "``"
   } else {
     style <- ""
+    style <- expand(style, nrowx, ncolx)
   }
   if (include.rownames & include.colnames) {
     style[1, 1] <- ""
@@ -77,7 +78,19 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
 
   if (include.rownames & include.colnames)
     results[1] <- substr(results[1], 5, nchar(results[1]))
-  
+
+  if (!is.null(lgroup)) {
+    if (!is.list(lgroup))
+      lgroup <- list(lgroup)
+    n.lgroup <- groups(lgroup, n.lgroup, nrowx-include.colnames)[[2]]
+    linelgroup <- linegroup(lgroup, n.lgroup)
+  }
+  if (!is.null(rgroup)) {
+    if (!is.list(rgroup))
+      rgroup <- list(rgroup)
+    n.rgroup <- groups(rgroup, n.rgroup, nrowx-include.colnames)[[2]]
+    linergroup <- linegroup(rgroup, n.rgroup)
+  }
   if (!is.null(tgroup)) {
     if (!is.list(tgroup))
       tgroup <- list(tgroup)
@@ -89,6 +102,16 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
     n.bgroup <- groups(bgroup, n.bgroup, ncolx-include.rownames)[[2]]
   }
 
+  if (!is.null(lgroup)) {
+    for (i in 1:length(lgroup)) {
+      x <- cbind(c(rep("", include.colnames), beauty.t2t(linelgroup[[i]], lstyle)), x)
+    }
+  }
+  if (!is.null(rgroup)) {
+    for (i in 1:length(rgroup)) {
+      x <- cbind(x, c(rep("", include.colnames), beauty.t2t(linergroup[[i]], rstyle)))
+    }
+  }
   if (!is.null(tgroup)) {
     for (i in 1:length(tgroup)) {
       pos.tgroup <- ngroups(tgroup[[i]], n.tgroup[[i]], n = ncolx)
