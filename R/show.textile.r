@@ -100,6 +100,7 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
     style[style == "m"] <- "<code>"
   } else {
     style <- ""
+    style <- expand(style, nrowx, ncolx)
   }
   if (include.rownames & include.colnames) {
     style[1, 1] <- ""

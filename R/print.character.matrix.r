@@ -45,7 +45,7 @@ print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep =
     addtoxleft <- ""
     addtoxright <- apply(addtox, 1:2, function(x) paste(rep(" ", x), collapse = ""))
   }
-  if (justify == "center" | justify == "none") {
+  if (justify == "centre" | justify == "none") {
     addtox <- apply(addtox, 1:2, div)
     addtoxleft <- apply(addtox[, , 1], 1:2, function(x) paste(rep(" ", x), collapse = ""))
     addtoxright <- apply(addtox[, , 2], 1:2, function(x) paste(rep(" ", x), collapse = ""))
