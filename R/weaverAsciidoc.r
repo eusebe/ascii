@@ -1,5 +1,7 @@
 ## Adapted from weaver package code by Seth Falcon
 
+##' weaverAsciidoc
+##' 
 ##' @export
 weaverAsciidoc <- function()
 {
@@ -11,8 +13,18 @@ weaverAsciidoc <- function()
          checkopts = RweaveAsciidocOptions)
 }
 
-weaverAsciidocSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' weaverAsciidocSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param use.cache use.cache
+##' @param ... ...
+##' @keywords internal
+weaverAsciidocSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, use.cache=TRUE, ...)
 {
     if (!quiet)
@@ -25,7 +37,11 @@ weaverAsciidocSetup <-
     res$options <- RweaveAsciidocOptions(res$options)
     res
 }
-
+##' weaverAsciidocFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 weaverAsciidocFinish <- function(object, error=FALSE) {
     resetStorage(cache_expr)
     RweaveAsciidocFinish(object, error)

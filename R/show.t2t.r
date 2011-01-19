@@ -1,3 +1,6 @@
+
+##' header.t2t
+##'
 ##' @keywords internal
 ##' @param caption caption
 ##' @param caption.level caption.level
@@ -16,6 +19,8 @@ header.t2t <- function(caption = NULL, caption.level = "") {
   return(res)
 }
 
+##' beauty.t2t
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param beauti beauti
@@ -36,6 +41,8 @@ beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+##' escape.t2t
+##'
 ##' @keywords internal
 ##' @param x x
 escape.t2t <- function(x) {
@@ -43,6 +50,8 @@ escape.t2t <- function(x) {
   xx
 }
 
+##' show.t2t.table
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames 
@@ -230,6 +239,8 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   cat(results, sep = "\n")
 }
 
+##' show.t2t.list
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param caption caption

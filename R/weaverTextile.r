@@ -1,5 +1,8 @@
 ## Adapted from weaver package code by Seth Falcon
 
+
+##' weaverTextile
+##'
 ##' @export
 weaverTextile <- function()
 {
@@ -11,8 +14,18 @@ weaverTextile <- function()
          checkopts = RweaveTextileOptions)
 }
 
-weaverTextileSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' weaverTexxtileSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param use.cache use.cache
+##' @param ... ...
+##' @keywords internal
+weaverTextileSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, use.cache=TRUE, ...)
 {
     if (!quiet)
@@ -26,6 +39,11 @@ weaverTextileSetup <-
     res
 }
 
+##' weaverTexxtileFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 weaverTextileFinish <- function(object, error=FALSE) {
     resetStorage(cache_expr)
     RweaveTextileFinish(object, error)

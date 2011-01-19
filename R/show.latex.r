@@ -1,3 +1,6 @@
+
+##' beauty.latex
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param beauti beauti
@@ -18,6 +21,9 @@ beauty.latex <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+
+##' header.latex
+##'
 ##' @keywords internal
 ##' @param caption caption
 ##' @param align align
@@ -46,6 +52,9 @@ header.latex <- function (caption = NULL, align = NULL, frame = NULL, lgroup = N
   return(res)
 }
 
+
+##' escape.latex
+##'
 ##' @keywords internal
 ##' @param x x
 escape.latex <- function(x) {
@@ -53,6 +62,9 @@ escape.latex <- function(x) {
   xx
 }
 
+
+##' show.latex.table
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames 
@@ -210,6 +222,9 @@ show.latex.table <- function(x, include.rownames = FALSE, include.colnames = FAL
   cat("\\end{tabular}\n\\end{table}\n")
 }
 
+
+##' show.latex.list
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param caption caption

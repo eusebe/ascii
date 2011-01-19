@@ -1,3 +1,6 @@
+
+##' header.rest
+##'
 ##' @keywords internal
 ##' @param caption caption
 ##' @param caption.level caption.level
@@ -26,6 +29,9 @@ header.rest <- function(caption = NULL, caption.level = NULL) {
   return(res)
 }
   
+
+##' beauty.rest
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param beauti beauti
@@ -49,6 +55,9 @@ beauty.rest <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+
+##' escape.rest
+##'
 ##' @keywords internal
 ##' @param x x
 escape.rest <- function(x) {
@@ -56,6 +65,8 @@ escape.rest <- function(x) {
   xx
 }
 
+##' show.rest.table
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames 
@@ -290,6 +301,9 @@ show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALS
   cat(results, sep = "\n")
 }
 
+
+##' show.rest.list
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param caption caption

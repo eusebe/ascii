@@ -1,5 +1,7 @@
 ## Adapted from weaver package code by Seth Falcon
 
+##' weaverOrg
+##' 
 ##' @export
 weaverOrg <- function()
 {
@@ -11,8 +13,18 @@ weaverOrg <- function()
          checkopts = RweaveOrgOptions)
 }
 
-weaverOrgSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' weaverOrgSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param use.cache use.cache
+##' @param ... ...
+##' @keywords internal
+weaverOrgSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, use.cache=TRUE, ...)
 {
     if (!quiet)
@@ -26,6 +38,11 @@ weaverOrgSetup <-
     res
 }
 
+##' weaverOrgFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 weaverOrgFinish <- function(object, error=FALSE) {
     resetStorage(cache_expr)
     RweaveOrgFinish(object, error)

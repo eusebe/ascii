@@ -1,3 +1,6 @@
+
+##' expand
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param nrow nrow
@@ -36,6 +39,9 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
 }
 
 # paste for matrix
+
+##' paste.matrix
+##'
 ##' @keywords internal
 ##' @param ... ...
 ##' @param sep sep

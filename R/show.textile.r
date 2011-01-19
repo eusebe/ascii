@@ -1,3 +1,5 @@
+##' header.textile
+##'
 ##' @keywords internal
 ##' @param caption caption
 ##' @param caption.level caption.level
@@ -36,6 +38,8 @@ header.textile <- function(caption = NULL, caption.level = NULL, frame = NULL, w
   return(res)
 }
 
+##' beauty.textile
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param beauti beauti
@@ -56,6 +60,8 @@ beauty.textile <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+##' vsep.textile
+##'
 ##' @keywords internal
 ##' @param align align
 ##' @param valign valign
@@ -88,6 +94,8 @@ vsep.textile <- function (align = NULL, valign = NULL, style = NULL) {
   return(res)
 }
 
+##' escape.textile
+##'
 ##' @keywords internal
 ##' @param x x
 escape.textile <- function(x) {
@@ -95,6 +103,8 @@ escape.textile <- function(x) {
   xx
 }
 
+##' show.textile.table
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames 
@@ -301,6 +311,8 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   cat(results, sep = "\n")
 }
 
+##' show.textile.list
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param caption caption

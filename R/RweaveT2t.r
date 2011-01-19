@@ -43,8 +43,17 @@ RweaveT2t <- function()
          checkopts = RweaveT2tOptions)
 }
 
-RweaveT2tSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' RweaveT2tSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quite
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param ... ...
+##' @keywords internal
+RweaveT2tSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
 {
     dots <- list(...)
@@ -77,6 +86,10 @@ RweaveT2tSetup <-
          srcfile=srcfile(file))
 }
 
+##' makeRweaveT2tCodeRunner
+##'
+##' @param evalFunc 
+##' @keywords internal
 makeRweaveT2tCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -355,6 +368,11 @@ makeRweaveT2tCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 
 RweaveT2tRuncode <- makeRweaveT2tCodeRunner()
 
+##' RweaveT2tWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RweaveT2tWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
@@ -390,6 +408,11 @@ RweaveT2tWritedoc <- function(object, chunk)
     return(object)
 }
 
+##' RweaveT2tFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RweaveT2tFinish <- function(object, error=FALSE)
 {
     outputname <- summary(object$output)$description
@@ -421,6 +444,10 @@ RweaveT2tFinish <- function(object, error=FALSE)
     invisible(outputname)
 }
 
+##' RweaveT2tOptions
+##'
+##' @param options 
+##' @keywords internal
 RweaveT2tOptions <- function(options)
 {
 
@@ -466,7 +493,10 @@ RweaveT2tOptions <- function(options)
     options
 }
 
-
+##' RweaveChunkPrefix
+##'
+##' @param options options
+##' @keywords internal
 RweaveChunkPrefix <- function(options)
 {
     if(!is.null(options$label)){
@@ -484,6 +514,11 @@ RweaveChunkPrefix <- function(options)
     return(chunkprefix)
 }
 
+##' RweaveEvalWithOpt
+##' 
+##' @param expr expr
+##' @param options options
+##' @keywords internal
 RweaveEvalWithOpt <- function (expr, options){
     if(options$eval){
         res <- try(.Internal(eval.with.vis(expr, .GlobalEnv, baseenv())),
@@ -495,7 +530,11 @@ RweaveEvalWithOpt <- function (expr, options){
     return(res)
 }
 
-
+##' RweaveTryStop
+##'
+##' @param err err
+##' @param options options
+##' @keywords internal
 RweaveTryStop <- function(err, options){
 
     if(inherits(err, "try-error")){
@@ -514,6 +553,9 @@ RweaveTryStop <- function(err, options){
 
 ###**********************************************************
 
+##' RtangleT2t
+##'
+##' @keywords internal
 RtangleT2t <-  function()
 {
     list(setup = RtangleT2tSetup,
@@ -523,7 +565,16 @@ RtangleT2t <-  function()
          checkopts = RweaveT2tOptions)
 }
 
-
+##' RtangleT2tSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param annotate annotate
+##' @param split split
+##' @param prefix prefix
+##' @param quiet quiet
+##' @keywords internal
 RtangleT2tSetup <- function(file, syntax,
                          output=NULL, annotate=TRUE, split=FALSE,
                          prefix=TRUE, quiet=FALSE)
@@ -555,7 +606,12 @@ RtangleT2tSetup <- function(file, syntax,
          chunkout=list(), quiet=quiet, syntax=syntax)
 }
 
-
+##' RtangleT2tRuncode
+##'
+##' @param object object
+##' @param chunk chunk
+##' @param options options
+##' @keywords internal
 RtangleT2tRuncode <-  function(object, chunk, options)
 {
     if(!(options$engine %in% c("R", "S"))){
@@ -604,6 +660,11 @@ RtangleT2tRuncode <-  function(object, chunk, options)
     return(object)
 }
 
+##' RtangleT2tWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RtangleT2tWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk)))
@@ -617,7 +678,11 @@ RtangleT2tWritedoc <- function(object, chunk)
     return(object)
 }
 
-
+##' RtangleT2tFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RtangleT2tFinish <- function(object, error=FALSE)
 {
     if(!is.null(object$output))

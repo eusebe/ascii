@@ -43,8 +43,17 @@ RweaveTextile <- function()
          checkopts = RweaveTextileOptions)
 }
 
-RweaveTextileSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' RweaveTextileSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param ... ...
+##' @keywords internal
+RweaveTextileSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
 {
     dots <- list(...)
@@ -77,6 +86,10 @@ RweaveTextileSetup <-
          srcfile=srcfile(file))
 }
 
+##' makeRweaveTextileCodeRunner
+##'
+##' @param evalFunc evalFunc
+##' @keywords internal
 makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -355,6 +368,11 @@ makeRweaveTextileCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 
 RweaveTextileRuncode <- makeRweaveTextileCodeRunner()
 
+##' RweaveTextileWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RweaveTextileWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
@@ -390,6 +408,11 @@ RweaveTextileWritedoc <- function(object, chunk)
     return(object)
 }
 
+##' RweaveTextileFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RweaveTextileFinish <- function(object, error=FALSE)
 {
     outputname <- summary(object$output)$description
@@ -421,6 +444,10 @@ RweaveTextileFinish <- function(object, error=FALSE)
     invisible(outputname)
 }
 
+##' RweaveTextileOptions
+##'
+##' @param options options
+##' @keywords internal
 RweaveTextileOptions <- function(options)
 {
 
@@ -466,7 +493,10 @@ RweaveTextileOptions <- function(options)
     options
 }
 
-
+##' RweaveChunkPrefix
+##'
+##' @param options options
+##' @keywords internal
 RweaveChunkPrefix <- function(options)
 {
     if(!is.null(options$label)){
@@ -484,6 +514,11 @@ RweaveChunkPrefix <- function(options)
     return(chunkprefix)
 }
 
+##' RweaveEvalWithOpt
+##'
+##' @param expr expr
+##' @param options options
+##' @keywords internal
 RweaveEvalWithOpt <- function (expr, options){
     if(options$eval){
         res <- try(.Internal(eval.with.vis(expr, .GlobalEnv, baseenv())),
@@ -495,7 +530,11 @@ RweaveEvalWithOpt <- function (expr, options){
     return(res)
 }
 
-
+##' RweaveTryStop
+##'
+##' @param err err
+##' @param options options
+##' @keywords internal
 RweaveTryStop <- function(err, options){
 
     if(inherits(err, "try-error")){
@@ -514,6 +553,9 @@ RweaveTryStop <- function(err, options){
 
 ###**********************************************************
 
+##' RtangleTextile
+##'
+##' @keywords internal
 RtangleTextile <-  function()
 {
     list(setup = RtangleTextileSetup,
@@ -523,7 +565,16 @@ RtangleTextile <-  function()
          checkopts = RweaveTextileOptions)
 }
 
-
+##' RtangleTextileSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param annotate annotate
+##' @param split split
+##' @param prefix prefix
+##' @param quiet quiet
+##' @keywords internal
 RtangleTextileSetup <- function(file, syntax,
                          output=NULL, annotate=TRUE, split=FALSE,
                          prefix=TRUE, quiet=FALSE)
@@ -555,7 +606,12 @@ RtangleTextileSetup <- function(file, syntax,
          chunkout=list(), quiet=quiet, syntax=syntax)
 }
 
-
+##' RtangleTextileRuncode
+##'
+##' @param object object
+##' @param chunk chunk
+##' @param options options
+##' @keywords internal
 RtangleTextileRuncode <-  function(object, chunk, options)
 {
     if(!(options$engine %in% c("R", "S"))){
@@ -604,6 +660,11 @@ RtangleTextileRuncode <-  function(object, chunk, options)
     return(object)
 }
 
+##' RtangleTextileWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RtangleTextileWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk)))
@@ -617,7 +678,11 @@ RtangleTextileWritedoc <- function(object, chunk)
     return(object)
 }
 
-
+##' RtangleTextileFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RtangleTextileFinish <- function(object, error=FALSE)
 {
     if(!is.null(object$output))

@@ -122,7 +122,8 @@
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii survdiff
+##' @export
+##' @method ascii survdiff
 ##' @author David Hajage
 ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     # From print.survdiff
@@ -177,8 +178,8 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
 ##'   input data to survfit were in days, \code{scale=365} would scale the
 ##'   printout to years (see \code{print.survfit()} in package
 ##'   \code{survival}).
-##' @param print.rmean 
-##' @param rmean 
+##' @param print.rmean Option for computation and display of the restricted mean (see \code{print.survfit()} in package \code{survival}).
+##' @param rmean Option for computation and display of the restricted mean (see \code{print.survfit()} in package \code{survival}).
 ##' @param include.rownames logical. If \code{TRUE} the rows names are printed.
 ##'   Default value depends of class of \code{x}.
 ##' @param include.colnames logical. If \code{TRUE} the columns names are
@@ -188,7 +189,8 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
 ##'   value depends of class of \code{x}.
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
-##' @S3method ascii survfit
+##' @export
+##' @method ascii survfit
 ##' @author David Hajage
 ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.rmean"), rmean = getOption("survfit.rmean"), include.rownames = TRUE, include.colnames = TRUE, header = TRUE, ...) {
     omit <- x$na.action
@@ -250,7 +252,8 @@ ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.
 ##'   corresponding columns.  Default is \code{2}.
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
-##' @S3method ascii summary.survfit
+##' @export
+##' @method ascii summary.survfit
 ##' @author David Hajage
 ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, digits = c(0, 0, 0, 3, 3, 3, 3), ...) {
   omit <- x$na.action
@@ -440,7 +443,8 @@ ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, di
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii coxph
+##' @export
+##' @method ascii coxph
 ##' @author David Hajage
 ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
 

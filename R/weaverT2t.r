@@ -1,5 +1,8 @@
 ## Adapted from weaver package code by Seth Falcon
 
+
+##' weaverT2t
+##'
 ##' @export
 weaverT2t <- function()
 {
@@ -11,8 +14,18 @@ weaverT2t <- function()
          checkopts = RweaveT2tOptions)
 }
 
-weaverT2tSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' weaverT2tSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param use.cache use.cache
+##' @param ... ...
+##' @keywords internal
+weaverT2tSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, use.cache=TRUE, ...)
 {
     if (!quiet)
@@ -26,6 +39,11 @@ weaverT2tSetup <-
     res
 }
 
+##' weaverT2tFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 weaverT2tFinish <- function(object, error=FALSE) {
     resetStorage(cache_expr)
     RweaveT2tFinish(object, error)

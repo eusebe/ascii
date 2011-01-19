@@ -121,7 +121,8 @@
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii integer
+##' @export
+##' @method ascii integer
 ##' @author David Hajage
 ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
@@ -265,7 +266,8 @@ ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii numeric
+##' @export
+##' @method ascii numeric
 ##' @author David Hajage
 ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
@@ -409,7 +411,8 @@ ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE
 ##' @param rstyle Character vector of length one indicating the style of major
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
-##' @S3method ascii character
+##' @export
+##' @method ascii character
 ##' @author David Hajage
 ascii.character <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
@@ -553,7 +556,8 @@ ascii.character <- function (x, include.rownames = FALSE, include.colnames = FAL
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii factor
+##' @export
+##' @method ascii factor
 ##' @author David Hajage
 ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,

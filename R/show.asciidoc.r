@@ -1,3 +1,5 @@
+##' vsep.asciidoc
+##'
 ##' @keywords internal
 ##' @param align align
 ##' @param valign valign
@@ -25,6 +27,9 @@ vsep.asciidoc <- function (align = NULL, valign = NULL, style = NULL) {
   return(res)
 }
 
+
+##' beauty.asciidoc
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param beauti beauti
@@ -45,6 +50,9 @@ beauty.asciidoc <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+
+##' header.asciidoc
+##'
 ##' @keywords internal
 ##' @param caption caption
 ##' @param caption.level caption.level
@@ -100,6 +108,9 @@ header.asciidoc <- function (caption = NULL, caption.level = NULL, frame = NULL,
   return(res)
 }
 
+
+##' escape.asciidoc
+##'
 ##' @keywords internal
 ##' @param x x
 escape.asciidoc <- function(x) {
@@ -107,6 +118,9 @@ escape.asciidoc <- function(x) {
   xx
 }
 
+
+##' show.asciidoc.table
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames 
@@ -277,6 +291,9 @@ show.asciidoc.table <- function(x, include.rownames = FALSE, include.colnames = 
   cat(topbot, "\n")
 }
 
+
+##' show.asciidoc.list
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param caption caption

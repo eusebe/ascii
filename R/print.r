@@ -1,7 +1,5 @@
 options(asciiType = "asciidoc")
 
-
-
 ##' Print ascii object
 ##' Function displaying the asciiDoc, txt2tags, reStructuredText, org or
 ##' textile code associated with the supplied object of class \code{ascii}.
@@ -60,4 +58,3 @@ print.ascii <- function(x, type = getOption("asciiType"), file = NULL, append = 
   }
   invisible(x)
 }
-

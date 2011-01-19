@@ -14,7 +14,8 @@
 ##'   printed. Default value depends of class of \code{x}.
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
-##' @S3method ascii meanscomp
+##' @export
+##' @method ascii meanscomp
 ##' @author David Hajage
 ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames = TRUE, include.colnames = TRUE, ...) {                 
     rlab <- ifelse(is.null(x$row.label), x$row, x$row.label)
@@ -29,7 +30,8 @@ ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames 
 ##'
 ##' \code{descr} package
 ##' @return An ascii object.
-##' @S3method ascii CrossTable
+##' @export
+##' @method ascii CrossTable
 ##' @author David Hajage
 ##' @param x A crosstable object
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
@@ -268,7 +270,8 @@ ascii.CrossTable <- function (x, ...) {
 ##'
 ##' \code{descr} package
 ##' @return An ascii object.
-##' @S3method ascii freqtable
+##' @export
+##' @method ascii freqtable
 ##' @author David Hajage
 ##' @param x An R object of class found among \code{methods(ascii)}.
 ##' @param header logical or numeric. If \code{TRUE} or \code{1}, \code{2},

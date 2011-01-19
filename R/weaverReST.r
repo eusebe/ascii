@@ -1,6 +1,9 @@
 ## Adapted from weaver package code by Seth Falcon
 
-##' @export
+
+##' weaverReST
+##'
+##' ##' @export
 weaverReST <- function()
 {
     require(weaver)
@@ -11,8 +14,18 @@ weaverReST <- function()
          checkopts = RweaveReSTOptions)
 }
 
-weaverReSTSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' weaverRsSTSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param use.cache use.cache
+##' @param ... ...
+##' @keywords internal
+weaverReSTSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, use.cache=TRUE, ...)
 {
     if (!quiet)
@@ -26,6 +39,11 @@ weaverReSTSetup <-
     res
 }
 
+##' weaverReSTFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 weaverReSTFinish <- function(object, error=FALSE) {
     resetStorage(cache_expr)
     RweaveReSTFinish(object, error)

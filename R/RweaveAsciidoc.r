@@ -42,9 +42,17 @@ RweaveAsciidoc <- function()
          finish = RweaveAsciidocFinish,
          checkopts = RweaveAsciidocOptions)
 }
-
-RweaveAsciidocSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' RweaveAsciidocSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quiet
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param ... ...
+##' @keywords internal
+RweaveAsciidocSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
 {
     dots <- list(...)
@@ -76,7 +84,10 @@ RweaveAsciidocSetup <-
          options=options, chunkout=list(), srclines=integer(0L),
          srcfile=srcfile(file))
 }
-
+##' makeRweaveAsciidocCodeRunner
+##'
+##' @param evalFunc evalFunc
+##' @keywords internal
 makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -355,6 +366,11 @@ makeRweaveAsciidocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 
 RweaveAsciidocRuncode <- makeRweaveAsciidocCodeRunner()
 
+##' RweaveAsciidocWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RweaveAsciidocWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
@@ -390,6 +406,11 @@ RweaveAsciidocWritedoc <- function(object, chunk)
     return(object)
 }
 
+##' RweaveAsciidocFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RweaveAsciidocFinish <- function(object, error=FALSE)
 {
     outputname <- summary(object$output)$description
@@ -421,6 +442,10 @@ RweaveAsciidocFinish <- function(object, error=FALSE)
     invisible(outputname)
 }
 
+##' RweaveAsciidocOptions
+##'
+##' @param options options
+##' @keywords internal
 RweaveAsciidocOptions <- function(options)
 {
 
@@ -467,6 +492,10 @@ RweaveAsciidocOptions <- function(options)
 }
 
 
+##' RweaveChunkPrefix
+##'
+##' @param options options
+##' @keywords internal
 RweaveChunkPrefix <- function(options)
 {
     if(!is.null(options$label)){
@@ -484,6 +513,11 @@ RweaveChunkPrefix <- function(options)
     return(chunkprefix)
 }
 
+##' RweaveEvalWithOpt
+##'
+##' @param expr expr
+##' @param options options
+##' @keywords internal
 RweaveEvalWithOpt <- function (expr, options){
     if(options$eval){
         res <- try(.Internal(eval.with.vis(expr, .GlobalEnv, baseenv())),
@@ -495,7 +529,11 @@ RweaveEvalWithOpt <- function (expr, options){
     return(res)
 }
 
-
+##' RweaveTryStop
+##'
+##' @param err err
+##' @param options options
+##' @keywords internal
 RweaveTryStop <- function(err, options){
 
     if(inherits(err, "try-error")){
@@ -514,6 +552,9 @@ RweaveTryStop <- function(err, options){
 
 ###**********************************************************
 
+##' RtangleAsciidoc
+##'
+##' @keywords internal
 RtangleAsciidoc <-  function()
 {
     list(setup = RtangleAsciidocSetup,
@@ -524,6 +565,16 @@ RtangleAsciidoc <-  function()
 }
 
 
+##' RtangleAsciidocSetup
+##'
+##' @keywords internal
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param annotate annotate
+##' @param split split
+##' @param prefix prefix
+##' @param quiet quiet
 RtangleAsciidocSetup <- function(file, syntax,
                          output=NULL, annotate=TRUE, split=FALSE,
                          prefix=TRUE, quiet=FALSE)
@@ -556,6 +607,11 @@ RtangleAsciidocSetup <- function(file, syntax,
 }
 
 
+##' RtangleAsciidocRuncode
+##' @param object object
+##' @param chunk chunk
+##' @param options options
+##' @keywords internal
 RtangleAsciidocRuncode <-  function(object, chunk, options)
 {
     if(!(options$engine %in% c("R", "S"))){
@@ -604,6 +660,10 @@ RtangleAsciidocRuncode <-  function(object, chunk, options)
     return(object)
 }
 
+##' RtangleAsciidocWritedoc
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RtangleAsciidocWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk)))
@@ -618,6 +678,10 @@ RtangleAsciidocWritedoc <- function(object, chunk)
 }
 
 
+##' RtangleAsciidocFinish
+##' @param object object
+##' @param error error
+##' @keywords internal
 RtangleAsciidocFinish <- function(object, error=FALSE)
 {
     if(!is.null(object$output))

@@ -43,8 +43,17 @@ RweaveReST <- function()
          checkopts = RweaveReSTOptions)
 }
 
-RweaveReSTSetup <-
-    function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
+##' RweaveReSTSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quite
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param ... ...
+##' @keywords internal
+RweaveReSTSetup <- function(file, syntax, output=NULL, quiet=FALSE, debug=FALSE,
              stylepath, ...)
 {
     dots <- list(...)
@@ -76,7 +85,10 @@ RweaveReSTSetup <-
          options=options, chunkout=list(), srclines=integer(0L),
          srcfile=srcfile(file))
 }
-
+##' makeRweaveReSTCodeRunner
+##'
+##' @param evalFunc evalFunc
+##' @keywords internal
 makeRweaveReSTCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -358,6 +370,11 @@ makeRweaveReSTCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
 
 RweaveReSTRuncode <- makeRweaveReSTCodeRunner()
 
+##' RweaveReSTRuncode
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RweaveReSTWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
@@ -393,6 +410,11 @@ RweaveReSTWritedoc <- function(object, chunk)
     return(object)
 }
 
+##' RweaveReSTFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RweaveReSTFinish <- function(object, error=FALSE)
 {
     outputname <- summary(object$output)$description
@@ -424,6 +446,10 @@ RweaveReSTFinish <- function(object, error=FALSE)
     invisible(outputname)
 }
 
+##' RweaveReSTOptions
+##'
+##' @param options options
+##' @keywords internal
 RweaveReSTOptions <- function(options)
 {
 
@@ -469,7 +495,10 @@ RweaveReSTOptions <- function(options)
     options
 }
 
-
+##' RweaveChunkPrefix
+##'
+##' @param options options
+##' @keywords internal
 RweaveChunkPrefix <- function(options)
 {
     if(!is.null(options$label)){
@@ -487,6 +516,11 @@ RweaveChunkPrefix <- function(options)
     return(chunkprefix)
 }
 
+##' RweaveEvalWithOpt
+##'
+##' @param expr expr
+##' @param options options
+##' @keywords internal
 RweaveEvalWithOpt <- function (expr, options){
     if(options$eval){
         res <- try(.Internal(eval.with.vis(expr, .GlobalEnv, baseenv())),
@@ -498,7 +532,11 @@ RweaveEvalWithOpt <- function (expr, options){
     return(res)
 }
 
-
+##' RweaveTryStop
+##'
+##' @param err err
+##' @param options options
+##' @keywords internal
 RweaveTryStop <- function(err, options){
 
     if(inherits(err, "try-error")){
@@ -517,6 +555,9 @@ RweaveTryStop <- function(err, options){
 
 ###**********************************************************
 
+##' RtangleReST
+##'
+##' @keywords internal
 RtangleReST <-  function()
 {
     list(setup = RtangleReSTSetup,
@@ -526,7 +567,16 @@ RtangleReST <-  function()
          checkopts = RweaveReSTOptions)
 }
 
-
+##' RtangleReSTSetup
+##'
+##' @param file 
+##' @param syntax 
+##' @param output 
+##' @param annotate 
+##' @param split 
+##' @param prefix 
+##' @param quiet 
+##' @keywords internal
 RtangleReSTSetup <- function(file, syntax,
                          output=NULL, annotate=TRUE, split=FALSE,
                          prefix=TRUE, quiet=FALSE)
@@ -558,7 +608,12 @@ RtangleReSTSetup <- function(file, syntax,
          chunkout=list(), quiet=quiet, syntax=syntax)
 }
 
-
+##' RtangleReSTRuncode
+##'
+##' @param object object
+##' @param chunk chunk
+##' @param options options
+##' @keywords internal
 RtangleReSTRuncode <-  function(object, chunk, options)
 {
     if(!(options$engine %in% c("R", "S"))){
@@ -607,6 +662,11 @@ RtangleReSTRuncode <-  function(object, chunk, options)
     return(object)
 }
 
+##' RtangleReSTWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RtangleReSTWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk)))
@@ -620,7 +680,11 @@ RtangleReSTWritedoc <- function(object, chunk)
     return(object)
 }
 
-
+##' RtangleReSTFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RtangleReSTFinish <- function(object, error=FALSE)
 {
     if(!is.null(object$output))

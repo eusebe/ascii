@@ -241,10 +241,11 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
 ##' @param cmd eventually define the asciidoc command
 ##' @param cygwin do you use asciidoc through cygwin
 ##' @keywords print
+##'
 ##' @examples
 ##' \dontrun{
-##'   export(ascii(head(esoph)))
-##'}
+##'   export(ascii(head(esoph)))}
+##' 
 ##' @export
 ##' @return a list with all \code{...} arguments.
 ##' @author David Hajage \email{dhajage@@gmail.com}

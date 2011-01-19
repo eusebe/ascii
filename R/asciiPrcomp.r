@@ -121,7 +121,8 @@
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii prcomp
+##' @export
+##' @method ascii prcomp
 ##' @author David Hajage
 ascii.prcomp <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     y <- data.frame(x$rotation,check.names=FALSE)
@@ -266,7 +267,8 @@ ascii.prcomp <- function (x, include.rownames = TRUE, include.colnames = TRUE, r
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii summary.prcomp
+##' @export
+##' @method ascii summary.prcomp
 ##' @author David Hajage
 ascii.summary.prcomp <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     x <- data.frame(x$importance,check.names=FALSE)

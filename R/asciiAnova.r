@@ -1,5 +1,5 @@
 ##' ascii method for class anova
-##'
+##' 
 ##' @param x An R object of class found among \code{methods(ascii)}.
 ##' @param include.rownames logical. If \code{TRUE} the rows names are printed.
 ##'   Default value depends of class of \code{x}.
@@ -120,7 +120,8 @@
 ##' @param rstyle Character vector of length one indicating the style of major
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
-##' @S3method ascii anova
+##' @export
+##' @method ascii anova
 ##' @return An ascii object.
 ##' @author David Hajage
 ascii.anova <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
@@ -266,7 +267,8 @@ ascii.anova <- function (x, include.rownames = TRUE, include.colnames = TRUE, ro
 ##' @param rstyle Character vector of length one indicating the style of major
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
-##' @S3method ascii aov
+##' @export
+##' @method ascii aov
 ##' @return An ascii object.
 ##' @author David Hajage
 ascii.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
@@ -409,7 +411,8 @@ ascii.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, rown
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii summary.aov
+##' @export
+##' @method ascii summary.aov
 ##' @author David Hajage
 ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
   ascii.anova(unclass(x)[[1]], include.rownames = include.rownames,
@@ -552,7 +555,8 @@ ascii.summary.aov <- function (x, include.rownames = TRUE, include.colnames = TR
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii aovlist
+##' @export
+##' @method ascii aovlist
 ##' @author David Hajage
 ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
   y <- summary(x)
@@ -714,7 +718,8 @@ ascii.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, 
 ##'   right row headings
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii summary.aovlist
+##' @export
+##' @method ascii summary.aovlist
 ##' @author David Hajage
 ascii.summary.aovlist <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = "middle", header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
   n <- length(x)

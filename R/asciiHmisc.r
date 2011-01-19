@@ -9,7 +9,8 @@
 ##'   package \code{Hmisc}).
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
-##' @S3method ascii describe.single
+##' @export
+##' @method ascii describe.single
 ##' @author David Hajage
 ascii.describe.single <- function (x, condense = TRUE, ...) {
    wide <- .Options$width
@@ -96,7 +97,8 @@ ascii.describe.single <- function (x, condense = TRUE, ...) {
 ##'   package \code{Hmisc}).
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
-##' @S3method ascii describe
+##' @export
+##' @method ascii describe
 ##' @author David Hajage
 ascii.describe <- function (x, condense = TRUE, ...) {
   at <- attributes(x)

@@ -1,8 +1,8 @@
 \name{print.ascii}
 \alias{print.ascii}
 \title{Print ascii object...}
-\usage{print.ascii(x, type=getOption("asciiType"), file=NULL, append=FALSE
-    escape=FALSE, list.escape=c("\\_", "\\^"), ...)}
+\usage{print.ascii(x, type=getOption("asciiType"), file=NULL, append=FALSE,
+    escape=FALSE, list.escape=c("\\\\_", "\\\\^"), ...)}
 \description{Print ascii object
 Function displaying the asciiDoc, txt2tags, reStructuredText, org or
 textile code associated with the supplied object of class \code{ascii}.}

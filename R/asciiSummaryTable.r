@@ -15,7 +15,8 @@
 ##'   \code{"bullet"}.
 ##' @param ... Additional arguments.  (see \code{?ascii.default}).
 ##' @return An ascii object.
-##' @S3method ascii summary.table
+##' @export
+##' @method ascii summary.table
 ##' @author David Hajage
 ascii.summary.table <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     x <- as.list(capture.output(x))

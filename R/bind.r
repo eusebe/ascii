@@ -349,3 +349,4 @@ cbind.ascii <- function(x, y, caption = NULL, caption.level = NULL, frame = NULL
   class(results) <- c("ascii", "proto", "environment")
   results
 }
+

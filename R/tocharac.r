@@ -1,3 +1,5 @@
+##' safe.as.character
+##'
 ##' @keywords internal
 ##' @param x x
 safe.as.character <- function(x) {
@@ -13,6 +15,8 @@ safe.as.character <- function(x) {
   xx
 }
 
+##' trim
+##'
 ##' @keywords internal
 ##' @param x x
 trim <- function (x) {
@@ -21,6 +25,8 @@ trim <- function (x) {
   x
 }
 
+##' formatCustom
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param format format
@@ -36,6 +42,8 @@ formatCustom <- function(x, format = "nice", digits = 2, ...) {
   })
 }
 
+##' tocharac
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames

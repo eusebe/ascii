@@ -15,7 +15,8 @@
 ##'   \code{"bullet"}.
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii list
+##' @export
+##' @method ascii list
 ##' @author David Hajage
 ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
@@ -40,7 +41,8 @@ ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bul
 ##'   \code{"bullet"}.
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii simple.list
+##' @export
+##' @method ascii simple.list
 ##' @author David Hajage
 ascii.simple.list <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
     x <- unlist(x)
@@ -66,7 +68,8 @@ ascii.simple.list <- function(x, caption = NULL, caption.level = NULL, list.type
 ##'   \code{"bullet"}.
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii packageDescription
+##' @export
+##' @method ascii packageDescription
 ##' @author David Hajage
 ascii.packageDescription <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
   x <- unclass(x)
@@ -83,7 +86,8 @@ ascii.packageDescription <- function(x, caption = NULL, caption.level = NULL, li
 ##'   (\code{sessionInfo()}).
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii sessionInfo
+##' @export
+##' @method ascii sessionInfo
 ##' @author David Hajage
 ascii.sessionInfo <- function (x, locale = TRUE, ...) {
   mkLabel <- function(L, n) {

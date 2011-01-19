@@ -15,7 +15,8 @@
 ##'   \code{"bullet"}.
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @return An ascii object.
-##' @S3method ascii smooth.spline
+##' @export
+##' @method ascii smooth.spline
 ##' @author David Hajage
 ascii.smooth.spline <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     x <- as.list(capture.output(x)[-1:-3])

@@ -1,3 +1,6 @@
+
+##' groups
+##' 
 ##' @keywords internal
 ##' @param groups groups
 ##' @param n.groups n.groups
@@ -24,6 +27,10 @@ groups <- function(groups, n.groups = NULL, n) {
   results
 }
 
+
+
+##' ngroups
+##' 
 ##' @keywords internal
 ##' @param group group
 ##' @param n.group n.group
@@ -34,6 +41,9 @@ ngroups <- function(group, n.group = NULL, n) {
   data.frame(group, pos.group, n.group, stringsAsFactors = FALSE)
 }
 
+
+##' linegroup
+##' 
 ##' @keywords internal
 ##' @param group group
 ##' @param n.group n.group

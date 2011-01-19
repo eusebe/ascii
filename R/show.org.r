@@ -1,3 +1,5 @@
+##' beauty.org
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param beauti beauti
@@ -21,6 +23,9 @@ beauty.org <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
+
+##' header.org
+##'
 ##' @keywords internal
 ##' @param caption caption
 ##' @param caption.level caption.level
@@ -46,6 +51,9 @@ header.org <- function(caption = NULL, caption.level = NULL) {
   return(res)
 }
 
+
+##' escape.org
+##'
 ##' @keywords internal
 ##' @param x x
 escape.org <- function(x) {
@@ -53,6 +61,9 @@ escape.org <- function(x) {
   xx
 }
 
+
+##' show.org.table
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames 
@@ -193,6 +204,9 @@ show.org.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   cat(results, sep = "\n")
 }
 
+
+##' show.org.list
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param caption caption
