@@ -128,15 +128,8 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
     frame <- 0
   }
   
-  vsep <- expand("|", nrowx, ncolx+frame)
-  
   line_separator <- FALSE
   
-  results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, before_cell_content = before_cell_content, after_cell_content = after_cell_content, print = FALSE)
-
-  if (include.rownames & include.colnames)
-    results[1] <- substr(results[1], 5, nchar(results[1]))
-
   if (!is.null(lgroup)) {
     if (!is.list(lgroup))
       lgroup <- list(lgroup)
@@ -153,11 +146,13 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
     if (!is.list(tgroup))
       tgroup <- list(tgroup)
     n.tgroup <- groups(tgroup, n.tgroup, ncolx-include.rownames)[[2]]
+    linetgroup <- linegroup(tgroup, n.tgroup)    
   }
   if (!is.null(bgroup)) {
     if (!is.list(bgroup))
       bgroup <- list(bgroup)
     n.bgroup <- groups(bgroup, n.bgroup, ncolx-include.rownames)[[2]]
+    linebgroup <- linegroup(bgroup, n.bgroup)
   }
 
   if (!is.null(lgroup)) {
@@ -172,42 +167,52 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   }
   if (!is.null(tgroup)) {
     for (i in 1:length(tgroup)) {
-      pos.tgroup <- ngroups(tgroup[[i]], n.tgroup[[i]], n = ncolx)
-      if (tstyle == "h") {
-        tstyle2 <- ""
-      } else {
-        tstyle2 <- tstyle
-      }
-      results <- c(paste("|", paste(paste(beauty.t2t(pos.tgroup[, 1], tstyle2), lapply(pos.tgroup[, 3], function(x) paste(rep("|", time = x), collapse = ""))), collapse = " ")), results)
+      x <- rbind(c(rep("", include.rownames + length(lgroup)), beauty.t2t(linetgroup[[i]], tstyle), rep("", length(rgroup))), x)
     }
   }
-  
   if (!is.null(bgroup)) {
     for (i in 1:length(bgroup)) {
-      pos.bgroup <- ngroups(bgroup[[i]], n.bgroup[[i]], n = ncolx)
-      if (bstyle == "h") {
-        bstyle2 <- ""
-      }else {
-        bstyle2 <- bstyle
-      }
-      results <- c(results, paste("|", paste(paste(beauty.t2t(pos.bgroup[, 1], bstyle2), lapply(pos.bgroup[, 3], function(x) paste(rep("|", time = x), collapse = ""))), collapse = " ")))
+      x <- rbind(x, c(rep("", include.rownames + length(lgroup)), beauty.t2t(linebgroup[[i]], bstyle), rep("", length(rgroup))))
     }
   }
 
+  vsep <- expand("|", nrowx+length(tgroup)+length(bgroup), ncolx+length(lgroup)+length(rgroup)+frame)
+
   topleftrow <- 0 + include.colnames + length(tgroup)
-  topleftcol <- 0 + include.rownames
-  topleft <- ""
-  if (topleftrow > 0 & topleftcol > 0)
-    topleft <- rep(paste(rep("|  ", topleftcol), collapse = ""), topleftrow)
+  topleftcol <- 0 + include.rownames + length(lgroup)
+  if (topleftrow > 0 & topleftcol > 1) {
+    vsep[1:topleftrow, topleftcol+1] <- paste(rep("|", topleftcol), collapse = "")
+    vsep[1:topleftrow, 2:topleftcol] <- ""
+  }
 
   bottomleftrow <- 0 + length(bgroup)
-  bottomleftcol <- 0 + include.rownames
-  bottomleft <- ""
-  if (bottomleftrow > 0 & bottomleftcol > 0)
-    bottomleft <- rep(paste(rep("|  ", bottomleftcol), collapse = ""), bottomleftrow)
+  bottomleftcol <- 0 + include.rownames + length(lgroup)
+  if (bottomleftrow > 0 & bottomleftcol > 0) {
+    vsep[nrow(vsep):(nrow(vsep)-bottomleftrow+1), bottomleftcol+1] <- paste(rep("|", bottomleftcol), collapse = "")
+    vsep[nrow(vsep):(nrow(vsep)-bottomleftrow+1), 2:bottomleftcol] <- ""
+  }
+
+  toprightrow <- 0 + include.colnames + length(tgroup)
+  toprightcol <- 0 + length(rgroup)
+  if (toprightrow > 0 & toprightcol > 1) {
+    if (frame == 0) {
+      vsep <- expand(vsep, nrow(vsep), ncol(vsep)+1, what = "")
+    }
+    vsep[1:toprightrow, ncol(vsep)] <- paste(rep("|", toprightcol), collapse = "")
+    vsep[1:toprightrow, (ncol(vsep)-1):(ncol(vsep)-toprightcol+1)] <- ""
+  }
+
+  bottomrightrow <- 0 + length(bgroup)
+  bottomrightcol <- 0 + length(rgroup)
+  if (bottomrightrow > 0 & bottomrightcol > 1) {
+    if (frame == 0) {
+      vsep <- expand(vsep, nrow(vsep), ncol(vsep)+1, what = "")
+    }
+    vsep[nrow(vsep):(nrow(vsep)-bottomleftrow+1), ncol(vsep)] <- paste(rep("|", bottomrightcol), collapse = "")
+    vsep[nrow(vsep):(nrow(vsep)-bottomleftrow+1), (ncol(vsep)-1):(ncol(vsep)-bottomrightcol+1)] <- ""
+  }
   
-  results[1:topleftrow] <- paste(topleft, results[1:topleftrow], sep = "")
-  results[length(results):(min(c(length(results), length(results)-bottomleftrow+1)))] <- paste(bottomleft, results[length(results):(min(c(length(results), length(results)-bottomleftrow+1)))], sep = "")
+  results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, before_cell_content = before_cell_content, after_cell_content = after_cell_content, print = FALSE)
 
   if (header + footer > nrowx) {
     header <- nrowx
