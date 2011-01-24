@@ -26,7 +26,7 @@ header.t2t <- function(caption = NULL, caption.level = "") {
 ##' @param beauti beauti
 beauty.t2t <- function(x, beauti = c("e", "m", "s")) {
   x[is.na(x)] <- "NA"
-  if (beauti == "s") {
+  if (beauti == "s" | beauti == "h") {
     y <- as.logical((regexpr("^ *$", x)+1)/2) | as.logical((regexpr("\\*\\*.*\\*\\*", x)+1)/2) # bold seulement si != de "" et si pas de bold
     if (length(x[!y]) != 0) x[!y] <- sub("(^ *)([:alpha]*)", "\\1\\*\\*\\2", sub("([:alpha:]*)( *$)", "\\1\\*\\*\\2", x[!y]))
   }
@@ -168,7 +168,7 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   if (!is.null(tgroup)) {
     for (i in 1:length(tgroup)) {
       x <- rbind(c(rep("", include.rownames + length(lgroup)), beauty.t2t(linetgroup[[i]], tstyle), rep("", length(rgroup))), x)
-    }
+    }    
   }
   if (!is.null(bgroup)) {
     for (i in 1:length(bgroup)) {
@@ -177,6 +177,23 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   }
 
   vsep <- expand("|", nrowx+length(tgroup)+length(bgroup), ncolx+length(lgroup)+length(rgroup)+frame)
+  
+  if (!is.null(tgroup) | !is.null(bgroup)) {
+    if (frame == 0) {
+      vsep <- expand(vsep, nrow(vsep), ncol(vsep)+1, what = "")
+    }
+  }
+
+  if (!is.null(tgroup)) {
+    for (i in length(tgroup):1) {
+      vsep[i, length(lgroup)+include.rownames+cumsum(n.tgroup[[i]])+1] <- sapply(n.tgroup[[i]], function(x) paste(rep("|", x), collapse = ""))
+    }
+  }
+  if (!is.null(bgroup)) {
+    for (i in 1:length(bgroup)) {
+      vsep[nrowx+length(tgroup)+i, length(lgroup)+include.rownames+cumsum(n.bgroup[[i]])+1] <- sapply(n.bgroup[[i]], function(x) paste(rep("|", x), collapse = ""))
+    }
+  }
 
   topleftrow <- 0 + include.colnames + length(tgroup)
   topleftcol <- 0 + include.rownames + length(lgroup)
@@ -195,9 +212,6 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   toprightrow <- 0 + include.colnames + length(tgroup)
   toprightcol <- 0 + length(rgroup)
   if (toprightrow > 0 & toprightcol > 1) {
-    if (frame == 0) {
-      vsep <- expand(vsep, nrow(vsep), ncol(vsep)+1, what = "")
-    }
     vsep[1:toprightrow, ncol(vsep)] <- paste(rep("|", toprightcol), collapse = "")
     vsep[1:toprightrow, (ncol(vsep)-1):(ncol(vsep)-toprightcol+1)] <- ""
   }
@@ -214,31 +228,22 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   
   results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, before_cell_content = before_cell_content, after_cell_content = after_cell_content, print = FALSE)
 
+  headfoot <- NULL
   if (header + footer > nrowx) {
-    header <- nrowx
-    footer <- FALSE
-  }
+    headfoot <- 1:nrowx
+  } 
   if (is.logical(header) & header)
     header <- 1
   if (header > 0) {
-    header <- 1:min(c(header, nrowx))
+    header <- 1:min(c(header, nrowx)) + length(tgroup)
   }
   if (is.logical(footer) & footer)
-    footer <- 1
+    footer <- nrowx
   if (footer > 0) {
-    footer <- nrow(x):(nrow(x)+1-min(c(footer, nrowx))) + length(tgroup)
+    footer <- nrowx:(nrowx+1-min(c(footer, nrowx))) + length(tgroup)
   }
-  if (length(tgroup) > 0 & tstyle == "h") {
-    header <- 1:(tail(header, 1)+length(tgroup))
-  } else if (length(tgroup) > 0 & tstyle != "h") {
-    header <- header + length(tgroup)
-  }
-  if (length(bgroup) > 0 & bstyle == "h") {
-    footer <- length(results):tail(footer, 1)
-  }
-  
-  results[header] <- paste("|", results[header], sep = "")
-  results[footer] <- paste("|", results[footer], sep = "")
+  headfoot <- unique(c(header, footer))
+  results[headfoot] <- paste("|", results[headfoot], sep = "")
   
   cat(header.t2t(caption = caption, caption.level = caption.level))
   cat(results, sep = "\n")
