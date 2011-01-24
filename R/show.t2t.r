@@ -187,11 +187,15 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   if (!is.null(tgroup)) {
     for (i in length(tgroup):1) {
       vsep[i, length(lgroup)+include.rownames+cumsum(n.tgroup[[i]])+1] <- sapply(n.tgroup[[i]], function(x) paste(rep("|", x), collapse = ""))
+      vsep[i, -(length(lgroup)+include.rownames+cumsum(n.tgroup[[i]])+1)] <- ""
+      vsep[i, 1] <- "|"
     }
   }
   if (!is.null(bgroup)) {
     for (i in 1:length(bgroup)) {
       vsep[nrowx+length(tgroup)+i, length(lgroup)+include.rownames+cumsum(n.bgroup[[i]])+1] <- sapply(n.bgroup[[i]], function(x) paste(rep("|", x), collapse = ""))
+      vsep[nrowx+length(tgroup)+i, -(length(lgroup)+include.rownames+cumsum(n.bgroup[[i]])+1)] <- ""
+      vsep[nrowx+length(tgroup)+i, 1] <- ""
     }
   }
 
