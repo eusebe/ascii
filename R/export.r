@@ -162,7 +162,7 @@ print.math <- function(x, ...) {
 ##'
 ##' @param input input file
 ##' @param destination output file (no extension)
-##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, odt, dvi, ps, tex, docbook, asciidoc)
+##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, slidy, odt, dvi, ps, tex, docbook, asciidoc)
 ##' @param encoding encoding format of input file
 ##' @param latexmath use latexmath attribute
 ##' @param asciimath use asciimath attribute
@@ -206,7 +206,10 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
     if (is.null(destination)) {
       destination <- "."
     }
-    if (format != "xhtml" & format != "odt") {
+    if (format == "slidy") {
+      htmldest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
+      cmd <- paste(asciidoc, " -b slidy", amath, lmath, " -a encoding=", encoding, " -o ", htmldest, sep = "")      
+    } else if (format != "xhtml" & format != "odt") {
       cmd <- paste(a2x, amath, lmath, " -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
     } else {
       htmldest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
@@ -229,8 +232,9 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
 ##' These functions allow to use asciidoc and a2x toolchains directly from R.
 ##' 
 ##' @param ... \code{section}, \code{paragraph}, \code{sexpr}, \code{out}, \code{math}, \code{ascii}, or what-you-want (exported as verbatim) objects
+##' @param list list of objects
 ##' @param file output file (no extension)
-##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, odt, dvi, ps, tex, docbook, asciidoc)
+##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, slidy, odt, dvi, ps, tex, docbook, asciidoc)
 ##' @param open open or not resulting file
 ##' @param main main title of the document
 ##' @param author author of the document
@@ -249,12 +253,12 @@ convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL
 ##' @export
 ##' @return a list with all \code{...} arguments.
 ##' @author David Hajage \email{dhajage@@gmail.com}
-export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = FALSE) {
+export <- function(..., list = NULL, file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = FALSE) {
 
   windows <- grepl("mingw", version$os)
   
   format <- format[1]
-  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "odt", "dvi", "ps", "tex", "docbook", "asciidoc")
+  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "slidy", "odt", "dvi", "ps", "tex", "docbook", "asciidoc")
   if (!(format %in% available)) {
     stop(paste("Please choose an available format:", paste(available, collapse = ", ")))
   }
@@ -287,7 +291,11 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
     main <- paste("+", sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/")), "+", sep = "")
   }
 
-  args <- list(...)
+  if (is.null(list))
+    args <- list(...)
+  else
+    args <- list
+  
   lines <- capture.output({
     cat(paste("= ", main, "\n", sep = ""))
     if (!is.null(author)) {
@@ -338,7 +346,7 @@ export <- function(..., file = NULL, format = "xhtml", open = NULL, main = NULL,
     asciidocfile <- paste(basename(file), "txt", sep = ".")
     finalfile <- paste(wd, asciidocfile, sep = "/")
   }
-  if (format == "xhtml") {
+  if (format == "xhtml" | format == "slidy") {
     htmlfile <- paste(basename(file), "html", sep = ".")
     finalfile <- paste(wd, htmlfile, sep = "/")
   }
