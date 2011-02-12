@@ -1,7 +1,7 @@
 options(asciiType = "asciidoc")
 
 ##' Print ascii object
-##' Function displaying the asciiDoc, txt2tags, reStructuredText, org or
+##' Function displaying the asciidoc, txt2tags, reStructuredText, org or
 ##' textile code associated with the supplied object of class \code{ascii}.
 ##' 
 ##' The package provides the new global option \code{asciiType}. Default value
@@ -9,8 +9,8 @@ options(asciiType = "asciidoc")
 ##' 
 ##' @param x An object of class \code{"ascii"}
 ##' @param type Type of syntax produce.  Possible values for \code{type} are
-##'   \code{"asciidoc"}, \code{"t2t"}, \code{"rest"}, \code{"org"} or
-##'   \code{"textile"}.  Default value produce asciiDoc syntax.
+##'   \code{"asciidoc"}, \code{"t2t"}, \code{"rest"}, \code{"org"},
+##'   \code{"textile"} or \code{"pandoc"}.  Default value produce asciidoc syntax.
 ##' @param file A character string naming the file to print to. Default is
 ##'   \code{NULL} (print to the console).
 ##' @param append If \code{TRUE}, code will be appended to \code{file} instead
@@ -31,6 +31,7 @@ options(asciiType = "asciidoc")
 ##' print(ascii(esoph[1:10,]), type = "rest")
 ##' print(ascii(esoph[1:10,]), type = "org")
 ##' print(ascii(esoph[1:10,]), type = "textile")
+##' print(ascii(esoph[1:10,]), type = "pandoc")
 ##' options(asciiType = "rest")
 ##' ascii(esoph[1:10,])
 ##' options(asciiType = "asciidoc")
@@ -41,6 +42,7 @@ print.ascii <- function(x, type = getOption("asciiType"), file = NULL, append = 
   if (type == "org") res <- capture.output(x$show.org())
   if (type == "t2t") res <- capture.output(x$show.t2t())
   if (type == "textile") res <- capture.output(x$show.textile())
+  if (type == "pandoc") res <- capture.output(x$show.pandoc())
 
   if (escape) {
     for (i in list.escape)

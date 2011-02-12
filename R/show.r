@@ -103,6 +103,10 @@ asciiTable <- proto(expr = {
   show.textile <- function(.) {
     show.textile.table(x = .$x, include.rownames = .$include.rownames, include.colnames = .$include.colnames, rownames = .$rownames, colnames = .$colnames, format = .$format, digits = .$digits, decimal.mark = .$decimal.mark, na.print = .$na.print, caption = .$caption, caption.level = .$caption.level, width = .$width, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, align = .$align, col.width = .$col.width, style = .$style, lgroup = .$lgroup, n.lgroup = .$n.lgroup, lalign = .$lalign, lvalign = .$lvalign, lstyle = .$lstyle, rgroup = .$rgroup, n.rgroup = .$n.rgroup, ralign = .$ralign, rvalign = .$rvalign, rstyle = .$rstyle, tgroup = .$tgroup, n.tgroup = .$n.tgroup, talign = .$talign, tvalign = .$tvalign, tstyle = .$tstyle, bgroup = .$bgroup, n.bgroup = .$n.bgroup, balign = .$balign, bvalign = .$bvalign, bstyle = .$bstyle)
   }
+
+  show.pandoc <- function(.) {
+    show.pandoc.table(x = .$x, include.rownames = .$include.rownames, include.colnames = .$include.colnames, rownames = .$rownames, colnames = .$colnames, format = .$format, digits = .$digits, decimal.mark = .$decimal.mark, na.print = .$na.print, caption = .$caption, caption.level = .$caption.level, width = .$width, frame = .$frame, grid = .$grid, valign = .$valign, header = .$header, footer = .$footer, align = .$align, col.width = .$col.width, style = .$style, lgroup = .$lgroup, n.lgroup = .$n.lgroup, lalign = .$lalign, lvalign = .$lvalign, lstyle = .$lstyle, rgroup = .$rgroup, n.rgroup = .$n.rgroup, ralign = .$ralign, rvalign = .$rvalign, rstyle = .$rstyle, tgroup = .$tgroup, n.tgroup = .$n.tgroup, talign = .$talign, tvalign = .$tvalign, tstyle = .$tstyle, bgroup = .$bgroup, n.bgroup = .$n.bgroup, balign = .$balign, bvalign = .$bvalign, bstyle = .$bstyle)
+  }
 })
 
 asciiList <- proto(expr = {
@@ -134,6 +138,10 @@ asciiList <- proto(expr = {
 
   show.textile <- function(.) {
     show.textile.list(x = .$x, caption = .$caption, caption.level = .$caption.level, list.type = .$list.type)
+  }
+
+  show.pandoc <- function(.) {
+    show.pandoc.list(x = .$x, caption = .$caption, caption.level = .$caption.level, list.type = .$list.type)
   }
 })
 
@@ -188,6 +196,15 @@ asciiMixed <- proto(expr = {
     for (i in seq_along(args)) {
       if (is.null(args[[i]])) next
       print(args[[i]], type = "textile")
+      if (i != length(args)) cat("\n") 
+    }
+  }
+
+  show.pandoc <- function(.) {
+    args <- rev(as.list(.))
+    for (i in seq_along(args)) {
+      if (is.null(args[[i]])) next
+      print(args[[i]], type = "pandoc")
       if (i != length(args)) cat("\n") 
     }
   }
