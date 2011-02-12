@@ -233,8 +233,6 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   
   x <- rbind(x, line_sep)
 
-  ## x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "", transpose.vector = TRUE)
-
   for (i in 1:ncol(x)) {
     x[, i] <- as.character(format(x[, i], trim = TRUE, justify = justify[i]))
   }
@@ -257,18 +255,18 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
 ##' @param list.type list.type
 ##' @param ... ...
 show.pandoc.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
-  indent.mark <- "  "
+  indent.mark <- "    "
   if (list.type == "bullet") mark <- rep("-", length(x))
-  if (list.type == "number") mark <- paste(seq(1, length(x), 1), ".", sep = "")
+  if (list.type == "number") mark <- rep("#.", length(x)) #paste(seq(1, length(x), 1), "#.", sep = "")
   if (list.type == "none")  { mark <- rep("", length(x)); indent.mark = ""}
   if (list.type == "label") {
     if (is.null(names(x))) {
-      namesx <- paste("[ [ ", 1:length(x), " ] ]", sep = "")
+      namesx <- paste("[[", 1:length(x), "]]", sep = "")
     } else {
       namesx <- names(x)
     }
-    mark <- paste("- ", namesx, " ::", sep = "")
-    indent.mark = "  "
+    mark <- paste(namesx, "\n  ~")
+    x <- lapply(x, function(x) gsub("\t", "", x))
   }
   
   charac.x <- vector("character", length(x))
@@ -277,6 +275,6 @@ show.pandoc.list <- function(x, caption = NULL, caption.level = NULL, list.type 
     tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, tmp, perl = TRUE)
     charac.x[i] <- sub("(^ *)", paste("\\1", mark[i], " ", sep = ""), tmp)
   }
-  cat(header.pandoc(caption = caption, caption.level = caption.level))
+#  cat(header.pandoc(caption = caption, caption.level = caption.level))
   cat(charac.x, sep = "\n")
 }
