@@ -126,9 +126,11 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   }
   
   before_cell_content <- after_cell_content <- style
-  before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
-  after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
+  ## before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
+  ## after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
 
+  x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "")
+  
   if (tstyle == "h")
     tstyle <- "s"
   if (bstyle == "h")
@@ -187,14 +189,26 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   
   line_separator <- FALSE
   line_separator_pos <- NULL
-  if (is.logical(header) & header | header >= 1)
-    header <- TRUE
+  if ((is.logical(header) & header) | header >= 1)
+    header <- 1
 
-  line_sep <- sapply(apply(interleave.matrix(before_cell_content, x, after_cell_content), 2, function(x) max(nchar(x))), function(x) paste(rep("-", x), collapse = ""))
+  line_sep <- sapply(apply(x, 2, function(x) max(nchar(x))), function(x) paste(rep("-", x), collapse = ""))
 
-  if (is.null(align))
+  if (is.null(align)) {
     align <- "l"
-  align <- expand(align, 1, ncolx)
+  }
+  if (is.null(lalign) & length(lgroup) > 0) {
+    lalign <- "c"
+  } else if (length(lgroup) == 0) {
+    lalign <- NULL
+  }
+  if (is.null(ralign) & length(rgroup) > 0) {
+    ralign <- "c"
+  } else if (length(rgroup) == 0) {
+    ralign <- NULL
+  }
+  
+  align <- c(lalign, expand(align, 1, ncolx), ralign)
   justify <- align
   justify[justify == "l"] <- "left"
   justify[justify == "r"] <- "right"
@@ -211,7 +225,7 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
     }
   }
     
-  if (header) {
+  if (header > 0) {
     x <- rbind(x[1, ], line_sep, x[-1, ])
   } else {
     x <- rbind(line_sep, x)
@@ -219,14 +233,13 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   
   x <- rbind(x, line_sep)
 
-  x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "", transpose.vector = TRUE)
+  ## x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "", transpose.vector = TRUE)
 
   for (i in 1:ncol(x)) {
     x[, i] <- as.character(format(x[, i], trim = TRUE, justify = justify[i]))
   }
 
-  ## results <- print.character.matrix(x, line_separator = FALSE, vsep = "  ", justify = justify, before_cell_content = before_cell_content, after_cell_content = after_cell_content, print = FALSE)
-  results <- paste.matrix(x, collapse = "")
+  results <- paste.matrix(x, collapse = " ")
                           
   cat(results, sep = "\n")
   cat("\n")
