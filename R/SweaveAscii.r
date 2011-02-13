@@ -88,3 +88,21 @@ formals(Org) <-  alist(file=, driver=RweaveOrg, syntax=SweaveSyntaxNoweb, ...=)
 Textile <- Sweave
 formals(Textile) <-  alist(file=, driver=RweaveTextile, syntax=SweaveSyntaxNoweb, ...=)
 
+
+
+##' Sweave wrapper for pandoc
+##' Like \code{Sweave}, but use \code{RweavePandoc} driver as default value.
+##' 
+##' 
+##' @param file Name of Sweave source file.
+##' @param driver Sweave driver
+##' @param syntax Sweave syntax
+##' @param ... Further arguments passed to the driver's setup function.
+##' @author David Hajage \email{dhajage@@gmail.com}
+##' @author Matti Pastell \email{matti.pastell@@helsinki.fi}
+##' @seealso \code{\link{Sweave}}
+##' @export
+##' @import utils
+##' @keywords IO file
+Pandoc <- Sweave
+formals(Pandoc) <-  alist(file=, driver=RweavePandoc, syntax=SweaveSyntaxNoweb, ...=)
