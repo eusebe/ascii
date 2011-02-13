@@ -23,32 +23,30 @@ beauty.pandoc <- function(x, beauti = c("e", "m", "s")) {
   return(x)
 }
 
-## ##' header.pandoc
-## ##'
-## ##' @keywords internal
-## ##' @param caption caption
-## ##' @param caption.level caption.level
-## header.pandoc <- function(caption = NULL, caption.level = NULL) {
-##   res <- ""
-##   if (is.null(caption.level))
-##     caption.level <- ""
-##   if (!is.null(caption)) {
-##     if (is.numeric(caption.level) & caption.level > 0) {
-##       res <- paste(paste(rep("*", caption.level), collapse = ""), caption, "\n")
-##     } else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
-##       if (caption.level == "s")
-##         res <- paste(beauty.pandoc(caption, "s"), "\n", sep = "")
-##       else if (caption.level == "e")
-##         res <- paste(beauty.pandoc(caption, "e"), "\n", sep = "")
-##       else if (caption.level == "m")
-##         res <- paste(beauty.pandoc(caption, "m"), "\n", sep = "")
-##     } else if (caption.level == "none")
-##       res <- paste(caption, "\n", sep = "")
-##     else
-##       res <- paste("#+CAPTION: ", caption, "\n", sep = "")
-##     }
-##   return(res)
-## }
+##' header.pandoc
+##'
+##' @keywords internal
+##' @param caption caption
+##' @param caption.level caption.level
+header.pandoc <- function(caption = NULL, caption.level = NULL) {
+  res <- ""
+  if (is.null(caption.level))
+    caption.level <- "s"
+  if (!is.null(caption)) {
+    if (is.numeric(caption.level) & caption.level > 0) {
+      res <- paste(paste(rep("#", caption.level), collapse = ""), caption, "\n")
+    } else if (is.character(caption.level) & caption.level %in% c("s", "e", "m")) {
+      if (caption.level == "s")
+        res <- paste(beauty.pandoc(caption, "s"), "\n", sep = "")
+      else if (caption.level == "e")
+        res <- paste(beauty.pandoc(caption, "e"), "\n", sep = "")
+      else if (caption.level == "m")
+        res <- paste(beauty.pandoc(caption, "m"), "\n", sep = "")
+    } else if (caption.level == "none")
+      res <- paste(caption, "\n", sep = "")
+  }
+  return(res)
+}
 
 
 ## ##' escape.pandoc
@@ -126,8 +124,6 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   }
   
   before_cell_content <- after_cell_content <- style
-  ## before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
-  ## after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
 
   x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "")
   
@@ -238,7 +234,8 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   }
 
   results <- paste.matrix(x, collapse = " ")
-                          
+
+  cat("\n")
   cat(results, sep = "\n")
   cat("\n")
   if (!is.null(caption))
@@ -275,6 +272,6 @@ show.pandoc.list <- function(x, caption = NULL, caption.level = NULL, list.type 
     tmp <- gsub('\t|(*COMMIT)(*FAIL)', indent.mark, tmp, perl = TRUE)
     charac.x[i] <- sub("(^ *)", paste("\\1", mark[i], " ", sep = ""), tmp)
   }
-#  cat(header.pandoc(caption = caption, caption.level = caption.level))
+  cat(header.pandoc(caption = caption, caption.level = caption.level))
   cat(charac.x, sep = "\n")
 }
