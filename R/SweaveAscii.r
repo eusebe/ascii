@@ -98,8 +98,7 @@ formals(Textile) <-  alist(file=, driver=RweaveTextile, syntax=SweaveSyntaxNoweb
 ##' @param driver Sweave driver
 ##' @param syntax Sweave syntax
 ##' @param ... Further arguments passed to the driver's setup function.
-##' @author David Hajage \email{dhajage@@gmail.com}
-##' @author Matti Pastell \email{matti.pastell@@helsinki.fi}
+##' @author David Hajage \email{dhajage@@gmail.com} Matti Pastell \email{matti.pastell@@helsinki.fi}
 ##' @seealso \code{\link{Sweave}}
 ##' @export
 ##' @import utils

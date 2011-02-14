@@ -204,7 +204,7 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
     ralign <- NULL
   }
   
-  align <- c(lalign, expand(align, 1, ncolx), ralign)
+  align <- c(rep(lalign, length(lgroup)), expand(align, 1, ncolx), rep(ralign, length(rgroup)))
   justify <- align
   justify[justify == "l"] <- "left"
   justify[justify == "r"] <- "right"
