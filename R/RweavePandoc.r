@@ -23,8 +23,7 @@
 ##'   \code{weaverPandoc} driver.
 ##' 
 ##' A wrapper for \code{Sweave} can be used, named \code{Pandoc}.
-##' @author David Hajage \email{dhajage@@gmail.com}
-##' @author Matti Pastell \email{matti.pastell@@helsinki.fi}
+##' @author David Hajage \email{dhajage@@gmail.com} Matti Pastell \email{matti.pastell@@helsinki.fi}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Pandoc}}
 ##' @keywords IO file
 ##' @export
@@ -353,7 +352,7 @@ makeRweavePandocCodeRunner <- function(evalFunc=RweaveEvalWithOpt)
               }
                             
               if(options$include) {
-                  cat("![](", chunkprefix, ".", options$ext, ")\\\n", sep="",
+                  cat("![](", chunkprefix, ".", options$ext, ")\n", sep="",
                       file=object$output, append=TRUE)
                   linesout[thisline + 1L] <- srcline
                   thisline <- thisline + 1L
