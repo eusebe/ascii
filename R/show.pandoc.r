@@ -119,10 +119,17 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
     style <- ""
     style <- expand(style, nrowx, ncolx)
   }
+  if ((is.logical(header) & header) | header >= 1) {
+    style[1:min(nrow(style), header), ] <- "**"
+    header <- 1
+  }
+  if (footer >= 1) {
+    style[nrow(style):max((nrow(style)-footer+1), 1), ] <- "**"
+  }
   if (include.rownames & include.colnames) {
     style[1, 1] <- ""
   }
-  
+
   before_cell_content <- after_cell_content <- style
 
   x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "")
@@ -185,8 +192,6 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
   
   line_separator <- FALSE
   line_separator_pos <- NULL
-  if ((is.logical(header) & header) | header >= 1)
-    header <- 1
 
   line_sep <- sapply(apply(x, 2, function(x) max(nchar(x))), function(x) paste(rep("-", x), collapse = ""))
 
