@@ -115,26 +115,12 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   }
   
   before_cell_content <- after_cell_content <- style
+  before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
+  after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
+  
   if (is.null(align)) {
     align <- "l"
   } 
-  lcentre <- "  "
-  rcentre <- "  "
-  lleft <- " "
-  rleft <- "   "
-  lright <- "   "
-  rright <- " "
-  
-  lalign <- ralign <- expand(align, nrowx, ncolx)
-  lalign[lalign == "c"] <- lcentre
-  ralign[ralign == "c"] <- rcentre
-  lalign[lalign == "l"] <- lleft
-  ralign[ralign == "l"] <- rleft
-  lalign[lalign == "r"] <- lright
-  ralign[ralign == "r"] <- rright
-  
-  before_cell_content <- paste.matrix(lalign, before_cell_content, sep = "")
-  after_cell_content <- paste.matrix(after_cell_content, ralign, sep = "")
   
   if (!is.null(frame)) {
     if (frame == "none") {
@@ -248,7 +234,7 @@ show.t2t.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
     vsep[nrow(vsep):(nrow(vsep)-bottomleftrow+1), (ncol(vsep)-1):(ncol(vsep)-bottomrightcol+1)] <- ""
   }
   
-  results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, before_cell_content = before_cell_content, after_cell_content = after_cell_content, justify = "none", print = FALSE)
+  results <- print.character.matrix(x, line_separator = line_separator, vsep = vsep, before_cell_content = before_cell_content, after_cell_content = after_cell_content, justify = align, space = 1, print = FALSE)
 
   headfoot <- NULL
   if (header + footer > nrowx) {

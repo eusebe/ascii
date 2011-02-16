@@ -18,6 +18,32 @@ div <- function(x, n = 2) {
 rep.char <- function(x, times = 1) {
   paste(rep(x, times), collapse = "")
 }
+##' align.table
+##'
+##' @keywords internal
+##' @param x x
+##' @param align align
+##' @param space space
+align.table <- function(x, align, space = 1) {
+  align <- expand(align, nrow(x), ncol(x), drop = FALSE)
+  nchar <- apply(x, 2, nchar)
+  max.nchar <- expand(apply(expand(nchar, nrow(x), ncol(x), drop = FALSE), 2, max) + space*2, nrow(x), ncol(x), drop = FALSE)
+  diff.nchar <- max.nchar - nchar
+  
+  for (i in 1:nrow(x)) {
+    for (j in 1:ncol(x)) {
+      if (align[i, j] == "l")
+        x[i, j] <- paste(x[i, j], paste(rep(" ", diff.nchar[i, j]), collapse = ""), collapse = "", sep = "")
+      if (align[i, j] == "r")
+        x[i, j] <- paste(paste(rep(" ", diff.nchar[i, j]), collapse = ""), x[i, j], collapse = "", sep = "")
+      if (align[i, j] == "c") {
+        sides <- div(diff.nchar[i, j])
+        x[i, j] <- paste(paste(rep(" ", sides[1]), collapse = ""), x[i, j], paste(rep(" ", sides[2]), collapse = ""), collapse = "", sep = "")
+      }
+    }
+  }
+  x
+}
 
 ##' print.character.matrix
 ##' 
@@ -35,15 +61,11 @@ rep.char <- function(x, times = 1) {
 ##' @param right_alignment right_alignment
 ##' @param print print
 ##' @keywords internal
-print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep = "", hsep = "-", csep = "+", before_cell_content = " ", after_cell_content = " ", line_separator = TRUE, line_separator_pos = NULL, justify = c("left", "right", "centre", "none"), right_alignment = FALSE, print = TRUE) {
-
-  justify <- justify[1]
+print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep = "", hsep = "-", csep = "+", before_cell_content = " ", after_cell_content = " ", line_separator = TRUE, line_separator_pos = NULL, justify = "l", space = 0, right_alignment = FALSE, print = TRUE) {
   
   # after et before cell_content
   x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "", transpose.vector = TRUE)
-  x <- apply(x, 2, function(xx) as.character(format(xx, trim = TRUE, justify = justify)))
-  if (is.vector(x))
-    x <- t(x)
+  x <- align.table(x, justify, space)
   
   # dim
   nrowx <- nrow(x)
@@ -66,23 +88,6 @@ print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep =
   ncharafter <- nchar(after_vseps)
   nchartot <- ncharafter[, 1:(ncol(ncharafter)-1)] + ncharx + ncharbefore[, -1]
   nchartotmax <- apply(nchartot, 2, max)
-
-  # x alignment
-  addtox <- matrix(nchartotmax, nrow(nchartot), ncol(nchartot), T) - nchartot
-  if (justify == "left") {
-    addtoxleft <- ""
-    addtoxright <- apply(addtox, 1:2, function(x) paste(rep(" ", x), collapse = ""))
-  }
-  if (justify == "centre" | justify == "none") {
-    addtox <- apply(addtox, 2:1, div)
-    addtoxleft <- apply(addtox[, , 1], 1:2, function(x) paste(rep(" ", x), collapse = ""))
-    addtoxright <- apply(addtox[, , 2], 1:2, function(x) paste(rep(" ", x), collapse = ""))
-  }
-  if (justify == "right") {
-    addtoxleft <- apply(addtox, 1:2, function(x) paste(rep(" ", x), collapse = ""))
-    addtoxright <- ""
-  }
-  x <- paste.matrix(addtoxleft, x, addtoxright, sep = "")
 
   # rows
   lines <- interleave.matrix(final_vseps, x, byrow = FALSE)
