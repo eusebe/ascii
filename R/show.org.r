@@ -127,8 +127,8 @@ show.org.table <- function(x, include.rownames = FALSE, include.colnames = FALSE
   }
   
   before_cell_content <- after_cell_content <- style
-  before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
-  after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
+  before_cell_content <- paste.matrix(" ", before_cell_content, sep = "", transpose.vector = TRUE)
+  after_cell_content <- paste.matrix(after_cell_content, " ", sep = "", transpose.vector = TRUE)
 
   if (tstyle == "h")
     tstyle <- "s"

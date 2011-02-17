@@ -174,8 +174,8 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   vsep <- cbind(vsep, rep("|", nrowx))
   
   before_cell_content <- after_cell_content <- style
-  before_cell_content <- paste.matrix(" ", before_cell_content, sep = "")
-  after_cell_content <- paste.matrix(after_cell_content, " ", sep = "")
+  before_cell_content <- paste.matrix(" ", before_cell_content, sep = "", transpose.vector = TRUE)
+  after_cell_content <- paste.matrix(after_cell_content, " ", sep = "", transpose.vector = TRUE)
   after_cell_content[after_cell_content == "<code> "] <- "</code> "
 
   if (is.logical(header) & header)
@@ -199,7 +199,7 @@ show.textile.table <- function(x, include.rownames = FALSE, include.colnames = F
   } else {
     valign <- expand("", nrow(x), ncolx)
   }
-  after_vsep <- paste.matrix(vsep.textile(align, valign), ".", sep = "")
+  after_vsep <- paste.matrix(vsep.textile(align, valign), ".", sep = "", transpose.vector = TRUE)
 
   if (include.rownames & include.colnames)
     after_vsep[1, 1] <- ""

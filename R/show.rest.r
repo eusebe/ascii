@@ -128,7 +128,7 @@ show.rest.table <- function(x, include.rownames = FALSE, include.colnames = FALS
   if (include.rownames & include.colnames) {
     style[1, 1] <- ""
   }
-  x <- paste.matrix(style, x, style, sep = "")
+  x <- paste.matrix(style, x, style, sep = "", transpose.vector = TRUE)
 
   if (tstyle == "h")
     tstyle <- "s"

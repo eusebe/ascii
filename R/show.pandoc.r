@@ -132,7 +132,7 @@ show.pandoc.table <- function(x, include.rownames = FALSE, include.colnames = FA
 
   before_cell_content <- after_cell_content <- style
 
-  x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "")
+  x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "", transpose.vector = TRUE)
   
   if (tstyle == "h")
     tstyle <- "s"
