@@ -6,7 +6,7 @@
                  markdown2pdf = "")
 
 .extensions <- list(docbook = "xml",
-                    slidy = "html", 
+                    slidy = "html",
                     xhtml = "html",
                     chunked = "html",
                     htmlhelp = "html",
@@ -81,7 +81,7 @@ replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE
   extension <- ifelse(f %in% names(.extensions), .extensions[[f]], f)
   basefile <- sub("(.+)(\\..+$)", "\\1", basename(i))
   file <- paste(basefile, extension, sep = ".")
-  
+
   windows <- grepl("w|W", plateform)
   if (windows) {
     if (cygwin) {
@@ -104,6 +104,7 @@ replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE
   results <- sub("%options", args, cli)
   attr(results, "file") <- file
   attr(results, "directory") <- d
+  attr(results, "f") <- f
   attr(results, "windows") <- windows
   attr(results, "cygwin") <- cygwin
   results
@@ -115,15 +116,16 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = "asciid
   invisible(err)
 
   file <- attr(cmd, "file")
+  f <- attr(cmd, "f")
   directory <- attr(cmd, "d")
   windows <- attr(cmd, "windows")
-  
-  if (f != "chunked") {
-    dfile <- paste(directory, file, sep = "/")
-  } else {
+
+  if (f == "chunked") {
     dfile <- paste(directory, paste(sub("(.+)(\\..+$)", "\\1", file), "chunked", sep = "."), "index.html", sep = "/")
+  } else {
+    dfile <- paste(directory, file, sep = "/")
   }
-  
+
   if (open) {
     cat("Trying to open ", dfile, sep = "")
     if (windows) {
