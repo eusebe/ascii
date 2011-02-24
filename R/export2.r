@@ -46,7 +46,7 @@
 .O <- list(asciidoc = "-a toc",
            a2x = "-a toc",
            txt2tags = "",
-           pandoc = "",
+           pandoc = "-s",
            markdown2pdf = "")
 
 .f <- list(asciidoc = "html",
@@ -66,6 +66,26 @@
            txt2tags = "UTF-8",
            pandoc = "",
            markdown2pdf = "")
+
+.preambule <- list(asciidoc =
+"= %title
+:author:    %author
+:email:     %email
+:revdate:   %date
+
+",
+                   txt2tags =
+"%title
+%author
+%date
+
+",
+                   pandoc =
+"% %title
+% %author %email
+% %date
+
+")
 
 replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
 
@@ -142,6 +162,220 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = "asciid
 }
 
 
-export <- function(..., list = NULL, file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL) {
-
+##' Create a section
+##'
+##' \code{section} can be used with \code{export} function to add\dots a section
+##' @param caption a string
+##' @param caption.level caption level
+##' @return A section object.
+##' @export
+##' @author David Hajage
+section <- function(caption, caption.level = 1) {
+  results <- list(caption = caption, caption.level = caption.level + 1)
+  class(results) <- "section"
+  results
 }
+
+##' Print a section object
+##'
+##' Print a section object
+##' @param x a section object
+##' @param ... not used
+##' @export
+##' @author David Hajage
+print.section <- function(x, ...) {
+  caption <- x$caption
+  caption.level <- x$caption.level
+  results <- header.asciidoc(caption, caption.level)
+  cat("\n", results, sep = "")
+}
+
+##' Create a paragraph
+##'
+##' \code{paragraph} can be used with \code{export} function to add\dots a paragraph
+##' @param ... strings composing the paragraph
+##' @param new whether to create a new paragraph or to continue a preceding one
+##' @return A paragraph object.
+##' @export
+##' @author David Hajage
+paragraph <- function(..., new = TRUE) {
+  results <- list(text = list(...), new = new)
+  class(results) <- "paragraph"
+  results
+}
+
+##' Print a paragraph object
+##'
+##' Print a paragraph object
+##' @param x a paragraph object
+##' @param ... not used
+##' @export
+##' @author David Hajage
+print.paragraph <- function(x, ...) {
+  newline <- "\n"
+  text <- x$text
+  new <- x$new
+
+  if (new) {
+    cat(newline)
+  }
+  for (i in 1:length(text)) {
+    if (class(text[[i]]) == "sexpr" | class(text[[i]]) == "math") {
+      print(text[[i]])
+    }
+    else {
+      cat(text[[i]], " ", sep = "")
+    }
+  }
+  cat("\n")
+}
+
+##' Insert an inline R result
+##'
+##' \code{sexpr} can be used with \code{export} function to insert an inline R results
+##' @param x an R results (of length one)
+##' @return A sexpr object.
+##' @export
+##' @author David Hajage
+sexpr <- function(x) {
+  results <- x
+  class(results) <- "sexpr"
+  results
+}
+
+##' Print a sexpr object
+##'
+##' Print a sexpr object
+##' @param x a sexpr object
+##' @param ... not used
+##' @export
+##' @author David Hajage
+print.sexpr <- function(x, ...) {
+  cat(x, sep = "")
+}
+
+##' Export R objects
+##'
+##' \code{out} can be used with \code{export} function to insert an R results
+##' @param x an R object
+##' @param results if \code{'verbatim'}, the output is included in a verbatim environment. If \code{'latex'}, the output is taken to be already proper latex markup and included as is.
+##' @return An out object
+##' @export
+##' @author David Hajage
+out <- function(x, results = "verbatim") {
+  results <- list(x, results)
+  class(results) <- "out"
+  results
+}
+
+##' Print an out object
+##'
+##' Print an out object
+##' @param x an out object
+##' @param ... not used
+##' @export
+##' @author David Hajage
+print.out <- function(x, ...) {
+  results <- x[[2]]
+  cat("\n")
+  if (results == "latex") {
+    cat("[latex]\n")
+  }
+  if (results == "verbatim") {
+    cat("----\n")
+  }
+  print(x[[1]], ...)
+  if (results == "verbatim") {
+    cat("----\n")
+  }
+}
+
+export <- function(..., list = NULL, file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+  
+  if (is.null(file)) {
+    file <- tempfile("R-report")
+    if (is.null(open)) {
+      open <- TRUE
+    }
+  } else {
+    if (is.null(open)) {
+      open <- FALSE
+    }
+  }
+
+  wd <- dirname(file)
+  if (is.null(title)) {
+    title <- paste("+", sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/")), "+", sep = "")
+  }
+
+  if (backend == "a2x") {
+    preambule <- .preambule[["asciidoc"]]
+  } else {
+    preambule <- .preambule[[backend]]
+  }
+
+  if (is.null(author)) {
+    author <- version$version.string
+  }
+
+  if (is.null(email)) {
+    email <- "cran@r-project.org"
+  }
+
+  if (is.null(date)) {
+    date <- format(Sys.time(), "%Y/%m/%d %X")
+  }
+
+  preambule <- sub("%title", title, preambule)
+  preambule <- sub("%author", author, preambule)
+  preambule <- sub("%email", email, preambule)
+  preambule <- sub("%date", date, preambule)
+
+  if (is.null(list)) {
+    args <- list(...)
+  } else {
+    args <- list
+  }
+
+  lines <- capture.output({
+    cat(preambule)
+    
+    for (i in seq_along(args)) {
+      arg <- args[[i]]
+      if (!is.null(names(args))) {
+        if (names(args)[i] != "") {
+          cat(".", names(args)[i], "\n", sep = "")
+        }
+      }
+      if ("ascii" %in% class(arg)) {
+        print(arg)
+        cat("\n")
+      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg)) {
+        print(arg)
+      } else {
+        print(out(arg, "verbatim"))
+      }
+    }})
+  textfile <- paste(file, "txt", sep = ".")
+  f <- file(textfile, "w")
+  writeLines(lines, f)
+  close(f)
+
+  convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)  
+}
+
+Report <- proto(expr = {
+  new <- function(., file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
+    proto(., list, file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
+
+  objects <- list()
+  
+  add <- function(., ...) {
+    obj <- list(...)
+    .$objects <- c(.$objects, obj)
+  }
+
+  export <- function(.) {
+    .super$export(list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$author, date = .$date)
+  }
+})
