@@ -121,7 +121,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 ")
   } 
 
-  opts <- list(".outputs" = .outputs, ".extensions" = .extensions, ".cli" = .cli, ".args" = .args, ".O" = .O, ".f" = .f, ".e" = .e, ".preambule" = .preambule)
+  opts <- list(".backends" = .backends, ".outputs" = .outputs, ".extensions" = .extensions, ".cli" = .cli, ".args" = .args, ".O" = .O, ".f" = .f, ".e" = .e, ".preambule" = .preambule)
 
   if (select == "all")
     return(opts)
@@ -199,6 +199,10 @@ replace <- function(backend = getOption("asciiBackend"), plateform = version$os,
 ##' @export
 ##' @author David Hajage
 convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOption("asciiBackend"), cygwin = FALSE, open = FALSE) {
+
+  if (!(backend %in% asciiOpts(".backends")))
+    stop(paste("Wrong backend. Please choose: ", paste(asciiOpts(".backends"), collapse = ", "), ".", sep = ""))
+  
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
   err <- system(cmd, wait = TRUE)
 
