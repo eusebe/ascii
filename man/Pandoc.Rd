@@ -10,4 +10,6 @@ Like \code{Sweave}, but use \code{RweavePandoc} driver as default value.}
 \arguments{\item{file}{Name of Sweave source file.}
 \item{driver}{Sweave driver}
 \item{syntax}{Sweave syntax}
-\item{...}{Further arguments passed to the driver's setup function.}}
+\item{...}{Further arguments passed to the driver's setup function.}
+}
+

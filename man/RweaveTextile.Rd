@@ -1,4 +1,5 @@
 \name{RweaveTextile}
+\alias{RweaveTextile}
 \title{A driver to parse textile noweb files with Sweave tool...}
 \description{A driver to parse textile noweb files with Sweave tool
 This driver parses textile files containing R code and replace pieces of
@@ -36,3 +37,4 @@ A wrapper for \code{Sweave} can be used, named \code{Textile}.}
 library(ascii)
 Textile("file.Rnw")
 }}
+

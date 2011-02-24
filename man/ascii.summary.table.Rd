@@ -1,8 +1,8 @@
 \name{ascii.summary.table}
 \alias{ascii.summary.table}
 \title{ascii method for class summary...}
-\usage{\method{ascii}{summary.table} (x, caption=NULL, caption.level=NULL,
-    list.type="bullet", ...)}
+\usage{\method{ascii}{summary.table}(x, caption, caption.level, list.type="bullet", ...)
+}
 \description{ascii method for class summary.table}
 \value{An ascii object.}
 \author{David Hajage}
@@ -19,4 +19,6 @@ Default is NULL.}
 (\code{"bullet"}, \code{"number"}, \code{"label"} or \code{"none"}). If
 \code{"label"}, \code{names(list)} is used for labels. Default is
 \code{"bullet"}.}
-\item{...}{Additional arguments.  (see \code{?ascii.default}).}}
+\item{...}{Additional arguments.  (see \code{?ascii.default}).}
+}
+

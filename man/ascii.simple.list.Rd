@@ -1,8 +1,8 @@
 \name{ascii.simple.list}
 \alias{ascii.simple.list}
 \title{ascii method for class simple...}
-\usage{\method{ascii}{simple.list} (x, caption=NULL, caption.level=NULL,
-    list.type="label", ...)}
+\usage{\method{ascii}{simple.list}(x, caption, caption.level, list.type="label", ...)
+}
 \description{ascii method for class simple.list}
 \value{An ascii object.}
 \author{David Hajage}
@@ -19,4 +19,6 @@ Default is NULL.}
 (\code{"bullet"}, \code{"number"}, \code{"label"} or \code{"none"}). If
 \code{"label"}, \code{names(list)} is used for labels. Default is
 \code{"bullet"}.}
-\item{...}{Additional arguments.  (Currently ignored.)}}
+\item{...}{Additional arguments.  (Currently ignored.)}
+}
+

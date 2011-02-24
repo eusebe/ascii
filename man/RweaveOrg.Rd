@@ -1,4 +1,5 @@
 \name{RweaveOrg}
+\alias{RweaveOrg}
 \title{A driver to parse org noweb files with Sweave tool...}
 \description{A driver to parse org noweb files with Sweave tool
 This driver parses org files containing R code and replace pieces of code
@@ -36,3 +37,4 @@ A wrapper for \code{Sweave} can be used, named \code{Org}.}
 library(ascii)
 Org("file.Rnw")
 }}
+

@@ -1,8 +1,8 @@
 \name{ascii.list}
 \alias{ascii.list}
 \title{ascii method for class list...}
-\usage{\method{ascii}{list} (x, caption=NULL, caption.level=NULL,
-    list.type="bullet", ...)}
+\usage{\method{ascii}{list}(x, caption, caption.level, list.type="bullet", ...)
+}
 \description{ascii method for class list}
 \value{An ascii object.}
 \author{David Hajage}
@@ -19,4 +19,6 @@ Default is NULL.}
 (\code{"bullet"}, \code{"number"}, \code{"label"} or \code{"none"}). If
 \code{"label"}, \code{names(list)} is used for labels. Default is
 \code{"bullet"}.}
-\item{...}{Additional arguments.  (Currently ignored.)}}
+\item{...}{Additional arguments.  (Currently ignored.)}
+}
+

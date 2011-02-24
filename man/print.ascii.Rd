@@ -1,8 +1,9 @@
 \name{print.ascii}
 \alias{print.ascii}
 \title{Print ascii object...}
-\usage{print.ascii(x, type=getOption("asciiType"), file=NULL, append=FALSE,
-    escape=FALSE, list.escape=c("\\\\_", "\\\\^"), ...)}
+\usage{print.ascii(x, type=getOption("asciiType"), file, append=FALSE, escape=FALSE,
+    list.escape=c("\\\\_", "\\\\^"), ...)
+}
 \description{Print ascii object
 Function displaying the asciidoc, txt2tags, reStructuredText, org or
 textile code associated with the supplied object of class \code{ascii}.}
@@ -23,7 +24,8 @@ of overwriting it. Default value is \code{FALSE}}
 printed with a \code{\\}. Default value is \code{FALSE}}
 \item{list.escape}{Character vector. Default value is \code{c("\\\\_",
 "\\\\^")}}
-\item{...}{Additional arguments.  (Currently ignored.)}}
+\item{...}{Additional arguments.  (Currently ignored.)}
+}
 \examples{data(esoph)
 ascii(esoph[1:10,])
 print(ascii(esoph[1:10,]), type = "t2t")
@@ -34,3 +36,4 @@ print(ascii(esoph[1:10,]), type = "pandoc")
 options(asciiType = "rest")
 ascii(esoph[1:10,])
 options(asciiType = "asciidoc")}
+

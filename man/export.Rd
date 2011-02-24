@@ -1,8 +1,9 @@
 \name{export}
+\alias{export}
 \title{Report creation}
-\usage{export(..., list=NULL, file=NULL, format=NULL, open=NULL,
-    backend="asciidoc", encoding=NULL, options=NULL, cygwin=FALSE,
-    title=NULL, author=NULL, email=NULL, date=NULL)}
+\usage{export(..., list, file, format, open, backend="asciidoc", encoding, options,
+    cygwin=FALSE, title, author, email, date)
+}
 \description{Produce a report}
 \details{Produce a report from a list of R objects. This function can be used directly,
 or through a \code{Report} proto object (see examples). \code{Report$new()} creates
@@ -25,7 +26,8 @@ sections (see \code{?section}), paragraphs (see \code{?paragraph}) or inline res
 \item{title}{title of the report}
 \item{author}{author of the report}
 \item{email}{email of the author}
-\item{date}{date}}
+\item{date}{date}
+}
 \examples{\dontrun{
 options(asciiType = "asciidoc")
 export(head(esoph))
@@ -53,3 +55,4 @@ r$backend <- "markdown2pdf"
 r$format <- "pdf"
 r$export()
 }}
+

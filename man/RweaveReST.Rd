@@ -1,4 +1,5 @@
 \name{RweaveReST}
+\alias{RweaveReST}
 \title{A driver to parse sphinx noweb files with Sweave tool...}
 \description{A driver to parse sphinx noweb files with Sweave tool
 This driver parses sphinx files containing R code and replace pieces of
@@ -36,3 +37,4 @@ A wrapper for \code{Sweave} can be used, named \code{ReST}.}
 library(ascii)
 ReST("file.Rnw")
 }}
+

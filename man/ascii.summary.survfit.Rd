@@ -1,8 +1,9 @@
 \name{ascii.summary.survfit}
 \alias{ascii.summary.survfit}
 \title{ascii method for class summary...}
-\usage{\method{ascii}{summary.survfit} (x, include.colnames=TRUE, header=TRUE,
-    digits=c(0, 0, 0, 3, 3, 3, 3), ...)}
+\usage{\method{ascii}{summary.survfit}(x, include.colnames=TRUE, header=TRUE, digits=c(0, 0, 0, 3, 3, 3, 3),
+    ...)
+}
 \description{ascii method for class summary.survfit}
 \details{\code{survival} package}
 \value{An ascii object.}
@@ -17,4 +18,6 @@ value depends of class of \code{x}.}
 the resulting table (otherwise it will be replicated or truncated as
 necessary) indicating the number of digits to display in the
 corresponding columns.  Default is \code{2}.}
-\item{...}{Additional arguments.  (see \code{?ascii.default}).}}
+\item{...}{Additional arguments.  (see \code{?ascii.default}).}
+}
+

@@ -1,9 +1,10 @@
 \name{ascii.freqtable}
 \alias{ascii.freqtable}
 \title{ascii method for class freqtable...}
-\usage{\method{ascii}{freqtable} (x, header=TRUE, footer=TRUE, digits=c(0, 2,
-    2), format="f", na.print="", include.rownames=TRUE,
-    include.colnames=TRUE, caption=x$label, ...)}
+\usage{\method{ascii}{freqtable}(x, header=TRUE, footer=TRUE, digits=c(0, 2, 2), format="f",
+    na.print="", include.rownames=TRUE, include.colnames=TRUE,
+    caption=x$label, ...)
+}
 \description{ascii method for class freqtable}
 \details{\code{descr} package}
 \value{An ascii object.}
@@ -41,4 +42,6 @@ printed. Default value depends of class of \code{x}.}
 \item{caption}{Character vector of length 1 containing the table's caption
 or title.  Set to \code{""} to suppress the caption.  Default value is
 \code{NULL}.}
-\item{...}{Additional arguments.  (see \code{?ascii.default}).}}
+\item{...}{Additional arguments.  (see \code{?ascii.default}).}
+}
+

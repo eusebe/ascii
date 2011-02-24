@@ -1,4 +1,5 @@
 \name{RweavePandoc}
+\alias{RweavePandoc}
 \title{A driver to parse Pandoc noweb files with Sweave tool...}
 \description{A driver to parse Pandoc noweb files with Sweave tool
 This driver parses Pandoc files containing R code and replace pieces of code
@@ -36,3 +37,4 @@ A wrapper for \code{Sweave} can be used, named \code{Pandoc}.}
 library(ascii)
 Pandoc("file.Rnw")
 }}
+

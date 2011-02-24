@@ -1,4 +1,5 @@
 \name{RweaveT2t}
+\alias{RweaveT2t}
 \title{A driver to parse txt2tags noweb files with Sweave tool...}
 \description{A driver to parse txt2tags noweb files with Sweave tool
 This driver parses txt2tags files containing R code and replace pieces of
@@ -36,3 +37,4 @@ A wrapper for \code{Sweave} can be used, named \code{T2t}.}
 library(ascii)
 T2t("file.Rnw")
 }}
+

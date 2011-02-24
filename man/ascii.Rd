@@ -1,6 +1,8 @@
 \name{ascii}
+\alias{ascii}
 \title{Export R objects to several markup languages...}
-\usage{ascii(x, ...)}
+\usage{ascii(x, ...)
+}
 \description{Export R objects to several markup languages
 Function converting an R object to an \code{ascii} object, which can then
 be printed with asciidoc, txt2tags, reStructuredText, org or textile
@@ -26,7 +28,8 @@ functions should return an object of class
 \seealso{\code{\link{print.ascii}}}
 \keyword{print}
 \arguments{\item{x}{An R object of class found among \code{methods(ascii)}.}
-\item{...}{Additional arguments.  (see \code{?ascii.default}).}}
+\item{...}{Additional arguments.  (see \code{?ascii.default}).}
+}
 \examples{data(esoph)
 ascii(esoph[1:10,])
 tab <- table(esoph$agegp, esoph$alcgp)
@@ -35,3 +38,4 @@ print(ascii(tab), type = "t2t")
 print(ascii(tab), type = "rest")
 print(ascii(tab), type = "org")
 ascii(summary(tab))}
+

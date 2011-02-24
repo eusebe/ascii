@@ -1,4 +1,5 @@
 \name{RweaveAsciidoc}
+\alias{RweaveAsciidoc}
 \title{A driver to parse asciidoc noweb files with Sweave tool...}
 \description{A driver to parse asciidoc noweb files with Sweave tool
 This driver parses asciidoc files containing R code and replace pieces of
@@ -36,3 +37,4 @@ A wrapper for \code{Sweave} can be used, named \code{Asciidoc}.}
 library(ascii)
 Asciidoc("file.Rnw")
 }}
+

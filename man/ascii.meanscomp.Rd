@@ -1,8 +1,9 @@
 \name{ascii.meanscomp}
 \alias{ascii.meanscomp}
 \title{ascii method for class meanscomp...}
-\usage{\method{ascii}{meanscomp} (x, header=TRUE, caption=NULL,
-    include.rownames=TRUE, include.colnames=TRUE, ...)}
+\usage{\method{ascii}{meanscomp}(x, header=TRUE, caption, include.rownames=TRUE, include.colnames=TRUE,
+    ...)
+}
 \description{ascii method for class meanscomp}
 \details{\code{descr} package}
 \value{An ascii object.}
@@ -18,4 +19,6 @@ or title.  Set to \code{""} to suppress the caption.  Default value is
 Default value depends of class of \code{x}.}
 \item{include.colnames}{logical. If \code{TRUE} the columns names are
 printed. Default value depends of class of \code{x}.}
-\item{...}{Additional arguments.  (see \code{?ascii.default}).}}
+\item{...}{Additional arguments.  (see \code{?ascii.default}).}
+}
+

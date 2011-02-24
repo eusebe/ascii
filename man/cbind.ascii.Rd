@@ -1,8 +1,8 @@
 \name{cbind.ascii}
 \alias{cbind.ascii}
 \title{Cbind two ascii objects}
-\usage{cbind.ascii(x, y, caption=NULL, caption.level=NULL, frame=NULL,
-    grid=NULL, col.width=1, width=0)}
+\usage{cbind.ascii(x, y, caption, caption.level, frame, grid, col.width=1, width=0)
+}
 \description{Cbind two ascii objects}
 \details{This function binds cols of two ascii table.}
 \value{An ascii object.}
@@ -14,4 +14,6 @@
 \item{frame}{see \code{?ascii}}
 \item{grid}{see \code{?ascii}}
 \item{col.width}{see \code{?ascii}}
-\item{width}{see \code{?ascii}}}
+\item{width}{see \code{?ascii}}
+}
+

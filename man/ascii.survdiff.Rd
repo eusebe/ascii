@@ -1,16 +1,15 @@
 \name{ascii.survdiff}
 \alias{ascii.survdiff}
 \title{ascii method for class survdiff...}
-\usage{\method{ascii}{survdiff} (x, include.rownames=TRUE,
-    include.colnames=TRUE, rownames=NULL, colnames=NULL, format="f",
-    digits=2, decimal.mark=".", na.print="", caption=NULL,
-    caption.level=NULL, width=0, frame=NULL, grid=NULL, valign=NULL,
-    header=TRUE, footer=FALSE, align=NULL, col.width=1, style=NULL,
-    tgroup=NULL, n.tgroup=NULL, talign="c", tvalign="middle",
-    tstyle="h", bgroup=NULL, n.bgroup=NULL, balign="c",
-    bvalign="middle", bstyle="h", lgroup=NULL, n.lgroup=NULL,
-    lalign="c", lvalign="middle", lstyle="h", rgroup=NULL,
-    n.rgroup=NULL, ralign="c", rvalign="middle", rstyle="h", ...)}
+\usage{\method{ascii}{survdiff}(x, include.rownames=TRUE, include.colnames=TRUE, rownames, colnames,
+    format="f", digits=2, decimal.mark=".", na.print="", caption,
+    caption.level, width=0, frame, grid, valign, header=TRUE,
+    footer=FALSE, align, col.width=1, style, tgroup, n.tgroup,
+    talign="c", tvalign="middle", tstyle="h", bgroup, n.bgroup,
+    balign="c", bvalign="middle", bstyle="h", lgroup, n.lgroup,
+    lalign="c", lvalign="middle", lstyle="h", rgroup, n.rgroup,
+    ralign="c", rvalign="middle", rstyle="h", ...)
+}
 \description{ascii method for class survdiff}
 \details{\code{survival} package}
 \value{An ascii object.}
@@ -134,4 +133,6 @@ right row headings.}
 of major right row headings.}
 \item{rstyle}{Character vector of length one indicating the style of major
 right row headings}
-\item{...}{Additional arguments.  (Currently ignored.)}}
+\item{...}{Additional arguments.  (Currently ignored.)}
+}
+
