@@ -1,8 +1,8 @@
 \name{ascii.packageDescription}
 \alias{ascii.packageDescription}
 \title{ascii method for class packageDescription...}
-\usage{\method{ascii}{packageDescription} (x, caption, caption.level,
-    list.type="label", ...)}
+\usage{\method{ascii}{packageDescription} (x, caption=NULL,
+    caption.level=NULL, list.type="label", ...)}
 \description{ascii method for class packageDescription}
 \value{An ascii object.}
 \author{David Hajage}

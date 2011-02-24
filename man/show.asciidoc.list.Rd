@@ -1,7 +1,8 @@
 \name{show.asciidoc.list}
 \alias{show.asciidoc.list}
 \title{show...}
-\usage{show.asciidoc.list(x, caption, caption.level, list.type="bullet", ...)}
+\usage{show.asciidoc.list(x, caption=NULL, caption.level=NULL,
+    list.type="bullet", ...)}
 \description{show.asciidoc.list}
 \keyword{internal}
 \arguments{\item{x}{x}

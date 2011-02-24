@@ -331,7 +331,14 @@ print.out <- function(x, type = getOption("asciiType"), ...) {
 
 ##' Produce a report
 ##'
-##' Produce a report from a list of R objects
+##' Produce a report from a list of R objects. This function can be used directly,
+##' or through a \code{Report} proto object (see examples). \code{Report$new()} creates
+##' a new object, \code{Report$export()} produce a report. Options can be specified
+##' with \code{Report$nameoftheoption <- option}. Special objects can be used to create
+##' sections (see \code{?section}), paragraphs (see \code{?paragraph}) or inline results
+##' (see \code{?sexpr}).
+##'
+##' @aliases Report
 ##' @title Report creation
 ##' @param ... R objects (not used if \code{"list"} is not NULL)
 ##' @param list list of R objects
@@ -346,9 +353,37 @@ print.out <- function(x, type = getOption("asciiType"), ...) {
 ##' @param author author of the report
 ##' @param email email of the author
 ##' @param date date
-##' @return
+##' @return Nothing
 ##' @export
 ##' @author David Hajage
+##' @examples
+##' \dontrun{
+##' options(asciiType = "asciidoc")
+##' export(head(esoph))
+##'
+##' r <- Report$new(author = "David Hajage", email = "dhajage at gmail dot com")
+##' r$add(section("First section"))
+##' r$add(section("First subsection", 2))
+##' r$add(paragraph("The data set has", sexpr(nrow(esoph)), " lines. See yourself:"), esoph)
+##' r$add(section("Second subsection: age and alc group", 2))
+##' tab <- with(esoph, table(alcgp, agegp))
+##' r$add(ascii(tab), ascii(summary(tab), format = "nice"))
+##' r$export()
+##' r$format <- "slidy"
+##' r$export()
+##'
+##' r$title <- "R report example"
+##' r$author <- "David Hajage"
+##' r$email <- "dhajage at gmail dot com"
+##' options(asciiType = "pandoc")
+##' r$backend <- "pandoc"
+##' r$format <- "odt"
+##' r$export()
+##'
+##' r$backend <- "markdown2pdf"
+##' r$format <- "pdf"
+##' r$export()
+##' }
 export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
   if (is.null(file)) {
@@ -375,6 +410,8 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
 
   if (backend == "a2x") {
     preambule <- .preambule[["asciidoc"]]
+  } else if (backend == "markdown2pdf") {
+    preambule <- .preambule[["pandoc"]]
   } else {
     preambule <- .preambule[[backend]]
   }

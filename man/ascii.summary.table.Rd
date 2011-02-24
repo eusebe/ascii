@@ -1,7 +1,7 @@
 \name{ascii.summary.table}
 \alias{ascii.summary.table}
 \title{ascii method for class summary...}
-\usage{\method{ascii}{summary.table} (x, caption, caption.level,
+\usage{\method{ascii}{summary.table} (x, caption=NULL, caption.level=NULL,
     list.type="bullet", ...)}
 \description{ascii method for class summary.table}
 \value{An ascii object.}

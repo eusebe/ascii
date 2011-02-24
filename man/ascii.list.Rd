@@ -1,8 +1,8 @@
 \name{ascii.list}
 \alias{ascii.list}
 \title{ascii method for class list...}
-\usage{\method{ascii}{list} (x, caption, caption.level, list.type="bullet",
-    ...)}
+\usage{\method{ascii}{list} (x, caption=NULL, caption.level=NULL,
+    list.type="bullet", ...)}
 \description{ascii method for class list}
 \value{An ascii object.}
 \author{David Hajage}

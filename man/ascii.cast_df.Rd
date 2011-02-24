@@ -2,14 +2,15 @@
 \alias{ascii.cast_df}
 \title{ascii method for class cast_df...}
 \usage{\method{ascii}{cast_df} (x, include.rownames=TRUE,
-    include.colnames=TRUE, rownames, colnames, format="f", digits=2,
-    decimal.mark=".", na.print="", caption, caption.level, width=0,
-    frame, grid, valign, header=TRUE, footer=FALSE, align="",
-    col.width=1, style, tgroup, n.tgroup, talign="c", tvalign="middle",
-    tstyle="h", bgroup, n.bgroup, balign="c", bvalign="middle",
-    bstyle="h", lgroup, n.lgroup, lalign="c", lvalign="middle",
-    lstyle="h", rgroup, n.rgroup, ralign="c", rvalign="middle",
-    rstyle="h", ...)}
+    include.colnames=TRUE, rownames=NULL, colnames=NULL, format="f",
+    digits=2, decimal.mark=".", na.print="", caption=NULL,
+    caption.level=NULL, width=0, frame=NULL, grid=NULL, valign=NULL,
+    header=TRUE, footer=FALSE, align="", col.width=1, style=NULL,
+    tgroup=NULL, n.tgroup=NULL, talign="c", tvalign="middle",
+    tstyle="h", bgroup=NULL, n.bgroup=NULL, balign="c",
+    bvalign="middle", bstyle="h", lgroup=NULL, n.lgroup=NULL,
+    lalign="c", lvalign="middle", lstyle="h", rgroup=NULL,
+    n.rgroup=NULL, ralign="c", rvalign="middle", rstyle="h", ...)}
 \description{ascii method for class cast_df}
 \details{\code{reshape} package}
 \value{An ascii object.}
