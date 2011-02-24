@@ -1,3 +1,166 @@
+.backends <- c("asciidoc", "a2x", "txt2tags", "pandoc")
+.outputs <- list(asciidoc = c("html", "docbook", "slidy"),
+                 a2x = c("xhtml", "chunked", "htmlhelp", "epub", "pdf", "text", "dvi", "ps", "tex", "asciidoc"),
+                 txt2tags = c("aap", "aas", "aat", "adoc", "bbcode", "creole", "csv", "dbk", "doku", "gwiki", "html", "html5", "lout", "man", "md", "mgp", "moin", "ods", "pm6", "pmw", "red", "rtf", "sgml", "spip", "tex", "txt", "txt2t", "wiki", "xhtml", "xhtmls"),
+                 pandoc = c("native", "json", "html", "html+lhs", "s5", "slidy", "docbook", "opendocument", "latex", "latex+lhs", "context", "texinfo", "man", "markdown", "markdown+lhs", "plain", "rst", "rst+lhs", "mediawiki", "textile", "rtf", "org", "odt", "epub"),
+                 markdown2pdf = "")
+
+.extensions <- list(docbook = "xml",
+                    slidy = "html",
+                    xhtml = "html",
+                    chunked = "html",
+                    htmlhelp = "html",
+                    asciidoc = "adoc",
+                    html5 = "html",
+                    txt2t = "t2t",
+                    xhtml = "html",
+                    xhtmls = "html",
+                    "html+lhs" = "html",
+                    s5 = "html",
+                    slidy = "html",
+                    opendocument = "odt",
+                    latex = "tex",
+                    "latex+lhs" = "tex",
+                    markdown = "md",
+                    "markdown+lhs" = "md",
+                    "rst+lhs" = "rst")
+
+.cli <- list(asciidoc = c("asciidoc %options", paste(Sys.getenv("COMSPEC"), "/c", "asciidoc.py %options"), "bash -c \"asciidoc %options \""),
+             a2x = c("a2x %options", paste(Sys.getenv("COMSPEC"), "/c", "a2x.py %options"), "bash -c \"a2x %options \""),
+             txt2tags = c("txt2tags %options", paste(Sys.getenv("COMSPEC"), "/c", "txt2tags.py %options"), "bash -c \"txt2tags %options \""),
+             pandoc = c("pandoc %options", paste(Sys.getenv("COMSPEC"), "/c", "pandoc %options"), "bash -c \"pandoc %options \""),
+             markdown2pdf = c("markdown2pdf %options", paste(Sys.getenv("COMSPEC"), "/c", "markdown2pdf %options"), "bash -c \"markdown2pdf %options \""))
+
+# %i input
+# %o output
+# %f format
+# %d directory
+# %e encoding
+# %O other options
+.args <- list(asciidoc = "-a encoding=%e -b %f %O -o %d/%o %i",
+              a2x = "-a encoding=%e -D %d -f %f %O %i",
+              txt2tags = "--encoding=%e -t %f %O -o %d/%o %i",
+              pandoc = "-t %f -o %d/%o %O %i",
+              markdown2pdf = "-o %d/%o %O %i")
+
+.O <- list(asciidoc = "-a toc",
+           a2x = "-a toc",
+           txt2tags = "",
+           pandoc = "-s",
+           markdown2pdf = "")
+
+.f <- list(asciidoc = "html",
+           a2x = "xhtml",
+           txt2tags = "html",
+           pandoc = "html",
+           markdown2pdf = "pdf")
+
+.d <- list(asciidoc = ".",
+           a2x = ".",
+           txt2tags = ".",
+           pandoc = ".",
+           markdown2pdf = ".")
+
+.e <- list(asciidoc = "UTF-8",
+           a2x = "UTF-8",
+           txt2tags = "UTF-8",
+           pandoc = "",
+           markdown2pdf = "")
+
+.preambule <- list(asciidoc =
+"= %title
+:author:    %author
+:email:     %email
+:revdate:   %date
+
+",
+                   txt2tags =
+"%title
+%author
+%date
+
+",
+                   pandoc =
+"% %title
+% %author %email
+% %date
+
+")
+
+replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
+
+  if (is.null(f))
+    f <- .f[[backend]]
+  if (is.null(d))
+    d <- dirname(i)
+  if (is.null(e))
+    e <- .e[[backend]]
+  if (is.null(O))
+    O <- .O[[backend]]
+
+  extension <- ifelse(f %in% names(.extensions), .extensions[[f]], f)
+  basefile <- sub("(.+)(\\..+$)", "\\1", basename(i))
+  file <- paste(basefile, extension, sep = ".")
+
+  windows <- grepl("w|W", plateform)
+  if (windows) {
+    if (cygwin) {
+      cli <- .cli[[backend]][3]
+    } else {
+      cli <- .cli[[backend]][2]
+    }
+  } else {
+    cli <- .cli[[backend]][1]
+  }
+
+  args <- .args[[backend]]
+  args <- sub("%i", i, args)
+  args <- sub("%f", f, args)
+  args <- sub("%d", d, args)
+  args <- sub("%o", file, args)
+  args <- sub("%e", e, args)
+  args <- sub("%O", O, args)
+
+  results <- sub("%options", args, cli)
+  attr(results, "file") <- file
+  attr(results, "directory") <- d
+  attr(results, "f") <- f
+  attr(results, "windows") <- windows
+  attr(results, "cygwin") <- cygwin
+  results
+}
+
+convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = "asciidoc", cygwin = FALSE, open = FALSE) {
+  cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
+  err <- system(cmd, wait = TRUE)
+  invisible(err)
+
+  file <- attr(cmd, "file")
+  f <- attr(cmd, "f")
+  directory <- attr(cmd, "d")
+  windows <- attr(cmd, "windows")
+
+  if (f == "chunked") {
+    dfile <- paste(directory, paste(sub("(.+)(\\..+$)", "\\1", file), "chunked", sep = "."), "index.html", sep = "/")
+  } else {
+    dfile <- paste(directory, file, sep = "/")
+  }
+
+  if (open) {
+    cat("Trying to open ", dfile, sep = "")
+    if (windows) {
+      cat(" with shell.exec...\n")
+      if (!grepl(":", dfile)) {
+        dfile <- paste("\"", sub("(^.+)(/$)", "\\", getwd()), "/", dfile, "\"", sep = "")
+      }
+      shell.exec(dfile)
+    } else {
+      cat(" with xdg-open...\n")
+      system(paste(shQuote("/usr/bin/xdg-open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)
+    }
+  }
+}
+
 ##' Create a section
 ##'
 ##' \code{section} can be used with \code{export} function to add\dots a section
@@ -19,10 +182,15 @@ section <- function(caption, caption.level = 1) {
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
-print.section <- function(x, ...) {
+print.section <- function(x, type = getOption("asciiType"), ...) {
   caption <- x$caption
   caption.level <- x$caption.level
-  results <- header.asciidoc(caption, caption.level)
+  if (type == "asciidoc")
+    results <- header.asciidoc(caption, caption.level)
+  if (type == "t2t")
+    results <- header.t2t(caption, caption.level)
+  if (type == "pandoc")
+    results <- header.pandoc(caption, caption.level)
   cat("\n", results, sep = "")
 }
 
@@ -56,7 +224,7 @@ print.paragraph <- function(x, ...) {
     cat(newline)
   }
   for (i in 1:length(text)) {
-    if (class(text[[i]]) == "sexpr" | class(text[[i]]) == "math") {
+    if (class(text[[i]]) == "sexpr") {
       print(text[[i]])
     }
     else {
@@ -111,160 +279,29 @@ out <- function(x, results = "verbatim") {
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
-print.out <- function(x, ...) {
+print.out <- function(x, type = getOption("asciiType"), ...) {
   results <- x[[2]]
   cat("\n")
-  if (results == "latex") {
-    cat("[latex]\n")
-  }
   if (results == "verbatim") {
-    cat("----\n")
+    if (type == "asciidoc")
+      cat("----\n")
+    if (type == "t2t")
+      cat("```\n")
+    if (type == "pandoc")
+      cat("\n~~~~~~~{.R}\n")
   }
   print(x[[1]], ...)
   if (results == "verbatim") {
-    cat("----\n")
+    if (type == "asciidoc")
+      cat("----\n")
+    if (type == "t2t")
+      cat("```\n")
+    if (type == "pandoc")
+      cat("~~~~~~~~~~~\n\n")
   }
 }
 
-##' Insert an equation
-##'
-##' \code{math} can be used with \code{export} function to insert some maths
-##' @param x some maths
-##' @param notation latexmath or asciimath
-##' @export
-##' @author David Hajage
-math <- function(x, notation = "latexmath") {
-  results <- list(x, notation)
-  class(results) <- "math"
-  results
-}
-
-##' Print a math object
-##'
-##' Print a math object
-##' @param x a math object
-##' @param ... not used
-##' @export
-##' @author David Hajage
-print.math <- function(x, ...) {
-  notation <- x[[2]]
-  if (notation == "latexmath") {
-    cat("latexmath:[$", x[[1]], "$]\n", sep = "")
-  }
-  if (notation == "asciimath") {
-    cat("asciimath:[", x[[1]], "]\n", sep = "")
-  }  
-}
-
-## faire un figure (à partir du package evaluate plot_snapshot)?
-
-##' convert a file to several output using asciidoc
-##'
-##' @param input input file
-##' @param destination output file (no extension)
-##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, slidy, odt, dvi, ps, tex, docbook, asciidoc)
-##' @param encoding encoding format of input file
-##' @param latexmath use latexmath attribute
-##' @param asciimath use asciimath attribute
-##' @param cmd eventually define the asciidoc command
-##' @param cygwin do you use asciidoc through cygwin
-##' @export
-##' @author David Hajage
-convert <- function(input, destination = NULL, format = "xhtml", encoding = NULL, latexmath = FALSE, asciimath = FALSE, cmd = NULL, cygwin = FALSE) {
-
-  windows <- grepl("mingw", version$os)
-  
-  opencmd <- ""
-  closecmd <- ""
-  # for cygwin users...
-  if (windows & cygwin) {
-    opencmd <- "bash -c \""
-    closecmd <- "\""
-  }
-  a2x <- "a2x"
-  asciidoc <- "asciidoc"
-  if (windows & !cygwin) {
-    a2x <- paste(Sys.getenv("COMSPEC"), "/c", "a2x.py")
-    asciidoc <- paste(Sys.getenv("COMSPEC"), "/c", "asciidoc.py")
-  }
-
-  amath <- lmath <- ""
-  if (asciimath) {
-    amath <- " -a asciimath "
-  }
-  if (latexmath) {
-    lmath <- " -a latexmath "
-  }
-  
-  if (is.null(cmd)) {
-    if (is.null(encoding)) {
-      encoding <- "UTF-8"
-      if (windows) {
-        encoding <- "ISO-8859-1"
-      }
-    }
-    if (is.null(destination)) {
-      destination <- "."
-    }
-    if (format == "slidy") {
-      htmldest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
-      cmd <- paste(asciidoc, " -b slidy", amath, lmath, " -a encoding=", encoding, " -o ", htmldest, sep = "")      
-    } else if (format != "xhtml" & format != "odt") {
-      cmd <- paste(a2x, amath, lmath, " -a encoding=", encoding, " -D ", destination, " -f ", format, sep = "")
-    } else {
-      htmldest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "html", sep = ".")
-      cmd <- paste(asciidoc, amath, lmath, " -a encoding=", encoding, " -o ", htmldest, sep = "")
-      if (format == "odt") {
-        odtdest <- paste(paste(destination, sub("^(.+)(.txt)$", "\\1", basename(input)), sep = "/"), "odt", sep = ".")        
-        odtcmd <- paste("xhtml2odt -i", htmldest, "-o", odtdest)
-      }
-    }
-  }
-  finalcmd <- paste(opencmd, cmd, input, closecmd)
-  if (format == "odt") {
-    finalcmd <- paste(finalcmd, odtcmd, sep = " && ")
-  }
-  err <- system(finalcmd, wait = TRUE)
-  invisible(err)
-}
-
-##' Use asciidoc from R
-##' These functions allow to use asciidoc and a2x toolchains directly from R.
-##' 
-##' @param ... \code{section}, \code{paragraph}, \code{sexpr}, \code{out}, \code{math}, \code{ascii}, or what-you-want (exported as verbatim) objects
-##' @param list list of objects
-##' @param file output file (no extension)
-##' @param format format of the output (chunked, epub, htmlhelp, pdf, text, xhtml, slidy, odt, dvi, ps, tex, docbook, asciidoc)
-##' @param open open or not resulting file
-##' @param main main title of the document
-##' @param author author of the document
-##' @param email email of the document
-##' @param revdate revision date of the document
-##' @param revnumber revision number of the document
-##' @param encoding encoding format of input file
-##' @param cmd eventually define the asciidoc command
-##' @param cygwin do you use asciidoc through cygwin
-##' @keywords print
-##'
-##' @examples
-##' \dontrun{
-##'   export(ascii(head(esoph)))}
-##' 
-##' @export
-##' @return a list with all \code{...} arguments.
-##' @author David Hajage \email{dhajage@@gmail.com}
-export <- function(..., list = NULL, file = NULL, format = "xhtml", open = NULL, main = NULL, author = NULL, email = NULL, revdate = NULL, revnumber = NULL, encoding = NULL, cmd = NULL, cygwin = FALSE) {
-
-  windows <- grepl("mingw", version$os)
-  
-  format <- format[1]
-  available <- c("chunked", "epub", "htmlhelp", "pdf", "text", "xhtml", "slidy", "odt", "dvi", "ps", "tex", "docbook", "asciidoc")
-  if (!(format %in% available)) {
-    stop(paste("Please choose an available format:", paste(available, collapse = ", ")))
-  }
-
-  asciimath <- FALSE
-  latexmath <- FALSE
+export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
   if (is.null(file)) {
     file <- tempfile("R-report")
@@ -277,40 +314,49 @@ export <- function(..., list = NULL, file = NULL, format = "xhtml", open = NULL,
     }
   }
 
-  if (windows & cygwin) {
-    cygfile <- gsub("\\\\", "/", file)
-    if (grepl("^[A-Z]:", cygfile)) {
-      cygfile <- sub("^[A-Z]", tolower(substr(cygfile, 1, 1)), cygfile)
-    }
-    cygfile <- sub("^([a-z])(:)", "/cygdrive/\\1", cygfile)
-  }
-  
   wd <- dirname(file)
-  
-  if (is.null(main)) {
-    main <- paste("+", sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/")), "+", sep = "")
+  if (is.null(title)) {
+    title <- sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/"))
+    if (backend == "asciidoc")
+      title <- beauty.asciidoc(title, "m")
+    if (backend == "text2tags")
+      title <- beauty.t2t(title, "m")
+    if (backend == "pandoc")
+      title <- beauty.pandoc(title, "m")
   }
 
-  if (is.null(list))
+  if (backend == "a2x") {
+    preambule <- .preambule[["asciidoc"]]
+  } else {
+    preambule <- .preambule[[backend]]
+  }
+
+  if (is.null(author)) {
+    author <- paste(version$language, " ", paste(version$major, version$minor, sep = "."), ", ascii ", packageDescription("ascii")$Version, sep = "")
+  }
+
+  if (is.null(email)) {
+    email <- "cran@r-project.org"
+  }
+
+  if (is.null(date)) {
+    date <- format(Sys.time(), "%Y/%m/%d %X")
+  }
+
+  preambule <- sub("%title", title, preambule)
+  preambule <- sub("%author", author, preambule)
+  preambule <- sub("%email", email, preambule)
+  preambule <- sub("%date", date, preambule)
+
+  if (is.null(list)) {
     args <- list(...)
-  else
+  } else {
     args <- list
-  
+  }
+
   lines <- capture.output({
-    cat(paste("= ", main, "\n", sep = ""))
-    if (!is.null(author)) {
-      cat(":author:", author, "\n")
-    }
-    if (!is.null(email)) {
-      cat(":email:", email, "\n")
-    }
-    if (!is.null(revdate)) {
-      cat(":revdate:", revdate, "\n")
-    }
-    if (!is.null(revnumber)) {
-      cat(":revnumber:", revnumber, "\n")
-    }
-    cat("\n")
+    cat(preambule)
+    
     for (i in seq_along(args)) {
       arg <- args[[i]]
       if (!is.null(names(args))) {
@@ -319,21 +365,11 @@ export <- function(..., list = NULL, file = NULL, format = "xhtml", open = NULL,
         }
       }
       if ("ascii" %in% class(arg)) {
-        arg$show.asciidoc()
+        print(arg)
         cat("\n")
-      } else if ("out" %in% class(arg) | "section" %in% class(arg)) {
+      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg)) {
         print(arg)
-      } else if ("paragraph" %in% class(arg)) {
-        print(arg)
-        parclass <- sapply(arg[[1]], class)
-        if ("math" %in% parclass) {
-          asciimath <- TRUE
-        }
-      } else if ("math" %in% class(arg)) {
-        print(arg)
-        asciimath <- TRUE
-      }
-      else {
+      } else {
         print(out(arg, "verbatim"))
       }
     }})
@@ -341,81 +377,22 @@ export <- function(..., list = NULL, file = NULL, format = "xhtml", open = NULL,
   f <- file(textfile, "w")
   writeLines(lines, f)
   close(f)
-  
-  if (format == "asciidoc") {
-    asciidocfile <- paste(basename(file), "txt", sep = ".")
-    finalfile <- paste(wd, asciidocfile, sep = "/")
-  }
-  if (format == "xhtml" | format == "slidy") {
-    htmlfile <- paste(basename(file), "html", sep = ".")
-    finalfile <- paste(wd, htmlfile, sep = "/")
-  }
-  if (format == "odt") {
-    odtfile <- paste(basename(file), "odt", sep = ".")
-    finalfile <- paste(wd, odtfile, sep = "/")
-  }
-  if (format == "chunked") {
-    finalfile <- paste(wd, paste(basename(file), "chunked", sep = "."), "index.html", sep = "/")
-  }
-  if (format == "htmlhelp") {
-    finalfile <- paste(wd, paste(basename(file), "htmlhelp", sep = "."), "index.html", sep = "/")
-  }
-  if (format == "pdf") {
-    pdffile <- paste(basename(file), "pdf", sep = ".")
-    finalfile <- paste(wd, pdffile, sep = "/")
-  }
-  if (format == "text") {
-    txtfile <- paste(basename(file), "text", sep = ".")
-    finalfile <- paste(wd, txtfile, sep = "/")
-  }
-  if (format == "dvi") {
-    dvifile <- paste(basename(file), "dvi", sep = ".")
-    finalfile <- paste(wd, dvifile, sep = "/")
-  }
-  if (format == "ps") {
-    psfile <- paste(basename(file), "ps", sep = ".")
-    finalfile <- paste(wd, psfile, sep = "/")
-  }
-  if (format == "tex") {
-    texfile <- paste(basename(file), "tex", sep = ".")
-    finalfile <- paste(wd, texfile, sep = "/")
-  }
-  if (format == "epub") {
-    epubfile <- paste(basename(file), "epub", sep = ".")
-    finalfile <- paste(wd, epubfile, sep = "/")
-  }
-  if (format == "docbook") {
-    xmlfile <- paste(basename(file), "xml", sep = ".")
-    finalfile <- paste(wd, xmlfile, sep = "/")
-  }
-  
-  cat("Writing ", finalfile, "...\n", sep = "")
-  if (format != "asciidoc") {
-    if (windows & cygwin) {
-      err <- convert(paste(cygfile, "txt", sep = "."), destination = dirname(cygfile), format = format, latexmath = latexmath, asciimath = asciimath, cmd = cmd, encoding = encoding, cygwin = cygwin)
-    } else {
-      err <- convert(textfile, destination = wd, format = format, latexmath = latexmath, asciimath = asciimath, cmd = cmd, encoding = encoding, cygwin = cygwin)
-    }
-  } else {
-    err <- 0
-  }
-  if (err != 0 ) {
-    stop("Error during conversion.")
-  }
-  cat("Done\n")
 
-  if (open) {
-    cat("Trying to open ", finalfile, sep = "")
-    if (windows) {
-      cat(" with shell.exec...\n")
-      if (!grepl(":", finalfile)) {
-        finalfile <- paste("\"", sub("(^.+)(/$)", "\\", getwd()), "/", finalfile, "\"", sep = "")
-      }
-      shell.exec(finalfile)
-    } else {
-      cat(" with xdg-open...\n")
-      system(paste(shQuote("/usr/bin/xdg-open"), shQuote(finalfile)), wait = FALSE, ignore.stderr = TRUE)
-    }
-  }
-  invisible(args)
+  convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)  
 }
+
+Report <- proto(expr = {
+  new <- function(., file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
+    proto(., list, file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
+
+  objects <- list()
+  
+  add <- function(., ...) {
+    obj <- list(...)
+    .$objects <- c(.$objects, obj)
+  }
+
+  export <- function(.) {
+    .super$export(list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$email, date = .$date)
+  }
+})
