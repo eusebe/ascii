@@ -1,3 +1,5 @@
+options(asciiBackend = "asciidoc")
+
 ##' asciiOptions
 ##'
 ##' @param select select
@@ -8,23 +10,22 @@
 ##' @param .args .args
 ##' @param .O .O
 ##' @param .f .f
-##' @param .d .d
 ##' @param .e .e
 ##' @param .preambule .preambule
 ##' @return options
 ##' @author David.hajage
 ##' @keywords internal
-asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extensions = NULL, .cli = NULL, .args = NULL, .O = NULL, .f = NULL, .d = NULL, .e = NULL, .preambule = NULL) {
+asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extensions = NULL, .cli = NULL, .args = NULL, .O = NULL, .f = NULL, .e = NULL, .preambule = NULL) {
 
   if (is.null(.backends)) {
-    .backends = c("asciidoc", "a2x", "txt2tags", "pandoc")
+    .backends <- c("asciidoc", "a2x", "t2t", "pandoc", "markdown2pdf")
   }
 
   if (is.null(.outputs)) {
     .outputs = list(
       asciidoc = c("html", "docbook", "slidy"),
       a2x = c("xhtml", "chunked", "htmlhelp", "epub", "pdf", "text", "dvi", "ps", "tex", "asciidoc"),
-      txt2tags = c("aap", "aas", "aat", "adoc", "bbcode", "creole", "csv", "dbk", "doku", "gwiki", "html", "html5", "lout", "man", "md", "mgp", "moin", "ods", "pm6", "pmw", "red", "rtf", "sgml", "spip", "tex", "txt", "txt2t", "wiki", "xhtml", "xhtmls"),
+      t2t = c("aap", "aas", "aat", "adoc", "bbcode", "creole", "csv", "dbk", "doku", "gwiki", "html", "html5", "lout", "man", "md", "mgp", "moin", "ods", "pm6", "pmw", "red", "rtf", "sgml", "spip", "tex", "txt", "txt2t", "wiki", "xhtml", "xhtmls"),
       pandoc = c("native", "json", "html", "html+lhs", "s5", "slidy", "docbook", "opendocument", "latex", "latex+lhs", "context", "texinfo", "man", "markdown", "markdown+lhs", "plain", "rst", "rst+lhs", "mediawiki", "textile", "rtf", "org", "odt", "epub"),
       markdown2pdf = "")
   }
@@ -56,7 +57,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
     .cli = list(
       asciidoc = c("asciidoc %options", paste(Sys.getenv("COMSPEC"), "/c", "asciidoc.py %options"), "bash -c \"asciidoc %options \""),
       a2x = c("a2x %options", paste(Sys.getenv("COMSPEC"), "/c", "a2x.py %options"), "bash -c \"a2x %options \""),
-      txt2tags = c("txt2tags %options", paste(Sys.getenv("COMSPEC"), "/c", "txt2tags.py %options"), "bash -c \"txt2tags %options \""),
+      t2t = c("txt2tags %options", paste(Sys.getenv("COMSPEC"), "/c", "txt2tags.py %options"), "bash -c \"txt2tags %options \""),
       pandoc = c("pandoc %options", paste(Sys.getenv("COMSPEC"), "/c", "pandoc %options"), "bash -c \"pandoc %options \""),
       markdown2pdf = c("markdown2pdf %options", paste(Sys.getenv("COMSPEC"), "/c", "markdown2pdf %options"), "bash -c \"markdown2pdf %options \""))
   }
@@ -65,7 +66,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
     .args = list(
       asciidoc = "-a encoding=%e -b %f %O -o %d/%o %i",
       a2x = "-a encoding=%e -D %d -f %f %O %i",
-      txt2tags = "--encoding=%e -t %f %O -o %d/%o %i",
+      t2t = "--encoding=%e -t %f %O -o %d/%o %i",
       pandoc = "-t %f -o %d/%o %O %i",
       markdown2pdf = "-o %d/%o %O %i")
   }
@@ -74,7 +75,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
     .O = list(
       asciidoc = "-a toc",
       a2x = "-a toc",
-      txt2tags = "",
+      t2t = "",
       pandoc = "-s",
       markdown2pdf = "")
   }
@@ -83,25 +84,16 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
     .f = list(
       asciidoc = "html",
       a2x = "xhtml",
-      txt2tags = "html",
+      t2t = "html",
       pandoc = "html",
       markdown2pdf = "pdf")
   }
-
-    if (is.null(.d)) {
-      .d = list(
-        asciidoc = ".",
-        a2x = ".",
-        txt2tags = ".",
-        pandoc = ".",
-        markdown2pdf = ".")
-    }
 
   if (is.null(.e)) {
     .e = list(
       asciidoc = "UTF-8",
       a2x = "UTF-8",
-      txt2tags = "UTF-8",
+      t2t = "UTF-8",
       pandoc = "",
       markdown2pdf = "")
   }
@@ -115,7 +107,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 :revdate:   %date
 
 ",
-      txt2tags =
+      t2t =
 "%title
 %author
 %date
@@ -129,7 +121,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 ")
   } 
 
-  opts <- list(".backends" = .backends, ".outputs" = .outputs, ".extensions" = .extensions, ".cli" = .cli, ".args" = .args, ".O" = .O, ".f" = .f, ".d" = .d, ".e" = .e, ".preambule" = .preambule)
+  opts <- list(".outputs" = .outputs, ".extensions" = .extensions, ".cli" = .cli, ".args" = .args, ".O" = .O, ".f" = .f, ".e" = .e, ".preambule" = .preambule)
 
   if (select == "all")
     return(opts)
@@ -149,7 +141,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 ##' @param O O
 ##' @keywords internal
 ##' @author David Hajage
-replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
+replace <- function(backend = getOption("asciiBackend"), plateform = version$os, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
   if (is.null(f))
     f <- asciiOpts(".f")[[backend]]
   if (is.null(d))
@@ -200,13 +192,13 @@ replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE
 ##' @param f format
 ##' @param e encoding
 ##' @param O other options
-##' @param backend backend (\code{"asciidoc"}, \code{"txt2tags"} or \code{"pandoc"})
+##' @param backend backend (\code{"asciidoc"}, \code{"t2t"} or \code{"pandoc"})
 ##' @param cygwin use cygwin?
 ##' @param open open resulting file?
 ##' @return Nothing
 ##' @export
 ##' @author David Hajage
-convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = "asciidoc", cygwin = FALSE, open = FALSE) {
+convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOption("asciiBackend"), cygwin = FALSE, open = FALSE) {
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
   err <- system(cmd, wait = TRUE)
 
@@ -255,18 +247,18 @@ section <- function(caption, caption.level = 1) {
 ##'
 ##' Print a section object
 ##' @param x a section object
-##' @param type ascii type
+##' @param backend ascii backend
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
-print.section <- function(x, type = getOption("asciiType"), ...) {
+print.section <- function(x, backend = getOption("asciiBackend"), ...) {
   caption <- x$caption
   caption.level <- x$caption.level
-  if (type == "asciidoc")
+  if (backend == "asciidoc")
     results <- header.asciidoc(caption, caption.level)
-  if (type == "t2t")
+  if (backend == "t2t")
     results <- header.t2t(caption, caption.level)
-  if (type == "pandoc")
+  if (backend == "pandoc")
     results <- header.pandoc(caption, caption.level)
   cat("\n", results, sep = "")
 }
@@ -353,28 +345,28 @@ out <- function(x, results = "verbatim") {
 ##'
 ##' Print an out object
 ##' @param x an out object
-##' @param type ascii type
+##' @param backend ascii backend
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
-print.out <- function(x, type = getOption("asciiType"), ...) {
+print.out <- function(x, backend = getOption("asciiBackend"), ...) {
   results <- x[[2]]
   cat("\n")
   if (results == "verbatim") {
-    if (type == "asciidoc")
+    if (backend == "asciidoc")
       cat("----\n")
-    if (type == "t2t")
+    if (backend == "t2t")
       cat("```\n")
-    if (type == "pandoc")
+    if (backend == "pandoc")
       cat("\n~~~~~~~{.R}\n")
   }
   print(x[[1]], ...)
   if (results == "verbatim") {
-    if (type == "asciidoc")
+    if (backend == "asciidoc")
       cat("----\n")
-    if (type == "t2t")
+    if (backend == "t2t")
       cat("```\n")
-    if (type == "pandoc")
+    if (backend == "pandoc")
       cat("~~~~~~~~~~~\n\n")
   }
 }
@@ -434,7 +426,7 @@ print.out <- function(x, type = getOption("asciiType"), ...) {
 ##' r$format <- "pdf"
 ##' r$export()
 ##' }
-export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
   if (is.null(file)) {
     file <- tempfile("R-report")
@@ -505,9 +497,9 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
         print(arg)
         cat("\n")
       } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg)) {
-        print(arg)
+        print(arg, backend = backend)
       } else {
-        print(out(arg, "verbatim"))
+        print(out(arg, "verbatim"), backend = backend)
       }
     }})
   textfile <- paste(file, "txt", sep = ".")
@@ -519,8 +511,8 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
 }
 
 Report <- proto(expr = {
-  new <- function(., file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
-    proto(., list, file = NULL, format = "html", open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
+  new <- function(., file = NULL, format = "html", open = NULL, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
+    proto(., file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
 
   objects <- list()
   
