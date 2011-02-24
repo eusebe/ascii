@@ -87,8 +87,19 @@
 
 ")
 
+##' replace
+##'
+##' @param backend backend
+##' @param plateform plateform
+##' @param cygwin cygwin
+##' @param i i
+##' @param f f
+##' @param d d
+##' @param e e
+##' @param O O
+##' @keywords internal
+##' @author David Hajage
 replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
-
   if (is.null(f))
     f <- .f[[backend]]
   if (is.null(d))
@@ -130,6 +141,21 @@ replace <- function(backend = "asciidoc", plateform = version$os, cygwin = FALSE
   results
 }
 
+##' Concert a file with specified backend
+##'
+##' This function convert a file with asciidoc, txt2tags or pandoc backend
+##' @title Convert a file with specified backend
+##' @param i input file
+##' @param d output directory
+##' @param f format
+##' @param e encoding
+##' @param O other options
+##' @param backend backend (\code{"asciidoc"}, \code{"txt2tags"} or \code{"pandoc"})
+##' @param cygwin use cygwin?
+##' @param open open resulting file?
+##' @return Nothing
+##' @export
+##' @author David Hajage
 convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = "asciidoc", cygwin = FALSE, open = FALSE) {
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
   err <- system(cmd, wait = TRUE)
@@ -179,6 +205,7 @@ section <- function(caption, caption.level = 1) {
 ##'
 ##' Print a section object
 ##' @param x a section object
+##' @param type ascii type
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
@@ -276,6 +303,7 @@ out <- function(x, results = "verbatim") {
 ##'
 ##' Print an out object
 ##' @param x an out object
+##' @param type ascii type
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
@@ -301,6 +329,26 @@ print.out <- function(x, type = getOption("asciiType"), ...) {
   }
 }
 
+##' Produce a report
+##'
+##' Produce a report from a list of R objects
+##' @title Report creation
+##' @param ... R objects (not used if \code{"list"} is not NULL)
+##' @param list list of R objects
+##' @param file name of the output file (without extension)
+##' @param format format of the output file
+##' @param open open resulting file?
+##' @param backend backend
+##' @param encoding encoding
+##' @param options other options
+##' @param cygwin use cygwin?
+##' @param title title of the report
+##' @param author author of the report
+##' @param email email of the author
+##' @param date date
+##' @return
+##' @export
+##' @author David Hajage
 export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, backend = "asciidoc", encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
   if (is.null(file)) {
