@@ -246,7 +246,7 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
 ##' @export
 ##' @author David Hajage
 section <- function(caption, caption.level = 1) {
-  results <- list(caption = caption, caption.level = caption.level + 1)
+  results <- list(caption = caption, caption.level = caption.level)
   class(results) <- "section"
   results
 }
@@ -263,7 +263,7 @@ print.section <- function(x, backend = getOption("asciiBackend"), ...) {
   caption <- x$caption
   caption.level <- x$caption.level
   if (backend == "asciidoc" | backend == "a2x")
-    results <- header.asciidoc(caption, caption.level)
+    results <- header.asciidoc(caption, caption.level+1)
   if (backend == "t2t")
     results <- header.t2t(caption, caption.level)
   if (backend == "pandoc" | backend == "markdown2pdf")
@@ -384,7 +384,7 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' Export graph objects
 ##'
 ##' \code{graph} can be used with \code{export} function to insert an R graphs
-##' @param x character string (a link to a graphic file)
+##' @param graph character string (a link to a graphic file)
 ##' @return An out object
 ##' @export
 ##' @author David Hajage

@@ -8,6 +8,6 @@
 \value{An out object}
 \author{David Hajage}
 \arguments{\item{x}{an R object}
-\item{results}{if \code{'verbatim'}, the output is included in a verbatim environment. If \code{'latex'}, the output is taken to be already proper latex markup and included as is.}
+\item{results}{if \code{'verbatim'}, the output is included in a verbatim environment. If \code{'ascii'}, the output is taken to be already proper markup and included as is.}
 }
 
