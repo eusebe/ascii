@@ -262,11 +262,11 @@ section <- function(caption, caption.level = 1) {
 print.section <- function(x, backend = getOption("asciiBackend"), ...) {
   caption <- x$caption
   caption.level <- x$caption.level
-  if (backend == "asciidoc")
+  if (backend == "asciidoc" | backend == "a2x")
     results <- header.asciidoc(caption, caption.level)
   if (backend == "t2t")
     results <- header.t2t(caption, caption.level)
-  if (backend == "pandoc")
+  if (backend == "pandoc" | backend == "markdown2pdf")
     results <- header.pandoc(caption, caption.level)
   cat("\n", results, sep = "")
 }
@@ -339,7 +339,7 @@ print.sexpr <- function(x, ...) {
 ##'
 ##' \code{out} can be used with \code{export} function to insert an R results
 ##' @param x an R object
-##' @param results if \code{'verbatim'}, the output is included in a verbatim environment. If \code{'latex'}, the output is taken to be already proper latex markup and included as is.
+##' @param results if \code{'verbatim'}, the output is included in a verbatim environment. If \code{'ascii'}, the output is taken to be already proper markup and included as is.
 ##' @return An out object
 ##' @export
 ##' @author David Hajage
@@ -361,23 +361,56 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
   results <- x[[2]]
   cat("\n")
   if (results == "verbatim") {
-    if (backend == "asciidoc")
+    if (backend == "asciidoc" | backend == "a2x")
       cat("----\n")
     if (backend == "t2t")
       cat("```\n")
-    if (backend == "pandoc")
+    if (backend == "pandoc" | backend == "markdown2pdf")
       cat("\n~~~~~~~{.R}\n")
   }
   print(x[[1]], ...)
   if (results == "verbatim") {
-    if (backend == "asciidoc")
-      cat("----\n")
+    if (backend == "asciidoc" | backend == "a2x")
+      cat("----\n\n")
     if (backend == "t2t")
-      cat("```\n")
-    if (backend == "pandoc")
+      cat("```\n\n")
+    if (backend == "pandoc" | backend == "markdown2pdf")
       cat("~~~~~~~~~~~\n\n")
+  } else {
+    cat("\n")
   }
 }
+
+##' Export graph objects
+##'
+##' \code{graph} can be used with \code{export} function to insert an R graphs
+##' @param x character string (a link to a graphic file)
+##' @return An out object
+##' @export
+##' @author David Hajage
+graph <- function(graph) {
+  class(graph) <- "graph"
+  graph
+}
+
+##' Print an graph object
+##'
+##' Print an graph object
+##' @param x an graph object
+##' @param backend ascii backend
+##' @param ... not used
+##' @export
+##' @author David Hajage
+print.graph <- function(x, backend = getOption("asciiBackend"), ...) {
+  if (backend == "asciidoc" | backend == "a2x")
+    results <- paste("image::", x, "[]", sep = "")
+  if (backend == "t2t")
+    results <- paste("[", x, "]", sep = "")
+  if (backend == "pandoc" | backend == "markdown2pdf")
+    results <- paste("![](", x, ")", sep = "")
+  cat("\n", results, "\n\n", sep = "")
+}
+
 
 ##' Produce a report
 ##'
@@ -504,7 +537,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
       if ("ascii" %in% class(arg)) {
         print(arg)
         cat("\n")
-      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg)) {
+      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg) | "graph" %in% class(arg)) {
         print(arg, backend = backend)
       } else {
         print(out(arg, "verbatim"), backend = backend)
