@@ -183,7 +183,7 @@ replace <- function(backend = getOption("asciiBackend"), plateform = version$os,
   results
 }
 
-##' Concert a file with specified backend
+##' Convert a file with specified backend
 ##'
 ##' This function convert a file with asciidoc, txt2tags or pandoc backend
 ##' @title Convert a file with specified backend
@@ -204,12 +204,16 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
     stop(paste("Wrong backend. Please choose: ", paste(asciiOpts(".backends"), collapse = ", "), ".", sep = ""))
   
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
+  windows <- attr(cmd, "windows")
+  if (windows) { # because pandoc doesn't like path with "/"
+    cmd <- gsub("/", "\\\\", cmd)
+    cmd <- sub("cmd.exe \\\\c ", "cmd.exe /c ", cmd)
+  }
   err <- system(cmd, wait = TRUE)
 
   file <- attr(cmd, "file")
   f <- attr(cmd, "f")
   directory <- attr(cmd, "d")
-  windows <- attr(cmd, "windows")
 
   if (f == "chunked") {
     dfile <- paste(directory, paste(sub("(.+)(\\..+$)", "\\1", file), "chunked", sep = "."), "index.html", sep = "/")
