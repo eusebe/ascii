@@ -592,7 +592,13 @@ Report <- proto(expr = {
 })
 
 class(Report) <- c("Report", "environment", "proto")
-
+##' Print method for class \code{Report}
+##'
+##' Display report characteristics
+##' @param x a report (generated with \code{Report$new()})
+##' @param help logical print help?
+##' @param ... Not used
+##' @author David Hajage
 print.Report <- function(x, help = FALSE, ...) {
   if (help)
     x$show.Report(help = TRUE)
