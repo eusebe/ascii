@@ -502,7 +502,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
   }
 
   if (is.null(author)) {
-    author <- paste(version$language, " ", paste(version$major, version$minor, sep = "."), ", ascii ", packageDescription("ascii")$Version, sep = "")
+    author <- paste(version$language, " ", paste(version$major, version$minor, sep = "."), " ascii ", packageDescription("ascii")$Version, sep = "")
   }
 
   if (is.null(email)) {
@@ -552,8 +552,11 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
 }
 
 Report <- proto(expr = {
-  new <- function(., file = NULL, format = "html", open = NULL, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL)
-    proto(., file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
+  new <- function(., file = NULL, format = "html", open = NULL, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+    x <- proto(., file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
+    class(x) <- c("Report", "environment", "proto")
+    x
+  }
 
   objects <- list()
   
@@ -562,7 +565,37 @@ Report <- proto(expr = {
     .$objects <- c(.$objects, obj)
   }
 
+  show.Report <- function(., help = FALSE) {
+    cat("title:", ifelse(is.null(.$title), "None", .$title), "\n")
+    cat("author:", ifelse(is.null(.$author), "None", .$author), "\n")
+    cat("email:", ifelse(is.null(.$email), "None", .$email), "\n")
+    cat("date:", ifelse(is.null(.$date), format(Sys.time(), "%Y/%m/%d %X"), .$date), "\n")
+    cat("file:", ifelse(is.null(.$file), "Temporary file", .$file), "\n")
+    cat("open:", .$open, "\n")
+    cat("backend:", .$backend, "\n")
+    cat("format:", .$format, "\n")
+    cat("encoding:", ifelse(is.null(.$encoding), asciiOpts(".e")[[.$backend]], .$encoding), "\n")
+    cat("options:", ifelse(is.null(.$options), asciiOpts(".O")[[.$backend]], .$options), "\n")
+    cat("cygwin:", .$cygwin, "\n")
+
+    if(help) {
+      cat("\nTo change a slot:\n")
+      cat("\tyourreport$slot <- 'value'\n\n")
+      cat("To export:\n")
+      cat("\tyourreport$export()\n")
+    }
+  }
+
   export <- function(.) {
     .super$export(list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$email, date = .$date)
   }
 })
+
+class(Report) <- c("Report", "environment", "proto")
+
+print.Report <- function(x, help = FALSE, ...) {
+  if (help)
+    x$show.Report(help = TRUE)
+  else
+    x$show.Report(help = FALSE)
+}
