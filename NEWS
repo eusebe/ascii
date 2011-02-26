@@ -1,10 +1,11 @@
-2010/xx/xx
+2011/02/26
 ~~~~~~~~~~
 
-* export function: use asciidoc to export R objects to files
+* export and Report functions: use asciidoc, a2x, txt2tags, pandoc or markdown2pdf to export R objects to files
+* pandoc support (thanks to Matti Pastell)
 * add ability to change opening and closing text of chunk (Sweave option +begin+ and +end+)
-* l/r/t/bgroup in org export
-* fix several bugs in textile support:
+* l/r/t/bgroup with org and t2t
+* align support with t2t
 
 2010/07/08
 ~~~~~~~~~~

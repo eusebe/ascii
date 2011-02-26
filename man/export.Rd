@@ -1,16 +1,21 @@
 \name{export}
 \alias{export}
 \title{Report creation}
-\usage{export(..., list, file, format, open, backend=getOption("asciiBackend"),
+\usage{export(..., list, file, format, open=TRUE, backend=getOption("asciiBackend"),
     encoding, options, cygwin=FALSE, title, author, email, date)
 }
 \description{Produce a report}
-\details{Produce a report from a list of R objects. This function can be used directly,
-or through a \code{Report} proto object (see examples). \code{Report$new()} creates
-a new object, \code{Report$export()} produce a report. Options can be specified
-with \code{Report$nameoftheoption <- option}. Special objects can be used to create
-sections (see \code{?section}), paragraphs (see \code{?paragraph}) or inline results
-(see \code{?sexpr}).}
+\details{Produce a report from a list of R objects. This function can be
+used directly, or through a \code{Report} proto object (see
+examples). \code{Report$new()} creates a new object,
+\code{Report$export()} produce a report. Options can be specified
+with \code{Report$nameoftheoption <- option}. Special objects can
+be used to create sections (see \code{?section}) and paragraphs
+(see \code{?paragraph}), and to insert graph (see \code{?graph})
+or inline results (see \code{?sexpr}).
+
+It needs a working installation of asciidoc, a2x tool chain,
+txt2tags, pandoc and/or markdown2pdf.}
 \alias{Report}
 \value{Nothing}
 \author{David Hajage}

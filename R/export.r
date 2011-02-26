@@ -381,9 +381,9 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
   }
 }
 
-##' Export graph objects
+##' Insert graph
 ##'
-##' \code{graph} can be used with \code{export} function to insert an R graphs
+##' \code{graph} can be used with \code{export} function to insert an R graphic.
 ##' @param graph character string (a link to a graphic file)
 ##' @return An out object
 ##' @export
@@ -414,12 +414,17 @@ print.graph <- function(x, backend = getOption("asciiBackend"), ...) {
 
 ##' Produce a report
 ##'
-##' Produce a report from a list of R objects. This function can be used directly,
-##' or through a \code{Report} proto object (see examples). \code{Report$new()} creates
-##' a new object, \code{Report$export()} produce a report. Options can be specified
-##' with \code{Report$nameoftheoption <- option}. Special objects can be used to create
-##' sections (see \code{?section}), paragraphs (see \code{?paragraph}) or inline results
-##' (see \code{?sexpr}).
+##' Produce a report from a list of R objects. This function can be
+##' used directly, or through a \code{Report} proto object (see
+##' examples). \code{Report$new()} creates a new object,
+##' \code{Report$export()} produce a report. Options can be specified
+##' with \code{Report$nameoftheoption <- option}. Special objects can
+##' be used to create sections (see \code{?section}) and paragraphs
+##' (see \code{?paragraph}), and to insert graph (see \code{?graph})
+##' or inline results (see \code{?sexpr}).
+##'
+##' It needs a working installation of asciidoc, a2x tool chain,
+##' txt2tags, pandoc and/or markdown2pdf.
 ##'
 ##' @aliases Report
 ##' @title Report creation
@@ -467,17 +472,10 @@ print.graph <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' r$format <- "pdf"
 ##' r$export()
 ##' }
-export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
   if (is.null(file)) {
     file <- tempfile("R-report")
-    if (is.null(open)) {
-      open <- TRUE
-    }
-  } else {
-    if (is.null(open)) {
-      open <- FALSE
-    }
   }
 
   wd <- dirname(file)
@@ -552,7 +550,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = NULL, ba
 }
 
 Report <- proto(expr = {
-  new <- function(., file = NULL, format = "html", open = NULL, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+  new <- function(., file = NULL, format = "html", open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
     x <- proto(., file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
     class(x) <- c("Report", "environment", "proto")
     x
@@ -566,17 +564,18 @@ Report <- proto(expr = {
   }
 
   show.Report <- function(., help = FALSE) {
-    cat("title:", ifelse(is.null(.$title), "None", .$title), "\n")
-    cat("author:", ifelse(is.null(.$author), "None", .$author), "\n")
-    cat("email:", ifelse(is.null(.$email), "None", .$email), "\n")
-    cat("date:", ifelse(is.null(.$date), format(Sys.time(), "%Y/%m/%d %X"), .$date), "\n")
-    cat("file:", ifelse(is.null(.$file), "Temporary file", .$file), "\n")
-    cat("open:", .$open, "\n")
-    cat("backend:", .$backend, "\n")
-    cat("format:", .$format, "\n")
-    cat("encoding:", ifelse(is.null(.$encoding), asciiOpts(".e")[[.$backend]], .$encoding), "\n")
-    cat("options:", ifelse(is.null(.$options), asciiOpts(".O")[[.$backend]], .$options), "\n")
-    cat("cygwin:", .$cygwin, "\n")
+    cat("Report object:\n\n")
+    cat("  title:   ", ifelse(is.null(.$title), "None", .$title), "\n")
+    cat("  author:  ", ifelse(is.null(.$author), "None", .$author), "\n")
+    cat("  email:   ", ifelse(is.null(.$email), "None", .$email), "\n")
+    cat("  date:    ", ifelse(is.null(.$date), format(Sys.time(), "%Y/%m/%d %X"), .$date), "\n")
+    cat("  file:    ", ifelse(is.null(.$file), "Temporary file", .$file), "\n")
+    cat("  open:    ", .$open, "\n")
+    cat("  backend: ", .$backend, "\n")
+    cat("  format:  ", .$format, "\n")
+    cat("  encoding:", ifelse(is.null(.$encoding), asciiOpts(".e")[[.$backend]], .$encoding), "\n")
+    cat("  options: ", ifelse(is.null(.$options), asciiOpts(".O")[[.$backend]], .$options), "\n")
+    cat("  cygwin:  ", .$cygwin, "\n")
 
     if(help) {
       cat("\nTo change a slot:\n")
@@ -591,7 +590,8 @@ Report <- proto(expr = {
   }
 })
 
-class(Report) <- c("Report", "environment", "proto")
+class(Report) <- c("ReportClass", "environment", "proto")
+
 ##' Print method for class \code{Report}
 ##'
 ##' Display report characteristics
@@ -599,9 +599,23 @@ class(Report) <- c("Report", "environment", "proto")
 ##' @param help logical print help?
 ##' @param ... Not used
 ##' @author David Hajage
+##' @export
 print.Report <- function(x, help = FALSE, ...) {
   if (help)
     x$show.Report(help = TRUE)
   else
     x$show.Report(help = FALSE)
+}
+
+##' Print method for class \code{ReportClass}
+##'
+##' Display Report help
+##' @param x the ReportClass
+##' @param ... Not used
+##' @author David Hajage
+##' @export
+print.ReportClass <- function(x, ...) {
+  cat("To create a new report:\n")
+  cat("yourreport <- Report$new(<options>)\n\n")
+  cat("See ?Report or ?export for more details.\n")
 }
