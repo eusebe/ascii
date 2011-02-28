@@ -563,6 +563,18 @@ Report <- proto(expr = {
     .$objects <- c(.$objects, obj)
   }
 
+  addSection <- function(., x, caption.level = 1) {
+    .$objects <- c(.$objects, list(section(x, caption.level)))
+  }
+
+  addParagraphs <- function(., ..., new = TRUE) {
+    .$objects <- c(.$objects, list(paragraph(..., new = new)))
+  }
+
+  addGraph <- function(., x) {
+    .$objects <- c(.$objects, list(graph(x)))
+  }
+
   show.Report <- function(., help = FALSE) {
     cat("Report object:\n\n")
     cat("  title:   ", ifelse(is.null(.$title), "None", .$title), "\n")
