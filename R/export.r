@@ -533,6 +533,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
         }
       }
       if ("ascii" %in% class(arg)) {
+        cat("\n")
         print(arg)
         cat("\n")
       } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg) | "graph" %in% class(arg)) {
