@@ -141,7 +141,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 ##' @param O O
 ##' @keywords internal
 ##' @author David Hajage
-replace <- function(backend = getOption("asciiBackend"), plateform = version$os, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
+replace <- function(backend = getOption("asciiBackend"), plateform = .Platform$OS.type, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
   if (is.null(f))
     f <- asciiOpts(".f")[[backend]]
   if (is.null(d))
@@ -381,17 +381,64 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
   }
 }
 
-##' Insert graph
+##' Insert figure
 ##'
 ##' \code{graph} can be used with \code{export} function to insert an R graphic.
-##' @param graph character string (a link to a graphic file)
-##' @return An out object
+##' @aliases graph
+##' @param file character string 
+##' @param fig a recordedplot, a lattice plot, or a ggplot
+##' @param format jpg, png or pdf (or guessed with the file name)
+##' @return A fig object
 ##' @export
 ##' @author David Hajage
-graph <- function(graph) {
-  class(graph) <- "graph"
-  graph
+fig <- function(file = NULL, graph = NULL, format = NULL) {
+
+  if (is.null(file) & is.null(graph)) {
+    stop("Please provide a graph or a link to an existing graph.")
+  }
+
+  if (is.null(format)) {
+    if (!is.null(file)) {
+      ext <- tolower(sub("(^.+\\.)(.+$)", "\\2", file))
+      if (grepl(ext, "jpg|jpeg"))
+        format <- "jpg"
+      if (grepl(ext, "png"))
+        format <- "png"
+      if (grepl(ext, "pdf"))
+        format <- "pdf"
+    } else {
+      format <- "png"
+    }
+  }
+  
+  if (is.null(file)) {
+    file <- paste(tempfile("graph"), format, sep = ".")
+  }
+  
+  if (!is.null(graph)) {
+    if (format == "jpg") {
+      jpeg(file)
+      print(graph)
+      dev.off()
+    }
+    if (format == "png") {
+      png(file)
+      print(graph)
+      dev.off()
+    }
+    if (format == "pdf") {
+      pdf(file)
+      print(graph)
+      dev.off()
+    }
+  }
+
+  results <- file
+  class(results) <- "fig"
+  results
 }
+
+graph <- fig
 
 ##' Print an graph object
 ##'
@@ -401,7 +448,7 @@ graph <- function(graph) {
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
-print.graph <- function(x, backend = getOption("asciiBackend"), ...) {
+print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
   if (backend == "asciidoc" | backend == "a2x")
     results <- paste("image::", x, "[]", sep = "")
   if (backend == "t2t")
@@ -536,7 +583,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
         cat("\n")
         print(arg)
         cat("\n")
-      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg) | "graph" %in% class(arg)) {
+      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg) | "fig" %in% class(arg)) {
         print(arg, backend = backend)
       } else {
         print(out(arg, "verbatim"), backend = backend)
@@ -572,8 +619,8 @@ Report <- proto(expr = {
     .$objects <- c(.$objects, list(paragraph(..., new = new)))
   }
 
-  addGraph <- function(., x) {
-    .$objects <- c(.$objects, list(graph(x)))
+  addFig <- function(., file = NULL, graph = NULL, format = NULL) {
+    .$objects <- c(.$objects, list(fig(file, graph, format)))
   }
 
   show.Report <- function(., help = FALSE) {
