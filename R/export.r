@@ -311,6 +311,45 @@ print.paragraph <- function(x, ...) {
   cat("\n")
 }
 
+##' Create a verbatim paragraph
+##'
+##' \code{verbatim} can be used with \code{export} function to add a verbatim paragraph
+##' @param ... strings composing the paragraph (line by line)
+##' @return A verbatim object.
+##' @export
+##' @author David Hajage
+verbatim <- function(...) {
+  results <- c(...)
+  class(results) <- "verbatim"
+  results
+}
+
+##' Print a verbatim object
+##'
+##' Print a verbatim object
+##' @param x a verbatim object
+##' @param ... not used
+##' @export
+##' @author David Hajage
+print.verbatim <- function(x, backend = getOption("asciiBackend"), ...) {
+  cat("\n")
+  if (backend == "asciidoc" | backend == "a2x")
+    cat("----\n")
+  if (backend == "t2t")
+    cat("```\n")
+  if (backend == "pandoc" | backend == "markdown2pdf")
+    cat("\n~~~~~~~{.R}\n")
+  
+  cat(x, sep = "\n", ...)
+  
+  if (backend == "asciidoc" | backend == "a2x")
+    cat("----\n\n")
+  if (backend == "t2t")
+    cat("```\n\n")
+  if (backend == "pandoc" | backend == "markdown2pdf")
+    cat("~~~~~~~~~~~\n\n")
+}
+
 ##' Insert an inline R result
 ##'
 ##' \code{sexpr} can be used with \code{export} function to insert an inline R results
@@ -583,7 +622,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
         cat("\n")
         print(arg)
         cat("\n")
-      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg) | "fig" %in% class(arg)) {
+      } else if ("out" %in% class(arg) | "section" %in% class(arg) | "paragraph" %in% class(arg) | "verbatim" %in% class(arg) | "fig" %in% class(arg)) {
         print(arg, backend = backend)
       } else {
         print(out(arg, "verbatim"), backend = backend)
@@ -619,6 +658,10 @@ Report <- proto(expr = {
     .$objects <- c(.$objects, list(paragraph(..., new = new)))
   }
 
+  addVerbatim <- function(., ...) {
+    .$objects <- c(.$objects, list(verbatim(...)))
+  }
+
   addFig <- function(., file = NULL, graph = NULL, format = NULL) {
     .$objects <- c(.$objects, list(fig(file, graph, format)))
   }
@@ -645,8 +688,8 @@ Report <- proto(expr = {
     }
   }
 
-  export <- function(.) {
-    .super$export(list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$email, date = .$date)
+  export <- function(., list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$email, date = .$date) {
+    .super$export(list = list, file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
   }
 })
 
