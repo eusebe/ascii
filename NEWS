@@ -1,3 +1,12 @@
+2011/03/02
+~~~~~~~~~~
+
+* fix a bug with mac (was recognized as windows)
+* exportation options can be set directly in Report$export(<options>)
+* add a new special object/function for reporting : verbatim(), to create a verbatim environment
+* add the ability to save a recordedplot, a lattice plot or a ggplot. graph() function is renamed fig() for the occasion
+* add helpers inside the class Report: Report$addSection(), Report$addParagraph(), Report$addVerbatim(), Report$addFig()
+
 2011/02/26
 ~~~~~~~~~~
 

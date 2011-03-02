@@ -424,13 +424,14 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
 ##'
 ##' \code{graph} can be used with \code{export} function to insert an R graphic.
 ##' @aliases graph
-##' @param file character string 
-##' @param fig a recordedplot, a lattice plot, or a ggplot
+##' @param file character string (
+##' @param graph a recordedplot, a lattice plot, or a ggplot (optional if the file already exists)
 ##' @param format jpg, png or pdf (or guessed with the file name)
+##' @param ... additional arguments (passed to format options)
 ##' @return A fig object
 ##' @export
 ##' @author David Hajage
-fig <- function(file = NULL, graph = NULL, format = NULL) {
+fig <- function(file = NULL, graph = NULL, format = NULL, ...) {
 
   if (is.null(file) & is.null(graph)) {
     stop("Please provide a graph or a link to an existing graph.")
@@ -456,17 +457,17 @@ fig <- function(file = NULL, graph = NULL, format = NULL) {
   
   if (!is.null(graph)) {
     if (format == "jpg") {
-      jpeg(file)
+      jpeg(file, ...)
       print(graph)
       dev.off()
     }
     if (format == "png") {
-      png(file)
+      png(file, ...)
       print(graph)
       dev.off()
     }
     if (format == "pdf") {
-      pdf(file)
+      pdf(file, ...)
       print(graph)
       dev.off()
     }
@@ -503,11 +504,16 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' Produce a report from a list of R objects. This function can be
 ##' used directly, or through a \code{Report} proto object (see
 ##' examples). \code{Report$new()} creates a new object,
-##' \code{Report$export()} produce a report. Options can be specified
-##' with \code{Report$nameoftheoption <- option}. Special objects can
-##' be used to create sections (see \code{?section}) and paragraphs
-##' (see \code{?paragraph}), and to insert graph (see \code{?graph})
-##' or inline results (see \code{?sexpr}).
+##' \code{Report$export()} produce a report. Exportation options can
+##' be specified with \code{Report$nameoftheoption <- option} or
+##' directly in \code{Report$export(nameoftheoption = option)}.
+##'
+##' Special objects can be used to create sections (see
+##' \code{?section}), paragraphs (see \code{?paragraph}), verbatim
+##' environment (see \code{?verbatim} and to insert figures (see
+##' \code{?fig}) or inline results (see \code{?sexpr}). Helpers exist:
+##' \code{Report$addSection()}, \code{Report$addParagraph()},
+##' \code{Report$addVerbatim()}, \code{Report$addFig()}.
 ##'
 ##' It needs a working installation of asciidoc, a2x tool chain,
 ##' txt2tags, pandoc and/or markdown2pdf.
@@ -537,9 +543,9 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##'
 ##' r <- Report$new(author = "David Hajage", email = "dhajage at gmail dot com")
 ##' r$add(section("First section"))
-##' r$add(section("First subsection", 2))
+##' r$addSection("First subsection", 2)
 ##' r$add(paragraph("The data set has", sexpr(nrow(esoph)), " lines. See yourself:"), esoph)
-##' r$add(section("Second subsection: age and alc group", 2))
+##' r$addSection("Second subsection: age and alc group", 2)
 ##' tab <- with(esoph, table(alcgp, agegp))
 ##' r$add(ascii(tab), ascii(summary(tab), format = "nice"))
 ##' r$export()
@@ -554,9 +560,7 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' r$format <- "odt"
 ##' r$export()
 ##'
-##' r$backend <- "markdown2pdf"
-##' r$format <- "pdf"
-##' r$export()
+##' r$export(backend = "markdown2pdf", format = "pdf")
 ##' }
 export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
@@ -662,8 +666,8 @@ Report <- proto(expr = {
     .$objects <- c(.$objects, list(verbatim(...)))
   }
 
-  addFig <- function(., file = NULL, graph = NULL, format = NULL) {
-    .$objects <- c(.$objects, list(fig(file, graph, format)))
+  addFig <- function(., file = NULL, graph = NULL, format = NULL, ...) {
+    .$objects <- c(.$objects, list(fig(file, graph, format, ...)))
   }
 
   show.Report <- function(., help = FALSE) {
