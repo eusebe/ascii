@@ -328,6 +328,7 @@ verbatim <- function(...) {
 ##'
 ##' Print a verbatim object
 ##' @param x a verbatim object
+##' @param backend ascii backend
 ##' @param ... not used
 ##' @export
 ##' @author David Hajage
