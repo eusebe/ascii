@@ -426,7 +426,7 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' \code{graph} can be used with \code{export} function to insert an R graphic.
 ##' @aliases graph
 ##' @param file character string (
-##' @param graph a recordedplot, a lattice plot, or a ggplot (optional if the file already exists)
+##' @param graph a recordedplot, a lattice plot, a ggplot, or an expression producing a plot (optional if the file already exists)
 ##' @param format jpg, png or pdf (or guessed with the file name)
 ##' @param ... additional arguments (passed to format options)
 ##' @return A fig object
@@ -459,19 +459,20 @@ fig <- function(file = NULL, graph = NULL, format = NULL, ...) {
   if (!is.null(graph)) {
     if (format == "jpg") {
       jpeg(file, ...)
-      print(graph)
-      dev.off()
     }
     if (format == "png") {
       png(file, ...)
-      print(graph)
-      dev.off()
     }
     if (format == "pdf") {
       pdf(file, ...)
-      print(graph)
-      dev.off()
     }
+    if (is.expression(graph)) {
+      eval(graph)
+    }
+    else {
+      print(graph)
+    }
+    dev.off()
   }
 
   results <- file
