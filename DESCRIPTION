@@ -1,7 +1,7 @@
 Package: ascii
 Type: Package
 Title: Export R objects to several markup languages
-Version: 1.1-1
+Version: 1.2
 Date: 2009-07-20
 Author: David Hajage
 Maintainer: David Hajage <dhajage@gmail.com>
@@ -15,11 +15,11 @@ Imports: proto
 Suggests: survival, Hmisc, xtable, R2HTML, hwriter, cacheSweave, weaver
 LazyLoad: false
 Collate: 'asciiAnova.r' 'asciiDataFrame.r' 'asciiDefault.r'
-    'asciiDensity.r' 'asciiDescr.r' 'asciiGlm.r' 'asciiHmisc.r'
-    'asciiHtest.r' 'asciiList.r' 'asciiLm.r' 'asciiMatrix.r'
-    'asciiPrcomp.r' 'asciiSmoothSpline.r' 'asciiSummaryTable.r'
-    'asciiSurvival.r' 'asciiTable.r' 'asciiTs.r' 'asciiVector.r'
-    'bind.r' 'cacheSweaveAsciidoc.r' 'cacheSweaveOrg.r'
+    'asciiDensity.r' 'asciiDescr.r' 'asciiEpi.r' 'asciiGlm.r'
+    'asciiHmisc.r' 'asciiHtest.r' 'asciiList.r' 'asciiLm.r'
+    'asciiMatrix.r' 'asciiPrcomp.r' 'asciiSmoothSpline.r'
+    'asciiSummaryTable.r' 'asciiSurvival.r' 'asciiTable.r' 'asciiTs.r'
+    'asciiVector.r' 'bind.r' 'cacheSweaveAsciidoc.r' 'cacheSweaveOrg.r'
     'cacheSweavePandoc.r' 'cacheSweaveReST.r' 'cacheSweaveT2t.r'
     'cacheSweaveTextile.r' 'export.r' 'generic.r' 'groups.r'
     'interleave.r' 'paste.matrix.r' 'print.character.matrix.r'

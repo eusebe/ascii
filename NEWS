@@ -2,6 +2,7 @@
 ~~~~~~~~~~
 
 * fix another bug with mac: now open files with command 'open'
+* method for stat.table objects (package Epi)
 
 2011/03/02
 ~~~~~~~~~~
