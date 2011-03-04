@@ -132,7 +132,6 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 ##' replace
 ##'
 ##' @param backend backend
-##' @param plateform plateform
 ##' @param cygwin cygwin
 ##' @param i i
 ##' @param f f
@@ -141,7 +140,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 ##' @param O O
 ##' @keywords internal
 ##' @author David Hajage
-replace <- function(backend = getOption("asciiBackend"), plateform = .Platform$OS.type, cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
+replace <- function(backend = getOption("asciiBackend"), cygwin = FALSE, i, f = NULL, d = NULL, e = NULL, O = NULL) {
   if (is.null(f))
     f <- asciiOpts(".f")[[backend]]
   if (is.null(d))
@@ -155,8 +154,7 @@ replace <- function(backend = getOption("asciiBackend"), plateform = .Platform$O
   basefile <- sub("(.+)(\\..+$)", "\\1", basename(i))
   file <- paste(basefile, extension, sep = ".")
 
-  windows <- grepl("w|W", plateform)
-  if (windows) {
+  if (grepl("w|W", .Platform$OS.type)) {
     if (cygwin) {
       cli <- asciiOpts(".cli")[[backend]][3]
     } else {
@@ -178,7 +176,6 @@ replace <- function(backend = getOption("asciiBackend"), plateform = .Platform$O
   attr(results, "file") <- file
   attr(results, "directory") <- d
   attr(results, "f") <- f
-  attr(results, "windows") <- windows
   attr(results, "cygwin") <- cygwin
   results
 }
@@ -204,7 +201,7 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
     stop(paste("Wrong backend. Please choose: ", paste(asciiOpts(".backends"), collapse = ", "), ".", sep = ""))
   
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
-  windows <- attr(cmd, "windows")
+  windows <- grepl("w|W", .Platform$OS.type)
   if (windows) { # because pandoc doesn't like path with "/"
     cmd <- gsub("/", "\\\\", cmd)
     cmd <- sub("cmd.exe \\\\c ", "cmd.exe /c ", cmd)
@@ -229,6 +226,9 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
         dfile <- paste("\"", sub("(^.+)(/$)", "\\", getwd()), "/", dfile, "\"", sep = "")
       }
       shell.exec(dfile)
+    } else if (grepl("darwin", version$os)) {
+      cat(" with open...\n")
+      system(paste(shQuote("open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)      
     } else {
       cat(" with xdg-open...\n")
       system(paste(shQuote("/usr/bin/xdg-open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)
