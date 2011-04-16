@@ -1,5 +1,3 @@
-
-
 ##' A driver to parse asciidoc noweb files with Sweave tool
 ##' This driver parses asciidoc files containing R code and replace pieces of
 ##' code with their output.

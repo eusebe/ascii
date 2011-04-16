@@ -1,11 +1,18 @@
-## Need to add the 'cache', 'filename' option to the list
+##' A driver to parse ascii noweb files with Sweave tool - cacheSweave based
+##'
+##' @export
+##' @author David Hajage
 cacheSweaveAsciiSetup <- function(..., cache = FALSE) {
         out <- RweaveAsciiSetup(...)
         out$options[["cache"]] <- cache
         out
 }
 
-makecacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveEvalWithOpt)
+##' A driver to parse ascii noweb files with Sweave tool - cacheSweave based
+##'
+##' @keywords internal 
+##' @author David Hajage
+makeCacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
     ## of an Sweave driver.  evalFunc will be used for the
@@ -313,5 +320,8 @@ makecacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveE
     }
 }
 
-cacheSweaveAsciiRuncode <- makecacheSweaveAsciiCodeRunner()
+##' A driver to parse ascii noweb files with Sweave tool - cacheSweave based
+##'
+##' @author David Hajage
+cacheSweaveAsciiRuncode <- makeCacheSweaveAsciiCodeRunner()
 

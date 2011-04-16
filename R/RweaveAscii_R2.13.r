@@ -1,3 +1,13 @@
+##' RweaveAsciiSetup
+##'
+##' @param file file
+##' @param syntax syntax
+##' @param output output
+##' @param quiet quite
+##' @param debug debug
+##' @param stylepath stylepath
+##' @param ... ...
+##' @keywords internal
 RweaveAsciiSetup <-
     function(file, syntax, output = NULL, quiet = FALSE, debug = FALSE,
              extension = "txt", backend = "asciidoc", openSchunk = "----",
@@ -56,6 +66,10 @@ RweaveAsciiSetup <-
          options = options, chunkout = list(), # a list of open connections
          srclines = integer()) }
 
+##' makeRweaveAsciiCodeRunner
+##'
+##' @param evalFunc evalFunc
+##' @keywords internal
 makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
 {
     ## Return a function suitable as the 'runcode' element
@@ -362,6 +376,11 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
 
 RweaveAsciiRuncode <- makeRweaveAsciiCodeRunner()
 
+##' RweaveAsciiWritedoc
+##'
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
 RweaveAsciiWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
@@ -431,6 +450,11 @@ RweaveAsciiWritedoc <- function(object, chunk)
     object
 }
 
+##' RweaveAsciiFinish
+##'
+##' @param object object
+##' @param error error
+##' @keywords internal
 RweaveAsciiFinish <- function(object, error = FALSE)
 {
     outputname <- summary(object$output)$description
@@ -463,6 +487,11 @@ RweaveAsciiFinish <- function(object, error = FALSE)
 }
 
 ## This is the check function for both RweaveAscii and Rtangle drivers.
+
+##' RweaveAsciiOptions
+##'
+##' @param options options
+##' @keywords internal
 RweaveAsciiOptions <- function(options)
 {
     ## ATTENTION: Changes in this function have to be reflected in the
@@ -505,16 +534,23 @@ RweaveAsciiOptions <- function(options)
     options
 }
 
+##' RtangleAscii
+##'
+##' @keywords internal
 RtangleAscii <-  function()
 {
     list(setup = utils:::RtangleSetup,
          runcode = utils:::RtangleRuncode,
-         writedoc = RtangleWritedocAscii,
+         writedoc = RtangleAsciiWritedoc,
          finish = utils:::RtangleFinish,
          checkopts = RweaveAsciiOptions)
 }
 
-RtangleWritedocAscii <- function(object, chunk)
+##' RtangleAsciidocWritedoc
+##' @param object object
+##' @param chunk chunk
+##' @keywords internal
+RtangleAsciiWritedoc <- function(object, chunk)
 {
     while(length(pos <- grep(object$syntax$docopt, chunk))) {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep = ""),
