@@ -1,7 +1,8 @@
 \name{replace}
 \alias{replace}
 \title{replace...}
-\usage{replace(backend=getOption("asciiBackend"), cygwin=FALSE, i, f, d, e, O)
+\usage{replace(backend=getOption("asciiBackend"), cygwin=FALSE, i, f=NULL, d=NULL,
+    e=NULL, O=NULL)
 }
 \description{replace}
 \keyword{internal}

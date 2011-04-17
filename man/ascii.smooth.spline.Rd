@@ -1,7 +1,7 @@
 \name{ascii.smooth.spline}
 \alias{ascii.smooth.spline}
 \title{ascii method for class smooth...}
-\usage{\method{ascii}{smooth.spline}(x, caption, caption.level, list.type="bullet", ...)
+\usage{\method{ascii}{smooth.spline}(x, caption=NULL, caption.level=NULL, list.type="bullet", ...)
 }
 \description{ascii method for class smooth.spline}
 \value{An ascii object.}

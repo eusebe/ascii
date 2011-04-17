@@ -1,8 +1,8 @@
 \name{asciiOpts}
 \alias{asciiOpts}
 \title{asciiOptions...}
-\usage{asciiOpts(select="all", .backends, .outputs, .extensions, .cli, .args, .O, .f,
-    .e, .preambule)
+\usage{asciiOpts(select="all", .backends=NULL, .outputs=NULL, .extensions=NULL,
+    .cli=NULL, .args=NULL, .O=NULL, .f=NULL, .e=NULL, .preambule=NULL)
 }
 \description{asciiOptions}
 \value{options}

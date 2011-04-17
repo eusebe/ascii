@@ -1,7 +1,7 @@
 \name{header.t2t}
 \alias{header.t2t}
 \title{header...}
-\usage{header.t2t(caption, caption.level="")
+\usage{header.t2t(caption=NULL, caption.level="")
 }
 \description{header.t2t}
 \keyword{internal}

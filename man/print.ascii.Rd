@@ -1,7 +1,7 @@
 \name{print.ascii}
 \alias{print.ascii}
 \title{Print ascii object...}
-\usage{print.ascii(x, type=getOption("asciiType"), file, append=FALSE, escape=FALSE,
+\usage{print.ascii(x, type=getOption("asciiType"), file=NULL, append=FALSE, escape=FALSE,
     list.escape=c("\\\\_", "\\\\^"), ...)
 }
 \description{Print ascii object

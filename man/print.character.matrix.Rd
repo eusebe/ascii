@@ -3,7 +3,7 @@
 \title{print...}
 \usage{print.character.matrix(x, vsep="|", before_vsep="", after_vsep="", hsep="-", csep="+",
     before_cell_content=" ", after_cell_content=" ",
-    line_separator=TRUE, line_separator_pos, justify="l", space=0,
+    line_separator=TRUE, line_separator_pos=NULL, justify="l", space=0,
     right_alignment=FALSE, print=TRUE)
 }
 \description{print.character.matrix}

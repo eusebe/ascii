@@ -1,7 +1,7 @@
 \name{ascii.stat.table}
 \alias{ascii.stat.table}
 \title{ascii method for class stat...}
-\usage{\method{ascii}{stat.table}(x, tgroup, lgroup, ...)
+\usage{\method{ascii}{stat.table}(x, tgroup=NULL, lgroup=NULL, ...)
 }
 \description{ascii method for class stat.table}
 \details{\code{Epi} package}

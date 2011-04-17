@@ -1,7 +1,7 @@
 \name{fig}
 \alias{fig}
 \title{Insert figure...}
-\usage{fig(file, graph, format, ...)
+\usage{fig(file=NULL, graph=NULL, format=NULL, ...)
 }
 \description{Insert figure}
 \details{\code{graph} can be used with \code{export} function to insert an R graphic.}

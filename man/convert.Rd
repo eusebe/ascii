@@ -1,8 +1,8 @@
 \name{convert}
 \alias{convert}
 \title{Convert a file with specified backend}
-\usage{convert(i, d, f, e, O, backend=getOption("asciiBackend"), cygwin=FALSE,
-    open=FALSE)
+\usage{convert(i, d=NULL, f=NULL, e=NULL, O=NULL, backend=getOption("asciiBackend"),
+    cygwin=FALSE, open=FALSE)
 }
 \description{Convert a file with specified backend}
 \details{This function convert a file with asciidoc, txt2tags or pandoc backend}

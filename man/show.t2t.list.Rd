@@ -1,7 +1,7 @@
 \name{show.t2t.list}
 \alias{show.t2t.list}
 \title{show...}
-\usage{show.t2t.list(x, caption, caption.level, list.type="bullet", ...)
+\usage{show.t2t.list(x, caption=NULL, caption.level=NULL, list.type="bullet", ...)
 }
 \description{show.t2t.list}
 \keyword{internal}

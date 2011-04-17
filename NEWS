@@ -1,3 +1,15 @@
+2011/04/17
+~~~~~~~~~~
+
+* R >= 2.13 required
+* refactor all Sweave drivers to fix a bug with keep.source = TRUE
+
+2011/03/04
+~~~~~~~~~~
+
+* fix another bug with mac: now open files with command 'open'
+* method for stat.table objects (package Epi)
+
 2011/03/04
 ~~~~~~~~~~
 

@@ -1,7 +1,7 @@
 \name{show.textile.list}
 \alias{show.textile.list}
 \title{show...}
-\usage{show.textile.list(x, caption, caption.level, list.type="bullet", ...)
+\usage{show.textile.list(x, caption=NULL, caption.level=NULL, list.type="bullet", ...)
 }
 \description{show.textile.list}
 \keyword{internal}

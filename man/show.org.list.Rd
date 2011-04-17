@@ -1,7 +1,7 @@
 \name{show.org.list}
 \alias{show.org.list}
 \title{show...}
-\usage{show.org.list(x, caption, caption.level, list.type="bullet", ...)
+\usage{show.org.list(x, caption=NULL, caption.level=NULL, list.type="bullet", ...)
 }
 \description{show.org.list}
 \keyword{internal}

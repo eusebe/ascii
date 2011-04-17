@@ -1,7 +1,7 @@
 \name{paste.matrix}
 \alias{paste.matrix}
 \title{paste...}
-\usage{paste.matrix(..., sep=" ", transpose.vector=FALSE, collapse, byrow=FALSE)
+\usage{paste.matrix(..., sep=" ", transpose.vector=FALSE, collapse=NULL, byrow=FALSE)
 }
 \description{paste.matrix}
 \keyword{internal}

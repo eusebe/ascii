@@ -1,8 +1,9 @@
 \name{export}
 \alias{export}
 \title{Report creation}
-\usage{export(..., list, file, format, open=TRUE, backend=getOption("asciiBackend"),
-    encoding, options, cygwin=FALSE, title, author, email, date)
+\usage{export(..., list=NULL, file=NULL, format=NULL, open=TRUE,
+    backend=getOption("asciiBackend"), encoding=NULL, options=NULL,
+    cygwin=FALSE, title=NULL, author=NULL, email=NULL, date=NULL)
 }
 \description{Produce a report}
 \details{Produce a report from a list of R objects. This function can be

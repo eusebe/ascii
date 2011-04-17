@@ -1,7 +1,7 @@
 \name{groups}
 \alias{groups}
 \title{groups...}
-\usage{groups(groups, n.groups, n)
+\usage{groups(groups, n.groups=NULL, n)
 }
 \description{groups}
 \keyword{internal}

@@ -1,7 +1,7 @@
 \name{show.pandoc.list}
 \alias{show.pandoc.list}
 \title{show...}
-\usage{show.pandoc.list(x, caption, caption.level, list.type="bullet", ...)
+\usage{show.pandoc.list(x, caption=NULL, caption.level=NULL, list.type="bullet", ...)
 }
 \description{show.pandoc.list}
 \keyword{internal}
