@@ -278,5 +278,6 @@ show.pandoc.list <- function(x, caption = NULL, caption.level = NULL, list.type 
     charac.x[i] <- sub("(^ *)", paste("\\1", mark[i], " ", sep = ""), tmp)
   }
   cat(header.pandoc(caption = caption, caption.level = caption.level))
+  cat("\n")
   cat(charac.x, sep = "\n")
 }
