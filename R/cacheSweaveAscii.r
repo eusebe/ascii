@@ -216,7 +216,7 @@ makeCacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveE
                     linesout[thisline + 1L] <- srcline
                     thisline <- thisline + 1L
                 }
-                if(options$results=="ascii"){
+                if (options$results=="ascii"){
                     if (openSinput){
                         cat(options$closeSinput,
                             file=chunkout, append=TRUE)
@@ -244,6 +244,8 @@ makeCacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveE
                         output <- sub("\n[[:space:]]*\n", "\n", output)
                 }
                 cat(output, file = chunkout)
+                if(options$results == "ascii")
+                  cat("\n", file = chunkout)
                 count <- sum(strsplit(output, NULL)[[1L]] == "\n")
                 if (count > 0L) {
                     linesout[thisline + 1L:count] <- srcline

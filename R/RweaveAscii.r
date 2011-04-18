@@ -270,7 +270,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                     linesout[thisline + 1L] <- srcline
                     thisline <- thisline + 1L
                 }
-                if(options$results=="ascii"){
+                if (options$results=="ascii"){
                     if (openSinput){
                         cat(options$closeSinput,
                             file=chunkout, append=TRUE)
