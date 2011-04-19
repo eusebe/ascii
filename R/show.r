@@ -146,11 +146,13 @@ asciiList <- proto(expr = {
 })
 
 asciiMixed <- proto(expr = {
-  new <- function(.,
-    ...) {
+  new <- function(., ...) {
     args <- list(...)
     noms <- as.character(as.list(substitute(list(...)))[-1])
-    if (is.null(noms)) noms <- paste("obj", 1:length(args), sep = "")
+    if (is.null(noms))
+      noms <- paste("obj", 1:length(args), sep = "")
+    else
+      noms <- paste(paste("obj", 1:length(args), sep = ""), noms, sep = ": ")
     names(args) <- noms 
     as.proto(args)
   }
