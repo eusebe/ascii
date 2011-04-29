@@ -45,7 +45,7 @@ RweaveAsciiSetup <-
 
     options <- list(prefix = TRUE, prefix.string = prefix.string,
                     engine = "R", print = FALSE, eval = TRUE, fig = FALSE,
-                    pdf = FALSE, eps = FALSE, png = FALSE, jpeg = TRUE, ext = "jpg",
+                    pdf = FALSE, eps = FALSE, png = FALSE, jpeg = TRUE, format = "jpg",
                     width = 6, height = 6, resolution = 100, term = TRUE,
                     echo = TRUE, keep.source = FALSE, results = "verbatim",
                     split = FALSE, strip.white = "true", include = TRUE,
@@ -362,7 +362,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
             }
 
             if (options$include) {
-                cat(options$openFig, chunkprefix, ".", options$ext, options$closeFig, "\n\n", sep = "",
+                cat(options$openFig, chunkprefix, ".", options$format, options$closeFig, "\n\n", sep = "",
                     file = object$output)
                 linesout[thisline + 1L] <- srcline
                 thisline <- thisline + 1L
@@ -506,7 +506,7 @@ RweaveAsciiOptions <- function(options)
     ## not logical
     NOLOGOPTS <- c(NUMOPTS, "results", "prefix.string", "engine",
                    "label", "strip.white", "pdf.version", "pdf.encoding",
-                   "grdevice", "ext", "openSchunk", "closeSchunk","openSinput",
+                   "grdevice", "format", "openSchunk", "closeSchunk","openSinput",
                    "closeSinput", "openSoutput", "closeSoutput", "indent", "openInclude",
                    "closeInclude", "openFig", "closeFig")
 

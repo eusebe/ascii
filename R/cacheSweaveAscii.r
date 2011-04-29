@@ -311,7 +311,7 @@ makeCacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveE
             }
 
             if (options$include) {
-                cat(options$openFig, chunkprefix, ".", options$ext, options$closeFig, "\n\n", sep = "",
+                cat(options$openFig, chunkprefix, ".", options$format, options$closeFig, "\n\n", sep = "",
                     file = object$output)
                 linesout[thisline + 1L] <- srcline
                 thisline <- thisline + 1L
