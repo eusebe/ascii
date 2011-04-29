@@ -576,11 +576,9 @@ RtangleAsciiWritedoc <- function(object, chunk)
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
 ##' 
-##' Compare with RweaveLatex driver, RweaveAsciidoc provides four new options :
-##'   \code{res} for the resolution of jpg or png figure (if produced),
-##'   \code{ext} (extension) for the format of figure that will be inserted,
-##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
-##'   and jpg figures.
+##' Compare with RweaveLatex driver, RweaveAsciidoc provides one new option :
+##'   \code{format} to choose the format of figure that will be inserted in the
+##'   final document.
 ##' 
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveAsciidoc} driver and
@@ -619,11 +617,9 @@ RweaveAsciidoc <- function()
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
 ##' 
-##' Compare with RweaveLatex driver, RweaveT2t provides four new options :
-##'   \code{res} for the resolution of jpg or png figure (if produced),
-##'   \code{ext} (extension) for the format of figure that will be inserted,
-##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
-##'   and jpg figures.
+##' Compare with RweaveLatex driver, RweaveT2t provides one new option :
+##'   \code{format} to choose the format of figure that will be inserted in the
+##'   final document.
 ##' 
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveT2t} driver and
@@ -679,11 +675,9 @@ formals(RweaveT2tSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
 ##' 
-##' Compare with RweaveLatex driver, RweaveOrg provides four new options :
-##'   \code{res} for the resolution of jpg or png figure (if produced),
-##'   \code{ext} (extension) for the format of figure that will be inserted,
-##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
-##'   and jpg figures.
+##' Compare with RweaveLatex driver, RweaveOrg provides one new option :
+##'   \code{format} to choose the format of figure that will be inserted in the
+##'   final document.
 ##' 
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveOrg} driver and
@@ -739,11 +733,9 @@ formals(RweaveOrgSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
 ##' 
-##' Compare with RweaveLatex driver, RweavePandoc provides four new options :
-##'   \code{res} for the resolution of jpg or png figure (if produced),
-##'   \code{ext} (extension) for the format of figure that will be inserted,
-##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
-##'   and jpg figures.
+##' Compare with RweaveLatex driver, RweavePandoc provides one new option :
+##'   \code{format} to choose the format of figure that will be inserted in the
+##'   final document.
 ##' 
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweavePandoc} driver and
@@ -799,11 +791,9 @@ formals(RweavePandocSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, deb
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
 ##' 
-##' Compare with RweaveLatex driver, RweaveTextile provides four new options :
-##'   \code{res} for the resolution of jpg or png figure (if produced),
-##'   \code{ext} (extension) for the format of figure that will be inserted,
-##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
-##'   and jpg figures.
+##' Compare with RweaveLatex driver, RweaveTextile provides one new option :
+##'   \code{format} to choose the format of figure that will be inserted in the
+##'   final document.
 ##' 
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveTextile} driver and
@@ -859,11 +849,9 @@ formals(RweaveTextileSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, de
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
 ##' 
-##' Compare with RweaveLatex driver, RweaveReST provides four new options :
-##'   \code{res} for the resolution of jpg or png figure (if produced),
-##'   \code{ext} (extension) for the format of figure that will be inserted,
-##'   and \code{png} and \code{jpg} (from \code{R2HTML} package) to produce png
-##'   and jpg figures.
+##' Compare with RweaveLatex driver, RweaveReST provides one new option :
+##'   \code{format} to choose the format of figure that will be inserted in the
+##'   final document.
 ##' 
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveReST} driver and
