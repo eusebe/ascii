@@ -34,10 +34,12 @@ trim <- function (x) {
 ##' @param ... ...
 formatCustom <- function(x, format = "nice", digits = 2, ...) {
   sapply(x, function(x) {
-    if (format != "nice") {
+    if (!(format %in% c("nice", "plim"))) {
       formatC(x, format = format, digits = digits, ...)
-    } else {
+    } else if (format == "nice") {
       formatC(x, format = "f", digits = digits, drop0trailing = TRUE, ...)
+    } else {
+      plim(x, digits = digits)
     }
   })
 }
