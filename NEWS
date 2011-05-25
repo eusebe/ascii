@@ -1,7 +1,14 @@
-2011/04/29
+2011/xx/xx
+~~~~~~~~~~
+
+* +cbind.ascii+ now accepts any number of ascii objects
+* fix +cbind.ascii+ with pandoc
+
+2011/05/12
 ~~~~~~~~~~
 
 * +ext+ option is replaced by +format+
+* add a method for mtable objects (memisc package)
 
 2011/04/17
 ~~~~~~~~~~
