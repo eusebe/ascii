@@ -506,9 +506,9 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' Produce a report from a list of R objects. This function can be
 ##' used directly, or through a \code{Report} proto object (see
 ##' examples). \code{Report$new()} creates a new object,
-##' \code{Report$export()} produce a report. Exportation options can
+##' \code{Report$create()} produce a report. Exportation options can
 ##' be specified with \code{Report$nameoftheoption <- option} or
-##' directly in \code{Report$export(nameoftheoption = option)}.
+##' directly in \code{Report$create(nameoftheoption = option)}.
 ##'
 ##' Special objects can be used to create sections (see
 ##' \code{?section}), paragraphs (see \code{?paragraph}), verbatim
@@ -541,7 +541,7 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' @examples
 ##' \dontrun{
 ##' options(asciiType = "asciidoc")
-##' export(head(esoph))
+##' createreport(head(esoph))
 ##'
 ##' r <- Report$new(author = "David Hajage", email = "dhajage at gmail dot com")
 ##' r$add(section("First section"))
@@ -550,9 +550,9 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' r$addSection("Second subsection: age and alc group", 2)
 ##' tab <- with(esoph, table(alcgp, agegp))
 ##' r$add(ascii(tab), ascii(summary(tab), format = "nice"))
-##' r$export()
+##' r$create()
 ##' r$format <- "slidy"
-##' r$export()
+##' r$createt()
 ##'
 ##' r$title <- "R report example"
 ##' r$author <- "David Hajage"
@@ -560,11 +560,11 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' options(asciiType = "pandoc")
 ##' r$backend <- "pandoc"
 ##' r$format <- "odt"
-##' r$export()
+##' r$create()
 ##'
-##' r$export(backend = "markdown2pdf", format = "pdf")
+##' r$create(backend = "markdown2pdf", format = "pdf")
 ##' }
-export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+createreport <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
   
   if (is.null(file)) {
     file <- tempfile("R-report")
@@ -624,7 +624,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
           cat(".", names(args)[i], "\n", sep = "")
         }
       }
-      if ("ascii" %in% class(arg)) {
+      if ("asciiTable" %in% class(arg) | "asciiList" %in% class(arg) | "asciiMixed" %in% class(arg)) {
         cat("\n")
         print(arg)
         cat("\n")
@@ -642,64 +642,77 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
   convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)  
 }
 
-Report <- proto(expr = {
-  new <- function(., file = NULL, format = "html", open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
-    x <- proto(., file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
-    class(x) <- c("Report", "environment", "proto")
-    x
-  }
+Report <- setRefClass("Report", 
+                      fields = c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"),
 
-  objects <- list()
-  
-  add <- function(., ...) {
-    obj <- list(...)
-    .$objects <- c(.$objects, obj)
-  }
+                      methods = list(
+                        initialize = function(...) {
+                          initFields(file = NULL)
+                          initFields(format = "html")
+                          initFields(open = TRUE)
+                          initFields(backend = getOption("asciiBackend"))
+                          initFields(encoding = NULL)
+                          initFields(options = NULL)
+                          initFields(cygwin = FALSE)
+                          initFields(title = NULL)
+                          initFields(author = NULL)
+                          initFields(email = NULL)
+                          initFields(date = NULL)
+                          initFields(objects = list())       
 
-  addSection <- function(., x, caption.level = 1) {
-    .$objects <- c(.$objects, list(section(x, caption.level)))
-  }
+                          callSuper(...)
+                        },
+                        
+                        add = function(...) {
+                          obj <- list(...)
+                          .self$objects <- c(.self$objects, obj)
+                        },
 
-  addParagraphs <- function(., ..., new = TRUE) {
-    .$objects <- c(.$objects, list(paragraph(..., new = new)))
-  }
+                        addSection = function(x, caption.level = 1) {
+                          .self$objects <- c(.self$objects, list(section(x, caption.level)))
+                        },
 
-  addVerbatim <- function(., ...) {
-    .$objects <- c(.$objects, list(verbatim(...)))
-  }
+                        addParagraphs = function(..., new = TRUE) {
+                          .self$objects <- c(.self$objects, list(paragraph(..., new = new)))
+                        },
 
-  addFig <- function(., file = NULL, graph = NULL, format = NULL, ...) {
-    .$objects <- c(.$objects, list(fig(file, graph, format, ...)))
-  }
+                        addVerbatim = function(...) {
+                          .self$objects <- c(.self$objects, list(verbatim(...)))
+                        },
 
-  show.Report <- function(., help = FALSE) {
-    cat("Report object:\n\n")
-    cat("  title:   ", ifelse(is.null(.$title), "None", .$title), "\n")
-    cat("  author:  ", ifelse(is.null(.$author), "None", .$author), "\n")
-    cat("  email:   ", ifelse(is.null(.$email), "None", .$email), "\n")
-    cat("  date:    ", ifelse(is.null(.$date), format(Sys.time(), "%Y/%m/%d %X"), .$date), "\n")
-    cat("  file:    ", ifelse(is.null(.$file), "Temporary file", .$file), "\n")
-    cat("  open:    ", .$open, "\n")
-    cat("  backend: ", .$backend, "\n")
-    cat("  format:  ", .$format, "\n")
-    cat("  encoding:", ifelse(is.null(.$encoding), asciiOpts(".e")[[.$backend]], .$encoding), "\n")
-    cat("  options: ", ifelse(is.null(.$options), asciiOpts(".O")[[.$backend]], .$options), "\n")
-    cat("  cygwin:  ", .$cygwin, "\n")
+                        addFig = function(file = NULL, graph = NULL, format = NULL, ...) {
+                          .self$objects <- c(.self$objects, list(fig(file, graph, format, ...)))
+                        },
 
-    if(help) {
-      cat("\nTo change a slot:\n")
-      cat("\tyourreport$slot <- 'value'\n\n")
-      cat("To export:\n")
-      cat("\tyourreport$export()\n")
-    }
-  }
+                        show.Report = function(help = FALSE) {
+                          cat("Report object:\n\n")
+                          cat("  title:   ", ifelse(is.null(.self$title), "None", .self$title), "\n")
+                          cat("  author:  ", ifelse(is.null(.self$author), "None", .self$author), "\n")
+                          cat("  email:   ", ifelse(is.null(.self$email), "None", .self$email), "\n")
+                          cat("  date:    ", ifelse(is.null(.self$date), format(Sys.time(), "%Y/%m/%d %X"), .self$date), "\n")
+                          cat("  file:    ", ifelse(is.null(.self$file), "Temporary file", .self$file), "\n")
+                          cat("  open:    ", .self$open, "\n")
+                          cat("  backend: ", .self$backend, "\n")
+                          cat("  format:  ", .self$format, "\n")
+                          cat("  encoding:", ifelse(is.null(.self$encoding), asciiOpts(".e")[[.self$backend]], .self$encoding), "\n")
+                          cat("  options: ", ifelse(is.null(.self$options), asciiOpts(".O")[[.self$backend]], .self$options), "\n")
+                          cat("  cygwin:  ", .self$cygwin, "\n")
+                          
+                          if(help) {
+                            cat("\nTo change a slot:\n")
+                            cat("\tyourreport$slot <- 'value'\n\n")
+                            cat("To export:\n")
+                            cat("\tyourreport$export()\n")
+                          }
+                        },
 
-  export <- function(., list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$email, date = .$date) {
-    .super$export(list = list, file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
-  }
-})
+                        create = function(list = .self$objects, file = .self$file, format = .self$format, open = .self$open, backend = .self$backend, encoding = .self$encoding, options = .self$options, cygwin = .self$cygwin, title = .self$title, author = .self$author, email = .self$email, date = .self$date) {
+                          createreport(list = list, file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
+                        }
+                        )
+                      )
 
-class(Report) <- c("ReportClass", "environment", "proto")
+Report$accessors(c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"))
 
 ##' Print method for class \code{Report}
 ##'
@@ -709,22 +722,15 @@ class(Report) <- c("ReportClass", "environment", "proto")
 ##' @param ... Not used
 ##' @author David Hajage
 ##' @export
-print.Report <- function(x, help = FALSE, ...) {
-  if (help)
-    x$show.Report(help = TRUE)
-  else
-    x$show.Report(help = FALSE)
-}
+setMethod("print", "Report",
+          function(x, help = FALSE, ...) {
+            if (help)
+              x$show.Report(help = TRUE)
+            else
+              x$show.Report(help = FALSE)
+          })
 
-##' Print method for class \code{ReportClass}
-##'
-##' Display Report help
-##' @param x the ReportClass
-##' @param ... Not used
-##' @author David Hajage
-##' @export
-print.ReportClass <- function(x, ...) {
-  cat("To create a new report:\n")
-  cat("yourreport <- Report$new(<options>)\n\n")
-  cat("See ?Report or ?export for more details.\n")
-}
+setMethod("show", "Report",
+          function(object) {
+            print(object)
+          })

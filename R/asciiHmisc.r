@@ -83,8 +83,7 @@ ascii.describe.single <- function (x, condense = TRUE, ...) {
 #   if (length(x$mChoice)) {
 #       print(x$mChoice, prlabel = FALSE)
 #   }
-  res <- asciiMixed$new(counts, val)
-  class(res) <- c("ascii", "proto", "environment")
+  res <- asciiMixed$new(args = list(counts, val))
   return(res)
 }
 
@@ -121,15 +120,13 @@ ascii.describe <- function (x, condense = TRUE, ...) {
         res <- NULL
         for (z in 1:length(x)) {
           if (length(x[[z]]) == 0) next
-          res <- asciiMixed$new(res, xx[[z]])
-          class(res) <- c("ascii", "proto", "environment")
+          res <- asciiMixed$new(args = list(res, xx[[z]]))
         }
     }
     else res <- ascii.describe.single(x, condense = condense)
 
-  if (length(at$naprint)) { na <- ascii(as.list(at$naprint)) ; res <- asciiMixed$new(des, na, res) }
-  else res <- asciiMixed$new(des, res)
-  class(res) <- c("ascii", "proto", "environment")
+  if (length(at$naprint)) { na <- ascii(as.list(at$naprint)) ; res <- asciiMixed$new(args = list(des, na, res)) }
+  else res <- asciiMixed$new(args = list(des, res))
 
   return(res)
 }

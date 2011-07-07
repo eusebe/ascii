@@ -139,7 +139,6 @@ ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE
          lvalign = lvalign, lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
-    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -284,7 +283,6 @@ ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE
          lvalign = lvalign, lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
-    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -429,7 +427,6 @@ ascii.character <- function (x, include.rownames = FALSE, include.colnames = FAL
          lvalign = lvalign, lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
-    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -574,6 +571,5 @@ ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE,
          lvalign = lvalign, lstyle = lstyle,
          rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
          rvalign = rvalign, rstyle = rstyle)
-    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }

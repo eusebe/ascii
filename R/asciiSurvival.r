@@ -166,7 +166,6 @@ ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE,
       lvalign = lvalign, lstyle = lstyle,
       rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
       rvalign = rvalign, rstyle = rstyle)
-  class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }
 
@@ -233,8 +232,7 @@ ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.
         else restrm <- ascii(list(paste("* restricted mean with upper limit = ",
             format(temp$end.time[1]))))
     }
-    obj <- asciiMixed$new(na, mat, restrm)
-    class(obj) <- c("ascii", "proto", "environment")
+    obj <- asciiMixed$new(args = list(na, mat, restrm))
     obj
 }
 ##' ascii method for class summary.survfit
@@ -305,15 +303,13 @@ ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, di
       res <- NULL
       for (i in levels(strata)) {
         who <- (strata == i)
-        res <- asciiMixed$new(res, ascii(mat[who, ], caption = i, include.colnames = include.colnames, header = header, digits = digits, ...))
-        class(res) <- c("ascii", "proto", "environment")
+        res <- asciiMixed$new(args = list(res, ascii(mat[who, ], caption = i, include.colnames = include.colnames, header = header, digits = digits, ...)))
       }
     }
   } else stop("There are no events to print.  Please use the option ", 
             "censored=TRUE with the summary function to see the censored ", 
             "observations.")
-  obj <- asciiMixed$new(na, res)
-  class(obj) <- c("ascii", "proto", "environment")
+  obj <- asciiMixed$new(args = list(na, res))
   return(obj)
 }
 
@@ -468,6 +464,5 @@ ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, ro
       lvalign = lvalign, lstyle = lstyle,
       rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
       rvalign = rvalign, rstyle = rstyle)
-  class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }

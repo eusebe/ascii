@@ -20,7 +20,6 @@
 ##' @author David Hajage
 ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
-    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -47,7 +46,6 @@ ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bul
 ascii.simple.list <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
     x <- unlist(x)
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
-    class(obj) <- c("ascii", "proto", "environment")
     return(obj)
 }
 
@@ -75,7 +73,6 @@ ascii.packageDescription <- function(x, caption = NULL, caption.level = NULL, li
   x <- unclass(x)
   x <- lapply(x, function(x) gsub("\n", " ", x))
   obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
-  class(obj) <- c("ascii", "proto", "environment")
   return(obj)  
 }
 
@@ -106,6 +103,5 @@ ascii.sessionInfo <- function (x, locale = TRUE, ...) {
   res$"loaded via a namespace (and not attached)" <- paste(mkLabel(x, "loadedOnly"), collapse = ", ")
 
   res <- asciiList$new(x = res, caption = NULL, caption.level = NULL, list.type = "label")
-  class(res) <- c("ascii", "proto", "environment")
   return(res)
 }

@@ -141,7 +141,6 @@ ascii.anova <- function (x, include.rownames = TRUE, include.colnames = TRUE, ro
                         lvalign = lvalign, lstyle = lstyle,
                         rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign,
                         rvalign = rvalign, rstyle = rstyle)
-  class(obj) <- c("ascii", "proto", "environment")
   return(obj)
 }
 
