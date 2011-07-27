@@ -1,4 +1,3 @@
-
 ##' expand
 ##'
 ##' @keywords internal
@@ -26,7 +25,7 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
     minncol <- min(c(ncol(x), ncol))
     xx <- matrix(nrow = nrow, ncol = ncol)
     xx[1:minnrow, 1:minncol] <- x[1:minnrow, 1:minncol]
-    xx[is.na(xx)] <- what  
+    xx[is.na(xx)] <- what
   } else {
     xx <- apply(t(apply(x, 1, rep, length = ncol)), 2, rep, length = nrow)
     if (nrow(x) > 1 & ncol(x) == 1 & ncol == 1)
@@ -51,7 +50,7 @@ expand <- function(x, nrow, ncol, what = NULL, drop = TRUE) {
 paste.matrix <- function(..., sep = " ", transpose.vector = FALSE, collapse = NULL, byrow = FALSE) {
   args <- list(...)
   args <- args[!sapply(args, is.null)]
-  
+
   args <- lapply(args, function(x) {
     if (!is.matrix(x) & transpose.vector)
       t(as.matrix(x))
@@ -61,12 +60,12 @@ paste.matrix <- function(..., sep = " ", transpose.vector = FALSE, collapse = NU
 
   ncol.max <- max(sapply(args, function(x) ncol(x)))
   nrow.max <- max(sapply(args, function(x) nrow(x)))
-  
+
   mats <- lapply(args, function(x) {
     x <- expand(x, nrow.max, ncol.max)
     x
   })
-  
+
   results <- matrix(do.call("paste", c(mats, sep = sep)), nrow.max, ncol.max)
   if (!is.null(collapse)) {
     margin <- 1

@@ -1,4 +1,3 @@
-
 ##' div
 ##'
 ##' @keywords internal
@@ -9,7 +8,6 @@ div <- function(x, n = 2) {
   c(xx, x - xx)
 }
 
-
 ##' rep.char
 ##'
 ##' @keywords internal
@@ -18,6 +16,7 @@ div <- function(x, n = 2) {
 rep.char <- function(x, times = 1) {
   paste(rep(x, times), collapse = "")
 }
+
 ##' align.table
 ##'
 ##' @keywords internal
@@ -29,7 +28,7 @@ align.table <- function(x, align, space = 1) {
   nchar <- apply(x, 2, nchar)
   max.nchar <- expand(apply(expand(nchar, nrow(x), ncol(x), drop = FALSE), 2, max) + space*2, nrow(x), ncol(x), drop = FALSE)
   diff.nchar <- max.nchar - nchar
-  
+
   for (i in 1:nrow(x)) {
     for (j in 1:ncol(x)) {
       if (align[i, j] == "l")
@@ -46,7 +45,7 @@ align.table <- function(x, align, space = 1) {
 }
 
 ##' print.character.matrix
-##' 
+##'
 ##' @param x x
 ##' @param vsep vsep
 ##' @param before_vsep before_vsep
@@ -62,11 +61,11 @@ align.table <- function(x, align, space = 1) {
 ##' @param print print
 ##' @keywords internal
 print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep = "", hsep = "-", csep = "+", before_cell_content = " ", after_cell_content = " ", line_separator = TRUE, line_separator_pos = NULL, justify = "l", space = 0, right_alignment = FALSE, print = TRUE) {
-  
+
   # after et before cell_content
   x <- paste.matrix(before_cell_content, x, after_cell_content, sep = "", transpose.vector = TRUE)
   x <- align.table(x, justify, space)
-  
+
   # dim
   nrowx <- nrow(x)
   ncolx <- ncol(x)
@@ -80,7 +79,7 @@ print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep =
   before_vseps <- expand(before_vsep, nrow(vseps), ncol(vseps), what = "")
   after_vseps <- expand(after_vsep, nrow(vseps), ncol(vseps), what = "")
   final_vseps <- paste.matrix(before_vseps, vseps, after_vseps, sep = "")
-  
+
   # nchar
   ncharvseps <- nchar(vseps)
   ncharx <- nchar(x)
@@ -103,7 +102,7 @@ print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep =
       hseps <- t(hseps)
     cseps <- expand(csep, nrowx+1, ncolx+1)
     row_lines <- paste.matrix(interleave.matrix(cseps, hseps, byrow = FALSE), collapse = "", byrow = FALSE)
-    
+
     if (!is.null(line_separator_pos)) {
       line_separator_pos <- sort(unique(ifelse(line_separator_pos >= 0, line_separator_pos + 1, nrowx + 1 + line_separator_pos + 1)))
       line_separator_pos <- line_separator_pos[line_separator_pos <= nrowx + 1]
@@ -114,7 +113,7 @@ print.character.matrix <- function(x, vsep = "|", before_vsep = "", after_vsep =
   # all together
   results <- interleave(row_lines, lines)
   results <- results[!is.na(results)]
-  
+
   # right alignment of the table
   if (right_alignment) {
     ncharres <- nchar(results)

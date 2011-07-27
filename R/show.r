@@ -1,3 +1,7 @@
+##' ascii table generator
+##'
+##' @author David Hajage
+##' @export
 asciiTable <- setRefClass("asciiTable",
                           fields = c("x",
                             "include.rownames",
@@ -72,6 +76,10 @@ asciiTable <- setRefClass("asciiTable",
                             )
                           )
 
+##' ascii list generator
+##'
+##' @author David Hajage
+##' @export
 asciiList <- setRefClass("asciiList",
                          fields = c("x",
                            "caption",
@@ -110,6 +118,10 @@ asciiList <- setRefClass("asciiList",
                            )
                          )
 
+##' ascii mixed generator
+##'
+##' @author David Hajage
+##' @export
 asciiMixed <- setRefClass("asciiMixed",
                           fields =  list(args = "list"),
 

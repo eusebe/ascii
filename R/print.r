@@ -1,6 +1,7 @@
 options(asciiType = "asciidoc")
 
 ##' Print ascii object
+##'
 ##' Function displaying the asciidoc, txt2tags, reStructuredText, org or
 ##' textile code associated with the supplied object of class \code{ascii}.
 ##'
@@ -23,6 +24,7 @@ options(asciiType = "asciidoc")
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link{ascii}}
 ##' @keywords print
+##' @rdname print.ascii
 ##' @export
 ##' @examples
 ##' data(esoph)
@@ -35,7 +37,6 @@ options(asciiType = "asciidoc")
 ##' options(asciiType = "rest")
 ##' ascii(esoph[1:10,])
 ##' options(asciiType = "asciidoc")
-##'
 setMethod("print","asciiTable",
            function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
              if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
@@ -63,13 +64,19 @@ setMethod("print","asciiTable",
            }
            )
 
+##' Show method for ascii objects
+##'
+##' @param object ascii object
+##' @rdname print.ascii
+##' @export
 setMethod("show","asciiTable",
            function(object) {
              print(object)
            }
           )
 
-
+##' @rdname print.ascii
+##' @export
 setMethod("print","asciiList",
            function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
              if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
@@ -97,12 +104,16 @@ setMethod("print","asciiList",
            }
            )
 
+##' @rdname print.ascii
+##' @export
 setMethod("show","asciiList",
            function(object) {
              print(object)
            }
           )
 
+##' @rdname print.ascii
+##' @export
 setMethod("print","asciiMixed",
            function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
              if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
@@ -130,6 +141,8 @@ setMethod("print","asciiMixed",
            }
            )
 
+##' @rdname print.ascii
+##' @export
 setMethod("show","asciiMixed",
            function(object) {
              print(object)

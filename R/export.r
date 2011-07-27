@@ -4,9 +4,9 @@ options(asciiBackend = "asciidoc")
 ##'
 ##' @param select select
 ##' @param .backends .backends
-##' @param .outputs .outputs 
-##' @param .extensions .extensions 
-##' @param .cli .cli 
+##' @param .outputs .outputs
+##' @param .extensions .extensions
+##' @param .cli .cli
 ##' @param .args .args
 ##' @param .O .O
 ##' @param .f .f
@@ -79,7 +79,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
       pandoc = "-s",
       markdown2pdf = "")
   }
-                      
+
   if (is.null(.f)) {
     .f = list(
       asciidoc = "html",
@@ -119,7 +119,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 % %date
 
 ")
-  } 
+  }
 
   opts <- list(".backends" = .backends, ".outputs" = .outputs, ".extensions" = .extensions, ".cli" = .cli, ".args" = .args, ".O" = .O, ".f" = .f, ".e" = .e, ".preambule" = .preambule)
 
@@ -199,7 +199,7 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
 
   if (!(backend %in% asciiOpts(".backends")))
     stop(paste("Wrong backend. Please choose: ", paste(asciiOpts(".backends"), collapse = ", "), ".", sep = ""))
-  
+
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
   windows <- grepl("w|W", .Platform$OS.type)
   if (windows) { # because pandoc doesn't like path with "/"
@@ -228,7 +228,7 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
       shell.exec(dfile)
     } else if (grepl("darwin", version$os)) {
       cat(" with open...\n")
-      system(paste(shQuote("open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)      
+      system(paste(shQuote("open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)
     } else {
       cat(" with xdg-open...\n")
       system(paste(shQuote("/usr/bin/xdg-open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)
@@ -257,6 +257,7 @@ section <- function(caption, caption.level = 1) {
 ##' @param x a section object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print section
 ##' @export
 ##' @author David Hajage
 print.section <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -290,6 +291,7 @@ paragraph <- function(..., new = TRUE) {
 ##' Print a paragraph object
 ##' @param x a paragraph object
 ##' @param ... not used
+##' @method print paragraph
 ##' @export
 ##' @author David Hajage
 print.paragraph <- function(x, ...) {
@@ -330,6 +332,7 @@ verbatim <- function(...) {
 ##' @param x a verbatim object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print verbatim
 ##' @export
 ##' @author David Hajage
 print.verbatim <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -340,9 +343,9 @@ print.verbatim <- function(x, backend = getOption("asciiBackend"), ...) {
     cat("```\n")
   if (backend == "pandoc" | backend == "markdown2pdf")
     cat("\n~~~~~~~{.R}\n")
-  
+
   cat(x, sep = "\n", ...)
-  
+
   if (backend == "asciidoc" | backend == "a2x")
     cat("----\n\n")
   if (backend == "t2t")
@@ -369,6 +372,7 @@ sexpr <- function(x) {
 ##' Print a sexpr object
 ##' @param x a sexpr object
 ##' @param ... not used
+##' @method print sexpr
 ##' @export
 ##' @author David Hajage
 print.sexpr <- function(x, ...) {
@@ -395,6 +399,7 @@ out <- function(x, results = "verbatim") {
 ##' @param x an out object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print out
 ##' @export
 ##' @author David Hajage
 print.out <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -451,11 +456,11 @@ fig <- function(file = NULL, graph = NULL, format = NULL, ...) {
       format <- "png"
     }
   }
-  
+
   if (is.null(file)) {
     file <- paste(tempfile("graph"), format, sep = ".")
   }
-  
+
   if (!is.null(graph)) {
     if (format == "jpg") {
       jpeg(file, ...)
@@ -488,6 +493,7 @@ graph <- fig
 ##' @param x an graph object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print fig
 ##' @export
 ##' @author David Hajage
 print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -565,14 +571,14 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' r$create(backend = "markdown2pdf", format = "pdf")
 ##' }
 createreport <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
-  
+
   if (is.null(file)) {
     file <- tempfile("R-report")
   }
 
   wd <- dirname(file)
   file <- paste(wd, basename(file), sep = "/")
-  
+
   if (is.null(title)) {
     title <- sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/"))
     if (backend == "asciidoc")
@@ -616,7 +622,7 @@ createreport <- function(..., list = NULL, file = NULL, format = NULL, open = TR
 
   lines <- capture.output({
     cat(preambule)
-    
+
     for (i in seq_along(args)) {
       arg <- args[[i]]
       if (!is.null(names(args))) {
@@ -639,10 +645,14 @@ createreport <- function(..., list = NULL, file = NULL, format = NULL, open = TR
   writeLines(lines, f)
   close(f)
 
-  convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)  
+  convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)
 }
 
-Report <- setRefClass("Report", 
+##' Report generator
+##'
+##' @author David Hajage
+##' @export
+Report <- setRefClass("Report",
                       fields = c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"),
 
                       methods = list(
@@ -658,11 +668,11 @@ Report <- setRefClass("Report",
                           initFields(author = NULL)
                           initFields(email = NULL)
                           initFields(date = NULL)
-                          initFields(objects = list())       
+                          initFields(objects = list())
 
                           callSuper(...)
                         },
-                        
+
                         add = function(...) {
                           obj <- list(...)
                           .self$objects <- c(.self$objects, obj)
@@ -697,7 +707,7 @@ Report <- setRefClass("Report",
                           cat("  encoding:", ifelse(is.null(.self$encoding), asciiOpts(".e")[[.self$backend]], .self$encoding), "\n")
                           cat("  options: ", ifelse(is.null(.self$options), asciiOpts(".O")[[.self$backend]], .self$options), "\n")
                           cat("  cygwin:  ", .self$cygwin, "\n")
-                          
+
                           if(help) {
                             cat("\nTo change a slot:\n")
                             cat("\tyourreport$slot <- 'value'\n\n")

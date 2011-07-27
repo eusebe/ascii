@@ -1,17 +1,11 @@
 # From Hmisc package
 
-##' ascii method for class describe.sing
-##'
-##' \code{Hmisc} package
-##' @param x An R object of class found among \code{methods(ascii)}.
 ##' @param condense default is TRUE to condense the output with regard to the 5
 ##'   lowest and highest values and the frequency table (\code{describe()} in
 ##'   package \code{Hmisc}).
-##' @param ... Additional arguments.  (see \code{?ascii.default}).
-##' @return An ascii object.
 ##' @export
 ##' @method ascii describe.single
-##' @author David Hajage
+##' @rdname ascii
 ascii.describe.single <- function (x, condense = TRUE, ...) {
    wide <- .Options$width
     # des : le titre
@@ -87,18 +81,9 @@ ascii.describe.single <- function (x, condense = TRUE, ...) {
   return(res)
 }
 
-##' ascii method fo class describe
-##'
-##' \code{Hmisc} package
-##' @param x An R object of class found among \code{methods(ascii)}.
-##' @param condense default is TRUE to condense the output with regard to the 5
-##'   lowest and highest values and the frequency table (\code{describe()} in
-##'   package \code{Hmisc}).
-##' @param ... Additional arguments.  (see \code{?ascii.default}).
-##' @return An ascii object.
 ##' @export
 ##' @method ascii describe
-##' @author David Hajage
+##' @rdname ascii
 ascii.describe <- function (x, condense = TRUE, ...) {
   at <- attributes(x)
   descrip <- ifelse(is.null(at$descript), "", at$descrip)
