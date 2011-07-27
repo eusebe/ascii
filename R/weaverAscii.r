@@ -23,7 +23,9 @@ weaverAsciiRuncode <- makeRweaveAsciiCodeRunner(evalFunc=weaverEvalWithOpt)
 ##' @param use.cache use.cache
 ##' @param ... ...
 ##' @keywords internal
-weaverAsciiSetup <- function(file, syntax, output = NULL, quiet = FALSE, debug = FALSE,
+weaverAsciiSetup <-
+    function(file, syntax,
+             output = NULL, quiet = FALSE, debug = FALSE,
              extension = "txt", backend = "asciidoc", openSchunk = "----",
              closeSchunk = "\n----\n", openSinput = "", closeSinput = "", openSoutput = "\n",
              closeSoutput = "", indent = "", openInclude = "include::", closeInclude = ".txt[]",
