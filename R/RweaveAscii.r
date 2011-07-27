@@ -23,11 +23,9 @@ RweaveAsciiSetup <-
 
     if (!quiet) cat("Writing to file ", output, "\n",
                    "Processing code chunks with options ...\n", sep = "")
-    ## Did we re-encode the input?  In which case we need to do
-    ## something about the output.
-    output <- if (identical(attr(file, "encoding"), "latin1")) {
-        file(output, open = "w+", encoding = "latin1")
-    } else file(output, open = "w+")
+    encoding <- attr(file, "encoding")
+    if (encoding %in% c("ASCII", "bytes")) encoding <- ""
+    output <- file(output, open = "w", encoding = encoding)
 
     ## if (missing(stylepath)) {
     ##     p <- Sys.getenv("SWEAVE_STYLEPATH_DEFAULT")
@@ -45,17 +43,24 @@ RweaveAsciiSetup <-
 
     options <- list(prefix = TRUE, prefix.string = prefix.string,
                     engine = "R", print = FALSE, eval = TRUE, fig = FALSE,
-                    pdf = FALSE, eps = FALSE, png = FALSE, jpeg = TRUE, format = "jpg",
-                    width = 6, height = 6, resolution = 100, term = TRUE,
-                    echo = TRUE, keep.source = FALSE, results = "verbatim",
+                    pdf = FALSE, eps = FALSE, png = FALSE, jpeg = TRUE,
+                    format = "jpg",
+                    grdevice = "", width = 6, height = 6, resolution = 100,
+                    term = TRUE, echo = TRUE, keep.source = TRUE,
+                    results = "verbatim",
                     split = FALSE, strip.white = "true", include = TRUE,
                     pdf.version = grDevices::pdf.options()$version,
                     pdf.encoding = grDevices::pdf.options()$encoding,
-                    expand = TRUE, openSchunk = openSchunk, closeSchunk = closeSchunk,
+                    pdf.compress = grDevices::pdf.options()$compress,
+                    expand = TRUE, # unused by us, for 'highlight'
+                    figs.only = TRUE,
+                    openSchunk = openSchunk, closeSchunk = closeSchunk,
                     openSinput = openSinput, closeSinput = closeSinput,
-                    openSoutput = openSoutput, closeSoutput = closeSoutput, indent = indent,
-                    openInclude = openInclude, closeInclude = closeInclude,
-                    openFig = openFig, closeFig = closeFig)
+                    openSoutput = openSoutput, closeSoutput = closeSoutput,
+                    indent = indent, openInclude = openInclude,
+                    closeInclude = closeInclude, openFig = openFig,
+                    closeFig = closeFig)
+    options$.defaults <- options
     options[names(dots)] <- dots
 
     ## to be on the safe side: see if defaults pass the check
@@ -83,7 +88,8 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
             grDevices::pdf(file = paste(chunkprefix, "pdf", sep = "."),
                            width = width, height = height,
                            version = options$pdf.version,
-                           encoding = options$pdf.encoding)
+                           encoding = options$pdf.encoding,
+                           compress = options$pdf.compress)
         eps.Swd <- function(name, width, height, ...)
             grDevices::postscript(file = paste(name, "eps", sep = "."),
                                   width = width, height = height,
@@ -99,6 +105,33 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
 
         if (!(options$engine %in% c("R", "S"))) return(object)
 
+        devs <- devoffs <- list()
+        if (options$fig && options$eval) {
+            if (options$pdf) {
+                devs <- c(devs, list(pdf.Swd))
+                devoffs <- c(devoffs, list(grDevices::dev.off))
+            }
+            if (options$eps) {
+                devs <- c(devs, list(eps.Swd))
+                devoffs <- c(devoffs, list(grDevices::dev.off))
+            }
+            if (options$png) {
+                devs <- c(devs, list(png.Swd))
+                devoffs <- c(devoffs, list(grDevices::dev.off))
+            }
+            if (options$jpeg) {
+                devs <- c(devs, list(jpeg.Swd))
+                devoffs <- c(devoffs, list(grDevices::dev.off))
+            }
+            if (nzchar(grd <- options$grdevice)) {
+                devs <- c(devs, list(get(grd, envir = .GlobalEnv)))
+                grdo <- paste(grd, "off", sep = ".")
+                devoffs <- c(devoffs,
+                             if (exists(grdo, envir = .GlobalEnv))
+                                 list(get(grdo, envir = .GlobalEnv))
+                             else list(grDevices::dev.off))
+            }
+        }
         if (!object$quiet) {
             cat(formatC(options$chunknr, width = 2), ":")
             if (options$echo) cat(" echo")
@@ -129,11 +162,13 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                 chunkout <- file(paste(chunkprefix, object$extension, sep = "."), "w")
                 if (!is.null(options$label))
                     object$chunkout[[chunkprefix]] <- chunkout
+                if(!grepl(utils:::.SweaveValidFilenameRegexp, chunkout))
+                    warning("file name ", sQuote(chunkout), " is not portable",
+                            call. = FALSE, domain = NA)
             }
         } else chunkout <- object$output
 
         srcfile <- srcfilecopy(object$filename, chunk)
-        utils:::SweaveHooks(options, run = TRUE)
 
         ## Note that we edit the error message below, so change both
         ## if you change this line:
@@ -146,25 +181,28 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
         RweaveTryStop(chunkexps, options)
 
         ## Some worker functions used below...
-        putSinput <- function(dce) {
+        putSinput <- function(dce, leading) {
             if (!openSinput) {
                 if (!openSchunk) {
                     cat(options$openSchunk, file = chunkout)
                     linesout[thisline + 1L] <<- srcline
+                    filenumout[thisline + 1L] <<- srcfilenum
                     thisline <<- thisline + 1L
                     openSchunk <<- TRUE
                 }
                 cat(options$openSinput, file = chunkout)
                 openSinput <<- TRUE
             }
-            cat("\n", paste(paste(options$indent, getOption("prompt"), sep = ""), dce[1L:leading],
+            leading <- max(leading, 1L) # safety check
+            cat("\n", paste(paste(options$indent, getOption("prompt"), sep = ""), dce[seq_len(leading)],
                             sep = "", collapse = "\n"),
                 file = chunkout, sep = "")
             if (length(dce) > leading)
-                cat("\n", paste(paste(options$indent, getOption("continue"), sep = ""), dce[-(1L:leading)],
+                cat("\n", paste(paste(options$indent, getOption("continue"), sep = ""), dce[-seq_len(leading)],
                                 sep = "", collapse = "\n"),
                     file = chunkout, sep = "")
             linesout[thisline + seq_along(dce)] <<- srcline
+            filenumout[thisline + seq_along(dce)] <<- srcfilenum
             thisline <<- thisline + length(dce)
         }
 
@@ -183,8 +221,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                 dce <- trySrcLines(srcfile, lastshown + 1L, showto, NULL)
                 linedirs <- grepl("^#line ", dce)
 		dce <- dce[!linedirs]
-                leading <<- length(dce) # These are all trailing comments
-                putSinput(dce)
+                putSinput(dce, length(dce)) # These are all trailing comments
                 lastshown <<- showto
             }
         }
@@ -193,8 +230,11 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
         openSchunk <- FALSE
 
         srclines <- attr(chunk, "srclines")
+        srcfilenums <- attr(chunk, "srcFilenum")
         linesout <- integer()      # maintains concordance
+        filenumout <- integer()	   # ditto
         srcline <- srclines[1L]    # current input line
+        srcfilenum <- srcfilenums[1L] # from this file
         thisline <- 0L             # current output line
         lastshown <- 0L            # last line already displayed;
 
@@ -202,6 +242,17 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
         leading <- 1L    # How many lines get the user prompt
 
         srcrefs <- attr(chunkexps, "srcref")
+
+        if (length(devs)) {
+            if(!grepl(utils:::.SweaveValidFilenameRegexp, chunkprefix))
+                warning("file name ", sQuote(chunkprefix), " is not portable",
+                        call. = FALSE, domain = NA)
+            if (options$figs.only)
+                devs[[1L]](name = chunkprefix,
+                           width = options$width, height = options$height,
+                           options)
+        }
+        SweaveHooks(options, run = TRUE)
 
         for (nce in seq_along(chunkexps)) {
             ce <- chunkexps[[nce]]
@@ -232,7 +283,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
             if (object$debug)
                 cat("\nRnw> ", paste(dce, collapse = "\n+  "),"\n")
 
-            if (options$echo && length(dce)) putSinput(dce)
+            if (options$echo && length(dce)) putSinput(dce, leading)
 
             ## avoid the limitations (and overhead) of output text connections
             if (options$eval) {
@@ -256,6 +307,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                 if (openSinput) {
                     cat(options$closeSinput, file = chunkout)
                     linesout[thisline + 1L:2L] <- srcline
+                    filenumout[thisline + 1L:2L] <- srcfilenum
                     thisline <- thisline + 2L
                     openSinput <- FALSE
                 }
@@ -263,18 +315,22 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                     if (!openSchunk) {
                         cat(options$openSchunk, file = chunkout)
                         linesout[thisline + 1L] <- srcline
+                        filenumout[thisline + 1L] <- srcfilenum
                         thisline <- thisline + 1L
                         openSchunk <- TRUE
                     }
                     cat(options$openSoutput, file = chunkout)
                     linesout[thisline + 1L] <- srcline
+                    filenumout[thisline + 1L] <- srcfilenum
                     thisline <- thisline + 1L
                 }
-                if (options$results=="ascii"){
-                    if (openSinput){
+                ## Change for ascii package
+                if (options$results == "ascii"){
+                    if (openSinput) {
                         cat(options$closeSinput,
                             file=chunkout, append=TRUE)
                         linesout[thisline + 1L] <- srcline
+                        filenumout[thisline + 1L] <- srcfilenum
                         thisline <- thisline + 1L
                         openSchunk <- TRUE
                     }
@@ -282,6 +338,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                         cat(options$closeSchunk,
                             file=chunkout, append=TRUE)
                         linesout[thisline + 1L] <- srcline
+                        filenumout[thisline + 1L] <- srcfilenum
                         thisline <- thisline + 1L
                         openSchunk <- FALSE
                     }
@@ -291,6 +348,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                     output <- paste("", output,collapse="\n", sep = options$indent)
                 else
                     output <- paste(output, collapse="\n")
+                ## End of change for ascii package
                 if (options$strip.white %in% c("all", "true")) {
                     output <- sub("^[[:space:]]*\n", "", output)
                     output <- sub("\n[[:space:]]*$", "", output)
@@ -298,11 +356,14 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                         output <- sub("\n[[:space:]]*\n", "\n", output)
                 }
                 cat(output, file = chunkout)
+                ## Change for ascii package
                 if(options$results == "ascii")
                   cat("\n", file = chunkout)
+                ## End of change for ascii package
                 count <- sum(strsplit(output, NULL)[[1L]] == "\n")
                 if (count > 0L) {
                     linesout[thisline + 1L:count] <- srcline
+                    filenumout[thisline + 1L:count] <- srcfilenum
                     thisline <- thisline + count
                 }
 
@@ -311,6 +372,7 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
                 if (options$results == "verbatim") {
                     cat(options$closeSoutput, file = chunkout)
                     linesout[thisline + 1L:2L] <- srcline
+                    filenumout[thisline + 1L:2L] <- srcfilenum
                     thisline <- thisline + 2L
                 }
             }
@@ -322,12 +384,14 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
         if (openSinput) {
             cat(options$closeSinput, file = chunkout)
             linesout[thisline + 1L:2L] <- srcline
+            filenumout[thisline + 1L:2L] <- srcfilenum
             thisline <- thisline + 2L
         }
 
         if (openSchunk) {
             cat(options$closeSchunk, file = chunkout)
             linesout[thisline + 1L] <- srcline
+            filenumout[thisline + 1L] <- srcfilenum
             thisline <- thisline + 1L
         }
 
@@ -337,38 +401,36 @@ makeRweaveAsciiCodeRunner <- function(evalFunc = RweaveEvalWithOpt)
             cat(options$openInclude, chunkprefix, options$closeInclude, "\n\n", sep = "",
                 file = object$output)
             linesout[thisline + 1L] <- srcline
+            filenumout[thisline + 1L] <- srcfilenum
             thisline <- thisline + 1L
         }
 
-        if (options$fig && options$eval) {
-            devs <- list()
-            if (options$pdf) devs <- c(devs, list(pdf.Swd))
-            if (options$eps) devs <- c(devs, list(eps.Swd))
-            if (options$png) devs <- c(devs, list(png.Swd))
-            if (options$jpeg) devs <- c(devs, list(jpeg.Swd))
-            if (!is.null(grd <- options$grdevice))
-                devs <- c(devs, list(get(grd, envir = .GlobalEnv)))
-            for (dev in devs) {
-                dev(name = chunkprefix, width = options$width,
-                    height = options$height, options)
+        if (length(devs)) {
+            if (options$figs.only) devoffs[[1L]]()
+            for (i in seq_along(devs)) {
+                if (options$figs.only && i == 1) next
+                devs[[i]](name = chunkprefix, width = options$width,
+                          height = options$height, options)
                 err <- tryCatch({
-                    utils:::SweaveHooks(options, run = TRUE)
+                    SweaveHooks(options, run = TRUE)
                     eval(chunkexps, envir = .GlobalEnv)
                 }, error = function(e) {
-                    grDevices::dev.off()
+                    devoffs[[i]]()
                     stop(conditionMessage(e), call. = FALSE, domain = NA)
                 })
-                grDevices::dev.off()
+                devoffs[[i]]()
             }
 
             if (options$include) {
                 cat(options$openFig, chunkprefix, ".", options$format, options$closeFig, "\n\n", sep = "",
                     file = object$output)
                 linesout[thisline + 1L] <- srcline
+                filenumout[thisline + 1L] <- srcfilenum
                 thisline <- thisline + 1L
             }
         }
         object$linesout <- c(object$linesout, linesout)
+        object$filenumout <- c(object$filenumout, filenumout)
         object
     }
 }
@@ -383,6 +445,7 @@ RweaveAsciiRuncode <- makeRweaveAsciiCodeRunner()
 RweaveAsciiWritedoc <- function(object, chunk)
 {
     linesout <- attr(chunk, "srclines")
+    filenumout <- attr(chunk, "srcFilenum")
 
   ##   if (length(grep("\\usepackage[^\\}]*Sweave.*\\}", chunk)))
   ##       object$havesty <- TRUE
@@ -396,9 +459,10 @@ RweaveAsciiWritedoc <- function(object, chunk)
   ##                                     object$styfile,
   ##                                     "}\n\\\\begin{document}", sep = ""),
   ##                               chunk[which])
-  ##           linesout <- linesout[c(1L:which, which,
-  ##                                  seq(from = which+1L,
-  ##                                      length.out = length(linesout)-which))]
+  ##           idx <- c(1L:which, which, seq(from = which+1L,
+  ##                    length.out = length(linesout)-which))
+  ##           linesout <- linesout[idx]
+  ##           filenumout <- filenumout[idx]
   ##           object$havesty <- TRUE
   ##       }
   ##   }
@@ -419,17 +483,17 @@ RweaveAsciiWritedoc <- function(object, chunk)
     }
 
     ## Process \SweaveOpts{} or similar
+    ## Since they are only supposed to affect code chunks, it is OK
+    ## to process all such in a doc chunk at once.
     while(length(pos <- grep(object$syntax$docopt, chunk)))
     {
         opts <- sub(paste(".*", object$syntax$docopt, ".*", sep = ""),
                     "\\1", chunk[pos[1L]])
         object$options <- utils:::SweaveParseOptions(opts, object$options,
                                              RweaveAsciiOptions)
+
         ## if (isTRUE(object$options$concordance)
         ##     && !object$haveconcordance) {
-        ##     if (isTRUE(object$hasSweaveInput))
-        ##     	warning("\\SweaveInput is not compatible with concordances.",
-        ##     	        immediate. = TRUE)
         ##     savelabel <- object$options$label
         ##     object$options$label <- "concordance"
         ##     prefix <- RweaveChunkPrefix(object$options)
@@ -445,6 +509,7 @@ RweaveAsciiWritedoc <- function(object, chunk)
 
     cat(chunk, sep = "\n", file = object$output)
     object$linesout <- c(object$linesout, linesout)
+    object$filenumout <- c(object$filenumout, filenumout)
 
     object
 }
@@ -457,7 +522,6 @@ RweaveAsciiWritedoc <- function(object, chunk)
 RweaveAsciiFinish <- function(object, error = FALSE)
 {
     outputname <- summary(object$output)$description
-    inputname <- object$filename
     if (!object$quiet && !error)
         cat("\n",
             sprintf(paste("You can now run", object$backend, "on '%s'"), outputname),
@@ -467,20 +531,34 @@ RweaveAsciiFinish <- function(object, error = FALSE)
         for (con in object$chunkout) close(con)
     ## if (object$haveconcordance) {
     ## 	## This output format is subject to change.  Currently it contains
-    ## 	## three parts, separated by colons:
+    ## 	## three or four parts, separated by colons:
     ## 	## 1.  The output .tex filename
     ## 	## 2.  The input .Rnw filename
-    ## 	## 3.  The input line numbers corresponding to each output line.
+    ## 	## 3.  Optionally, the starting line number of the output coded as "ofs nn",
+    ## 	##     where nn is the offset to the first output line.  This is omitted if nn is 0.
+    ## 	## 4.  The input line numbers corresponding to each output line.
     ## 	##     This are compressed using the following simple scheme:
     ## 	##     The first line number, followed by
     ## 	##     a run-length encoded diff of the rest of the line numbers.
     ##     linesout <- object$linesout
-    ##     vals <- rle(diff(linesout))
-    ##     vals <- c(linesout[1L], as.numeric(rbind(vals$lengths, vals$values)))
-    ## 	concordance <- paste(strwrap(paste(vals, collapse = " ")), collapse = " %\n")
-    ## 	special <- paste("\\Sconcordance{concordance:", outputname, ":",
-    ##                      inputname, ":%\n", concordance,"}\n", sep = "")
-    ## 	cat(special, file = object$concordfile)
+    ##     filenumout <- object$filenumout
+    ##     filenames <- object$srcFilenames[filenumout]
+    ##     filegps <- rle(filenames)
+    ##     offset <- 0L
+    ##     for (i in seq_along(filegps$lengths)) {
+    ##         len <- filegps$lengths[i]
+    ##         inputname <- filegps$values[i]
+    ##         vals <- rle(diff(linesout[offset + seq_len(len)]))
+    ##         vals <- c(linesout[offset + 1L], as.numeric(rbind(vals$lengths, vals$values)))
+    ## 	    concordance <- paste(strwrap(paste(vals, collapse = " ")), collapse = " %\n")
+    ## 	    special <- paste("\\Sconcordance{concordance:", outputname, ":",
+    ##                      inputname, ":",
+    ##                      if (offset) paste("ofs ", offset, ":", sep="") else "",
+    ##                      "%\n",
+    ##                      concordance,"}\n", sep = "")
+    ## 	    cat(special, file = object$concordfile, append=offset > 0L)
+    ## 	    offset <- offset + len
+    ## 	}
     ## }
     invisible(outputname)
 }
@@ -493,41 +571,58 @@ RweaveAsciiFinish <- function(object, error = FALSE)
 ##' @keywords internal
 RweaveAsciiOptions <- function(options)
 {
-    ## ATTENTION: Changes in this function have to be reflected in the
-    ## defaults in the initialization in RweaveAsciiSetup
+    defaults <- options[[".defaults"]]
 
     ## convert a character string to logical
     c2l <- function(x)
-        if (is.null(x)) FALSE else as.logical(toupper(as.character(x)))
+        if (is.null(x)) FALSE else suppressWarnings(as.logical(x))
 
     ## numeric
     NUMOPTS <- c("width", "height", "resolution")
 
-    ## not logical
-    NOLOGOPTS <- c(NUMOPTS, "results", "prefix.string", "engine",
-                   "label", "strip.white", "pdf.version", "pdf.encoding",
-                   "grdevice", "format", "openSchunk", "closeSchunk","openSinput",
-                   "closeSinput", "openSoutput", "closeSoutput", "indent", "openInclude",
-                   "closeInclude", "openFig", "closeFig")
+    ## character: largely for safety, but 'label' matters as there
+    ## is no default (and someone uses "F")
+    CHAROPTS <- c("results", "prefix.string", "engine", "label",
+                  "strip.white", "pdf.version", "pdf.encoding", "grdevice",
+                   "format", "openSchunk", "closeSchunk","openSinput",
+                   "closeSinput", "openSoutput", "closeSoutput", "indent",
+                   "openInclude", "closeInclude", "openFig", "closeFig")
+
 
     for (opt in names(options)) {
-        if (! (opt %in% NOLOGOPTS)) {
-            oldval <- options[[opt]]
-            if (!is.logical(options[[opt]]))
-                options[[opt]] <- c2l(options[[opt]])
-            if (is.na(options[[opt]]))
-                stop(gettextf("invalid value for '%s' : %s", opt, oldval),
-                     domain = NA)
-        } else if (opt %in% NUMOPTS)
-            options[[opt]] <- as.numeric(options[[opt]])
+        if(opt == ".defaults") next
+        oldval <- options[[opt]]
+        defval <- defaults[[opt]]
+        if(opt %in% CHAROPTS || is.character(defval)) {
+        } else if(is.logical(defval))
+            options[[opt]] <- c2l(oldval)
+        else if(opt %in% NUMOPTS || is.numeric(defval))
+            options[[opt]] <- as.numeric(oldval)
+        else if(!is.na(newval <- c2l(oldval)))
+            options[[opt]] <- newval
+        else if(!is.na(newval <- suppressWarnings(as.numeric(oldval))))
+            options[[opt]] <- newval
+        if (is.na(options[[opt]]))
+            stop(gettextf("invalid value for %s : %s", sQuote(opt), oldval),
+                 domain = NA)
     }
 
-    if (!is.null(options$results))
-        options$results <- tolower(as.character(options$results))
+    if (!is.null(options$results)) {
+        res <- as.character(options$results)
+        if (tolower(res) != res) # documented as lower-case
+            warning("value of 'results' option should be lowercase",
+                    call. = FALSE)
+        options$results <- tolower(res)
+    }
     options$results <- match.arg(options$results, c("verbatim", "ascii", "hide"))
 
-    if (!is.null(options$strip.white))
-        options$strip.white <- tolower(as.character(options$strip.white))
+    if (!is.null(options$strip.white)) {
+        res <- as.character(options$strip.white)
+        if(tolower(res) != res)
+            warning("value of 'strip.white' option should be lowercase",
+                    call. = FALSE)
+        options$strip.white <- tolower(res)
+    }
     options$strip.white <-
         match.arg(options$strip.white, c("true", "false", "all"))
     options
@@ -566,8 +661,8 @@ RtangleAsciiWritedoc <- function(object, chunk)
 ##' A driver to parse asciidoc noweb files with Sweave tool
 ##' This driver parses asciidoc files containing R code and replace pieces of
 ##' code with their output.
-##' 
-##' 
+##'
+##'
 ##' @aliases RweaveAsciidoc RtangleAsciidoc RweaveAsciidocOptions
 ##'   RweaveAsciidocFinish RweaveAsciidocWritedoc RweaveAsciidocSetup
 ##'   RweaveAsciidocRuncode cacheSweaveAsciidoc weaverAsciidoc
@@ -575,15 +670,15 @@ RtangleAsciiWritedoc <- function(object, chunk)
 ##'   .txt is produced (as eventuals files for graphs).
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
-##' 
+##'
 ##' Compare with RweaveLatex driver, RweaveAsciidoc provides one new option :
 ##'   \code{format} to choose the format of figure that will be inserted in the
 ##'   final document.
-##' 
+##'
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveAsciidoc} driver and
 ##'   \code{weaverAsciidoc} driver.
-##' 
+##'
 ##' A wrapper for \code{Sweave} can be used, named \code{Asciidoc}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Asciidoc}}
@@ -594,7 +689,7 @@ RtangleAsciiWritedoc <- function(object, chunk)
 ##' library(ascii)
 ##' Asciidoc("file.Rnw")
 ##'   }
-##' 
+##'
 RweaveAsciidoc <- function()
 {
     list(setup = RweaveAsciiSetup,
@@ -607,8 +702,8 @@ RweaveAsciidoc <- function()
 ##' A driver to parse txt2tags noweb files with Sweave tool
 ##' This driver parses txt2tags files containing R code and replace pieces of
 ##' code with their output.
-##' 
-##' 
+##'
+##'
 ##' @aliases RweaveT2t RtangleT2t RweaveT2tOptions RweaveT2tFinish
 ##'   RweaveT2tWritedoc RweaveT2tSetup RweaveT2tRuncode cacheSweaveT2t
 ##'   weaverT2t
@@ -616,15 +711,15 @@ RweaveAsciidoc <- function()
 ##'   .t2t is produced (as eventuals files for graphs).
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
-##' 
+##'
 ##' Compare with RweaveLatex driver, RweaveT2t provides one new option :
 ##'   \code{format} to choose the format of figure that will be inserted in the
 ##'   final document.
-##' 
+##'
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveT2t} driver and
 ##'   \code{weaverT2t} driver.
-##' 
+##'
 ##' A wrapper for \code{Sweave} can be used, named \code{T2t}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{T2t}}
@@ -635,7 +730,7 @@ RweaveAsciidoc <- function()
 ##' library(ascii)
 ##' T2t("file.Rnw")
 ##'   }
-##' 
+##'
 RweaveT2t <- function()
 {
     list(setup = RweaveT2tSetup,
@@ -665,8 +760,8 @@ formals(RweaveT2tSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' A driver to parse org noweb files with Sweave tool
 ##' This driver parses org files containing R code and replace pieces of code
 ##' with their output.
-##' 
-##' 
+##'
+##'
 ##' @aliases RweaveOrg RtangleOrg RweaveOrgOptions RweaveOrgFinish
 ##'   RweaveOrgWritedoc RweaveOrgSetup RweaveOrgRuncode cacheSweaveOrg
 ##'   weaverOrg
@@ -674,15 +769,15 @@ formals(RweaveT2tSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##'   .org is produced (as eventuals files for graphs).
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
-##' 
+##'
 ##' Compare with RweaveLatex driver, RweaveOrg provides one new option :
 ##'   \code{format} to choose the format of figure that will be inserted in the
 ##'   final document.
-##' 
+##'
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveOrg} driver and
 ##'   \code{weaverOrg} driver.
-##' 
+##'
 ##' A wrapper for \code{Sweave} can be used, named \code{Org}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Org}}
@@ -693,7 +788,7 @@ formals(RweaveT2tSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' library(ascii)
 ##' Org("file.Rnw")
 ##'   }
-##' 
+##'
 RweaveOrg <- function()
 {
     list(setup = RweaveOrgSetup,
@@ -723,8 +818,8 @@ formals(RweaveOrgSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' A driver to parse Pandoc noweb files with Sweave tool
 ##' This driver parses Pandoc files containing R code and replace pieces of code
 ##' with their output.
-##' 
-##' 
+##'
+##'
 ##' @aliases RweavePandoc RtanglePandoc RweavePandocOptions RweavePandocFinish
 ##'   RweavePandocWritedoc RweavePandocSetup RweavePandocRuncode cacheSweavePandoc
 ##'   weaverPandoc
@@ -732,15 +827,15 @@ formals(RweaveOrgSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##'   .md is produced (as eventuals files for graphs).
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
-##' 
+##'
 ##' Compare with RweaveLatex driver, RweavePandoc provides one new option :
 ##'   \code{format} to choose the format of figure that will be inserted in the
 ##'   final document.
-##' 
+##'
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweavePandoc} driver and
 ##'   \code{weaverPandoc} driver.
-##' 
+##'
 ##' A wrapper for \code{Sweave} can be used, named \code{Pandoc}.
 ##' @author David Hajage \email{dhajage@@gmail.com} Matti Pastell \email{matti.pastell@@helsinki.fi}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Pandoc}}
@@ -751,7 +846,7 @@ formals(RweaveOrgSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' library(ascii)
 ##' Pandoc("file.Rnw")
 ##'   }
-##' 
+##'
 RweavePandoc <- function()
 {
     list(setup = RweavePandocSetup,
@@ -781,8 +876,8 @@ formals(RweavePandocSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, deb
 ##' A driver to parse textile noweb files with Sweave tool
 ##' This driver parses textile files containing R code and replace pieces of
 ##' code with their output.
-##' 
-##' 
+##'
+##'
 ##' @aliases RweaveTextile RtangleTextile RweaveTextileOptions
 ##'   RweaveTextileFinish RweaveTextileWritedoc RweaveTextileSetup
 ##'   RweaveTextileRuncode cacheSweaveTextile weaverTextile
@@ -790,15 +885,15 @@ formals(RweavePandocSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, deb
 ##'   .txt is produced (as eventuals files for graphs).
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
-##' 
+##'
 ##' Compare with RweaveLatex driver, RweaveTextile provides one new option :
 ##'   \code{format} to choose the format of figure that will be inserted in the
 ##'   final document.
-##' 
+##'
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveTextile} driver and
 ##'   \code{weaverTextile} driver.
-##' 
+##'
 ##' A wrapper for \code{Sweave} can be used, named \code{Textile}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Textile}}
@@ -809,7 +904,7 @@ formals(RweavePandocSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, deb
 ##' library(ascii)
 ##' Textile("file.Rnw")
 ##'   }
-##' 
+##'
 RweaveTextile <- function()
 {
     list(setup = RweaveTextileSetup,
@@ -839,8 +934,8 @@ formals(RweaveTextileSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, de
 ##' A driver to parse sphinx noweb files with Sweave tool
 ##' This driver parses sphinx files containing R code and replace pieces of
 ##' code with their output.
-##' 
-##' 
+##'
+##'
 ##' @aliases RweaveReST RtangleReST RweaveReSTOptions RweaveReSTFinish
 ##'   RweaveReSTWritedoc RweaveReSTSetup RweaveReSTRuncode cacheSweaveReST
 ##'   weaverReST
@@ -848,15 +943,15 @@ formals(RweaveTextileSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, de
 ##'   .rst is produced (as eventuals files for graphs).
 ##' @note In order to work properly, noweb codes have to be located at the
 ##'   beginning of a line (no indentation).
-##' 
+##'
 ##' Compare with RweaveLatex driver, RweaveReST provides one new option :
 ##'   \code{format} to choose the format of figure that will be inserted in the
 ##'   final document.
-##' 
+##'
 ##' In addition, \code{cache} option from \code{cacheSweave} or \code{weaver}
 ##'   package is also available with \code{cacheSweaveReST} driver and
 ##'   \code{weaverReST} driver.
-##' 
+##'
 ##' A wrapper for \code{Sweave} can be used, named \code{ReST}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{ReST}}
@@ -867,7 +962,7 @@ formals(RweaveTextileSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, de
 ##' library(ascii)
 ##' ReST("file.Rnw")
 ##'   }
-##' 
+##'
 RweaveReST <- function()
 {
     list(setup = RweaveReSTSetup,
