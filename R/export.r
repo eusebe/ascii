@@ -4,9 +4,9 @@ options(asciiBackend = "asciidoc")
 ##'
 ##' @param select select
 ##' @param .backends .backends
-##' @param .outputs .outputs 
-##' @param .extensions .extensions 
-##' @param .cli .cli 
+##' @param .outputs .outputs
+##' @param .extensions .extensions
+##' @param .cli .cli
 ##' @param .args .args
 ##' @param .O .O
 ##' @param .f .f
@@ -79,7 +79,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
       pandoc = "-s",
       markdown2pdf = "")
   }
-                      
+
   if (is.null(.f)) {
     .f = list(
       asciidoc = "html",
@@ -119,7 +119,7 @@ asciiOpts <- function(select = "all", .backends = NULL, .outputs = NULL, .extens
 % %date
 
 ")
-  } 
+  }
 
   opts <- list(".backends" = .backends, ".outputs" = .outputs, ".extensions" = .extensions, ".cli" = .cli, ".args" = .args, ".O" = .O, ".f" = .f, ".e" = .e, ".preambule" = .preambule)
 
@@ -199,7 +199,7 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
 
   if (!(backend %in% asciiOpts(".backends")))
     stop(paste("Wrong backend. Please choose: ", paste(asciiOpts(".backends"), collapse = ", "), ".", sep = ""))
-  
+
   cmd <- replace(backend, cygwin = cygwin, i = i, d = d, f = f, e = e, O = O)
   windows <- grepl("w|W", .Platform$OS.type)
   if (windows) { # because pandoc doesn't like path with "/"
@@ -228,7 +228,7 @@ convert <- function(i, d = NULL, f = NULL, e = NULL, O = NULL, backend = getOpti
       shell.exec(dfile)
     } else if (grepl("darwin", version$os)) {
       cat(" with open...\n")
-      system(paste(shQuote("open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)      
+      system(paste(shQuote("open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)
     } else {
       cat(" with xdg-open...\n")
       system(paste(shQuote("/usr/bin/xdg-open"), shQuote(dfile)), wait = FALSE, ignore.stderr = TRUE)
@@ -257,6 +257,7 @@ section <- function(caption, caption.level = 1) {
 ##' @param x a section object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print section
 ##' @export
 ##' @author David Hajage
 print.section <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -290,6 +291,7 @@ paragraph <- function(..., new = TRUE) {
 ##' Print a paragraph object
 ##' @param x a paragraph object
 ##' @param ... not used
+##' @method print paragraph
 ##' @export
 ##' @author David Hajage
 print.paragraph <- function(x, ...) {
@@ -330,6 +332,7 @@ verbatim <- function(...) {
 ##' @param x a verbatim object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print verbatim
 ##' @export
 ##' @author David Hajage
 print.verbatim <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -340,9 +343,9 @@ print.verbatim <- function(x, backend = getOption("asciiBackend"), ...) {
     cat("```\n")
   if (backend == "pandoc" | backend == "markdown2pdf")
     cat("\n~~~~~~~{.R}\n")
-  
+
   cat(x, sep = "\n", ...)
-  
+
   if (backend == "asciidoc" | backend == "a2x")
     cat("----\n\n")
   if (backend == "t2t")
@@ -369,6 +372,7 @@ sexpr <- function(x) {
 ##' Print a sexpr object
 ##' @param x a sexpr object
 ##' @param ... not used
+##' @method print sexpr
 ##' @export
 ##' @author David Hajage
 print.sexpr <- function(x, ...) {
@@ -395,6 +399,7 @@ out <- function(x, results = "verbatim") {
 ##' @param x an out object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print out
 ##' @export
 ##' @author David Hajage
 print.out <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -451,11 +456,11 @@ fig <- function(file = NULL, graph = NULL, format = NULL, ...) {
       format <- "png"
     }
   }
-  
+
   if (is.null(file)) {
     file <- paste(tempfile("graph"), format, sep = ".")
   }
-  
+
   if (!is.null(graph)) {
     if (format == "jpg") {
       jpeg(file, ...)
@@ -488,6 +493,7 @@ graph <- fig
 ##' @param x an graph object
 ##' @param backend ascii backend
 ##' @param ... not used
+##' @method print fig
 ##' @export
 ##' @author David Hajage
 print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
@@ -506,9 +512,9 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' Produce a report from a list of R objects. This function can be
 ##' used directly, or through a \code{Report} proto object (see
 ##' examples). \code{Report$new()} creates a new object,
-##' \code{Report$export()} produce a report. Exportation options can
+##' \code{Report$create()} produce a report. Exportation options can
 ##' be specified with \code{Report$nameoftheoption <- option} or
-##' directly in \code{Report$export(nameoftheoption = option)}.
+##' directly in \code{Report$create(nameoftheoption = option)}.
 ##'
 ##' Special objects can be used to create sections (see
 ##' \code{?section}), paragraphs (see \code{?paragraph}), verbatim
@@ -541,7 +547,7 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' @examples
 ##' \dontrun{
 ##' options(asciiType = "asciidoc")
-##' export(head(esoph))
+##' createreport(head(esoph))
 ##'
 ##' r <- Report$new(author = "David Hajage", email = "dhajage at gmail dot com")
 ##' r$add(section("First section"))
@@ -550,9 +556,9 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' r$addSection("Second subsection: age and alc group", 2)
 ##' tab <- with(esoph, table(alcgp, agegp))
 ##' r$add(ascii(tab), ascii(summary(tab), format = "nice"))
-##' r$export()
+##' r$create()
 ##' r$format <- "slidy"
-##' r$export()
+##' r$createt()
 ##'
 ##' r$title <- "R report example"
 ##' r$author <- "David Hajage"
@@ -560,19 +566,19 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' options(asciiType = "pandoc")
 ##' r$backend <- "pandoc"
 ##' r$format <- "odt"
-##' r$export()
+##' r$create()
 ##'
-##' r$export(backend = "markdown2pdf", format = "pdf")
+##' r$create(backend = "markdown2pdf", format = "pdf")
 ##' }
-export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
-  
+createreport <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
+
   if (is.null(file)) {
     file <- tempfile("R-report")
   }
 
   wd <- dirname(file)
   file <- paste(wd, basename(file), sep = "/")
-  
+
   if (is.null(title)) {
     title <- sub("\\~", "\\\\~", paste(wd, basename(file), sep = "/"))
     if (backend == "asciidoc")
@@ -616,7 +622,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
 
   lines <- capture.output({
     cat(preambule)
-    
+
     for (i in seq_along(args)) {
       arg <- args[[i]]
       if (!is.null(names(args))) {
@@ -624,7 +630,7 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
           cat(".", names(args)[i], "\n", sep = "")
         }
       }
-      if ("ascii" %in% class(arg)) {
+      if ("asciiTable" %in% class(arg) | "asciiList" %in% class(arg) | "asciiMixed" %in% class(arg)) {
         cat("\n")
         print(arg)
         cat("\n")
@@ -639,67 +645,84 @@ export <- function(..., list = NULL, file = NULL, format = NULL, open = TRUE, ba
   writeLines(lines, f)
   close(f)
 
-  convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)  
+  convert(i = textfile, d = NULL, f = format, e = encoding, O = options, backend = backend, cygwin = cygwin, open = open)
 }
 
-Report <- proto(expr = {
-  new <- function(., file = NULL, format = "html", open = TRUE, backend = getOption("asciiBackend"), encoding = NULL, options = NULL, cygwin = FALSE, title = NULL, author = NULL, email = NULL, date = NULL) {
-    x <- proto(., file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
-    class(x) <- c("Report", "environment", "proto")
-    x
-  }
+##' Report generator
+##'
+##' @author David Hajage
+##' @export
+Report <- setRefClass("Report",
+                      fields = c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"),
 
-  objects <- list()
-  
-  add <- function(., ...) {
-    obj <- list(...)
-    .$objects <- c(.$objects, obj)
-  }
+                      methods = list(
+                        initialize = function(...) {
+                          initFields(file = NULL)
+                          initFields(format = "html")
+                          initFields(open = TRUE)
+                          initFields(backend = getOption("asciiBackend"))
+                          initFields(encoding = NULL)
+                          initFields(options = NULL)
+                          initFields(cygwin = FALSE)
+                          initFields(title = NULL)
+                          initFields(author = NULL)
+                          initFields(email = NULL)
+                          initFields(date = NULL)
+                          initFields(objects = list())
 
-  addSection <- function(., x, caption.level = 1) {
-    .$objects <- c(.$objects, list(section(x, caption.level)))
-  }
+                          callSuper(...)
+                        },
 
-  addParagraphs <- function(., ..., new = TRUE) {
-    .$objects <- c(.$objects, list(paragraph(..., new = new)))
-  }
+                        add = function(...) {
+                          obj <- list(...)
+                          .self$objects <- c(.self$objects, obj)
+                        },
 
-  addVerbatim <- function(., ...) {
-    .$objects <- c(.$objects, list(verbatim(...)))
-  }
+                        addSection = function(x, caption.level = 1) {
+                          .self$objects <- c(.self$objects, list(section(x, caption.level)))
+                        },
 
-  addFig <- function(., file = NULL, graph = NULL, format = NULL, ...) {
-    .$objects <- c(.$objects, list(fig(file, graph, format, ...)))
-  }
+                        addParagraphs = function(..., new = TRUE) {
+                          .self$objects <- c(.self$objects, list(paragraph(..., new = new)))
+                        },
 
-  show.Report <- function(., help = FALSE) {
-    cat("Report object:\n\n")
-    cat("  title:   ", ifelse(is.null(.$title), "None", .$title), "\n")
-    cat("  author:  ", ifelse(is.null(.$author), "None", .$author), "\n")
-    cat("  email:   ", ifelse(is.null(.$email), "None", .$email), "\n")
-    cat("  date:    ", ifelse(is.null(.$date), format(Sys.time(), "%Y/%m/%d %X"), .$date), "\n")
-    cat("  file:    ", ifelse(is.null(.$file), "Temporary file", .$file), "\n")
-    cat("  open:    ", .$open, "\n")
-    cat("  backend: ", .$backend, "\n")
-    cat("  format:  ", .$format, "\n")
-    cat("  encoding:", ifelse(is.null(.$encoding), asciiOpts(".e")[[.$backend]], .$encoding), "\n")
-    cat("  options: ", ifelse(is.null(.$options), asciiOpts(".O")[[.$backend]], .$options), "\n")
-    cat("  cygwin:  ", .$cygwin, "\n")
+                        addVerbatim = function(...) {
+                          .self$objects <- c(.self$objects, list(verbatim(...)))
+                        },
 
-    if(help) {
-      cat("\nTo change a slot:\n")
-      cat("\tyourreport$slot <- 'value'\n\n")
-      cat("To export:\n")
-      cat("\tyourreport$export()\n")
-    }
-  }
+                        addFig = function(file = NULL, graph = NULL, format = NULL, ...) {
+                          .self$objects <- c(.self$objects, list(fig(file, graph, format, ...)))
+                        },
 
-  export <- function(., list = .$objects, file = .$file, format = .$format, open = .$open, backend = .$backend, encoding = .$encoding, options = .$options, cygwin = .$cygwin, title = .$title, author = .$author, email = .$email, date = .$date) {
-    .super$export(list = list, file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
-  }
-})
+                        show.Report = function(help = FALSE) {
+                          cat("Report object:\n\n")
+                          cat("  title:   ", ifelse(is.null(.self$title), "None", .self$title), "\n")
+                          cat("  author:  ", ifelse(is.null(.self$author), "None", .self$author), "\n")
+                          cat("  email:   ", ifelse(is.null(.self$email), "None", .self$email), "\n")
+                          cat("  date:    ", ifelse(is.null(.self$date), format(Sys.time(), "%Y/%m/%d %X"), .self$date), "\n")
+                          cat("  file:    ", ifelse(is.null(.self$file), "Temporary file", .self$file), "\n")
+                          cat("  open:    ", .self$open, "\n")
+                          cat("  backend: ", .self$backend, "\n")
+                          cat("  format:  ", .self$format, "\n")
+                          cat("  encoding:", ifelse(is.null(.self$encoding), asciiOpts(".e")[[.self$backend]], .self$encoding), "\n")
+                          cat("  options: ", ifelse(is.null(.self$options), asciiOpts(".O")[[.self$backend]], .self$options), "\n")
+                          cat("  cygwin:  ", .self$cygwin, "\n")
 
-class(Report) <- c("ReportClass", "environment", "proto")
+                          if(help) {
+                            cat("\nTo change a slot:\n")
+                            cat("\tyourreport$slot <- 'value'\n\n")
+                            cat("To export:\n")
+                            cat("\tyourreport$export()\n")
+                          }
+                        },
+
+                        create = function(list = .self$objects, file = .self$file, format = .self$format, open = .self$open, backend = .self$backend, encoding = .self$encoding, options = .self$options, cygwin = .self$cygwin, title = .self$title, author = .self$author, email = .self$email, date = .self$date) {
+                          createreport(list = list, file = file, format = format, open = open, backend = backend, encoding = encoding, options = options, cygwin = cygwin, title = title, author = author, email = email, date = date)
+                        }
+                        )
+                      )
+
+Report$accessors(c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"))
 
 ##' Print method for class \code{Report}
 ##'
@@ -709,22 +732,15 @@ class(Report) <- c("ReportClass", "environment", "proto")
 ##' @param ... Not used
 ##' @author David Hajage
 ##' @export
-print.Report <- function(x, help = FALSE, ...) {
-  if (help)
-    x$show.Report(help = TRUE)
-  else
-    x$show.Report(help = FALSE)
-}
+setMethod("print", "Report",
+          function(x, help = FALSE, ...) {
+            if (help)
+              x$show.Report(help = TRUE)
+            else
+              x$show.Report(help = FALSE)
+          })
 
-##' Print method for class \code{ReportClass}
-##'
-##' Display Report help
-##' @param x the ReportClass
-##' @param ... Not used
-##' @author David Hajage
-##' @export
-print.ReportClass <- function(x, ...) {
-  cat("To create a new report:\n")
-  cat("yourreport <- Report$new(<options>)\n\n")
-  cat("See ?Report or ?export for more details.\n")
-}
+setMethod("show", "Report",
+          function(object) {
+            print(object)
+          })

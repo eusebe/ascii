@@ -28,4 +28,6 @@ pygments*
 R/asciiEpicalc.r
 R/SweaveSyntaxAscii.r
 R/show.latex.r
-
+R/.*~
+R/.Rhistory
+R/bind.r

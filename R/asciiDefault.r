@@ -1,6 +1,6 @@
-##' default ascii method
-##' 
-##' @param x An R object: a list of character strings, or object that can be coerced to data.frame
+##' @param x An R object. If \code{x} is a list, it should be a list
+##' of character strings (it will produce a bulleted list output by
+##' default).
 ##' @param include.rownames logical. If \code{TRUE} the rows names are printed.
 ##'   Default value depends of class of \code{x}.
 ##' @param include.colnames logical. If \code{TRUE} the columns names are
@@ -123,22 +123,23 @@
 ##'   (\code{"bullet"}, \code{"number"}, \code{"label"} or \code{"none"}). If
 ##'   \code{"label"}, \code{names(list)} is used for labels. Default is
 ##'   \code{"bullet"}.
-##' @param ... Additional arguments.  (Currently ignored.)
+##' @param ... Additional arguments. (Currently ignored.)
 ##' @return This function returns an object of class
-##'   \code{c("ascii","proto","environment")}.
+##'   \code{"ascii"}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @keywords print
+##' @rdname ascii
 ##' @export
 ##' @method ascii default
 ascii.default <- function(x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", list.type = "bullet", ...) {
   if (is.list(x)) {
     x <- lapply(x, as.character)
-    obj <- asciiList$new(x, caption = caption, caption.level = caption.level, list.type = list.type)
+    obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
   }
   else {
     y <- as.data.frame(x)
-    obj <- asciiTable$new(y, include.rownames, include.colnames, rownames, colnames, format, digits, decimal.mark, na.print, caption, caption.level, width, frame, grid, valign, header, footer, align, col.width, style, tgroup = tgroup, n.tgroup = n.tgroup, talign = talign, tvalign = tvalign, tstyle = tstyle, bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign, bstyle = bstyle, lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign, lstyle = lstyle, rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign, rstyle = rstyle)
+    obj <- asciiTable$new(x = y, include.rownames = include.rownames, include.colnames = include.colnames, rownames = rownames, colnames = colnames, format = format, digits = digits, decimal.mark = decimal.mark, na.print = na.print, caption = caption, caption.level = caption.level, width = width, frame = frame, grid = grid, valign = valign, header = header, footer = footer, align = align, col.width = col.width, style = style, tgroup = tgroup, n.tgroup = n.tgroup, talign = talign, tvalign = tvalign, tstyle = tstyle, bgroup = bgroup, n.bgroup = n.bgroup, balign = balign, bvalign = bvalign, bstyle = bstyle, lgroup = lgroup, n.lgroup = n.lgroup, lalign = lalign, lvalign = lvalign, lstyle = lstyle, rgroup = rgroup, n.rgroup = n.rgroup, ralign = ralign, rvalign = rvalign, rstyle = rstyle)
   }
-  class(obj) <- c("ascii", "proto", "environment")
+
   return(obj)
 }

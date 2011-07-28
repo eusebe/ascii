@@ -1,12 +1,13 @@
 options(asciiType = "asciidoc")
 
 ##' Print ascii object
+##'
 ##' Function displaying the asciidoc, txt2tags, reStructuredText, org or
 ##' textile code associated with the supplied object of class \code{ascii}.
-##' 
+##'
 ##' The package provides the new global option \code{asciiType}. Default value
 ##' is \code{"asciidoc"} (see examples).
-##' 
+##'
 ##' @param x An object of class \code{"ascii"}
 ##' @param type Type of syntax produce.  Possible values for \code{type} are
 ##'   \code{"asciidoc"}, \code{"t2t"}, \code{"rest"}, \code{"org"},
@@ -23,6 +24,7 @@ options(asciiType = "asciidoc")
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link{ascii}}
 ##' @keywords print
+##' @rdname print.ascii
 ##' @export
 ##' @examples
 ##' data(esoph)
@@ -35,28 +37,114 @@ options(asciiType = "asciidoc")
 ##' options(asciiType = "rest")
 ##' ascii(esoph[1:10,])
 ##' options(asciiType = "asciidoc")
-##' 
-print.ascii <- function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
-  if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
-  if (type == "rest") res <- capture.output(x$show.rest())
-  if (type == "org") res <- capture.output(x$show.org())
-  if (type == "t2t") res <- capture.output(x$show.t2t())
-  if (type == "textile") res <- capture.output(x$show.textile())
-  if (type == "pandoc") res <- capture.output(x$show.pandoc())
+setMethod("print","asciiTable",
+           function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
+             if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
+             if (type == "rest") res <- capture.output(x$show.rest())
+             if (type == "org") res <- capture.output(x$show.org())
+             if (type == "t2t") res <- capture.output(x$show.t2t())
+             if (type == "textile") res <- capture.output(x$show.textile())
+             if (type == "pandoc") res <- capture.output(x$show.pandoc())
 
-  if (escape) {
-    for (i in list.escape)
-      res <- gsub(i, paste("\\", i, sep = ""), res)
-  }
-  
-  if (is.null(file)) {
-    cat(res, sep = "\n")
-  }
-  else {
-    if (append) op <- "a" else op <- "w"
-    f <- file(file, op)
-    writeLines(res, f)
-    close(f)
-  }
-  invisible(x)
-}
+             if (escape) {
+               for (i in list.escape)
+                 res <- gsub(i, paste("\\", i, sep = ""), res)
+             }
+
+             if (is.null(file)) {
+               cat(res, sep = "\n")
+             }
+             else {
+               if (append) op <- "a" else op <- "w"
+               f <- file(file, op)
+               writeLines(res, f)
+               close(f)
+             }
+             invisible(x)
+           }
+           )
+
+##' Show method for ascii objects
+##'
+##' @param object ascii object
+##' @rdname print.ascii
+##' @export
+setMethod("show","asciiTable",
+           function(object) {
+             print(object)
+           }
+          )
+
+##' @rdname print.ascii
+##' @export
+setMethod("print","asciiList",
+           function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
+             if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
+             if (type == "rest") res <- capture.output(x$show.rest())
+             if (type == "org") res <- capture.output(x$show.org())
+             if (type == "t2t") res <- capture.output(x$show.t2t())
+             if (type == "textile") res <- capture.output(x$show.textile())
+             if (type == "pandoc") res <- capture.output(x$show.pandoc())
+
+             if (escape) {
+               for (i in list.escape)
+                 res <- gsub(i, paste("\\", i, sep = ""), res)
+             }
+
+             if (is.null(file)) {
+               cat(res, sep = "\n")
+             }
+             else {
+               if (append) op <- "a" else op <- "w"
+               f <- file(file, op)
+               writeLines(res, f)
+               close(f)
+             }
+             invisible(x)
+           }
+           )
+
+##' @rdname print.ascii
+##' @export
+setMethod("show","asciiList",
+           function(object) {
+             print(object)
+           }
+          )
+
+##' @rdname print.ascii
+##' @export
+setMethod("print","asciiMixed",
+           function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
+             if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
+             if (type == "rest") res <- capture.output(x$show.rest())
+             if (type == "org") res <- capture.output(x$show.org())
+             if (type == "t2t") res <- capture.output(x$show.t2t())
+             if (type == "textile") res <- capture.output(x$show.textile())
+             if (type == "pandoc") res <- capture.output(x$show.pandoc())
+
+             if (escape) {
+               for (i in list.escape)
+                 res <- gsub(i, paste("\\", i, sep = ""), res)
+             }
+
+             if (is.null(file)) {
+               cat(res, sep = "\n")
+             }
+             else {
+               if (append) op <- "a" else op <- "w"
+               f <- file(file, op)
+               writeLines(res, f)
+               close(f)
+             }
+             invisible(x)
+           }
+           )
+
+##' @rdname print.ascii
+##' @export
+setMethod("show","asciiMixed",
+           function(object) {
+             print(object)
+           }
+          )
