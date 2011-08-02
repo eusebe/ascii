@@ -19,13 +19,10 @@
 ##' All method functions should return an object of class
 ##' \code{"ascii"}.
 ##'
-##' @aliases ascii package-ascii
-##' @param x An R object of class found among \code{methods(ascii)}.
-##' @param ... Additional arguments.
+##' @aliases ascii package-ascii ascii.anova ascii.aov ascii.aovlist ascii.cast_df ascii.character ascii.coxph ascii.CrossTable ascii.data.frame ascii.default ascii.density ascii.describe ascii.describe.single ascii.factor ascii.freqtable ascii.ftable ascii.glm ascii.htest ascii.integer ascii.list ascii.lm ascii.matrix ascii.meanscomp ascii.mtable ascii.numeric ascii.packageDescription ascii.prcomp ascii.sessionInfo ascii.simple.list ascii.smooth.spline ascii.stat.table ascii.summary.aov ascii.summary.aovlist ascii.summary.glm ascii.summary.lm ascii.summary.prcomp ascii.summary.survfit ascii.summary.table ascii.survdiff ascii.survfit ascii.table ascii.ts ascii.zoo
 ##' @return This function returns an object of class
 ##' \code{"asciiTable"}, \code{"asciiList"} or \code{"asciiMixed"}.
 ##' @author David Hajage \email{dhajage@@gmail.com}
-##' @seealso \code{\link{print.ascii}}
 ##' @keywords print
 ##' @rdname ascii
 ##' @export

@@ -1,4 +1,5 @@
-##' @param x An R object. If \code{x} is a list, it should be a list
+##' @param x An R object of class found among
+##' \code{methods(ascii)}. If \code{x} is a list, it should be a list
 ##' of character strings (it will produce a bulleted list output by
 ##' default).
 ##' @param include.rownames logical. If \code{TRUE} the rows names are printed.

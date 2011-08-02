@@ -1,6 +1,5 @@
 ##' @export
 ##' @method ascii meanscomp
-##' @rdname ascii
 ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames = TRUE, include.colnames = TRUE, ...) {
     rlab <- ifelse(is.null(x$row.label), x$row, x$row.label)
     clab <- ifelse(is.null(x$column.label), x$column, x$column.label)
@@ -12,7 +11,6 @@ ascii.meanscomp <- function (x, header = TRUE, caption = NULL, include.rownames 
 
 ##' @export
 ##' @method ascii CrossTable
-##' @rdname ascii
 ascii.CrossTable <- function (x, ...) {
   t <- x$t
   CPR <- x$prop.row
@@ -245,7 +243,6 @@ ascii.CrossTable <- function (x, ...) {
 
 ##' @export
 ##' @method ascii freqtable
-##' @rdname ascii
 ascii.freqtable <- function (x, header = TRUE, footer = TRUE, digits = c(0, 2, 2), format = "f", na.print = "", include.rownames = TRUE, include.colnames = TRUE, caption = x$label, ...) {
   res <- x$freqtable
   ascii(res, header = header, footer = footer, include.rownames = include.rownames, include.colnames = include.colnames, caption = caption, digits = digits, format = format, na.print = na.print, ...)

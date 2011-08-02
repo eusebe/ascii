@@ -34,11 +34,6 @@ makeCacheSweaveAsciiCodeRunner <- function(evalFunc = cacheSweave:::cacheSweaveE
 	}
 }
 
-##' A driver to parse ascii noweb files with Sweave tool - cacheSweave based
-##'
-##' @author David Hajage
-cacheSweaveAsciiRuncode <- makeCacheSweaveAsciiCodeRunner()
-
 cacheSweaveAsciiOptions <- function(options) {
 	moreoptions <- c('dependson','cache')
 	oldoptions <- options[setdiff(names(options),moreoptions)]
@@ -53,12 +48,13 @@ cacheSweaveAsciiOptions <- function(options) {
 ##' A driver to parse asciidoc noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @export
+##' @rdname RweaveAsciidoc
 ##' @author David Hajage
 cacheSweaveAsciidoc <- function()
 {
     require(cacheSweave)
     list(setup = cacheSweaveAsciiSetup,
-         runcode = cacheSweaveAsciiRuncode,
+         runcode = makeCacheSweaveAsciiCodeRunner(),
          writedoc = RweaveAsciiWritedoc,
          finish = RweaveAsciiFinish,
          checkopts = cacheSweaveAsciiOptions)
@@ -67,11 +63,12 @@ cacheSweaveAsciidoc <- function()
 ##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @export
+##' @rdname RweaveT2t
 ##' @author David Hajage
 cacheSweaveT2t <- function()
 {
     list(setup = cacheSweaveT2tSetup,
-         runcode = cacheSweaveAsciiRuncode,
+         runcode = makeCacheSweaveAsciiCodeRunner(),
          writedoc = RweaveAsciiWritedoc,
          finish = RweaveAsciiFinish,
          checkopts = cacheSweaveAsciiOptions)
@@ -79,7 +76,10 @@ cacheSweaveT2t <- function()
 
 ##' A driver to parse txt2tags noweb files with Sweave tool - cacheSweave based
 ##'
+##' @param trace trace
+##' @param dependson dependson
 ##' @keywords internal
+##' @rdname RweaveT2t
 ##' @author David Hajage
 cacheSweaveT2tSetup <- function(..., cache = FALSE, trace = FALSE, dependson = NULL) {
   out <- RweaveT2tSetup(...)
@@ -94,11 +94,12 @@ cacheSweaveT2tSetup <- function(..., cache = FALSE, trace = FALSE, dependson = N
 ##' A driver to parse org noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @export
+##' @rdname RweaveOrg
 ##' @author David Hajage
 cacheSweaveOrg <- function()
 {
     list(setup = cacheSweaveOrgSetup,
-         runcode = cacheSweaveAsciiRuncode,
+         runcode = makeCacheSweaveAsciiCodeRunner(),
          writedoc = RweaveAsciiWritedoc,
          finish = RweaveAsciiFinish,
          checkopts = cacheSweaveAsciiOptions)
@@ -106,7 +107,10 @@ cacheSweaveOrg <- function()
 
 ##' A driver to parse org noweb files with Sweave tool - cacheSweave based
 ##'
+##' @param trace trace
+##' @param dependson dependson
 ##' @keywords internal
+##' @rdname RweaveOrg
 ##' @author David Hajage
 cacheSweaveOrgSetup <- function(..., cache = FALSE, trace = FALSE, dependson = NULL) {
   out <- RweaveOrgSetup(...)
@@ -121,11 +125,12 @@ cacheSweaveOrgSetup <- function(..., cache = FALSE, trace = FALSE, dependson = N
 ##' A driver to parse pandoc noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @export
+##' @rdname RweavePandoc
 ##' @author David Hajage
 cacheSweavePandoc <- function()
 {
     list(setup = cacheSweavePandocSetup,
-         runcode = cacheSweaveAsciiRuncode,
+         runcode = makeCacheSweaveAsciiCodeRunner(),
          writedoc = RweaveAsciiWritedoc,
          finish = RweaveAsciiFinish,
          checkopts = cacheSweaveAsciiOptions)
@@ -133,7 +138,10 @@ cacheSweavePandoc <- function()
 
 ##' A driver to parse pandoc noweb files with Sweave tool - cacheSweave based
 ##'
+##' @param trace trace
+##' @param dependson dependson
 ##' @keywords internal
+##' @rdname RweavePandoc
 ##' @author David Hajage
 cacheSweavePandocSetup <- function(..., cache = FALSE, trace = FALSE, dependson = NULL) {
   out <- RweavePandocSetup(...)
@@ -148,11 +156,12 @@ cacheSweavePandocSetup <- function(..., cache = FALSE, trace = FALSE, dependson 
 ##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @export
+##' @rdname RweaveTextile
 ##' @author David Hajage
 cacheSweaveTextile <- function()
 {
     list(setup = cacheSweaveTextileSetup,
-         runcode = cacheSweaveAsciiRuncode,
+         runcode = makeCacheSweaveAsciiCodeRunner(),
          writedoc = RweaveAsciiWritedoc,
          finish = RweaveAsciiFinish,
          checkopts = cacheSweaveAsciiOptions)
@@ -160,7 +169,10 @@ cacheSweaveTextile <- function()
 
 ##' A driver to parse textile noweb files with Sweave tool - cacheSweave based
 ##'
+##' @param trace trace
+##' @param dependson dependson
 ##' @keywords internal
+##' @rdname RweaveTextile
 ##' @author David Hajage
 cacheSweaveTextileSetup <- function(..., cache = FALSE, trace = FALSE, dependson = NULL) {
   out <- RweaveTextileSetup(...)
@@ -175,11 +187,12 @@ cacheSweaveTextileSetup <- function(..., cache = FALSE, trace = FALSE, dependson
 ##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @export
+##' @rdname RweaveReST
 ##' @author David Hajage
 cacheSweaveReST <- function()
 {
     list(setup = cacheSweaveReSTSetup,
-         runcode = cacheSweaveAsciiRuncode,
+         runcode = makeCacheSweaveAsciiCodeRunner(),
          writedoc = RweaveAsciiWritedoc,
          finish = RweaveAsciiFinish,
          checkopts = cacheSweaveAsciiOptions)
@@ -188,7 +201,10 @@ cacheSweaveReST <- function()
 ##' A driver to parse rest noweb files with Sweave tool - cacheSweave based
 ##'
 ##' @keywords internal
+##' @rdname RweaveReST
 ##' @author David Hajage
+##' @param trace trace
+##' @param dependson dependson
 cacheSweaveReSTSetup <- function(..., cache = FALSE, trace = FALSE, dependson = NULL) {
   out <- RweaveReSTSetup(...)
 

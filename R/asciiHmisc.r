@@ -1,11 +1,7 @@
 # From Hmisc package
 
-##' @param condense default is TRUE to condense the output with regard to the 5
-##'   lowest and highest values and the frequency table (\code{describe()} in
-##'   package \code{Hmisc}).
 ##' @export
 ##' @method ascii describe.single
-##' @rdname ascii
 ascii.describe.single <- function (x, condense = TRUE, ...) {
    wide <- .Options$width
     # des : le titre
@@ -81,6 +77,9 @@ ascii.describe.single <- function (x, condense = TRUE, ...) {
   return(res)
 }
 
+##' @param condense default is TRUE to condense the output with regard to the 5
+##'   lowest and highest values and the frequency table (\code{describe()} in
+##'   package \code{Hmisc}).
 ##' @export
 ##' @method ascii describe
 ##' @rdname ascii

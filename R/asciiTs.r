@@ -2,7 +2,6 @@
 
 ##' @export
 ##' @method ascii ts
-##' @rdname ascii
 ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 0, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
 
   if (inherits(x, "ts") && !is.null(ncol(x))) {
@@ -53,7 +52,6 @@ ascii.ts <- function (x, include.rownames = TRUE, include.colnames = TRUE, rowna
 
 ##' @export
 ##' @method ascii zoo
-##' @rdname ascii
 ascii.zoo <- function(x, ...) {
     return(ascii(as.ts(x), ...))
 }

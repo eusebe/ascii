@@ -185,7 +185,7 @@ cbind.ascii <- function(..., caption = NULL, caption.level = NULL, frame = NULL,
   results
 }
 
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
 setMethod("print","asciiCbind",
            function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
@@ -214,7 +214,7 @@ setMethod("print","asciiCbind",
            }
            )
 
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
 setMethod("show","asciiCbind",
            function(object) {

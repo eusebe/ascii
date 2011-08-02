@@ -684,6 +684,7 @@ RtangleAsciiWritedoc <- function(object, chunk)
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Asciidoc}}
 ##' @keywords IO file
 ##' @export
+##' @rdname RweaveAsciidoc
 ##' @examples
 ##'   \dontrun{
 ##' library(ascii)
@@ -725,6 +726,7 @@ RweaveAsciidoc <- function()
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{T2t}}
 ##' @keywords IO file
 ##' @export
+##' @rdname RweaveT2t
 ##' @examples
 ##'   \dontrun{
 ##' library(ascii)
@@ -749,6 +751,7 @@ RweaveT2t <- function()
 ##' @param debug debug
 ##' @param stylepath stylepath
 ##' @param ... ...
+##' @rdname RweaveT2t
 ##' @keywords internal
 RweaveT2tSetup <- RweaveAsciiSetup
 formals(RweaveT2tSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=FALSE,
@@ -783,6 +786,7 @@ formals(RweaveT2tSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Org}}
 ##' @keywords IO file
 ##' @export
+##' @rdname RweaveOrg
 ##' @examples
 ##'   \dontrun{
 ##' library(ascii)
@@ -807,6 +811,7 @@ RweaveOrg <- function()
 ##' @param debug debug
 ##' @param stylepath stylepath
 ##' @param ... ...
+##' @rdname RweaveOrg
 ##' @keywords internal
 RweaveOrgSetup <- RweaveAsciiSetup
 formals(RweaveOrgSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=FALSE,
@@ -841,6 +846,7 @@ formals(RweaveOrgSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Pandoc}}
 ##' @keywords IO file
 ##' @export
+##' @rdname RweavePandoc
 ##' @examples
 ##'   \dontrun{
 ##' library(ascii)
@@ -865,6 +871,7 @@ RweavePandoc <- function()
 ##' @param debug debug
 ##' @param stylepath stylepath
 ##' @param ... ...
+##' @rdname RweavePandoc
 ##' @keywords internal
 RweavePandocSetup <- RweaveAsciiSetup
 formals(RweavePandocSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=FALSE,
@@ -899,6 +906,7 @@ formals(RweavePandocSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, deb
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{Textile}}
 ##' @keywords IO file
 ##' @export
+##' @rdname RweaveTextile
 ##' @examples
 ##'   \dontrun{
 ##' library(ascii)
@@ -923,6 +931,7 @@ RweaveTextile <- function()
 ##' @param debug debug
 ##' @param stylepath stylepath
 ##' @param ... ...
+##' @rdname RweaveTextile
 ##' @keywords internal
 RweaveTextileSetup <- RweaveAsciiSetup
 formals(RweaveTextileSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=FALSE,
@@ -957,6 +966,7 @@ formals(RweaveTextileSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, de
 ##' @seealso \code{\link[utils]{Sweave}}, \code{\link[ascii]{ReST}}
 ##' @keywords IO file
 ##' @export
+##' @rdname RweaveReST
 ##' @examples
 ##'   \dontrun{
 ##' library(ascii)
@@ -981,6 +991,7 @@ RweaveReST <- function()
 ##' @param debug debug
 ##' @param stylepath stylepath
 ##' @param ... ...
+##' @rdname RweaveReST
 ##' @keywords internal
 RweaveReSTSetup <- RweaveAsciiSetup
 formals(RweaveReSTSetup) <-alist(file=, syntax=, output=NULL, quiet=FALSE, debug=FALSE,

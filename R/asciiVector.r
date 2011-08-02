@@ -1,6 +1,5 @@
 ##' @export
 ##' @method ascii integer
-##' @rdname ascii
 ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,
@@ -21,7 +20,6 @@ ascii.integer <- function (x, include.rownames = FALSE, include.colnames = FALSE
 
 ##' @export
 ##' @method ascii numeric
-##' @rdname ascii
 ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,
@@ -42,7 +40,6 @@ ascii.numeric <- function (x, include.rownames = FALSE, include.colnames = FALSE
 
 ##' @export
 ##' @method ascii character
-##' @rdname ascii
 ascii.character <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,
@@ -63,7 +60,6 @@ ascii.character <- function (x, include.rownames = FALSE, include.colnames = FAL
 
 ##' @export
 ##' @method ascii factor
-##' @rdname ascii
 ascii.factor <- function (x, include.rownames = FALSE, include.colnames = FALSE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = FALSE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     obj <- asciiTable$new(x = x, include.rownames = include.rownames,
          include.colnames = include.colnames, rownames = rownames, colnames = colnames,

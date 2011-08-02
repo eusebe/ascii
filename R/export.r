@@ -1,5 +1,3 @@
-options(asciiBackend = "asciidoc")
-
 ##' asciiOptions
 ##'
 ##' @param select select
@@ -543,6 +541,7 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' @param date date
 ##' @return Nothing
 ##' @export
+##' @rdname createreport
 ##' @author David Hajage
 ##' @examples
 ##' \dontrun{
@@ -651,6 +650,7 @@ createreport <- function(..., list = NULL, file = NULL, format = NULL, open = TR
 ##' Report generator
 ##'
 ##' @author David Hajage
+##' @rdname createreport
 ##' @export
 Report <- setRefClass("Report",
                       fields = c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"),
@@ -722,17 +722,15 @@ Report <- setRefClass("Report",
                         )
                       )
 
-Report$accessors(c("file", "format", "open", "backend", "encoding", "options", "cygwin", "title", "author", "email", "date", "objects"))
-
 ##' Print method for class \code{Report}
 ##'
 ##' Display report characteristics
+##' @rdname print-ascii
 ##' @param x a report (generated with \code{Report$new()})
 ##' @param help logical print help?
-##' @param ... Not used
 ##' @author David Hajage
 ##' @export
-setMethod("print", "Report",
+setMethod(print, "Report",
           function(x, help = FALSE, ...) {
             if (help)
               x$show.Report(help = TRUE)
@@ -740,7 +738,11 @@ setMethod("print", "Report",
               x$show.Report(help = FALSE)
           })
 
-setMethod("show", "Report",
+##' Show method for class \code{Report}
+##'
+##' @rdname print-ascii
+##' @export
+setMethod(show, "Report",
           function(object) {
             print(object)
           })

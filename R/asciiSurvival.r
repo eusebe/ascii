@@ -1,6 +1,5 @@
 ##' @export
 ##' @method ascii survdiff
-##' @rdname ascii
 ascii.survdiff <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
     # From print.survdiff
     if (length(x$n) == 1) {
@@ -101,7 +100,6 @@ ascii.survfit <- function (x, scale = 1, print.rmean = getOption("survfit.print.
 
 ##' @export
 ##' @method ascii summary.survfit
-##' @rdname ascii
 ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, digits = c(0, 0, 0, 3, 3, 3, 3), ...) {
   omit <- x$na.action
   na <- NULL
@@ -166,7 +164,6 @@ ascii.summary.survfit <- function (x, include.colnames = TRUE, header = TRUE, di
 
 ##' @export
 ##' @method ascii coxph
-##' @rdname ascii
 ascii.coxph <- function (x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", ...){
 
     cox <- x

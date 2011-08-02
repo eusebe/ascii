@@ -1,6 +1,5 @@
 ##' @export
 ##' @method ascii stat.table
-##' @rdname ascii
 ascii.stat.table <- function (x, tgroup = NULL, lgroup = NULL, ...){
   if (length(dim(x)) == 2) {
     if (is.null(lgroup)) {

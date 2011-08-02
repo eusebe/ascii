@@ -8,7 +8,7 @@ options(asciiType = "asciidoc")
 ##' The package provides the new global option \code{asciiType}. Default value
 ##' is \code{"asciidoc"} (see examples).
 ##'
-##' @param x An object of class \code{"ascii"}
+##' @param x An object of class \code{"ascii"}, or a report (generated with \code{Report$new()})
 ##' @param type Type of syntax produce.  Possible values for \code{type} are
 ##'   \code{"asciidoc"}, \code{"t2t"}, \code{"rest"}, \code{"org"},
 ##'   \code{"textile"} or \code{"pandoc"}.  Default value produce asciidoc syntax.
@@ -24,7 +24,7 @@ options(asciiType = "asciidoc")
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link{ascii}}
 ##' @keywords print
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
 ##' @examples
 ##' data(esoph)
@@ -66,18 +66,18 @@ setMethod("print","asciiTable",
 
 ##' Show method for ascii objects
 ##'
-##' @param object ascii object
-##' @rdname print.ascii
+##' @param object ascii or Report object
+##' @rdname print-ascii
 ##' @export
-setMethod("show","asciiTable",
+setMethod(show, "asciiTable",
            function(object) {
              print(object)
            }
           )
 
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
-setMethod("print","asciiList",
+setMethod(print, "asciiList",
            function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
              if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
              if (type == "rest") res <- capture.output(x$show.rest())
@@ -104,17 +104,17 @@ setMethod("print","asciiList",
            }
            )
 
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
-setMethod("show","asciiList",
+setMethod(show, "asciiList",
            function(object) {
              print(object)
            }
           )
 
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
-setMethod("print","asciiMixed",
+setMethod(print, "asciiMixed",
            function(x, type = getOption("asciiType"), file = NULL, append = FALSE, escape = FALSE, list.escape = c("\\_", "\\^"), ...) {
              if (type == "asciidoc") res <- capture.output(x$show.asciidoc())
              if (type == "rest") res <- capture.output(x$show.rest())
@@ -141,9 +141,9 @@ setMethod("print","asciiMixed",
            }
            )
 
-##' @rdname print.ascii
+##' @rdname print-ascii
 ##' @export
-setMethod("show","asciiMixed",
+setMethod(show, "asciiMixed",
            function(object) {
              print(object)
            }

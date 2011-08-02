@@ -1,6 +1,5 @@
 ##' @export
 ##' @method ascii list
-##' @rdname ascii
 ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bullet", ...) {
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
     return(obj)
@@ -8,7 +7,6 @@ ascii.list <- function(x, caption = NULL, caption.level = NULL, list.type = "bul
 
 ##' @export
 ##' @method ascii simple.list
-##' @rdname ascii
 ascii.simple.list <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
     x <- unlist(x)
     obj <- asciiList$new(x = x, caption = caption, caption.level = caption.level, list.type = list.type)
@@ -17,7 +15,6 @@ ascii.simple.list <- function(x, caption = NULL, caption.level = NULL, list.type
 
 ##' @export
 ##' @method ascii packageDescription
-##' @rdname ascii
 ascii.packageDescription <- function(x, caption = NULL, caption.level = NULL, list.type = "label", ...) {
   x <- unclass(x)
   x <- lapply(x, function(x) gsub("\n", " ", x))
@@ -28,6 +25,7 @@ ascii.packageDescription <- function(x, caption = NULL, caption.level = NULL, li
 ##' @export
 ##' @method ascii sessionInfo
 ##' @rdname ascii
+##' @param locale show locale information?
 ascii.sessionInfo <- function (x, locale = TRUE, ...) {
   mkLabel <- function(L, n) {
     vers <- sapply(L[[n]], function(x) x[["Version"]])

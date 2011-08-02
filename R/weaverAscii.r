@@ -14,14 +14,8 @@ weaverAsciiRuncode <- makeRweaveAsciiCodeRunner(evalFunc=weaverEvalWithOpt)
 
 ##' weaverAsciidocSetup
 ##'
-##' @param file file
-##' @param syntax syntax
-##' @param output output
-##' @param quiet quiet
-##' @param debug debug
-##' @param stylepath stylepath
 ##' @param use.cache use.cache
-##' @param ... ...
+##' @rdname RweaveAsciidoc
 ##' @keywords internal
 weaverAsciiSetup <-
     function(file, syntax,
@@ -44,6 +38,7 @@ weaverAsciiSetup <-
 
 ##' weaverAsciidoc
 ##'
+##' @rdname RweaveAsciidoc
 ##' @export
 weaverAsciidoc <- function()
 {
@@ -57,20 +52,15 @@ weaverAsciidoc <- function()
 
 ##' weaverT2tSetup
 ##'
-##' @param file file
-##' @param syntax syntax
-##' @param output output
-##' @param quiet quiet
-##' @param debug debug
-##' @param stylepath stylepath
 ##' @param use.cache use.cache
-##' @param ... ...
+##' @rdname RweaveT2t
 ##' @keywords internal
 weaverT2tSetup <- weaverAsciiSetup
 formals(weaverT2tSetup) <- c(formals(RweaveT2tSetup)[1:(length(formals(RweaveT2tSetup))-1)], alist(use.cache=TRUE, ...=))
 
 ##' weaverT2t
 ##'
+##' @rdname RweaveT2t
 ##' @export
 weaverT2t <- function()
 {
@@ -84,14 +74,8 @@ weaverT2t <- function()
 
 ##' weaverOrgSetup
 ##'
-##' @param file file
-##' @param syntax syntax
-##' @param output output
-##' @param quiet quiet
-##' @param debug debug
-##' @param stylepath stylepath
 ##' @param use.cache use.cache
-##' @param ... ...
+##' @rdname RweaveOrg
 ##' @keywords internal
 weaverOrgSetup <- weaverAsciiSetup
 formals(weaverOrgSetup) <- c(formals(RweaveOrgSetup)[1:(length(formals(RweaveOrgSetup))-1)], alist(use.cache=TRUE, ...=))
@@ -99,6 +83,7 @@ formals(weaverOrgSetup) <- c(formals(RweaveOrgSetup)[1:(length(formals(RweaveOrg
 
 ##' weaverOrg
 ##'
+##' @rdname RweaveOrg
 ##' @export
 weaverOrg <- function()
 {
@@ -112,20 +97,15 @@ weaverOrg <- function()
 
 ##' weaverPandocSetup
 ##'
-##' @param file file
-##' @param syntax syntax
-##' @param output output
-##' @param quiet quiet
-##' @param debug debug
-##' @param stylepath stylepath
 ##' @param use.cache use.cache
-##' @param ... ...
+##' @rdname RweavePandoc
 ##' @keywords internal
 weaverPandocSetup <- weaverAsciiSetup
 formals(weaverPandocSetup) <- c(formals(RweavePandocSetup)[1:(length(formals(RweavePandocSetup))-1)], alist(use.cache=TRUE, ...=))
 
 ##' weaverPandoc
 ##'
+##' @rdname RweavePandoc
 ##' @export
 weaverPandoc <- function()
 {
@@ -139,20 +119,15 @@ weaverPandoc <- function()
 
 ##' weaverTextileSetup
 ##'
-##' @param file file
-##' @param syntax syntax
-##' @param output output
-##' @param quiet quiet
-##' @param debug debug
-##' @param stylepath stylepath
 ##' @param use.cache use.cache
-##' @param ... ...
+##' @rdname RweaveTextile
 ##' @keywords internal
 weaverTextileSetup <- weaverAsciiSetup
 formals(weaverTextileSetup) <- c(formals(RweaveTextileSetup)[1:(length(formals(RweaveTextileSetup))-1)], alist(use.cache=TRUE, ...=))
 
 ##' weaverTextile
 ##'
+##' @rdname RweaveTextile
 ##' @export
 weaverTextile <- function()
 {
@@ -166,20 +141,15 @@ weaverTextile <- function()
 
 ##' weaverReSTSetup
 ##'
-##' @param file file
-##' @param syntax syntax
-##' @param output output
-##' @param quiet quiet
-##' @param debug debug
-##' @param stylepath stylepath
 ##' @param use.cache use.cache
-##' @param ... ...
+##' @rdname RweaveReST
 ##' @keywords internal
 weaverReSTSetup <- weaverAsciiSetup
 formals(weaverReSTSetup) <- c(formals(RweaveReSTSetup)[1:(length(formals(RweaveReSTSetup))-1)], alist(use.cache=TRUE, ...=))
 
 ##' weaverReST
 ##'
+##' @rdname RweaveReST
 ##' @export
 weaverReST <- function()
 {
