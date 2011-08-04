@@ -125,9 +125,6 @@
 ##'   \code{"label"}, \code{names(list)} is used for labels. Default is
 ##'   \code{"bullet"}.
 ##' @param ... Additional arguments. (Currently ignored.)
-##' @return This function returns an object of class
-##'   \code{"ascii"}.
-##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @keywords print
 ##' @rdname ascii
 ##' @export
