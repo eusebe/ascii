@@ -508,7 +508,7 @@ print.fig <- function(x, backend = getOption("asciiBackend"), ...) {
 ##' Produce a report
 ##'
 ##' Produce a report from a list of R objects. This function can be
-##' used directly, or through a \code{Report} proto object (see
+##' used directly, or through a \code{Report} object (see
 ##' examples). \code{Report$new()} creates a new object,
 ##' \code{Report$create()} produce a report. Exportation options can
 ##' be specified with \code{Report$nameoftheoption <- option} or
@@ -711,8 +711,8 @@ Report <- setRefClass("Report",
                           if(help) {
                             cat("\nTo change a slot:\n")
                             cat("\tyourreport$slot <- 'value'\n\n")
-                            cat("To export:\n")
-                            cat("\tyourreport$export()\n")
+                            cat("To create the report:\n")
+                            cat("\tyourreport$create()\n")
                           }
                         },
 
@@ -721,28 +721,3 @@ Report <- setRefClass("Report",
                         }
                         )
                       )
-
-##' Print method for class \code{Report}
-##'
-##' Display report characteristics
-##' @rdname print-ascii
-##' @param x a report (generated with \code{Report$new()})
-##' @param help logical print help?
-##' @author David Hajage
-##' @export
-setMethod(print, "Report",
-          function(x, help = FALSE, ...) {
-            if (help)
-              x$show.Report(help = TRUE)
-            else
-              x$show.Report(help = FALSE)
-          })
-
-##' Show method for class \code{Report}
-##'
-##' @rdname print-ascii
-##' @export
-setMethod(show, "Report",
-          function(object) {
-            print(object)
-          })

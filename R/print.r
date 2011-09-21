@@ -8,7 +8,7 @@ options(asciiType = "asciidoc")
 ##' The package provides the new global option \code{asciiType}. Default value
 ##' is \code{"asciidoc"} (see examples).
 ##'
-##' @param x An object of class \code{"ascii"}, or a report (generated with \code{Report$new()})
+##' @param x An object of class \code{"asciiTable"}, \code{"asciiList"}, \code{"asciiMixed"}, \code{"asciiCbind"} or \code{"Report"}.
 ##' @param type Type of syntax produce.  Possible values for \code{type} are
 ##'   \code{"asciidoc"}, \code{"t2t"}, \code{"rest"}, \code{"org"},
 ##'   \code{"textile"} or \code{"pandoc"}.  Default value produce asciidoc syntax.
@@ -20,6 +20,7 @@ options(asciiType = "asciidoc")
 ##'   printed with a \code{\\}. Default value is \code{FALSE}
 ##' @param list.escape Character vector. Default value is \code{c("\\\\_",
 ##'   "\\\\^")}
+##' @param help logical print help? (objects of class \code{"Report"})
 ##' @param ... Additional arguments.  (Currently ignored.)
 ##' @author David Hajage \email{dhajage@@gmail.com}
 ##' @seealso \code{\link{ascii}}
@@ -148,3 +149,20 @@ setMethod(show, "asciiMixed",
              print(object)
            }
           )
+
+##' @rdname print-ascii
+##' @export
+setMethod(print, "Report",
+          function(x, help = FALSE, ...) {
+            if (help)
+              x$show.Report(help = TRUE)
+            else
+              x$show.Report(help = FALSE)
+          })
+
+##' @rdname print-ascii
+##' @export
+setMethod(show, "Report",
+          function(object) {
+            print(object)
+          })
