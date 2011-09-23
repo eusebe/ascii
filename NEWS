@@ -1,8 +1,14 @@
-2011/xx/xx
+2011/09/22
 ~~~~~~~~~~
 
+* major internal change: use Reference Classes instead of +proto+. +proto+ dependancy has been dropped
+* +Report$export+ replaced by +Report$create+ (+export+ is a method already inherited in all Reference instances)
+* add +plim+ format to format p-values
 * +cbind.ascii+ now accepts any number of ascii objects
 * fix +cbind.ascii+ with pandoc
+* fix +ascii.mtable+ when +summary.stats = FALSE+
+* fix bug in textile caption
+* update all Sweave drivers to reflect changes in R, cacheSweave and weaver package
 
 2011/05/12
 ~~~~~~~~~~
