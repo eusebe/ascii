@@ -1,178 +1,31 @@
-2011/09/22
-~~~~~~~~~~
+Version 2.1
+-----------
 
-* major internal change: use Reference Classes instead of +proto+. +proto+ dependancy has been dropped
+MINOR CHANGES
+
+* add some exports in NAMESPACE (RweaveAscii, interleave.matrix, paste.matrix, expand, tocharac)
+
+Version 2.0
+-----------
+
+NEW FEATURES
+
 * +Report$export+ replaced by +Report$create+ (+export+ is a method already inherited in all Reference instances)
+
 * add +plim+ format to format p-values
+
 * +cbind.ascii+ now accepts any number of ascii objects
+
+MAJOR CHANGES
+
+* use Reference Classes instead of +proto+. +proto+ dependancy has been dropped
+
+BUG FIXES
+
 * fix +cbind.ascii+ with pandoc
+
 * fix +ascii.mtable+ when +summary.stats = FALSE+
+
 * fix bug in textile caption
-* update all Sweave drivers to reflect changes in R, cacheSweave and weaver package
 
-2011/05/12
-~~~~~~~~~~
-
-* +ext+ option is replaced by +format+
-* add a method for mtable objects (memisc package)
-
-2011/04/17
-~~~~~~~~~~
-
-* R >= 2.13 required
-* refactor all Sweave drivers to fix a bug with keep.source = TRUE
-
-2011/03/04
-~~~~~~~~~~
-
-* fix another bug with mac: now open files with command 'open'
-* method for stat.table objects (package Epi)
-
-2011/03/04
-~~~~~~~~~~
-
-* fix another bug with mac: now open files with command 'open'
-* method for stat.table objects (package Epi)
-
-2011/03/02
-~~~~~~~~~~
-
-* fix a bug with mac (was recognized as windows)
-* exportation options can be set directly in Report$export(<options>)
-* add a new special object/function for reporting : verbatim(), to create a verbatim environment
-* add the ability to save a recordedplot, a lattice plot or a ggplot. graph() function is renamed fig() for the occasion
-* add helpers inside the class Report: Report$addSection(), Report$addParagraph(), Report$addVerbatim(), Report$addFig()
-
-2011/02/26
-~~~~~~~~~~
-
-* export and Report functions: use asciidoc, a2x, txt2tags, pandoc or markdown2pdf to export R objects to files
-* pandoc support (thanks to Matti Pastell)
-* add ability to change opening and closing text of chunk (Sweave option +begin+ and +end+)
-* l/r/t/bgroup with org and t2t
-* align support with t2t
-
-2010/07/08
-~~~~~~~~~~
-
-* add +weaver+ and +cacheSweave+ based drivers for all markups.
-
-2010/06/02
-~~~~~~~~~~
-
-* Fix bug with one row table and factors
-
-2010/05/19
-~~~~~~~~~~
-
-* Fix digits
-
-2010/05/14
-~~~~~~~~~~
-
-* Fix bug in org export: +\vert+ replace +\|+
-
-2010/04/20
-~~~~~~~~~~
-
-* main functions rewritten: it should be easier to add new markup
-* add dimnames in +ascii.table()+
-* +style+, +align+ and +valign+ accept matrix
-* +t/b/l/rgroup+ accept several groups (in a list)
-* +header+ and +footer+ accept an integer (number of lines for the header)
-* +t/b/l/rstyle+ can be "h" (for "header")
-* +caption+, +caption.level+, +align+, +valign+, +style+, +frame+, +grid+ have +NULL+ default value
-* +'nice'+ format: 0 digits if integer
-
-2010/02/05
-~~~~~~~~~~
-
-* textile support
-* fix a bug in asciidoc labeled list, when labels begin with a number
-* fix bug with RweaveDrivers when split = TRUE
-
-2009/11/28
-~~~~~~~~~~
-
-* method for +survfit+ and +summary.survfit+ objects
-* fix bug in +ascii.CrossTable+ when no test result
-* fix extra spaces in org output when style = "s" or "m"
-
-2009/11/25
-~~~~~~~~~~
-
-* fix several bugs in +ascii.freqtable+ and +ascii.meanscomp+
-* fix several bugs in asciidoc table header
-
-2009/11/24
-~~~~~~~~~~
-
-* version 0.4
-* remove extra +\n+ when there is no R output
-* change the name of Sphinx related functions to ReST
-* add methods for +freq()+, +compmeans()+ and +CrossTable()+ in package +descr+
-* remove +cgroup+ and +rgroup+ arguments in +ascii()+ function
-* four new arguments : +tgroup+ (top), +bgroup+ (bottom), +lgroup+ (left) and +rgroup+ (right)
-* new arguments +escape+ and +list.escape+ in +print.ascii()+ function
-
-2009/10/28
-~~~~~~~~~~
-
-* "results=ascii" for all drivers
-* method for +ftable+ objects
-* method for +packageDescription+ objects
-* method for +sessionInfo+ objects
-* fix warning with asciidoc list output
-
-2009/10/24
-~~~~~~~~~~
-
-* small bug fix
-
-2009/10/24
-~~~~~~~~~~
-
-* version 0.3
-* +list.type+ can be +"label"+
-* +ascii.simple.list+ method
-* +rownames+ and +colnames+ arguments
-* +cgroup+ for txt2tags output
-* improve col alignment in txt2tags output
-* http://sphinx.pocoo.org/[sphinx] driver and output
-* http://orgmode.org/[org] driver and output
-* improve row and col span (cgroup and rgroup)
-* remove +SweaveAscii()+ function
-* +Asciidoc()+, +T2t()+, +Sphinx()+ and +Org()+ (wrapper for +Sweave("file.Rnw", RweaveXxx)+)
-
-2009/07/16
-~~~~~~~~~~
-
-* version 0.2
-* digit and format accept matrix, (each cell can have its own number of digits a
-nd format)
-* new arguments (+cgroup+, +rgroup+, ...) to define major column and row heading
-s like in Hmisc::latex() (only for asciidoc output)
-* column style and alignment use cell specifiers
-* remove SweaveSyntaxAscii (bug when +]+ is used inside +Sexpr:[]+)
-
-
-2009/05/11
-~~~~~~~~~~
-
-* +\SweaveOpts{}+ now works
-* add +SweaveSyntaxAscii+ (+SweaveOpts:[]+, +Sexpr:[]+) 
-* add a simple wrapper for +Sweave()+ (+SweaveAscii()+) that use +RweaveAsciidoc+ and +SweaveSyntaxAscii+ as default
-
-
-2009/04/27
-~~~~~~~~~~
-
-* add a +caption.level+ argument
-* improve +ascii.describe+ output (package +Hmisc+)
-
-
-2009/04/08
-~~~~~~~~~~
-
-* update DESCRIPTION (with homepage)
-* support for +describe+ function in package +Hmisc+
+* update all Sweave drivers to reflect recent changes in R, cacheSweave and weaver package

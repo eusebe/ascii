@@ -1,6 +1,6 @@
 \name{RtangleAsciiWritedoc}
 \alias{RtangleAsciiWritedoc}
-\title{RtangleAsciidocWritedoc}
+\title{RtangleAsciiWritedoc}
 \usage{
 RtangleAsciiWritedoc(object, chunk)
 }
@@ -10,7 +10,7 @@ RtangleAsciiWritedoc(object, chunk)
   \item{chunk}{chunk}
 }
 \description{
-RtangleAsciidocWritedoc
+RtangleAsciiWritedoc
 }
 \keyword{internal}
 

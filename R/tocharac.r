@@ -46,6 +46,7 @@ formatCustom <- function(x, format = "nice", digits = 2, ...) {
 
 ##' tocharac
 ##'
+##' @export
 ##' @keywords internal
 ##' @param x x
 ##' @param include.rownames include.rownames

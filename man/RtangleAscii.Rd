@@ -4,5 +4,4 @@
 \description{
 RtangleAscii
 }
-\keyword{internal}
 

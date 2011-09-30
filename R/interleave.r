@@ -1,7 +1,8 @@
 # from http://tolstoy.newcastle.edu.au/R/help/06/03/22717.html
 
 ##' interleave
-##' 
+##'
+##' @export
 ##' @keywords internal
 ##' @param ... ...
 interleave <- function(...) {
@@ -37,7 +38,8 @@ as.list.matrix <- function(x, byrow = TRUE, ...) {
 
 
 ##' interleave.matrix
-##' 
+##'
+##' @export
 ##' @keywords internal
 ##' @param ... ...
 ##' @param byrow byrow
@@ -56,7 +58,8 @@ interleave.matrix <- function(..., byrow = TRUE) {
 }
 
 ##' interleave.data.frame
-##' 
+##'
+##' @export
 ##' @keywords internal
 ##' @param ... ...
 ##' @param byrow byrow

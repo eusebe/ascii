@@ -630,7 +630,7 @@ RweaveAsciiOptions <- function(options)
 
 ##' RtangleAscii
 ##'
-##' @keywords internal
+##' @export
 RtangleAscii <-  function()
 {
     list(setup = utils:::RtangleSetup,
@@ -640,7 +640,7 @@ RtangleAscii <-  function()
          checkopts = RweaveAsciiOptions)
 }
 
-##' RtangleAsciidocWritedoc
+##' RtangleAsciiWritedoc
 ##' @param object object
 ##' @param chunk chunk
 ##' @keywords internal
