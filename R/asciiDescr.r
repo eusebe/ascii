@@ -243,7 +243,8 @@ ascii.CrossTable <- function (x, ...) {
 
 ##' @export
 ##' @method ascii freqtable
-ascii.freqtable <- function (x, header = TRUE, footer = TRUE, digits = c(0, 2, 2), format = "f", na.print = "", include.rownames = TRUE, include.colnames = TRUE, caption = x$label, ...) {
-  res <- x$freqtable
-  ascii(res, header = header, footer = footer, include.rownames = include.rownames, include.colnames = include.colnames, caption = caption, digits = digits, format = format, na.print = na.print, ...)
+ascii.freqtable <- function (x, header = TRUE, footer = TRUE, digits = c(0, 2, 2), format = "f", na.print = "", include.rownames = TRUE, include.colnames = TRUE, caption = attr(x, "xlab"), ...) {
+  class(x) <- "matrix"
+  ascii(x, header = header, footer = footer, include.rownames = include.rownames, include.colnames = include.colnames, caption = caption, digits = digits, format = format, na.print = na.print, ...)
 }
+
