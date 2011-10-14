@@ -32,6 +32,9 @@
 \alias{ascii.stat.table}
 \alias{ascii.summary.aov}
 \alias{ascii.summary.aovlist}
+\alias{ascii.summary.formula.cross}
+\alias{ascii.summary.formula.response}
+\alias{ascii.summary.formula.reverse}
 \alias{ascii.summary.glm}
 \alias{ascii.summary.lm}
 \alias{ascii.summary.prcomp}
@@ -48,6 +51,12 @@
 \method{ascii}{default}(x, include.rownames = TRUE, include.colnames = TRUE, rownames = NULL, colnames = NULL, format = "f", digits = 2, decimal.mark = ".", na.print = "", caption = NULL, caption.level = NULL, width = 0, frame = NULL, grid = NULL, valign = NULL, header = TRUE, footer = FALSE, align = NULL, col.width = 1, style = NULL, tgroup = NULL, n.tgroup = NULL, talign = "c", tvalign = "middle", tstyle = "h", bgroup = NULL, n.bgroup = NULL, balign = "c", bvalign = "middle", bstyle = "h", lgroup = NULL, n.lgroup = NULL, lalign = "c", lvalign = "middle", lstyle = "h", rgroup = NULL, n.rgroup = NULL, ralign = "c", rvalign = "middle", rstyle = "h", list.type = "bullet", ...)
 
 \method{ascii}{describe}(x, condense = TRUE, ...)
+
+\method{ascii}{summary.formula.response}(x, vnames = c("labels", "names"), prUnits = TRUE, lgroup = list(dimnames(stats)[[1]], if (ul) vlabels else at$vname[at$vname != ""]), n.lgroup = list(1, at$nlevels), include.rownames = FALSE, include.colnames = TRUE, format = "nice", caption = paste(at$ylabel, if (ns > 1) paste(" by", if (ul) at$strat.label else at$strat.name), " N = ", at$n, if (at$nmiss) paste(", ", at$nmiss, " Missing", sep = ""), sep = ""), caption.level = "s", header = TRUE, ...)
+
+\method{ascii}{summary.formula.reverse}(x, digits, prn = any(n != N), pctdig = 0, npct = c("numerator", "both", "denominator", "none"), exclude1 = TRUE, vnames = c("labels", "names"), prUnits = TRUE, sep = "/", formatArgs = NULL, round = NULL, prtest = c("P", "stat", "df", "name"), prmsd = FALSE, pdig = 3, eps = 0.001, caption = paste("Descriptive Statistics", if (length(x$group.label)) paste(" by", x$group.label) else paste(" (N = ", x$N, ")", sep = ""), sep = ""), caption.level = "s", include.rownames = FALSE, include.colnames = TRUE, colnames = gl, header = TRUE, lgroup = lgr, n.lgroup = n.lgr, rgroup = rgr, n.rgroup = n.rgr, rstyle = "d", ...)
+
+\method{ascii}{summary.formula.cross}(x, twoway = nvar == 2, prnmiss = any(stats$Missing > 0), prn = TRUE, formatArgs = NULL, caption = a$heading, caption.level = "s", include.rownames = FALSE, include.colnames = TRUE, header = TRUE, format = "nice", lgroup = v, n.lgroup = rep(length(z), length(v)), ...)
 
 \method{ascii}{sessionInfo}(x, locale = TRUE, ...)
 
@@ -255,6 +264,69 @@ ascii(x, ...)
   with regard to the 5 lowest and highest values and the
   frequency table (\code{describe()} in package
   \code{Hmisc}).}
+
+  \item{vnames}{By default, tables and plots are usually
+  labeled with variable labels (see \code{summary.formula}
+  in package \code{Hmisc}).}
+
+  \item{prUnits}{set to \code{FALSE} to suppress printing
+  or latexing \code{units} attributes of variables (see
+  \code{summary.formula} in package \code{Hmisc}).}
+
+  \item{prn}{set to \code{TRUE} to print the number of
+  non-missing observations on the current (row) variable
+  (see \code{summary.formula} in package \code{Hmisc}).}
+
+  \item{pctdig}{number of digits to the right of the
+  decimal place for printing percentages (see
+  \code{summary.formula} in package \code{Hmisc}).}
+
+  \item{npct}{specifies which counts are to be printed to
+  the right of percentages (see \code{summary.formula} in
+  package \code{Hmisc}).}
+
+  \item{exclude1}{by default, \code{method="reverse"}
+  objects will be printed, plotted, or typeset by removing
+  redundant entries from percentage tables for categorical
+  variables (see \code{summary.formula} in package
+  \code{Hmisc}).}
+
+  \item{sep}{character to use to separate quantiles when
+  printing \code{method="reverse"} tables (see
+  \code{summary.formula} in package \code{Hmisc}).}
+
+  \item{formatArgs}{a list containing other arguments to
+  pass to \code{format.default} (see \code{summary.formula}
+  in package \code{Hmisc}).}
+
+  \item{round}{Specify \code{round} to round the quantiles
+  and optional mean and standard deviation to \code{round}
+  digits after the decimal point (see
+  \code{summary.formula} in package \code{Hmisc}).}
+
+  \item{prtest}{a vector of test statistic components to
+  print if \code{test=TRUE} (see \code{summary.formula} in
+  package \code{Hmisc}).}
+
+  \item{prmsd}{set to \code{TRUE} to print mean and SD
+  after the three quantiles, for continuous variables (see
+  \code{summary.formula} in package \code{Hmisc}).}
+
+  \item{pdig}{number of digits to the right of the decimal
+  place for printing P-values. (see \code{summary.formula}
+  in package \code{Hmisc}).}
+
+  \item{eps}{P-values less than \code{eps} will be printed
+  as \code{< eps} (see \code{summary.formula} in package
+  \code{Hmisc}).}
+
+  \item{twoway}{controls whether the resulting table will
+  be printed in enumeration format or as a two-way table
+  (the default) (see \code{summary.formula} in package
+  \code{Hmisc}).}
+
+  \item{prnmiss}{set to \code{FALSE} to suppress printing
+  counts of missing values}
 
   \item{locale}{show locale information?}
 
