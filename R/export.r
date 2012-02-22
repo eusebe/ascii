@@ -386,7 +386,7 @@ print.sexpr <- function(x, ...) {
 ##' @export
 ##' @author David Hajage
 out <- function(x, results = "verbatim") {
-  results <- list(x, results)
+  results <- list(capture.output(x), results = "verbatim")
   class(results) <- "out"
   results
 }
@@ -411,7 +411,7 @@ print.out <- function(x, backend = getOption("asciiBackend"), ...) {
     if (backend == "pandoc" | backend == "markdown2pdf")
       cat("\n~~~~~~~{.R}\n")
   }
-  print(x[[1]], ...)
+  cat(x[[1]], sep = "\n")
   if (results == "verbatim") {
     if (backend == "asciidoc" | backend == "a2x")
       cat("----\n\n")
