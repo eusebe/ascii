@@ -67,9 +67,17 @@ tocharac <- function(x, include.rownames = FALSE, include.colnames = FALSE, rown
   
   format <- expand(format, nrow(x), ncol(x), drop = FALSE)
   digits <- expand(digits, nrow(x), ncol(x), drop = FALSE)
-  
-  rn <- rep(rownames, length = nrow(x))
-  cn <- rep(colnames, length = ncol(x))
+
+  if (!is.null(rownames)) {
+      rn <- rep(rownames, length = nrow(x))
+  } else {
+      rn <- NULL
+  }
+  if (!is.null(rownames)) {
+      cn <- rep(colnames, length = ncol(x))
+  } else {
+      cn <- NULL
+  }
   if (include.rownames & is.null(rn)) {
     rn <- rownames(x, do.NULL = F, prefix = "")
   }

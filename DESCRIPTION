@@ -21,7 +21,8 @@ Suggests:
     xtable,
     R2HTML,
     cacheSweave,
-    weaver
+    weaver,
+    knitr
 Collate:
     'asciiAnova.r'
     'asciiDataFrame.r'
