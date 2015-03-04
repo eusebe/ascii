@@ -16,14 +16,14 @@ interleave <- function(...) {
   }
   do.call("c", args)[order(unlist(ord))]
 }
-## interleave(rep(1, 5),rep(3, 8)) 
+## interleave(rep(1, 5),rep(3, 8))
 ## interleave(1:4, 5:8)
 ## interleave(1:4, 5:8, 9:12)
 ## interleave(list(1, 2, 3, 4), list(5, 6, 7, 8))
 
 
 ##' as.list.matrix
-##' 
+##'
 ##' @keywords internal
 ##' @param x x
 ##' @param byrow byrow
@@ -46,7 +46,7 @@ as.list.matrix <- function(x, byrow = TRUE, ...) {
 interleave.matrix <- function(..., byrow = TRUE) {
   args <- list(...)
   args <- args[!sapply(args, is.null)]
-  
+
   lists <- lapply(args, function(x) {
     as.list.matrix(x, byrow = byrow)
   })
@@ -67,7 +67,7 @@ interleave.matrix <- function(..., byrow = TRUE) {
 interleave.data.frame <- function(..., byrow = TRUE, pretty.rownames = TRUE) {
   args <- list(...)
   args <- args[!sapply(args, is.null)]
-  
+
   names_df <- lapply(args, names)
   if (byrow) {
     inter_names <- names(args[[1]])
@@ -85,7 +85,7 @@ interleave.data.frame <- function(..., byrow = TRUE, pretty.rownames = TRUE) {
   } else {
     inter_names <- unlist(do.call("interleave", names_df))
   }
-  
+
   list_mat <- lapply(args, as.matrix)
   names(list_mat) <- NULL
   results <- suppressWarnings(data.frame(do.call("interleave.matrix", c(list_mat, byrow = byrow))))
